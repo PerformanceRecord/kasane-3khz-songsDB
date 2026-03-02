@@ -987,7 +987,7 @@ function updateUnifiedListSheet() {
 
       const url = extractUrlFromCell_(rich[i][3], formulas[i][3], linkText) || '';
       const posted = extractHeadDateAsDateFromFirst8Chars_(linkText);
-      const tsSeconds = extractTimestampSecondsFromUrl_(url);
+      const tsSeconds = extractTimestampSeconds_(url, linkText);
       const tsSerial = secondsToTimeSerial_(tsSeconds);
 
       const out = [artist, title, kind, linkText, posted, tsSerial, url];
@@ -1069,6 +1069,17 @@ function extractHeadDateAsDateFromFirst8Chars_(text) {
   return dt;
 }
 
+function extractTimestampSeconds_(url, linkText) {
+  const u = (url || '').toString().trim();
+  const fromUrl = extractTimestampSecondsFromUrl_(u);
+  if (fromUrl !== Number.MAX_SAFE_INTEGER) return fromUrl;
+
+  const fromText = extractTimestampSecondsFromText_(linkText);
+  if (fromText !== Number.MAX_SAFE_INTEGER) return fromText;
+
+  return Number.MAX_SAFE_INTEGER;
+}
+
 function extractTimestampSecondsFromUrl_(url) {
   const u = (url || '').toString().trim();
   if (!u) return Number.MAX_SAFE_INTEGER;
@@ -1085,7 +1096,24 @@ function extractTimestampSecondsFromUrl_(url) {
   m = u.match(/[?&#]t=(\d+)m(\d+)s?(?:[&#]|$)/i);
   if (m) return Number(m[1]) * 60 + Number(m[2]);
 
+  m = u.match(/[?&#]t=(\d+):(\d{1,2})(?::(\d{1,2}))?(?:[&#]|$)/i);
+  if (m) {
+    const h = m[3] !== undefined ? Number(m[1]) : 0;
+    const mm = m[3] !== undefined ? Number(m[2]) : Number(m[1]);
+    const ss = m[3] !== undefined ? Number(m[3]) : Number(m[2]);
+    if (mm >= 0 && mm < 60 && ss >= 0 && ss < 60) {
+      return h * 3600 + mm * 60 + ss;
+    }
+  }
+
   return Number.MAX_SAFE_INTEGER;
+}
+
+function extractTimestampSecondsFromText_(text) {
+  const t = (text || '').toString();
+  const m = t.match(/(^|\s)(\d{1,2}:\d{1,2}(?::\d{1,2})?)(?=\s|$)/);
+  if (!m) return Number.MAX_SAFE_INTEGER;
+  return timestampTextToSeconds_(m[2]);
 }
 
 function secondsToTimeSerial_(seconds) {
@@ -1107,6 +1135,13 @@ function normalizeDateText_(text) {
 }
 
 function normalizeTimestampText_(text) {
+  if (Object.prototype.toString.call(text) === '[object Date]' && !isNaN(text.getTime())) {
+    const h = text.getHours();
+    const mm = text.getMinutes();
+    const ss = text.getSeconds();
+    return `${h}:${('0' + mm).slice(-2)}:${('0' + ss).slice(-2)}`;
+  }
+
   if (typeof text === 'number' && Number.isFinite(text) && text >= 0) {
     const seconds = Math.floor(text * 86400);
     const h = Math.floor(seconds / 3600);
