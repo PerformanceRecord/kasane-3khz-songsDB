@@ -433,3 +433,143 @@ function probeAll_() {
   });
   return report;
 }
+
+/**
+ * songs / gags / archive の A〜D 列を統合し、
+ * E 列に投稿日(yyyy/mm/dd)、F 列にタイムスタンプ(h:mm:ss)を出力する。
+ *
+ * 並び順:
+ * - 日付昇順（最古→最新）
+ * - タイムスタンプ昇順（0:00:00→）
+ */
+function rebuildMergedSheet_() {
+  const ss = SpreadsheetApp.openById(CFG.SHEET_ID);
+  const targetName = 'merged';
+  const headers = ['A', 'B', 'C', 'D', '投稿日', 'タイムスタンプ'];
+  const tabKeys = ['songs', 'gags', 'archive'];
+
+  const rows = [];
+
+  tabKeys.forEach((tabKey) => {
+    const sheetName = CFG.SHEETS[tabKey];
+    const startRow = CFG.START_ROWS[tabKey] || 4;
+    const sh = ss.getSheetByName(sheetName);
+    if (!sh) return;
+
+    const last = sh.getLastRow();
+    if (last < startRow) return;
+
+    const numRows = last - startRow + 1;
+    const range = sh.getRange(startRow, 1, numRows, CFG.COLS);
+    const values = range.getDisplayValues();
+    const formulas = range.getFormulas();
+    const rich = range.getRichTextValues();
+
+    for (let i = 0; i < numRows; i += 1) {
+      const a = values[i][0] || '';
+      const b = values[i][1] || '';
+      const c = values[i][2] || '';
+      const d = values[i][3] || '';
+      if ((a + b + c + d).trim() === '') continue;
+
+      const dUrl = getUrlWithSource_(rich[i][3], formulas[i][3], d).url;
+      const postedDate = extractPostedDate_(d);
+      const timestampSec = extractTimestampSeconds_(dUrl);
+
+      rows.push({
+        out: [a, b, c, d, postedDate.text, secondsToHms_(timestampSec)],
+        dateKey: postedDate.sortKey,
+        tsKey: timestampSec,
+      });
+    }
+  });
+
+  rows.sort((x, y) => {
+    if (x.dateKey !== y.dateKey) return x.dateKey - y.dateKey;
+    return x.tsKey - y.tsKey;
+  });
+
+  const outputRows = rows.map((r) => r.out);
+
+  let target = ss.getSheetByName(targetName);
+  if (!target) target = ss.insertSheet(targetName);
+  target.clearContents();
+  target.getRange(1, 1, 1, headers.length).setValues([headers]);
+
+  if (outputRows.length > 0) {
+    target.getRange(2, 1, outputRows.length, headers.length).setValues(outputRows);
+  }
+
+  return {
+    ok: true,
+    sheet: targetName,
+    count: outputRows.length,
+  };
+}
+
+function extractPostedDate_(dText) {
+  const m = String(dText || '').match(/^(\d{4}\/\d{2}\/\d{2})/);
+  if (!m) {
+    return { text: '', sortKey: Number.MAX_SAFE_INTEGER };
+  }
+
+  const sortKey = Number(m[1].replace(/\//g, ''));
+  return { text: m[1], sortKey: Number.isFinite(sortKey) ? sortKey : Number.MAX_SAFE_INTEGER };
+}
+
+function extractTimestampSeconds_(url) {
+  const u = String(url || '').trim();
+  if (!u) return Number.MAX_SAFE_INTEGER;
+
+  const patterns = [
+    /[?&#]t=(\d+)(?:s)?(?:[&#]|$)/i,
+    /[?&#]start=(\d+)(?:[&#]|$)/i,
+    /[?&#]time_continue=(\d+)(?:[&#]|$)/i,
+  ];
+
+  for (let i = 0; i < patterns.length; i += 1) {
+    const m = u.match(patterns[i]);
+    if (m) return Number(m[1]);
+  }
+
+  const hms = u.match(/[?&#]t=(\d+)h(\d+)m(\d+)s(?:[&#]|$)/i);
+  if (hms) {
+    return Number(hms[1]) * 3600 + Number(hms[2]) * 60 + Number(hms[3]);
+  }
+
+  const ms = u.match(/[?&#]t=(\d+)m(\d+)s(?:[&#]|$)/i);
+  if (ms) {
+    return Number(ms[1]) * 60 + Number(ms[2]);
+  }
+
+  const tail = u.match(/(\d{1,2}:\d{2}(?::\d{2})?)$/);
+  if (tail) {
+    return hmsTextToSeconds_(tail[1]);
+  }
+
+  return Number.MAX_SAFE_INTEGER;
+}
+
+function hmsTextToSeconds_(text) {
+  const parts = String(text || '').split(':').map((x) => Number(x));
+  if (parts.some((n) => !Number.isFinite(n))) return Number.MAX_SAFE_INTEGER;
+
+  if (parts.length === 2) {
+    return parts[0] * 60 + parts[1];
+  }
+  if (parts.length === 3) {
+    return parts[0] * 3600 + parts[1] * 60 + parts[2];
+  }
+
+  return Number.MAX_SAFE_INTEGER;
+}
+
+function secondsToHms_(seconds) {
+  if (!Number.isFinite(seconds) || seconds === Number.MAX_SAFE_INTEGER) return '';
+
+  const s = Math.max(0, Math.floor(seconds));
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  return `${h}:${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+}
