@@ -988,10 +988,10 @@ function updateUnifiedListSheet() {
       const url = extractUrlFromCell_(rich[i][3], formulas[i][3], linkText) || '';
       const posted = extractHeadDateAsDateFromFirst8Chars_(linkText);
       const tsSeconds = extractTimestampSecondsFromUrl_(url);
-      const tsText = secondsToHMMSS_(tsSeconds);
+      const tsSerial = secondsToTimeSerial_(tsSeconds);
 
-      const out = [artist, title, kind, linkText, posted, tsText, url];
-      const uniq = makeUnifiedRowUniqueKey_(artist, title, kind, url, posted, tsText);
+      const out = [artist, title, kind, linkText, posted, tsSerial, url];
+      const uniq = makeUnifiedRowUniqueKey_(artist, title, kind, url, posted, tsSerial);
       if (existingSet.has(uniq)) continue;
 
       rowsToAppend.push(out);
@@ -1006,6 +1006,9 @@ function updateUnifiedListSheet() {
 
   // E列（投稿日）は日付シリアル値として保持しつつ見た目は YYYY/MM/DD に整形
   listSheet.getRange(2, 5, Math.max(listSheet.getLastRow() - 1, 1), 1).setNumberFormat('yyyy/mm/dd');
+  // F列（タイムスタンプ）は時刻シリアル値（秒精度）で保持し、見た目は H:MM:SS に整形
+  coerceUnifiedTimestampColumnToSerial_(listSheet);
+  listSheet.getRange(2, 6, Math.max(listSheet.getLastRow() - 1, 1), 1).setNumberFormat('h:mm:ss');
 
   sortUnifiedListSheet_(listSheet);
   listSheet.setFrozenRows(1);
@@ -1085,12 +1088,9 @@ function extractTimestampSecondsFromUrl_(url) {
   return Number.MAX_SAFE_INTEGER;
 }
 
-function secondsToHMMSS_(seconds) {
+function secondsToTimeSerial_(seconds) {
   if (!Number.isFinite(seconds) || seconds === Number.MAX_SAFE_INTEGER || seconds < 0) return '';
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  const s = Math.floor(seconds % 60);
-  return `${h}:${('0' + m).slice(-2)}:${('0' + s).slice(-2)}`;
+  return Math.floor(seconds) / 86400;
 }
 
 function normalizeDateText_(text) {
@@ -1107,6 +1107,14 @@ function normalizeDateText_(text) {
 }
 
 function normalizeTimestampText_(text) {
+  if (typeof text === 'number' && Number.isFinite(text) && text >= 0) {
+    const seconds = Math.floor(text * 86400);
+    const h = Math.floor(seconds / 3600);
+    const mm = Math.floor((seconds % 3600) / 60);
+    const ss = Math.floor(seconds % 60);
+    return `${h}:${('0' + mm).slice(-2)}:${('0' + ss).slice(-2)}`;
+  }
+
   const t = (text || '').toString().trim();
   const m = t.match(/^(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?$/);
   if (!m) return '';
@@ -1123,6 +1131,23 @@ function timestampTextToSeconds_(text) {
   if (!t) return Number.MAX_SAFE_INTEGER;
   const p = t.split(':').map(Number);
   return p[0] * 3600 + p[1] * 60 + p[2];
+}
+
+function coerceUnifiedTimestampColumnToSerial_(sheet) {
+  const lastRow = sheet.getLastRow();
+  if (lastRow < 2) return;
+
+  const numRows = lastRow - 1;
+  const range = sheet.getRange(2, 6, numRows, 1);
+  const vals = range.getValues();
+
+  const converted = vals.map(r => {
+    const seconds = timestampTextToSeconds_(r[0]);
+    if (!Number.isFinite(seconds) || seconds === Number.MAX_SAFE_INTEGER || seconds < 0) return [''];
+    return [Math.floor(seconds) / 86400];
+  });
+
+  range.setValues(converted);
 }
 
 function dateTextToSortKey_(text) {
