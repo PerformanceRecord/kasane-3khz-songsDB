@@ -955,7 +955,7 @@ function updateUnifiedListSheet() {
     { name: ARCHIVE_SHEET_NAME, startRow: ARCHIVE_START_ROW },
   ];
 
-  const header = ['アーティスト名', '曲名', '区分', '出典元情報(直リンク)', '投稿日', 'タイムスタンプ'];
+  const header = ['アーティスト名', '曲名', '区分', '出典元情報(直リンク)', '投稿日', 'タイムスタンプ', '動画URL'];
 
   let listSheet = ss.getSheetByName(UNIFIED_LIST_SHEET_NAME);
   if (!listSheet) listSheet = ss.insertSheet(UNIFIED_LIST_SHEET_NAME);
@@ -986,11 +986,11 @@ function updateUnifiedListSheet() {
       if (!artist && !title && !kind && !linkText) continue;
 
       const url = extractUrlFromCell_(rich[i][3], formulas[i][3], linkText) || '';
-      const posted = extractHeadDateTextYYYYMMDDSlash_(linkText);
+      const posted = extractHeadDateAsDateFromFirst8Chars_(linkText);
       const tsSeconds = extractTimestampSecondsFromUrl_(url);
       const tsText = secondsToHMMSS_(tsSeconds);
 
-      const out = [artist, title, kind, linkText, posted, tsText];
+      const out = [artist, title, kind, linkText, posted, tsText, url];
       const uniq = makeUnifiedRowUniqueKey_(artist, title, kind, url, posted, tsText);
       if (existingSet.has(uniq)) continue;
 
@@ -1003,6 +1003,9 @@ function updateUnifiedListSheet() {
     const appendStart = Math.max(listSheet.getLastRow() + 1, 2);
     listSheet.getRange(appendStart, 1, rowsToAppend.length, header.length).setValues(rowsToAppend);
   }
+
+  // E列（投稿日）は日付シリアル値として保持しつつ見た目は YYYY/MM/DD に整形
+  listSheet.getRange(2, 5, Math.max(listSheet.getLastRow() - 1, 1), 1).setNumberFormat('yyyy/mm/dd');
 
   sortUnifiedListSheet_(listSheet);
   listSheet.setFrozenRows(1);
@@ -1024,7 +1027,7 @@ function buildUnifiedExistingSet_(sheet) {
   if (lastRow < 2) return new Set();
 
   const numRows = lastRow - 1;
-  const rng = sheet.getRange(2, 1, numRows, 6);
+  const rng = sheet.getRange(2, 1, numRows, 7);
   const vals = rng.getValues();
   const rich = rng.getRichTextValues();
   const formulas = rng.getFormulas();
@@ -1037,9 +1040,9 @@ function buildUnifiedExistingSet_(sheet) {
     const linkText = (vals[i][3] || '').toString().trim();
     const posted = normalizeDateText_(vals[i][4]);
     const tsText = normalizeTimestampText_(vals[i][5]);
-    const url = extractUrlFromCell_(rich[i][3], formulas[i][3], linkText) || '';
+    const url = (vals[i][6] || '').toString().trim() || extractUrlFromCell_(rich[i][3], formulas[i][3], linkText) || '';
 
-    if (!artist && !title && !kind && !linkText && !posted && !tsText) continue;
+    if (!artist && !title && !kind && !linkText && !posted && !tsText && !url) continue;
     set.add(makeUnifiedRowUniqueKey_(artist, title, kind, url, posted, tsText));
   }
   return set;
@@ -1049,10 +1052,18 @@ function makeUnifiedRowUniqueKey_(artist, title, kind, url, posted, tsText) {
   return [artist, title, kind, (url || '').trim(), normalizeDateText_(posted), normalizeTimestampText_(tsText)].join('｜');
 }
 
-function extractHeadDateTextYYYYMMDDSlash_(text) {
+function extractHeadDateAsDateFromFirst8Chars_(text) {
   const t = (text || '').toString().trim();
-  const m = t.match(/^(\d{4}\/\d{2}\/\d{2})/);
-  return m ? m[1] : '';
+  const head = t.slice(0, 8);
+  const m = head.match(/^(\d{4})(\d{2})(\d{2})$/);
+  if (!m) return '';
+
+  const y = Number(m[1]);
+  const mo = Number(m[2]);
+  const d = Number(m[3]);
+  const dt = new Date(y, mo - 1, d);
+  if (dt.getFullYear() !== y || dt.getMonth() !== mo - 1 || dt.getDate() !== d) return '';
+  return dt;
 }
 
 function extractTimestampSecondsFromUrl_(url) {
@@ -1083,6 +1094,13 @@ function secondsToHMMSS_(seconds) {
 }
 
 function normalizeDateText_(text) {
+  if (Object.prototype.toString.call(text) === '[object Date]' && !isNaN(text.getTime())) {
+    const y = text.getFullYear();
+    const m = ('0' + (text.getMonth() + 1)).slice(-2);
+    const d = ('0' + text.getDate()).slice(-2);
+    return `${y}/${m}/${d}`;
+  }
+
   const t = (text || '').toString().trim();
   const m = t.match(/^(\d{4})[\/-]?(\d{2})[\/-]?(\d{2})$/);
   return m ? `${m[1]}/${m[2]}/${m[3]}` : '';
@@ -1118,16 +1136,16 @@ function sortUnifiedListSheet_(sheet) {
   if (lastRow < 3) return;
 
   const numRows = lastRow - 1;
-  const vals = sheet.getRange(2, 1, numRows, 6).getValues();
+  const vals = sheet.getRange(2, 1, numRows, 7).getValues();
   vals.sort((a, b) => {
-    const dateA = dateTextToSortKey_(a[4]);
-    const dateB = dateTextToSortKey_(b[4]);
-    if (dateA !== dateB) return dateA - dateB;
-
     const tsA = timestampTextToSeconds_(a[5]);
     const tsB = timestampTextToSeconds_(b[5]);
-    return tsA - tsB;
+    if (tsA !== tsB) return tsA - tsB;
+
+    const dateA = dateTextToSortKey_(a[4]);
+    const dateB = dateTextToSortKey_(b[4]);
+    return dateA - dateB;
   });
 
-  sheet.getRange(2, 1, numRows, 6).setValues(vals);
+  sheet.getRange(2, 1, numRows, 7).setValues(vals);
 }
