@@ -5,18 +5,29 @@
  */
 const MERGED_OUTPUT_SHEET_NAME = 'merged';
 const MERGED_HEADER = ['A', 'B', 'C', 'D', '投稿日', 'タイムスタンプ'];
-const MERGED_GAGS_SHEET_FALLBACK = '企画/一発ネタシリーズ';
+const MERGED_SOURCE_CANDIDATES = {
+  songs: ['songs', '歌った曲リスト'],
+  gags: ['gags', '企画/一発ネタシリーズ'],
+  archive: ['archive', 'アーカイブ'],
+};
+const MERGED_DEFAULT_START_ROWS = {
+  songs: 4,
+  gags: 4,
+  archive: 2,
+};
 
 function mergeSongsGagsArchiveToMergedSheet() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sourceSheets = resolveMergeSourceSheets_(ss);
   const rows = [];
 
-  sourceSheets.forEach((sh) => {
-    const lastRow = sh.getLastRow();
-    if (lastRow < 1) return;
+  sourceSheets.forEach(({ role, sheet }) => {
+    const startRow = getMergeStartRow_(role);
+    const lastRow = sheet.getLastRow();
+    if (lastRow < startRow) return;
 
-    const range = sh.getRange(1, 1, lastRow, 4);
+    const numRows = lastRow - startRow + 1;
+    const range = sheet.getRange(startRow, 1, numRows, 4);
     const values = range.getDisplayValues();
     const rich = range.getRichTextValues();
     const formulas = range.getFormulas();
@@ -57,13 +68,41 @@ function mergeSongsGagsArchiveToMergedSheet() {
 }
 
 function resolveMergeSourceSheets_(ss) {
-  const names = [];
-  if (typeof MAIN_SHEET_NAME !== 'undefined' && MAIN_SHEET_NAME) names.push(MAIN_SHEET_NAME);
-  names.push(MERGED_GAGS_SHEET_FALLBACK);
-  if (typeof ARCHIVE_SHEET_NAME !== 'undefined' && ARCHIVE_SHEET_NAME) names.push(ARCHIVE_SHEET_NAME);
+  const resolved = [];
 
-  const unique = [...new Set(names)];
-  return unique.map((n) => ss.getSheetByName(n)).filter((sh) => !!sh);
+  const songsName = (typeof MAIN_SHEET_NAME !== 'undefined' && MAIN_SHEET_NAME)
+    ? MAIN_SHEET_NAME
+    : pickExistingSheetName_(ss, MERGED_SOURCE_CANDIDATES.songs);
+  if (songsName) resolved.push({ role: 'songs', sheet: ss.getSheetByName(songsName) });
+
+  const gagsName = pickExistingSheetName_(ss, MERGED_SOURCE_CANDIDATES.gags);
+  if (gagsName) resolved.push({ role: 'gags', sheet: ss.getSheetByName(gagsName) });
+
+  const archiveName = (typeof ARCHIVE_SHEET_NAME !== 'undefined' && ARCHIVE_SHEET_NAME)
+    ? ARCHIVE_SHEET_NAME
+    : pickExistingSheetName_(ss, MERGED_SOURCE_CANDIDATES.archive);
+  if (archiveName) resolved.push({ role: 'archive', sheet: ss.getSheetByName(archiveName) });
+
+  return resolved.filter((x) => !!(x && x.sheet));
+}
+
+function pickExistingSheetName_(ss, candidates) {
+  for (let i = 0; i < candidates.length; i += 1) {
+    const name = candidates[i];
+    if (ss.getSheetByName(name)) return name;
+  }
+  return '';
+}
+
+function getMergeStartRow_(role) {
+  if (role === 'archive') {
+    if (typeof ARCHIVE_START_ROW !== 'undefined') return Number(ARCHIVE_START_ROW) || 2;
+    return MERGED_DEFAULT_START_ROWS.archive;
+  }
+
+  if (typeof START_ROW !== 'undefined') return Number(START_ROW) || 4;
+  if (role === 'gags') return MERGED_DEFAULT_START_ROWS.gags;
+  return MERGED_DEFAULT_START_ROWS.songs;
 }
 
 function extractPostedDateForMerge_(dText) {
