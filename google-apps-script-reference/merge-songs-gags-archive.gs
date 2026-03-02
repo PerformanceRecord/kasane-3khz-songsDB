@@ -4,7 +4,9 @@
  * ==============================
  */
 const MAIN_SHEET_NAME = '歌った曲リスト';
+const GAGS_SHEET_NAME = '企画/一発ネタシリーズ';
 const ARCHIVE_SHEET_NAME = 'アーカイブ';
+const UNIFIED_LIST_SHEET_NAME = '一覧';
 const START_ROW = 4;         // メインのデータ開始行（4行目）
 const COL_COUNT = 4;         // A-D：アーティスト名 / 曲名 / 区分 / 出典元情報(直リンク)
 
@@ -53,6 +55,7 @@ function onOpen() {
   // 既存：仕分けメニュー
   ui.createMenu('仕分け')
     .addItem('重複を整理（最新のみ残す）', 'dedupeAndArchive')
+    .addItem('一覧シートを更新（不足分のみ追記）', 'updateUnifiedListSheet')
     .addSeparator()
     .addItem('発表年＆元号を更新（全体）', 'updateReleaseYears')
     .addItem('発表年＆元号を更新（選択範囲）', 'updateReleaseYearsForSelection')
@@ -935,4 +938,196 @@ function extractVideoIdFromUrl_(url) {
   if (m) return m[1];
 
   return null;
+}
+
+
+/**
+ * ============================================================
+ * 追加：songs/gags/archive 統合一覧
+ * ============================================================
+ */
+
+function updateUnifiedListSheet() {
+  const ss = SpreadsheetApp.getActive();
+  const sources = [
+    { name: MAIN_SHEET_NAME, startRow: START_ROW },
+    { name: GAGS_SHEET_NAME, startRow: START_ROW },
+    { name: ARCHIVE_SHEET_NAME, startRow: ARCHIVE_START_ROW },
+  ];
+
+  const header = ['アーティスト名', '曲名', '区分', '出典元情報(直リンク)', '投稿日', 'タイムスタンプ'];
+
+  let listSheet = ss.getSheetByName(UNIFIED_LIST_SHEET_NAME);
+  if (!listSheet) listSheet = ss.insertSheet(UNIFIED_LIST_SHEET_NAME);
+
+  ensureUnifiedListHeader_(listSheet, header);
+  const existingSet = buildUnifiedExistingSet_(listSheet);
+
+  const rowsToAppend = [];
+  for (const src of sources) {
+    const sh = ss.getSheetByName(src.name);
+    if (!sh) continue;
+
+    const lastRow = sh.getLastRow();
+    if (lastRow < src.startRow) continue;
+
+    const numRows = lastRow - src.startRow + 1;
+    const rng = sh.getRange(src.startRow, 1, numRows, COL_COUNT);
+    const vals = rng.getValues();
+    const rich = rng.getRichTextValues();
+    const formulas = rng.getFormulas();
+
+    for (let i = 0; i < numRows; i++) {
+      const artist = (vals[i][0] || '').toString().trim();
+      const title = (vals[i][1] || '').toString().trim();
+      const kind = (vals[i][2] || '').toString().trim();
+      const linkText = (vals[i][3] || '').toString().trim();
+
+      if (!artist && !title && !kind && !linkText) continue;
+
+      const url = extractUrlFromCell_(rich[i][3], formulas[i][3], linkText) || '';
+      const posted = extractHeadDateTextYYYYMMDDSlash_(linkText);
+      const tsSeconds = extractTimestampSecondsFromUrl_(url);
+      const tsText = secondsToHMMSS_(tsSeconds);
+
+      const out = [artist, title, kind, linkText, posted, tsText];
+      const uniq = makeUnifiedRowUniqueKey_(artist, title, kind, url, posted, tsText);
+      if (existingSet.has(uniq)) continue;
+
+      rowsToAppend.push(out);
+      existingSet.add(uniq);
+    }
+  }
+
+  if (rowsToAppend.length > 0) {
+    const appendStart = Math.max(listSheet.getLastRow() + 1, 2);
+    listSheet.getRange(appendStart, 1, rowsToAppend.length, header.length).setValues(rowsToAppend);
+  }
+
+  sortUnifiedListSheet_(listSheet);
+  listSheet.setFrozenRows(1);
+  listSheet.autoResizeColumns(1, header.length);
+
+  ss.toast(`一覧シート更新完了：追記=${rowsToAppend.length}件`, '仕分け', 6);
+}
+
+function ensureUnifiedListHeader_(sheet, header) {
+  const now = sheet.getRange(1, 1, 1, header.length).getValues()[0];
+  const same = header.every((v, i) => String(now[i] || '').trim() === v);
+  if (!same) {
+    sheet.getRange(1, 1, 1, header.length).setValues([header]);
+  }
+}
+
+function buildUnifiedExistingSet_(sheet) {
+  const lastRow = sheet.getLastRow();
+  if (lastRow < 2) return new Set();
+
+  const numRows = lastRow - 1;
+  const rng = sheet.getRange(2, 1, numRows, 6);
+  const vals = rng.getValues();
+  const rich = rng.getRichTextValues();
+  const formulas = rng.getFormulas();
+
+  const set = new Set();
+  for (let i = 0; i < numRows; i++) {
+    const artist = (vals[i][0] || '').toString().trim();
+    const title = (vals[i][1] || '').toString().trim();
+    const kind = (vals[i][2] || '').toString().trim();
+    const linkText = (vals[i][3] || '').toString().trim();
+    const posted = normalizeDateText_(vals[i][4]);
+    const tsText = normalizeTimestampText_(vals[i][5]);
+    const url = extractUrlFromCell_(rich[i][3], formulas[i][3], linkText) || '';
+
+    if (!artist && !title && !kind && !linkText && !posted && !tsText) continue;
+    set.add(makeUnifiedRowUniqueKey_(artist, title, kind, url, posted, tsText));
+  }
+  return set;
+}
+
+function makeUnifiedRowUniqueKey_(artist, title, kind, url, posted, tsText) {
+  return [artist, title, kind, (url || '').trim(), normalizeDateText_(posted), normalizeTimestampText_(tsText)].join('｜');
+}
+
+function extractHeadDateTextYYYYMMDDSlash_(text) {
+  const t = (text || '').toString().trim();
+  const m = t.match(/^(\d{4}\/\d{2}\/\d{2})/);
+  return m ? m[1] : '';
+}
+
+function extractTimestampSecondsFromUrl_(url) {
+  const u = (url || '').toString().trim();
+  if (!u) return Number.MAX_SAFE_INTEGER;
+
+  let m = u.match(/[?&#]t=(\d+)(?:s)?(?:[&#]|$)/i);
+  if (m) return Number(m[1]);
+
+  m = u.match(/[?&#](?:start|time_continue)=(\d+)(?:[&#]|$)/i);
+  if (m) return Number(m[1]);
+
+  m = u.match(/[?&#]t=(\d+)h(\d+)m(\d+)s?(?:[&#]|$)/i);
+  if (m) return Number(m[1]) * 3600 + Number(m[2]) * 60 + Number(m[3]);
+
+  m = u.match(/[?&#]t=(\d+)m(\d+)s?(?:[&#]|$)/i);
+  if (m) return Number(m[1]) * 60 + Number(m[2]);
+
+  return Number.MAX_SAFE_INTEGER;
+}
+
+function secondsToHMMSS_(seconds) {
+  if (!Number.isFinite(seconds) || seconds === Number.MAX_SAFE_INTEGER || seconds < 0) return '';
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = Math.floor(seconds % 60);
+  return `${h}:${('0' + m).slice(-2)}:${('0' + s).slice(-2)}`;
+}
+
+function normalizeDateText_(text) {
+  const t = (text || '').toString().trim();
+  const m = t.match(/^(\d{4})[\/-]?(\d{2})[\/-]?(\d{2})$/);
+  return m ? `${m[1]}/${m[2]}/${m[3]}` : '';
+}
+
+function normalizeTimestampText_(text) {
+  const t = (text || '').toString().trim();
+  const m = t.match(/^(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?$/);
+  if (!m) return '';
+
+  const h = Number(m[1]);
+  const mm = Number(m[2]);
+  const ss = m[3] !== undefined ? Number(m[3]) : 0;
+  if (![h, mm, ss].every(Number.isFinite)) return '';
+  return `${h}:${('0' + mm).slice(-2)}:${('0' + ss).slice(-2)}`;
+}
+
+function timestampTextToSeconds_(text) {
+  const t = normalizeTimestampText_(text);
+  if (!t) return Number.MAX_SAFE_INTEGER;
+  const p = t.split(':').map(Number);
+  return p[0] * 3600 + p[1] * 60 + p[2];
+}
+
+function dateTextToSortKey_(text) {
+  const d = normalizeDateText_(text);
+  if (!d) return Number.MAX_SAFE_INTEGER;
+  return Number(d.replace(/\//g, ''));
+}
+
+function sortUnifiedListSheet_(sheet) {
+  const lastRow = sheet.getLastRow();
+  if (lastRow < 3) return;
+
+  const numRows = lastRow - 1;
+  const vals = sheet.getRange(2, 1, numRows, 6).getValues();
+  vals.sort((a, b) => {
+    const dateA = dateTextToSortKey_(a[4]);
+    const dateB = dateTextToSortKey_(b[4]);
+    if (dateA !== dateB) return dateA - dateB;
+
+    const tsA = timestampTextToSeconds_(a[5]);
+    const tsB = timestampTextToSeconds_(b[5]);
+    return tsA - tsB;
+  });
+
+  sheet.getRange(2, 1, numRows, 6).setValues(vals);
 }
