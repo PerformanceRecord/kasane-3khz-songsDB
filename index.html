@@ -150,7 +150,7 @@
       box-shadow:none;
       padding:0;
     }
-    .result-scroll{margin-top:8px;flex:1;min-height:0;overflow-y:auto;padding-right:2px;-webkit-overflow-scrolling:touch}
+    .result-scroll{margin-top:8px;flex:1;min-height:0;overflow-y:auto;padding-right:0;-webkit-overflow-scrolling:touch}
 
     table{width:100%;border-collapse:collapse;margin-top:10px;table-layout:fixed}
     th,td{border-bottom:1px solid var(--line);padding:10px 8px;font-size:15px;vertical-align:top}
@@ -197,7 +197,8 @@
         overflow-x:hidden;
         overflow-y:visible;
         -webkit-overflow-scrolling:touch;
-        padding-right:2px;
+        padding-left:0;
+        padding-right:0;
         padding-bottom:calc(var(--dock-height, 110px) + 10px);
         touch-action:pan-y;
       }
