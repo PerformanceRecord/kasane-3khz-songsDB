@@ -1823,6 +1823,13 @@
       syncInitialMobileOffset();
     }
 
+    function expandFilterPanel(){
+      if (!state.isFilterCompact) return;
+      state.isFilterCompact = false;
+      state.isFilterExpandedManually = true;
+      updateCompactFilterMode();
+    }
+
     function normalizeKindFilters(allKinds){
       if (!Array.isArray(state.kindFilters) || state.kindFilters.length === 0) {
         state.kindFilters = [...allKinds];
@@ -2041,8 +2048,12 @@
         }, 90);
       });
       $('filter-toggle').addEventListener('click', ()=>{
-        state.isFilterCompact = !state.isFilterCompact;
-        state.isFilterExpandedManually = !state.isFilterCompact;
+        if (state.isFilterCompact) {
+          expandFilterPanel();
+          return;
+        }
+        state.isFilterCompact = true;
+        state.isFilterExpandedManually = false;
         updateCompactFilterMode();
       });
       showPage('page-list');
