@@ -1,6 +1,6 @@
-# kasane-3khz-songs-db
+# kasane-3khz-songsDB
 
-> **GitHub Pages（フロントエンド）**: https://<YOUR_GITHUB_USERNAME>.github.io/kasane-3khz-songs-dbTEST/
+> **GitHub Pages（フロントエンド）**: https://<YOUR_GITHUB_USERNAME>.github.io/kasane-3khz-songsDB/
 >
 > 上記はこのリポジトリ名に合わせた Pages の想定 URL です。実際のユーザー名に置き換えて利用してください。
 
@@ -136,7 +136,7 @@ node scripts/sync-gas.mjs
 - `public-data` はキャッシュとして扱い、取得失敗時は前回成功分を残す。
 - 仕様変更時は `README` と `docs/repository-specification.md` を合わせて更新する。
 
-## 10. 本番URL固定時の移行メモ（`https://performancerecord.github.io/kasane-3kHz-songsDB/`）
+## 10. 本番URL固定時の移行メモ（`https://performancerecord.github.io/kasane-3khz-songsDB/`）
 
 本番URLが GitHub Pages の**プロジェクトページ**（`/<repo>/`）で確定しているため、以下を移行チェックリストとして利用してください。
 
@@ -150,16 +150,16 @@ node scripts/sync-gas.mjs
 
 | 対象 | 現在有効な設定 | 本番移行後に書き換える内容 |
 |---|---|---|
-| `README` の Pages URL 表記 | `https://<YOUR_GITHUB_USERNAME>.github.io/kasane-3khz-songs-dbTEST/` | `https://performancerecord.github.io/kasane-3kHz-songsDB/` に更新 |
+| `README` の Pages URL 表記 | `https://<YOUR_GITHUB_USERNAME>.github.io/kasane-3khz-songsDB/` | `https://performancerecord.github.io/kasane-3khz-songsDB/` に更新 |
 | `index.html` のアイコン/manifest 参照 | `/assets/...`, `/site.webmanifest`（ルート絶対） | `./assets/...`, `./site.webmanifest` など、`/<repo>/` 配下で解決できる参照へ変更 |
-| `site.webmanifest` の `start_url` / `icons.src` | `start_url: "/"`, `src: "/assets/icons/..."` | `start_url: "/kasane-3kHz-songsDB/"` または相対指定へ変更。icon 参照も `/<repo>/` 対応に変更 |
+| `site.webmanifest` の `start_url` / `icons.src` | `start_url: "/"`, `src: "/assets/icons/..."` | `start_url: "/kasane-3khz-songsDB/"` または相対指定へ変更。icon 参照も `/<repo>/` 対応に変更 |
 | GitHub Actions Secrets | 現リポジトリ側に設定済み | 新リポジトリ側にも `GAS_URL`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT`, `R2_BUCKET` を再登録 |
 | Cloudflare R2 CORS | 現在のHTMLドメインを許可 | `https://performancerecord.github.io` を Allowed origins に追加（または差し替え） |
 
 ### 10-3. 移行の推奨順序（最短）
 
-1. 新リポジトリ `kasane-3kHz-songsDB` を用意。
-2. Pages を有効化して `https://performancerecord.github.io/kasane-3kHz-songsDB/` を確認。
+1. 新リポジトリ `kasane-3khz-songsDB` を用意。
+2. Pages を有効化して `https://performancerecord.github.io/kasane-3khz-songsDB/` を確認。
 3. 上記「書き換えが必要な箇所」を反映。
 4. 新リポジトリに Secrets を再登録。
 5. `sync-gas.yml` / `sync-r2.yml` を手動実行して動作確認。
