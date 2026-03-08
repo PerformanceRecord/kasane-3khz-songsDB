@@ -135,3 +135,32 @@ node scripts/sync-gas.mjs
 - `archive` は負荷が高くなりやすいため、通常は静的配信対象から分離して扱う。
 - `public-data` はキャッシュとして扱い、取得失敗時は前回成功分を残す。
 - 仕様変更時は `README` と `docs/repository-specification.md` を合わせて更新する。
+
+## 10. 本番URL固定時の移行メモ（`https://performancerecord.github.io/kasane-3kHz-songsDB/`）
+
+本番URLが GitHub Pages の**プロジェクトページ**（`/<repo>/`）で確定しているため、以下を移行チェックリストとして利用してください。
+
+### 10-1. 現在の検証機で有効なもの（そのまま有効）
+
+- `scripts/sync-gas.mjs` の同期仕様（`songs/gags` 静的化、`archive` 条件同期）はそのまま流用可能。
+- GAS / Cloudflare R2 の基本設計（`GAS_URL`, `R2_*` シークレット利用）はそのまま流用可能。
+- `static_base` クエリまたは `localStorage.staticDataBase` による静的JSON参照先の切り替え仕様はそのまま流用可能。
+
+### 10-2. 本番移行後に書き換えが必要な箇所
+
+| 対象 | 現在有効な設定 | 本番移行後に書き換える内容 |
+|---|---|---|
+| `README` の Pages URL 表記 | `https://<YOUR_GITHUB_USERNAME>.github.io/kasane-3khz-songs-dbTEST/` | `https://performancerecord.github.io/kasane-3kHz-songsDB/` に更新 |
+| `index.html` のアイコン/manifest 参照 | `/assets/...`, `/site.webmanifest`（ルート絶対） | `./assets/...`, `./site.webmanifest` など、`/<repo>/` 配下で解決できる参照へ変更 |
+| `site.webmanifest` の `start_url` / `icons.src` | `start_url: "/"`, `src: "/assets/icons/..."` | `start_url: "/kasane-3kHz-songsDB/"` または相対指定へ変更。icon 参照も `/<repo>/` 対応に変更 |
+| GitHub Actions Secrets | 現リポジトリ側に設定済み | 新リポジトリ側にも `GAS_URL`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT`, `R2_BUCKET` を再登録 |
+| Cloudflare R2 CORS | 現在のHTMLドメインを許可 | `https://performancerecord.github.io` を Allowed origins に追加（または差し替え） |
+
+### 10-3. 移行の推奨順序（最短）
+
+1. 新リポジトリ `kasane-3kHz-songsDB` を用意。
+2. Pages を有効化して `https://performancerecord.github.io/kasane-3kHz-songsDB/` を確認。
+3. 上記「書き換えが必要な箇所」を反映。
+4. 新リポジトリに Secrets を再登録。
+5. `sync-gas.yml` / `sync-r2.yml` を手動実行して動作確認。
+6. 問題なければ旧検証機の Actions を停止（検証機は廃止可）。
