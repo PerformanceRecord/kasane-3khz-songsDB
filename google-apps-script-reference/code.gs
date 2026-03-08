@@ -1,5 +1,5 @@
 /**
- * kasane-3khz-songs-db 用 Google Apps Script
+ * kasane-3khz-songsDB 用 Google Apps Script
  *
  * 期待仕様:
  * - GET /exec?sheet=songs|gags|archive[&q=...&artist=...&title=...&exact=1&limit=...&offset=...&debug=1]
