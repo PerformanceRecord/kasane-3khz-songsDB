@@ -200,12 +200,13 @@
         overflow-x:hidden;
         overflow-y:visible;
         -webkit-overflow-scrolling:touch;
-        padding-left:0;
-        padding-right:0;
+        padding-inline:0;
         padding-bottom:calc(var(--dock-height, 110px) + 10px);
         touch-action:pan-y;
       }
       .item{
+        width:100%;
+        margin-inline:0;
         border:1px solid var(--line);
         border-radius:14px;
         padding:12px 10px;
@@ -252,9 +253,10 @@
       .to-top{right:10px;bottom:126px}
 
       .result-card{
+        --mobile-card-side-gap:10px;
         position:fixed;
-        left:10px;
-        right:10px;
+        left:var(--mobile-card-side-gap);
+        right:var(--mobile-card-side-gap);
         width:auto;
         transform:none;
         top:calc(var(--filter-panel-height, 0px) + 6px);
