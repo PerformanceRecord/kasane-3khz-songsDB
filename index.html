@@ -480,6 +480,7 @@
       activeSnapIndex: -1,
       historyRenderSeq: 0,
       isFilterCompact: false,
+      isFilterExpandedManually: false,
       filterAutoCollapseProgress: 0,
       filterAutoCollapseFrame: null
     };
@@ -1780,9 +1781,17 @@
       const panel = $('filter-panel');
       if (!panel) return;
       if (state.isFilterCompact) {
+        state.isFilterExpandedManually = false;
         panel.classList.remove('auto-collapsing');
         panel.classList.remove('auto-compact-final');
         panel.style.setProperty('--scroll-collapse', '1');
+        scheduleFilterMetrics();
+        return;
+      }
+      if (state.isFilterExpandedManually) {
+        panel.classList.remove('auto-collapsing');
+        panel.classList.remove('auto-compact-final');
+        panel.style.setProperty('--scroll-collapse', '0');
         scheduleFilterMetrics();
         return;
       }
@@ -2033,6 +2042,7 @@
       });
       $('filter-toggle').addEventListener('click', ()=>{
         state.isFilterCompact = !state.isFilterCompact;
+        state.isFilterExpandedManually = !state.isFilterCompact;
         updateCompactFilterMode();
       });
       showPage('page-list');
