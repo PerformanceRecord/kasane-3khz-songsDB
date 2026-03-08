@@ -1,26 +1,29 @@
 # アイコン配置ガイド
 
-このディレクトリは、スマートフォン保存時のアプリアイコン（PWA）とブラウザのファビコンを配置する場所です。
+このディレクトリは、ファビコンとスマートフォン保存時のアプリアイコン（PWA）を保存する場所です。
+
+## ディレクトリ構成
+
+- `assets/icons/favicon/`
+  - ブラウザタブ用の favicon を配置
+- `assets/icons/app/`
+  - iOS / Android のホーム画面追加向けアイコンを配置
 
 ## 配置するファイル
 
+### `assets/icons/favicon/`
+
 - `favicon.ico` (16x16, 32x32, 48x48 を含むマルチサイズ)
 - `favicon.svg` (ベクター形式・対応ブラウザ向け)
+
+### `assets/icons/app/`
+
 - `apple-touch-icon.png` (180x180)
 - `icon-192.png` (192x192)
 - `icon-512.png` (512x512)
 - `icon-512-maskable.png` (512x512, maskable safe area を考慮)
 
-## 推奨サイズ一覧
-
-- ブラウザタブ（favicon）: 16x16, 32x32（`.ico` に同梱）
-- Windows ショートカットや一部UI: 48x48
-- iOS ホーム画面追加: 180x180
-- Android ホーム画面追加: 192x192
-- PWA スプラッシュ/高解像度用途: 512x512
-- Android maskable icon: 512x512（中央 80% 以内に主要要素）
-
 ## 備考
 
-- まずは上記ファイル名で画像を書き出してこのフォルダに配置してください。
-- 画像の背景は透明ではなく、単色背景を推奨します（端末表示で欠けを防ぐため）。
+- `index.html` と `site.webmanifest` は上記構成を参照するよう設定済みです。
+- Android maskable icon は、主要要素を中央 80% 以内に収めることを推奨します。
