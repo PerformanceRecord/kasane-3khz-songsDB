@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-03-19T13:25:54.665Z",
+  "fetchedAt": "2026-03-19T14:13:26.062Z",
   "rows": [
     {
       "artist": "HANA",
@@ -1508,12 +1508,12 @@
     },
     {
       "artist": "椎名林檎",
-      "title": "公然の秘密",
+      "title": "秘密",
       "kind": "歌枠",
       "dText": "20260121 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=mdeFS8kgFcM&t=2275s",
       "date8": 20260121,
-      "rowId": "椎名林檎|公然の秘密|歌枠|https://www.youtube.com/watch?v=mdefs8kgfcm&t=2275s"
+      "rowId": "椎名林檎|秘密|歌枠|https://www.youtube.com/watch?v=mdefs8kgfcm&t=2275s"
     },
     {
       "artist": "ロクデナシ",
