@@ -78,10 +78,11 @@ function onOpen() {
  * ==============================
  *
  * メイン処理：
- * - 重複（同一アーティスト×曲名）を検出
+ * - 先に「完全一致データ」（D列リンク完全一致）を、歌った曲リスト＋アーカイブ横断で削除
+ * - 次に「同一データ」（同一アーティスト×曲名）を検出
  * - 区分優先＞日付（直リンク文頭から抽出）の規則で「残す1件」を決定
  * - それ以外はアーカイブへコピー（ハイパーリンク含む・重複挿入回避）
- * - 本シートからはアーカイブ対象行を削除（下から）
+ * - 本シートからは削除対象行を削除（下から）
  * - アーカイブシートの条件付き書式を全削除
  * - アーカイブシートを D列降順→B列昇順→A列昇順 でソート（2行目以降）
  */
@@ -131,6 +132,7 @@ function dedupeAndArchive() {
 
     // ハイパーリンクURL（リッチテキストのURLを優先）
     const url = extractFirstUrlFromRichText_(rr[3]) || linkText;
+    const normalizedUrl = normalizeUrlForCompare_(url);
 
     entries.push({
       rowIndex: START_ROW + i, // 1始まりのシート行番号
@@ -139,6 +141,7 @@ function dedupeAndArchive() {
       date: dateObj,           // Date
       linkText,                // 表示テキスト
       url,                     // URL（なければ表示テキスト）
+      normalizedUrl,           // 完全一致判定用URL（trim）
     });
   }
 
@@ -150,9 +153,29 @@ function dedupeAndArchive() {
   // 既存アーカイブのユニークセット（key｜dateISO｜url）
   const archiveExisting = buildArchiveUniqueSet_(archive);
 
-  // キーごとにグループ化 → 区分優先＞日付降順で選抜
+  // 既存アーカイブのURLセット（完全一致データ判定用）
+  const archiveUrlSet = buildArchiveUrlSet_(archive);
+
+  // 1) 完全一致データ（D列リンク）の重複削除：アーカイブ＋メインを横断判定
+  const rowsToDeleteByUrl = new Set();
+  const seenUrl = new Set(archiveUrlSet); // アーカイブに存在するURLは先に「既出」にする
+
+  const entriesByRow = [...entries].sort((a, b) => a.rowIndex - b.rowIndex);
+  for (const e of entriesByRow) {
+    if (!e.normalizedUrl) continue;
+    if (seenUrl.has(e.normalizedUrl)) {
+      rowsToDeleteByUrl.add(e.rowIndex);
+      continue;
+    }
+    seenUrl.add(e.normalizedUrl);
+  }
+
+  // URL重複で削除されない行だけを、同一データ（A+B）判定の対象にする
+  const remainingEntries = entries.filter(e => !rowsToDeleteByUrl.has(e.rowIndex));
+
+  // 2) 同一データ（A+B）の現行重複整理（区分優先＞日付降順）
   const byKey = new Map();
-  for (const e of entries) {
+  for (const e of remainingEntries) {
     if (!byKey.has(e.key)) byKey.set(e.key, []);
     byKey.get(e.key).push(e);
   }
@@ -192,8 +215,9 @@ function dedupeAndArchive() {
   }
 
   // 本シートから削除（下から）
-  if (rowsToArchive.length > 0) {
-    const rowsToDelete = [...rowsToArchive].sort((a, b) => b - a);
+  const rowsToDelete = [...rowsToDeleteByUrl, ...rowsToArchive];
+  if (rowsToDelete.length > 0) {
+    rowsToDelete.sort((a, b) => b - a);
     for (const row of rowsToDelete) {
       main.deleteRow(row);
     }
@@ -206,7 +230,7 @@ function dedupeAndArchive() {
   sortArchiveSheet_(archive);
 
   ss.toast(
-    `処理完了：残すキー=${winners.size}件、アーカイブ行追加=${rowsToArchive.length}件、削除=${rowsToArchive.length}行。`,
+    `処理完了：完全一致削除=${rowsToDeleteByUrl.size}件、残すキー=${winners.size}件、アーカイブ行追加=${rowsToArchive.length}件、削除=${rowsToDelete.length}行。`,
     '仕分け',
     8
   );
@@ -293,6 +317,34 @@ function extractFirstUrlFromRichText_(rt) {
     }
   } catch (e) {}
   return null;
+}
+
+/**
+ * URL比較用の正規化（最小限）
+ */
+function normalizeUrlForCompare_(url) {
+  return (url || '').toString().trim();
+}
+
+/**
+ * 既存アーカイブのURLセットを構築（完全一致データ判定用）
+ */
+function buildArchiveUrlSet_(archiveSheet) {
+  const last = archiveSheet.getLastRow();
+  if (last < 2) return new Set();
+
+  const rng = archiveSheet.getRange(2, 1, last - 1, COL_COUNT);
+  const vals = rng.getValues();
+  const rich = rng.getRichTextValues();
+
+  const set = new Set();
+  for (let i = 0; i < vals.length; i++) {
+    const linkText = (vals[i][3] || '').toString().trim();
+    const url = extractFirstUrlFromRichText_(rich[i][3]) || linkText;
+    const normalized = normalizeUrlForCompare_(url);
+    if (normalized) set.add(normalized);
+  }
+  return set;
 }
 
 /**
