@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-03-23T05:27:21.098Z",
+  "fetchedAt": "2026-03-23T16:51:52.059Z",
   "rows": [
     {
       "artist": "CHERRYBLOSSOM",
@@ -2965,15 +2965,6 @@
       "rowId": "松本梨香|めざせポケモンマスター|ショート|https://www.youtube.com/shorts/aj4wwjdtfza"
     },
     {
-      "artist": "HANA",
-      "title": "My Body",
-      "kind": "ショート",
-      "dText": "20251124 MyBody/HANA #歌ってみた #hana #mybody #mahina #ノノガ",
-      "dUrl": "https://www.youtube.com/shorts/6DPfj1z_HQU",
-      "date8": 20251124,
-      "rowId": "hana|my body|ショート|https://www.youtube.com/shorts/6dpfj1z_hqu"
-    },
-    {
       "artist": "RADWIMPS",
       "title": "おしゃかさま",
       "kind": "歌枠",
@@ -4099,6 +4090,6 @@
       "rowId": "rinri×kyiku|白絵にもならない|歌ってみた|https://www.youtube.com/watch?v=v9tlvdxz5ky"
     }
   ],
-  "total": 455,
-  "matched": 455
+  "total": 454,
+  "matched": 454
 }
