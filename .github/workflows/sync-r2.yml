@@ -25,9 +25,9 @@ jobs:
       GAS_URL: ${{ secrets.GAS_URL }}
       ENABLE_ARCHIVE_SYNC: "true"
       ARCHIVE_STRICT_SYNC: "true"
-      ARCHIVE_LIMITS: "20,10,5,3,1"
-      ARCHIVE_PAGE_LIMIT: "5"
-      ARCHIVE_MAX_PAGES: "500"
+      ARCHIVE_LIMITS: "5,3,2,1"
+      ARCHIVE_PAGE_LIMIT: "2"
+      ARCHIVE_MAX_PAGES: "4000"
       ARCHIVE_TOTAL_CAP: "20000"
       SYNC_TIMEOUT_MS: "15000"
       SYNC_MAX_RETRY: "5"
