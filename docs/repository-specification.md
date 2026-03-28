@@ -16,7 +16,7 @@
 3. GitHub Actions が定期実行し、
    - Git 管理リポジトリにスナップショット反映（`sync-gas.yml`）
    - Cloudflare R2 へアップロード（`sync-r2.yml`）
-4. `index.html` が `songs/gags/meta` を静的 JSON から読み込み、履歴（archive）は必要時に API 取得して表示。
+4. `index.html` が `songs/gags/meta` を静的 JSON から読み込み、履歴（archive）は必要時に GAS へ曲単位（exact）で取得して表示。
 
 ---
 
@@ -110,7 +110,7 @@
 レスポンス構造も `rows/data/items/result/payload/...` を探索して配列抽出する。
 
 ### 4.6 履歴取得ロジック（archive）
-- `exact=1` + `artist/title` 指定による絞り込み取得を活用。
+- `exact=1` + `artist/title` 指定による絞り込み取得を主経路として利用。
 - 引数超過（Argument too large）対策として `limit` 縮小候補で再試行。
 - ページング (`offset`) と重複排除でチャンク取得。
 - `historyCache` に TTL 付きキャッシュ。
@@ -373,7 +373,7 @@ function buildStaticDataUrl(tab){
 
 本リポジトリは、
 - **静的 JSON 中心の配信**（songs/gags）
-- **archive は静的配信も実施しつつ、UIでは必要時動的取得**
+- **archive は UI で必要時に曲単位の動的取得**
 - **GitHub Actions + R2 での定期配信更新**
 を軸に、軽量な単一 HTML フロントと堅牢化された同期スクリプトで構成される。
 
