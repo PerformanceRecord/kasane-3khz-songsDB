@@ -535,19 +535,16 @@
       if (probe.inflight > 0) {
         el.classList.add('loading');
         el.textContent = UI_TEXT.statusIdle;
-        return;
-      }
-      if (probe.lastError) {
+      } else if (probe.lastError) {
         el.classList.add('error');
         el.textContent = UI_TEXT.statusError;
-        return;
-      }
-      if (probe.lastOkAt) {
+      } else if (probe.lastOkAt) {
         el.classList.add('ok');
         el.textContent = UI_TEXT.statusOk;
-        return;
+      } else {
+        el.textContent = UI_TEXT.statusIdle;
       }
-      el.textContent = UI_TEXT.statusIdle;
+      scheduleFilterMetrics();
     }
     function beginServerRequest(){
       state.serverResponse.inflight += 1;
@@ -1997,6 +1994,7 @@
         $('mblist').appendChild(blank);
 
         $('mblist').style.display = 'block'; $('table').style.display = 'none';
+        scheduleFilterMetrics();
         state.activeSnapIndex = 0;
       }
 
