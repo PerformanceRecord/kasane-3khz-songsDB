@@ -23,7 +23,7 @@ jobs:
       R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
       R2_BUCKET: ${{ secrets.R2_BUCKET }}
       GAS_URL: ${{ secrets.GAS_URL }}
-      ENABLE_ARCHIVE_SYNC: "false"
+      ENABLE_ARCHIVE_SYNC: "true"
       ARCHIVE_STRICT_SYNC: "true"
       ARCHIVE_LIMITS: "20,10,5,3,1"
       ARCHIVE_PAGE_LIMIT: "5"
@@ -71,12 +71,13 @@ jobs:
               --endpoint-url "$R2_ENDPOINT" \
               --region auto
             meta_rc=$?
-            aws s3 rm "s3://$R2_BUCKET/public-data/archive.json" \
+            aws s3 cp public-data/archive.json "s3://$R2_BUCKET/public-data/archive.json" \
               --endpoint-url "$R2_ENDPOINT" \
-              --region auto >/dev/null 2>&1
+              --region auto
+            archive_rc=$?
             set -e
-
-            if [ "$songs_rc" -eq 0 ] && [ "$gags_rc" -eq 0 ] && [ "$meta_rc" -eq 0 ]; then
+    
+            if [ "$songs_rc" -eq 0 ] && [ "$gags_rc" -eq 0 ] && [ "$meta_rc" -eq 0 ] && [ "$archive_rc" -eq 0 ]; then
               echo "R2 upload succeeded on attempt ${attempt}"
               exit 0
             fi
