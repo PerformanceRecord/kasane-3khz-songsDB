@@ -336,6 +336,18 @@
     .history-date{white-space:nowrap;color:#6a867b}
     .history-item a{color:var(--link);text-decoration:none}
     .history-item a:hover{text-decoration:underline}
+    .history-more-wrap{margin-top:12px;display:flex;justify-content:center}
+    .history-more{
+      appearance:none;
+      border:none;
+      background:transparent;
+      color:#000;
+      font-size:16px;
+      text-decoration:underline;
+      cursor:pointer;
+      padding:4px 8px;
+    }
+    .history-more:disabled{opacity:.5;cursor:default}
     .skeleton{height:16px;background:#d9ece2;border-radius:6px;margin:6px 0}
 
     @supports not selector(:focus-visible){
@@ -389,6 +401,9 @@
     <div class="card" style="margin-top:12px;">
       <div id="hist-list" class="history-list"></div>
       <div id="hist-empty" class="muted" style="display:none;">該当する履歴が見つかりませんでした。</div>
+      <div id="hist-more-wrap" class="history-more-wrap" style="display:none;">
+        <button id="hist-more" class="history-more" type="button">▶さらに読み込む</button>
+      </div>
     </div>
   </div>
 
@@ -467,8 +482,6 @@
       cache: { songs:null, gags:null },
       preloadPromise: null,
       debounce: null,
-      historyCache: new Map(),
-      historyRequests: new Map(),
       archiveRows: [],
       archiveByKey: null,
       archiveByTitle: null,
@@ -493,6 +506,12 @@
       },
       activeSnapIndex: -1,
       historyRenderSeq: 0,
+      historyView: {
+        allEntries: [],
+        shownCount: 0,
+        hasMore: false,
+        loadingMore: false
+      },
       isFilterCompact: false,
       isFilterExpandedManually: false,
       filterAutoCollapseProgress: 0,
@@ -791,8 +810,7 @@
     const REQUEST_TIMEOUT_MS = 8000;
     const REQUEST_RETRY_DELAY_MS = 500;
     const FETCH_TIMEOUT_MS = 10000;
-    const HISTORY_CACHE_TTL_MS = 20 * 60 * 1000;
-    const ARCHIVE_HISTORY_PREVIEW_LIMIT = 5;
+    const HISTORY_PAGE_SIZE = 5;
     const INITIAL_ERROR_NOTICE_DELAY_MS = 12000;
     const JSONP_ALLOWED_ORIGIN = 'script.google.com';
     const JSONP_CALLBACK_RE = /^[A-Za-z_$][0-9A-Za-z_$]*$/;
@@ -836,6 +854,7 @@
       const empty = $('hist-empty');
       wrap.innerHTML = '';
       empty.style.display = 'block';
+      $('hist-more-wrap').style.display = 'none';
       $('hist-sub').textContent = message;
       state.archiveMeta.phase = 'error';
       state.archiveMeta.lastError = message;
@@ -1562,109 +1581,54 @@
       }
     }
 
-    function getCachedHistoryEntries(artist, title){
-      const key = `${normalize(artist)}|${normalize(title)}`;
-      const cached = state.historyCache.get(key);
-      if (!cached) return null;
-      if (cached.expiresAt <= Date.now()) {
-        state.historyCache.delete(key);
-        return null;
-      }
-      return Array.isArray(cached.entries) ? cached.entries : [];
-    }
-
-    async function fetchSongHistoryFromArchive(artist, title){
-      const cacheKey = `${normalize(artist)}|${normalize(title)}`;
+    async function fetchSongHistoryPageFromArchive(artist, title, offset = 0){
+      if (!artist || !title) return { entries: [], hasMore: false };
       const isHistoryDebug = new URLSearchParams(window.location.search).get('debug_history') === '1';
-      const cachedEntries = getCachedHistoryEntries(artist, title);
-      if (cachedEntries) return cachedEntries;
-      if (state.historyRequests.has(cacheKey)) return state.historyRequests.get(cacheKey);
+      const fetchLimit = HISTORY_PAGE_SIZE + 1;
 
-      const task = (async () => {
-        if (!artist || !title) return [];
+      state.archiveMeta.phase = 'loading';
+      state.archiveMeta.source = 'gas-direct';
+      state.archiveMeta.transport = 'fetch(exact)';
+      state.archiveMeta.lastError = '';
+      renderHistoryProcess();
 
-        if (!state.cache.songs) {
-          try {
-            await warmCaches();
-          } catch (err) {
-            console.warn('[history] songs キャッシュの初期化に失敗:', err);
-          }
-        }
-
-        state.archiveMeta.phase = 'loading';
-        state.archiveMeta.source = 'r2-static';
-        state.archiveMeta.transport = 'static';
-        state.archiveMeta.lastError = '';
-        renderHistoryProcess();
-
-        beginServerRequest();
-        let rows = [];
-        let transportUsed = 'fetch(exact)';
-        let sourceUsed = 'gas-direct';
-        try {
-          console.info('[history] archive exact request', {
-            artist,
-            title,
-            exact: '1',
-            limit: ARCHIVE_HISTORY_PREVIEW_LIMIT,
-            strategy: 'gas-exact-only'
-          });
-
-          const fetchedRows = await fetchSheetRowsWithFallback('archive', {
-            artist,
-            title,
-            exact: '1',
-            limit: ARCHIVE_HISTORY_PREVIEW_LIMIT
-          });
-          rows = normalizeArchiveRows(fetchedRows).filter((r) =>
-            normalize(r.artist) === normalize(artist) && normalize(r.title) === normalize(title)
-          );
-          console.info('[history] archive fetch response', {
-            rows: rows.length
-          });
-
-          if (isHistoryDebug && Array.isArray(rows) && rows.length > 0) {
-            console.debug('[history] archive first row', {
-              artist: rows[0]?.artist,
-              title: rows[0]?.title
-            });
-          }
-
-          endServerRequest(true, `archive/${transportUsed}`);
-        } catch (err) {
-          const reason = err instanceof Error ? err.message : String(err);
-          endServerRequest(false, `archive/${transportUsed}`, reason);
-          throw err;
-        }
-
-        const filtered = normalizeArchiveRows(rows).filter((r) =>
+      beginServerRequest();
+      try {
+        const fetchedRows = await fetchSheetRowsWithFallback('archive', {
+          artist,
+          title,
+          exact: '1',
+          offset,
+          limit: fetchLimit
+        });
+        const filteredRows = normalizeArchiveRows(fetchedRows).filter((r) =>
           normalize(r.artist) === normalize(artist) && normalize(r.title) === normalize(title)
         );
 
-        const archiveEntries = toHistoryEntries(filtered, artist, title);
-        const songsEntries = toHistoryEntries(state.cache.songs || [], artist, title);
-        const entries = mergeHistoryEntriesUnique(archiveEntries, songsEntries);
+        if (isHistoryDebug && filteredRows.length > 0) {
+          console.debug('[history] archive page first row', {
+            artist: filteredRows[0]?.artist,
+            title: filteredRows[0]?.title,
+            offset
+          });
+        }
+
+        const pageRows = filteredRows.slice(0, HISTORY_PAGE_SIZE);
+        const entries = sortHistoryEntriesDesc(toHistoryEntries(pageRows, artist, title));
+        const hasMore = filteredRows.length > HISTORY_PAGE_SIZE;
 
         state.archiveMeta.phase = 'ready';
-        state.archiveMeta.source = sourceUsed;
-        state.archiveMeta.transport = transportUsed;
         state.archiveMeta.retry = 0;
         state.archiveMeta.lastError = '';
         state.archiveMeta.rows = entries.length;
         state.archiveMeta.updatedAt = Date.now();
         renderHistoryProcess();
-
-        state.historyCache.set(cacheKey, {
-          entries,
-          expiresAt: Date.now() + HISTORY_CACHE_TTL_MS
-        });
-        return entries;
-      })();
-      state.historyRequests.set(cacheKey, task);
-      try {
-        return await task;
-      } finally {
-        state.historyRequests.delete(cacheKey);
+        endServerRequest(true, 'archive/fetch(exact-page)');
+        return { entries, hasMore };
+      } catch (err) {
+        const reason = err instanceof Error ? err.message : String(err);
+        endServerRequest(false, 'archive/fetch(exact-page)', reason);
+        throw err;
       }
     }
 
@@ -1687,10 +1651,16 @@
     async function renderHistory(artist, title){
       const renderSeq = ++state.historyRenderSeq;
       state.histKey = { artist, title };
+      state.historyView = {
+        allEntries: [],
+        shownCount: 0,
+        hasMore: false,
+        loadingMore: false
+      };
       renderHistoryTitle(artist, title);
       const latestOnly = sortHistoryEntriesDesc(
         toHistoryEntries(state.cache.songs || [], artist, title)
-      ).slice(0, ARCHIVE_HISTORY_PREVIEW_LIMIT);
+      ).slice(0, HISTORY_PAGE_SIZE);
 
       $('hist-sub').textContent = latestOnly.length > 0
         ? `最新履歴 ${latestOnly.length} 件を表示中…過去履歴を取得しています。`
@@ -1699,8 +1669,10 @@
 
       const wrap = $('hist-list');
       const empty = $('hist-empty');
+      const moreWrap = $('hist-more-wrap');
       wrap.innerHTML = '';
       empty.style.display = 'none';
+      moreWrap.style.display = 'none';
       if (latestOnly.length > 0) {
         drawHistoryEntries(wrap, latestOnly);
       } else {
@@ -1711,9 +1683,9 @@
         }
       }
 
-      let list = [];
+      let initialPage = { entries: [], hasMore: false };
       try {
-        list = await fetchSongHistoryFromArchive(artist, title);
+        initialPage = await fetchSongHistoryPageFromArchive(artist, title, 0);
       } catch (err) {
         if (renderSeq !== state.historyRenderSeq) return;
         const reason = err instanceof Error ? err.message : String(err);
@@ -1723,17 +1695,52 @@
       if (renderSeq !== state.historyRenderSeq) return;
 
       wrap.innerHTML = '';
-      list = sortHistoryEntriesDesc(list).slice(0, ARCHIVE_HISTORY_PREVIEW_LIMIT);
+      state.historyView.allEntries = initialPage.entries;
+      state.historyView.shownCount = initialPage.entries.length;
+      state.historyView.hasMore = initialPage.hasMore;
 
-      if (list.length === 0) {
+      if (initialPage.entries.length === 0) {
         empty.style.display = 'block';
         $('hist-sub').textContent = '該当する履歴が見つかりませんでした。';
+        moreWrap.style.display = 'none';
         return;
       }
 
-      $('hist-sub').textContent = `新しい順に ${list.length} 件を表示しています。`;
+      $('hist-sub').textContent = `新しい順に ${state.historyView.shownCount} 件を表示しています。`;
 
-      drawHistoryEntries(wrap, list);
+      drawHistoryEntries(wrap, initialPage.entries);
+      updateHistoryMoreButton();
+    }
+
+    function updateHistoryMoreButton(){
+      const moreWrap = $('hist-more-wrap');
+      const moreBtn = $('hist-more');
+      if (!moreWrap || !moreBtn) return;
+      moreWrap.style.display = state.historyView.hasMore ? 'flex' : 'none';
+      moreBtn.disabled = state.historyView.loadingMore;
+    }
+
+    async function loadMoreHistoryEntries(){
+      if (!state.historyView.hasMore || state.historyView.loadingMore) return;
+      state.historyView.loadingMore = true;
+      updateHistoryMoreButton();
+      try {
+        const { artist, title } = state.histKey || {};
+        const nextPage = await fetchSongHistoryPageFromArchive(artist, title, state.historyView.shownCount);
+        state.historyView.allEntries = [...state.historyView.allEntries, ...nextPage.entries];
+        state.historyView.shownCount = state.historyView.allEntries.length;
+        state.historyView.hasMore = nextPage.hasMore;
+
+        $('hist-list').innerHTML = '';
+        drawHistoryEntries($('hist-list'), state.historyView.allEntries);
+        $('hist-sub').textContent = `新しい順に ${state.historyView.shownCount} 件を表示しています。`;
+      } catch (err) {
+        const reason = err instanceof Error ? err.message : String(err);
+        $('hist-sub').textContent = `追加読み込みに失敗しました: ${reason}`;
+      } finally {
+        state.historyView.loadingMore = false;
+        updateHistoryMoreButton();
+      }
     }
 
     function drawHistoryEntries(wrap, list){
@@ -2010,6 +2017,7 @@
       if (scroller) scroller.scrollTop = state.lastScroll || 0;
       updateCompactFilterMode();
     });
+    $('hist-more').addEventListener('click', loadMoreHistoryEntries);
 
     window.addEventListener('resize', ()=>{
       clearTimeout(state.debounce);
