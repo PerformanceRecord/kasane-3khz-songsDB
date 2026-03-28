@@ -5,7 +5,7 @@ const GAS_URL = process.env.GAS_URL || 'https://script.google.com/macros/s/AKfyc
 const OUT_DIR = process.env.OUT_DIR || 'public-data';
 const CORE_TABS = ['songs', 'gags'];
 const ARCHIVE_TAB = 'archive';
-const ENABLE_ARCHIVE_SYNC = process.env.ENABLE_ARCHIVE_SYNC === 'true';
+const ENABLE_ARCHIVE_SYNC = false; // Archive取得は無効化（songs/gagsのみ同期）
 const ARCHIVE_STRICT_SYNC = process.env.ARCHIVE_STRICT_SYNC === 'true';
 const DEFAULT_LIMITS = {
   songs: 500,
@@ -364,9 +364,7 @@ async function main() {
     console.warn('[archive] ENABLE_ARCHIVE_SYNC=true になるまで archive の取得をスキップします（隔離中）');
   }
 
-  const outputTabs = ENABLE_ARCHIVE_SYNC && outputs.archive
-    ? [...CORE_TABS, ARCHIVE_TAB]
-    : [...CORE_TABS];
+  const outputTabs = [...CORE_TABS];
 
   const meta = {
     ok: true,
