@@ -219,18 +219,18 @@ async function verifyArchiveHealthCheck() {
 }
 
 function buildArchiveLimitCandidates(pageLimit) {
-  const envLimits = (process.env.ARCHIVE_LIMITS ?? '20,10,5,3,1')
+  const envLimits = (process.env.ARCHIVE_LIMITS ?? '5,3,2,1')
     .split(',')
     .map((s) => parseInt(s.trim(), 10))
     .filter((n) => Number.isFinite(n) && n > 0);
 
   const normalizedPageLimit = Number.isFinite(Number(pageLimit)) && Number(pageLimit) > 0
     ? Math.floor(Number(pageLimit))
-    : 5;
+    : 2;
 
   const candidates = [normalizedPageLimit];
   for (const limit of envLimits) {
-    if (limit > normalizedPageLimit) continue;
+    if (limit >= normalizedPageLimit) continue;
     if (!candidates.includes(limit)) candidates.push(limit);
   }
   return candidates;
@@ -267,7 +267,7 @@ function archiveRowKey(row) {
 
 
 async function fetchArchivePaged() {
-  const pageLimit = Number(process.env.ARCHIVE_PAGE_LIMIT || 5);
+  const pageLimit = Number(process.env.ARCHIVE_PAGE_LIMIT || 2);
   const maxPages = Number(process.env.ARCHIVE_MAX_PAGES || 4000);
   const totalCap = Number(process.env.ARCHIVE_TOTAL_CAP || 20000);
 
