@@ -1592,45 +1592,66 @@
         }
 
         state.archiveMeta.phase = 'loading';
-        state.archiveMeta.source = 'gas-direct';
-        state.archiveMeta.transport = 'jsonp(exact)';
+        state.archiveMeta.source = 'r2-static';
+        state.archiveMeta.transport = 'static';
         state.archiveMeta.lastError = '';
         renderHistoryProcess();
 
         beginServerRequest();
         let rows = [];
+        let transportUsed = 'static(exact)';
+        let sourceUsed = 'r2-static';
         try {
           console.info('[history] archive exact request', {
             artist,
             title,
             exact: '1',
-            limit: ARCHIVE_HISTORY_PREVIEW_LIMIT
+            limit: ARCHIVE_HISTORY_PREVIEW_LIMIT,
+            strategy: 'static-first'
           });
-          const payload = await fetchByJsonp('archive', {
-            extraParams: {
+
+          try {
+            const staticRows = await fetchStaticSnapshot('archive');
+            rows = normalizeArchiveRows(staticRows).filter((r) =>
+              normalize(r.artist) === normalize(artist) && normalize(r.title) === normalize(title)
+            );
+            if (ARCHIVE_HISTORY_PREVIEW_LIMIT > 0) {
+              rows = rows.slice(0, ARCHIVE_HISTORY_PREVIEW_LIMIT);
+            }
+            console.info('[history] archive static response', {
+              rows: rows.length
+            });
+          } catch (staticErr) {
+            const staticReason = staticErr instanceof Error ? staticErr.message : String(staticErr);
+            console.warn('[history] archive static failed, fallback to fetch:', staticReason);
+            transportUsed = 'fetch(exact)';
+            sourceUsed = 'gas-direct';
+
+            const fetchedRows = await fetchSheetRowsWithFallback('archive', {
               artist,
               title,
               exact: '1',
               limit: ARCHIVE_HISTORY_PREVIEW_LIMIT
-            }
-          });
-          console.info('[history] archive exact response', {
-            ok: payload?.ok,
-            sheet: payload?.sheet,
-            matched: payload?.matched,
-            rows: Array.isArray(payload?.rows) ? payload.rows.length : 0
-          });
-          if (isHistoryDebug && Array.isArray(payload?.rows) && payload.rows.length > 0) {
-            console.debug('[history] archive first row', {
-              artist: payload.rows[0]?.artist,
-              title: payload.rows[0]?.title
+            });
+            rows = normalizeArchiveRows(fetchedRows).filter((r) =>
+              normalize(r.artist) === normalize(artist) && normalize(r.title) === normalize(title)
+            );
+            console.info('[history] archive fetch response', {
+              rows: rows.length
             });
           }
-          rows = normalizeRowsForTab('archive', payload);
-          endServerRequest(true, 'archive/jsonp(exact)');
+
+          if (isHistoryDebug && Array.isArray(rows) && rows.length > 0) {
+            console.debug('[history] archive first row', {
+              artist: rows[0]?.artist,
+              title: rows[0]?.title
+            });
+          }
+
+          endServerRequest(true, `archive/${transportUsed}`);
         } catch (err) {
           const reason = err instanceof Error ? err.message : String(err);
-          endServerRequest(false, 'archive/jsonp(exact)', reason);
+          endServerRequest(false, `archive/${transportUsed}`, reason);
           throw err;
         }
 
@@ -1643,8 +1664,8 @@
         const entries = mergeHistoryEntriesUnique(archiveEntries, songsEntries);
 
         state.archiveMeta.phase = 'ready';
-        state.archiveMeta.source = 'gas-direct';
-        state.archiveMeta.transport = 'jsonp(exact)';
+        state.archiveMeta.source = sourceUsed;
+        state.archiveMeta.transport = transportUsed;
         state.archiveMeta.retry = 0;
         state.archiveMeta.lastError = '';
         state.archiveMeta.rows = entries.length;
