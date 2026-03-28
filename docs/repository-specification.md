@@ -31,7 +31,7 @@
 - `.github/workflows/sync-gas.yml`
   - 15分ごとのスナップショット更新（Git commit/push）。
 - `.github/workflows/sync-r2.yml`
-  - 30分ごとの R2 反映（songs/gags/meta のみ）。
+  - 30分ごとの R2 反映（songs/gags/meta/archive）。
 - `public-data/*.json`
   - 静的配信データ（実データ・メタデータ）。
 - `google-apps-script-reference/code.gs`
@@ -195,14 +195,14 @@ if (ENABLE_ARCHIVE_SYNC) {
 ### 6.1 `sync-gas.yml`
 - 実行契機: 手動 + 15分間隔 cron。
 - Node.js 20 で `node scripts/sync-gas.mjs` 実行。
-- `ENABLE_ARCHIVE_SYNC=false`（archive は同期しない）
+- `ENABLE_ARCHIVE_SYNC=true`（archive も同期）
 - 差分があれば `public-data/*.json` を自動 commit/push。
 
 ### 6.2 `sync-r2.yml`
 - 実行契機: 手動 + 30分間隔 cron。
 - `sync-gas.mjs` 実行後、AWS CLI で R2 にアップロード。
-- 対象は `songs.json/gags.json/meta.json`。
-- `archive.json` は R2 から削除（`aws s3 rm`）。
+- 対象は `songs.json/gags.json/meta.json/archive.json`。
+- `aws s3 cp` による個別アップロードで `archive.json` も R2 へ反映。
 - 3回までリトライして失敗時終了。
 
 ### 6.3 Secret 要件
@@ -309,8 +309,8 @@ if (ENABLE_ARCHIVE_SYNC) {
 
 ## 11. 既知の設計判断（意図）
 
-1. `archive` を static 配信対象から実質外している（`ENABLE_ARCHIVE_SYNC=false` / R2 から削除）
-   - 理由: サイズ・引数超過・取得安定性の観点で分離運用。
+1. `archive` は static 配信対象として生成・配信しつつ、フロントでは必要時動的取得を継続
+   - 理由: 配信経路の冗長化と運用検証性を確保しつつ、UI の既存取得戦略も維持する。
 2. フロントで JSONP / fetch を共存
    - CORS・環境差に備えた冗長経路。
 3. レスポンス構造ゆれに強いパーサ
@@ -373,7 +373,7 @@ function buildStaticDataUrl(tab){
 
 本リポジトリは、
 - **静的 JSON 中心の配信**（songs/gags）
-- **必要時のみ動的取得**（archive）
+- **archive は静的配信も実施しつつ、UIでは必要時動的取得**
 - **GitHub Actions + R2 での定期配信更新**
 を軸に、軽量な単一 HTML フロントと堅牢化された同期スクリプトで構成される。
 
