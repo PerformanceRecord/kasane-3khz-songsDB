@@ -9,8 +9,8 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta`）を一次
 ## 1. 総点検結果（不要箇所・統合可能箇所）
 
 ### 1-1. 結論
-- 現時点で**削除必須の不要ファイル**は確認されませんでした。
-- ただし、仕様説明が `README` と `docs/repository-specification.md` に分散していたため、本 README を仕様書として再整理しました。
+- 仕様を `docs/new-repo-seed-spec.md` に統合したため、旧仕様書は削除済みです。
+- 日常運用の参照は `README`、新規環境立ち上げ時のタネデータは `docs/new-repo-seed-spec.md` を利用します。
 - `archive` 同期の制御仕様は実装済みで妥当（ページング・limit縮小・health check）です。
 
 ### 1-2. 統合・整理した方針
@@ -33,8 +33,8 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta`）を一次
   - 配信対象のスナップショット。
 - `google-apps-script-reference/`
   - GAS 参照コード（運用原本の複製を保持）。
-- `docs/*.md`
-  - 運用資料（R2 設定や評価メモなど）。
+- `docs/new-repo-seed-spec.md`
+  - 新規リポジトリ立ち上げ時の統合仕様書（1枚版）。
 - `assets/icons/`, `site.webmanifest`
   - PWA/アイコン関連。
 
@@ -134,7 +134,7 @@ node scripts/sync-gas.mjs
 
 - `archive` は負荷が高くなりやすいため、通常は静的配信対象から分離して扱う。
 - `public-data` はキャッシュとして扱い、取得失敗時は前回成功分を残す。
-- 仕様変更時は `README` と `docs/repository-specification.md` を合わせて更新する。
+- 仕様変更時は `README` と `docs/new-repo-seed-spec.md` を合わせて更新する。
 
 ## 10. 本番URL固定時の移行メモ（`https://performancerecord.github.io/kasane-3khz-songsDB/`）
 
