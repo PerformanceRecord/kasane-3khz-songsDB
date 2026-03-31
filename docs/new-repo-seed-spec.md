@@ -124,12 +124,14 @@
 - Node.js 20
 - `node scripts/sync-gas.mjs`
 - `public-data/*.json` 差分をコミット
+- 推奨実行頻度（例）: 1日2回（JST 01:00 / 13:00）
 
 ### 6.2 `sync-r2.yml`
 
 - 同期後に `aws s3 cp` でR2へアップロード
 - 対象: `songs.json`, `gags.json`, `meta.json`, `archive.json`
 - 失敗時はリトライ（最大3回を推奨）
+- `SYNC_TIMEOUT_MS=15000`, `SYNC_MAX_RETRY=5` を推奨（ネットワーク揺らぎ対策）
 
 ---
 
@@ -167,13 +169,30 @@ GitHub Secrets に次を登録:
 - `songs / gags / meta` は静的JSONを先に取得
 - `meta.tabs` / `meta.counts` の整合性を確認し、不整合なら採用しない
 - `archive` は必要時のみ動的取得（exact + paging + backoff）
+- 静的データ参照先の優先順位:
+  1. `?static_base=https://<R2公開URL>/public-data/`
+  2. `localStorage.staticDataBase`
+  3. 同一オリジン相対パス
 - 参照先切替:
   - クエリ: `?static_base=https://<R2公開URL>/public-data/`
   - または `localStorage.staticDataBase`
 
 ---
 
-## 10. 初回セットアップ手順（新規リポジトリ）
+## 10. archive 同期ポリシー（原則）
+
+- 原則、`archive` は静的同期しない（`ENABLE_ARCHIVE_SYNC=false` を標準とする）。
+- 画面上の履歴検索は GAS へ直接問い合わせて取得する。
+- 理由:
+  1. `archive` は件数増加で同期負荷・失敗率が高くなりやすい
+  2. `songs/gags` の高速表示と運用安定を優先する
+- 例外（任意）:
+  - バッチ時間・GAS負荷・R2転送量を許容できる場合のみ `ENABLE_ARCHIVE_SYNC=true` を検討
+  - 例外時も `limit` 縮小再試行・上限打ち切り（`ARCHIVE_MAX_PAGES`, `ARCHIVE_TOTAL_CAP`）を必須化
+
+---
+
+## 11. 初回セットアップ手順（新規リポジトリ）
 
 1. Spreadsheet に `songs/gags/archive` を用意
 2. GAS 実装を貼り付け・デプロイして `/exec` URL を取得
@@ -184,7 +203,7 @@ GitHub Secrets に次を登録:
 
 ---
 
-## 11. 安定運用の推奨（任意）
+## 12. 安定運用の推奨（任意）
 
 GAS無改修でも、利用側（例: Streamlit）で以下を追加すると安定化しやすいです。
 
@@ -195,11 +214,69 @@ GAS無改修でも、利用側（例: Streamlit）で以下を追加すると安
 
 ---
 
-## 12. 公式参照リンク
+## 13. GASスクリプト最低要件（この条件を満たせば再作成可能）
+
+### 13.1 エンドポイントと受け付けパラメータ
+
+- `GET /exec?sheet=songs|gags|archive`
+- 検索系（主に archive）:
+  - `artist`, `title`, `exact=1`
+  - `limit`, `offset`（ページング）
+- `callback` 指定時は JSONP で返す
+
+### 13.2 返却フォーマット（最低限）
+
+- 共通:
+  - `ok: boolean`
+  - `sheet: string`
+  - `rows: array`
+  - `total: number`
+  - `matched: number`
+- エラー時:
+  - `ok: false`
+  - `error: string`
+
+### 13.3 行スキーマ正規化（最低限）
+
+- 返却行は以下のキーを揃える:
+  - `artist`, `title`, `kind`, `dText`, `dUrl`, `date8`, `rowId`
+- 補完規則:
+  - `date8`: `row.date8` を優先し、なければ `dText` 先頭8桁（`YYYYMMDD`）から抽出
+  - `rowId`: 既存値優先。なければ `artist|title|kind|dUrl` で生成
+
+### 13.4 検索・ページング要件（最低限）
+
+- `exact=1` では `artist/title` 完全一致を優先
+- `limit/offset` で分割取得できること
+- `archive` で0件応答時は空配列を返し、HTTP 200 + `ok=true` を基本とする
+- 大量応答で失敗しないよう、実装側で応答サイズを抑える（`limit` 活用）
+
+### 13.5 セキュリティ/運用要件（最低限）
+
+- CORS 許可オリジンは本番フロントURLのみを許可
+- デプロイ後は `/exec` URL を固定し、Secrets (`GAS_URL`) へ登録
+- 変更時はテスト:
+  1. `songs/gags` 取得
+  2. `archive` exact検索
+  3. `limit/offset` ページング
+  4. JSONP 応答
+
+---
+
+## 14. 受け入れ確認チェック（最小）
+
+1. `songs.json` / `gags.json` / `meta.json` が生成される
+2. `meta.tabs` に `songs,gags` が入り、`counts` 件数と一致する
+3. フロントで `songs/gags` が静的データから表示される
+4. `archive` 検索時のみ GAS へ通信し、結果が表示される
+5. `?static_base=...` 指定時に参照先が切り替わる
+
+---
+
+## 15. 公式参照リンク
 
 - Apps Script デプロイ: https://developers.google.com/apps-script/concepts/deployments
 - Apps Script Web Apps: https://developers.google.com/apps-script/guides/web
 - Cloudflare R2 S3 API: https://developers.cloudflare.com/r2/get-started/s3/
 - Cloudflare R2 API Tokens: https://developers.cloudflare.com/r2/api/s3/tokens
 - Cloudflare R2 CORS: https://developers.cloudflare.com/r2/buckets/cors/
-
