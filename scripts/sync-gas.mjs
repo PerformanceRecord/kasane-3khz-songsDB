@@ -385,6 +385,55 @@ function appendHistoryInfoToRows(rows, historyByRowId) {
   });
 }
 
+function ensureHistoryCoverageForCoreRows(coreOutputs, historyBuilt) {
+  const existingById = new Set((historyBuilt.historyFiles || []).map((file) => String(file?.id ?? '')));
+
+  for (const tab of CORE_TABS) {
+    const rows = coreOutputs?.[tab]?.rows || [];
+    for (const row of rows) {
+      const rowId = String(row?.rowId ?? '').trim();
+      if (!rowId) continue;
+      if (historyBuilt.historyByRowId.has(rowId)) continue;
+
+      const id = makeHistoryId(rowId);
+      const dText = String(row?.dText ?? '');
+      const date8 = Number(row?.date8) || extractDate8(dText);
+      const normalized = normalizeArchiveHistoryEntry({
+        artist: row?.artist ?? '',
+        title: row?.title ?? '',
+        kind: row?.kind ?? '',
+        dText,
+        dUrl: row?.dUrl ?? '',
+        date8,
+        rowId,
+      });
+      if (!normalized) continue;
+
+      historyBuilt.historyByRowId.set(rowId, {
+        id,
+        count: 1,
+        lastSungAt: date8,
+      });
+
+      if (!existingById.has(id)) {
+        historyBuilt.historyFiles.push({
+          id,
+          payload: {
+            ok: true,
+            version: HISTORY_VERSION,
+            rowId,
+            generatedAt: new Date().toISOString(),
+            total: 1,
+            lastSungAt: date8,
+            rows: [normalized],
+          },
+        });
+        existingById.add(id);
+      }
+    }
+  }
+}
+
 
 async function fetchArchivePaged() {
   const pageLimit = Number(process.env.ARCHIVE_PAGE_LIMIT || 2);
@@ -490,6 +539,7 @@ async function main() {
     : await loadArchiveRowsFromDisk();
   const archiveRows = normalizeRowsForArchive(archiveRowsSource);
   const historyBuilt = buildHistoryFromArchiveRows(archiveRows);
+  ensureHistoryCoverageForCoreRows(outputs, historyBuilt);
   const historySkipped = archiveRows.length === 0 && ENABLE_ARCHIVE_SYNC !== true;
 
   if (!historySkipped) {

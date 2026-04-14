@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "miwa|ヒカリヘ|歌枠|https://www.youtube.com/watch?v=aClH33lmUjc&t=1450s",
+  "generatedAt": "2026-04-14T08:15:41.455Z",
+  "total": 1,
+  "lastSungAt": 20250908,
+  "rows": [
+    {
+      "artist": "Miwa",
+      "title": "ヒカリヘ",
+      "kind": "歌枠",
+      "dText": "20250908 【歌枠】もうすぐデビュー1か月✨⚛️🌐リクエスト中心で歌う♪ 花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aClH33lmUjc&t=1450s",
+      "date8": 20250908,
+      "rowId": "miwa|ヒカリヘ|歌枠|https://www.youtube.com/watch?v=aClH33lmUjc&t=1450s"
+    }
+  ]
+}

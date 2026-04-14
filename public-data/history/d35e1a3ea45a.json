@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "yukopi|強風オールバック|歌ってみた|https://www.youtube.com/watch?v=C2w6mI6IJRo",
+  "generatedAt": "2026-04-14T08:15:41.453Z",
+  "total": 1,
+  "lastSungAt": 20250921,
+  "rows": [
+    {
+      "artist": "Yukopi",
+      "title": "強風オールバック",
+      "kind": "歌ってみた",
+      "dText": "20250921 【歌ってみた】ハムボで 強風オールバック/ゆこぴ coverd by 花彩音_3kHz【新人Vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=C2w6mI6IJRo",
+      "date8": 20250921,
+      "rowId": "yukopi|強風オールバック|歌ってみた|https://www.youtube.com/watch?v=C2w6mI6IJRo"
+    }
+  ]
+}

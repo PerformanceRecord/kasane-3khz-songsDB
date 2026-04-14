@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "avril lavigne|complicated|歌枠|https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=5000s",
+  "generatedAt": "2026-04-14T08:15:41.443Z",
+  "total": 1,
+  "lastSungAt": 20251106,
+  "rows": [
+    {
+      "artist": "Avril Lavigne",
+      "title": "Complicated",
+      "kind": "歌枠",
+      "dText": "20251106 【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=5000s",
+      "date8": 20251106,
+      "rowId": "avril lavigne|complicated|歌枠|https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=5000s"
+    }
+  ]
+}

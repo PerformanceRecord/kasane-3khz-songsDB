@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "superfly|last love song|歌枠|https://www.youtube.com/watch?v=kGvlLfFiqVY&t=3746s",
+  "generatedAt": "2026-04-14T08:15:41.402Z",
+  "total": 1,
+  "lastSungAt": 20260326,
+  "rows": [
+    {
+      "artist": "Superfly",
+      "title": "Last Love Song",
+      "kind": "歌枠",
+      "dText": "20260326 【#歌枠 】昼の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=kGvlLfFiqVY&t=3746s",
+      "date8": 20260326,
+      "rowId": "superfly|last love song|歌枠|https://www.youtube.com/watch?v=kGvlLfFiqVY&t=3746s"
+    }
+  ]
+}

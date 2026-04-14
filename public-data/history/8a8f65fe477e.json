@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "宇多田ヒカル|for you|歌枠|https://www.youtube.com/watch?v=cDemkFbzqAM&t=4935s",
+  "generatedAt": "2026-04-14T08:15:41.415Z",
+  "total": 1,
+  "lastSungAt": 20260309,
+  "rows": [
+    {
+      "artist": "宇多田ヒカル",
+      "title": "For You",
+      "kind": "歌枠",
+      "dText": "20260309 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=cDemkFbzqAM&t=4935s",
+      "date8": 20260309,
+      "rowId": "宇多田ヒカル|for you|歌枠|https://www.youtube.com/watch?v=cDemkFbzqAM&t=4935s"
+    }
+  ]
+}

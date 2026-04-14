@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "kanaria|レクイエム|歌枠|https://www.youtube.com/watch?v=lGWgegAZsIk&t=4418s",
+  "generatedAt": "2026-04-14T08:15:41.442Z",
+  "total": 1,
+  "lastSungAt": 20251121,
+  "rows": [
+    {
+      "artist": "Kanaria",
+      "title": "レクイエム",
+      "kind": "歌枠",
+      "dText": "20251121 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=lGWgegAZsIk&t=4418s",
+      "date8": 20251121,
+      "rowId": "kanaria|レクイエム|歌枠|https://www.youtube.com/watch?v=lGWgegAZsIk&t=4418s"
+    }
+  ]
+}

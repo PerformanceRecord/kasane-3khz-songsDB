@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "ado|唱|歌枠|https://www.youtube.com/watch?v=x5BV86bUdvo&t=4638s",
+  "generatedAt": "2026-04-14T08:15:41.413Z",
+  "total": 1,
+  "lastSungAt": 20260316,
+  "rows": [
+    {
+      "artist": "Ado",
+      "title": "唱",
+      "kind": "歌枠",
+      "dText": "20260316 【#歌枠 】昼の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=x5BV86bUdvo&t=4638s",
+      "date8": 20260316,
+      "rowId": "ado|唱|歌枠|https://www.youtube.com/watch?v=x5BV86bUdvo&t=4638s"
+    }
+  ]
+}
