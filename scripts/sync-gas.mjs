@@ -1,10 +1,13 @@
 #!/usr/bin/env node
-import { mkdir, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { mkdir, readdir, readFile, unlink, writeFile } from 'node:fs/promises';
 
 const GAS_URL = process.env.GAS_URL || 'https://script.google.com/macros/s/AKfycbwonCr_o4oHpOc--o6eIncmq_lwHmaNjYmlXsjKWTn7OjYGWFt5OqgaTvzJ3qjYTE5F/exec';
 const OUT_DIR = process.env.OUT_DIR || 'public-data';
 const CORE_TABS = ['songs', 'gags'];
 const ARCHIVE_TAB = 'archive';
+const HISTORY_DIR_NAME = 'history';
+const HISTORY_VERSION = 1;
 const ENABLE_ARCHIVE_SYNC = process.env.ENABLE_ARCHIVE_SYNC === 'true';
 const ARCHIVE_STRICT_SYNC = process.env.ARCHIVE_STRICT_SYNC === 'true';
 const DEFAULT_LIMITS = {
@@ -265,6 +268,119 @@ function archiveRowKey(row) {
   return `${artist}${title}${kind}${dUrl}`;
 }
 
+function makeHistoryId(rowId) {
+  return createHash('sha1').update(String(rowId || '')).digest('hex').slice(0, 12);
+}
+
+function normalizeArchiveHistoryEntry(row) {
+  if (!row || typeof row !== 'object') return null;
+  const dText = String(row.dText ?? '');
+  const dUrl = String(row.dUrl ?? '');
+  return {
+    artist: String(row.artist ?? ''),
+    title: String(row.title ?? ''),
+    kind: String(row.kind ?? ''),
+    dText,
+    dUrl,
+    date8: Number(row.date8) || extractDate8(dText),
+    rowId: String(row.rowId ?? '').trim() || buildRowId({
+      artist: row.artist,
+      title: row.title,
+      kind: row.kind,
+      dUrl,
+    }),
+  };
+}
+
+function buildHistoryFromArchiveRows(archiveRows) {
+  const groups = new Map();
+  for (const rawRow of archiveRows || []) {
+    const row = normalizeArchiveHistoryEntry(rawRow);
+    if (!row || !row.rowId) continue;
+    if (!groups.has(row.rowId)) groups.set(row.rowId, []);
+    groups.get(row.rowId).push(row);
+  }
+
+  const historyByRowId = new Map();
+  const historyFiles = [];
+
+  for (const [rowId, rows] of groups.entries()) {
+    const sortedRows = rows.sort((a, b) => {
+      const dateDiff = (Number(b.date8) || 0) - (Number(a.date8) || 0);
+      if (dateDiff !== 0) return dateDiff;
+      return String(b.dText || '').localeCompare(String(a.dText || ''));
+    });
+    const id = makeHistoryId(rowId);
+    const lastSungAt = Number(sortedRows[0]?.date8) || 0;
+    const historyPayload = {
+      ok: true,
+      version: HISTORY_VERSION,
+      rowId,
+      generatedAt: new Date().toISOString(),
+      total: sortedRows.length,
+      lastSungAt,
+      rows: sortedRows,
+    };
+    historyFiles.push({ id, payload: historyPayload });
+    historyByRowId.set(rowId, {
+      id,
+      count: sortedRows.length,
+      lastSungAt,
+    });
+  }
+
+  return {
+    historyByRowId,
+    historyFiles,
+  };
+}
+
+async function clearHistoryDir(dirPath) {
+  await mkdir(dirPath, { recursive: true });
+  const files = await readdir(dirPath, { withFileTypes: true });
+  await Promise.all(files
+    .filter((f) => f.isFile() && f.name.toLowerCase().endsWith('.json'))
+    .map((f) => unlink(`${dirPath}/${f.name}`)));
+}
+
+async function loadArchiveRowsFromDisk() {
+  try {
+    const text = await readFile(`${OUT_DIR}/${ARCHIVE_TAB}.json`, 'utf8');
+    const parsed = parseJsonLoose(text);
+    const rows = normalizeRowsForArchive(parsed?.rows);
+    return Array.isArray(rows) ? rows : [];
+  } catch {
+    return [];
+  }
+}
+
+function normalizeRowsForArchive(rows) {
+  return (rows || [])
+    .map((row) => normalizeArchiveHistoryEntry(row))
+    .filter((row) => row && row.rowId);
+}
+
+function appendHistoryInfoToRows(rows, historyByRowId) {
+  return (rows || []).map((row) => {
+    const rowId = String(row?.rowId ?? '').trim();
+    const info = historyByRowId.get(rowId);
+    if (!info) {
+      return {
+        ...row,
+        historyRef: '',
+        historyCount: 0,
+        lastSungAt: Number(row?.date8) || 0,
+      };
+    }
+    return {
+      ...row,
+      historyRef: `${OUT_DIR}/${HISTORY_DIR_NAME}/${info.id}.json`,
+      historyCount: info.count,
+      lastSungAt: info.lastSungAt || 0,
+    };
+  });
+}
+
 
 async function fetchArchivePaged() {
   const pageLimit = Number(process.env.ARCHIVE_PAGE_LIMIT || 2);
@@ -322,6 +438,8 @@ async function main() {
   const startedAt = new Date().toISOString();
 
   const outputs = {};
+  const historyDir = `${OUT_DIR}/${HISTORY_DIR_NAME}`;
+  await clearHistoryDir(historyDir);
   for (const tab of CORE_TABS) {
     const payload = await fetchJsonWithRetry(tab);
     outputs[tab] = {
@@ -364,6 +482,28 @@ async function main() {
     console.warn('[archive] ENABLE_ARCHIVE_SYNC=true になるまで archive の取得をスキップします（隔離中）');
   }
 
+  const archiveRowsSource = outputs.archive?.rows?.length
+    ? outputs.archive.rows
+    : await loadArchiveRowsFromDisk();
+  const archiveRows = normalizeRowsForArchive(archiveRowsSource);
+  const historyBuilt = buildHistoryFromArchiveRows(archiveRows);
+
+  for (const historyFile of historyBuilt.historyFiles) {
+    await writeFile(
+      `${historyDir}/${historyFile.id}.json`,
+      `${JSON.stringify(historyFile.payload, null, 2)}\n`,
+      'utf8',
+    );
+  }
+
+  for (const tab of CORE_TABS) {
+    const rowsWithHistory = appendHistoryInfoToRows(outputs[tab].rows, historyBuilt.historyByRowId);
+    outputs[tab].rows = rowsWithHistory;
+    outputs[tab].total = rowsWithHistory.length;
+    outputs[tab].matched = rowsWithHistory.length;
+    await writeFile(`${OUT_DIR}/${tab}.json`, `${JSON.stringify(outputs[tab], null, 2)}\n`, 'utf8');
+  }
+
   const outputTabs = [...CORE_TABS];
 
   const meta = {
@@ -373,6 +513,12 @@ async function main() {
     startedAt,
     tabs: outputTabs,
     counts: Object.fromEntries(outputTabs.map((tab) => [tab, outputs[tab]?.rows?.length ?? null])),
+    history: {
+      version: HISTORY_VERSION,
+      generatedAt: new Date().toISOString(),
+      sourceRows: archiveRows.length,
+      files: historyBuilt.historyFiles.length,
+    },
   };
   await writeFile(`${OUT_DIR}/meta.json`, `${JSON.stringify(meta, null, 2)}\n`, 'utf8');
 

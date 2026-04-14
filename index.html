@@ -336,18 +336,6 @@
     .history-date{white-space:nowrap;color:#6a867b}
     .history-item a{color:var(--link);text-decoration:none}
     .history-item a:hover{text-decoration:underline}
-    .history-more-wrap{margin-top:12px;display:flex;justify-content:center}
-    .history-more{
-      appearance:none;
-      border:none;
-      background:transparent;
-      color:#000;
-      font-size:16px;
-      text-decoration:underline;
-      cursor:pointer;
-      padding:4px 8px;
-    }
-    .history-more:disabled{opacity:.5;cursor:default}
     .skeleton{height:16px;background:#d9ece2;border-radius:6px;margin:6px 0}
 
     @supports not selector(:focus-visible){
@@ -401,7 +389,6 @@
     <div class="card" style="margin-top:12px;">
       <div id="hist-list" class="history-list"></div>
       <div id="hist-empty" class="muted" style="display:none;">該当する履歴が見つかりませんでした。</div>
-      <div id="hist-more-wrap" class="history-more-wrap" style="display:none;"></div>
     </div>
   </div>
 
@@ -501,10 +488,7 @@
       },
       activeSnapIndex: -1,
       historyRenderSeq: 0,
-      historyView: {
-        allEntries: [],
-        shownCount: 0
-      },
+      historyView: {},
       isFilterCompact: false,
       isFilterExpandedManually: false,
       filterAutoCollapseProgress: 0,
@@ -846,7 +830,6 @@
       const empty = $('hist-empty');
       wrap.innerHTML = '';
       empty.style.display = 'block';
-      $('hist-more-wrap').style.display = 'none';
       $('hist-sub').textContent = message;
       state.archiveMeta.phase = 'error';
       state.archiveMeta.lastError = message;
@@ -1656,20 +1639,15 @@
     async function renderHistory({ artist, title, rowId, historyRef }){
       const renderSeq = ++state.historyRenderSeq;
       state.histKey = { artist, title, rowId, historyRef };
-      state.historyView = {
-        allEntries: [],
-        shownCount: 0
-      };
+      state.historyView = {};
       renderHistoryTitle(artist, title);
       $('hist-sub').textContent = '履歴を読み込み中…';
       renderHistoryProcess();
 
       const wrap = $('hist-list');
       const empty = $('hist-empty');
-      const moreWrap = $('hist-more-wrap');
       wrap.innerHTML = '';
       empty.style.display = 'none';
-      moreWrap.style.display = 'none';
       for (let i = 0; i < 3; i++) {
         const sk = document.createElement('div');
         sk.className = 'skeleton';
@@ -1680,8 +1658,6 @@
         const entries = await fetchSongHistoryByRef(historyRef);
         if (renderSeq !== state.historyRenderSeq) return;
         wrap.innerHTML = '';
-        state.historyView.allEntries = entries;
-        state.historyView.shownCount = entries.length;
         if (entries.length === 0) {
           empty.style.display = 'block';
           $('hist-sub').textContent = '該当する履歴が見つかりませんでした。';
