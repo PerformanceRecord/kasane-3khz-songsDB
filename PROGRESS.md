@@ -1,58 +1,63 @@
 # PROGRESS
 
 ## Project
-- songsDB リポジトリのデータ同期フローを整理し、運用時の手戻りを減らす。
-- 作業状況と意思決定を 1 ファイルで追跡できるようにする。
+- songsDB のデータ同期・表示ルールを最終形に固定する。
+- 方針変更を `PROGRESS.md` で一元管理する。
 
 ## Final Goal
-- `public-data/archive.json` を含むデータ更新フローを、再現可能で分かりやすい手順に統一する。
-- ドキュメント・workflow・script の前提を一致させる。
+- 履歴表示は **1曲1JSON（`historyRef`）** を唯一の経路とする。
+- 通常フローでは **GAS `archive` API を呼ばない**。
+- 一覧は `songs/gags/meta`、履歴は `history/<id>.json` の組み合わせで完結させる。
 
 ## Non-Goals
-- この Phase 1 では機能追加や大規模リファクタはしない。
-- UI/見た目の改善は対象外。
-- GAS 側ロジックの全面書き換えは対象外。
+- 新機能追加や UI 改修。
+- GAS 側の全面刷新。
 
 ## Constraints
-- 単一ブランチ運用（実質 `main` のみ）。
-- 既存データ互換性を維持する。
-- 変更理由を追跡できるよう、先に記録してから実装する。
+- 単一ブランチ運用（`main`）。
+- 既存データ互換性を維持。
+- 方針変更は実装より先に記録する。
 
 ## Current Findings
-- workflow と script で `ENABLE_ARCHIVE_SYNC` の扱いが不整合。
-- 履歴更新が「GAS archive exact」依存になっている。
-- README が「動的 archive 前提」の説明になっている。
+- `index.html` は `historyRef` 単一 fetch で履歴描画している。
+- `README.md` も通常フローで GAS `archive` 非利用を明記済み。
+- 旧 archive 動的取得系は退役扱いとして整理済み。
 
 ## Decision Log
-- 2026-04-14: Phase 1 の進捗管理として `PROGRESS.md` を導入。
-- 2026-04-14: 運用ルールを追加。
-  - 方針変更が発生した場合は、**コード修正前に** `Decision Log` と `Roadmap` を先に更新する。
+- 2026-04-14: `PROGRESS.md` を進捗管理ファイルとして導入。
+- 2026-04-14: 方針変更時は `Decision Log` / `Roadmap` を実装前に更新する運用を確定。
+- 2026-04-14: 履歴表示は `historyRef` 単一 fetch を正式採用（1曲1JSON）。
+- 2026-04-14: 旧 `archive` 動的取得（exact/paging）を通常フローから退役。
 
 ## Roadmap
-1. Phase 1: 現状調査の明文化（完了）
-2. Phase 2: workflow / script / README の前提差分を設計として整理
-3. Phase 3: 合意済み設計に沿って最小差分で修正
-4. Phase 4: 検証手順の固定化とドキュメント最終更新
+1. Phase 1: 現状と差分の棚卸し（完了）
+2. Phase 2: 最終方針（1曲1JSON / archive非依存）の明文化（完了）
+3. Phase 3: 実装の整合化（`historyRef` 経路に統一）
+4. Phase 4: ドキュメント整合（README/運用手順の更新）
+5. Phase 5: 検証（受け入れ条件チェック）
+6. Phase 6: クローズ準備（残タスク0化・最終記録）
 
 ## Task Checklist
-- [x] 進捗管理ファイル（`PROGRESS.md`）を新規作成
-- [x] 必須セクションをすべて記入
-- [x] Phase 1 の主要調査結果 3 点を記録
-- [x] 方針変更時の先行更新ルールを明記
-- [ ] 差分設計の具体化（Phase 2）
-- [ ] 実装修正（Phase 3）
-- [ ] 最終検証と完了宣言（Phase 4）
+- [x] 進捗管理ファイル（`PROGRESS.md`）作成
+- [x] Final Goal を最終要件に更新
+- [x] Roadmap を Phase 1〜6 に統一
+- [x] 確定判断を Decision Log に追記
+- [x] Verification Checklist を受け入れ条件 8 項目へ更新
+- [ ] Phase 6 のクローズ完了
 
 ## Risks/Blockers
-- archive 同期の期待仕様がドキュメントと実装でズレている可能性。
-- `ENABLE_ARCHIVE_SYNC` の真偽値解釈が環境ごとに異なる可能性。
-- GAS 側の「exact 依存」を緩めると履歴再現性が崩れるリスク。
+- 旧 archive 前提の運用手順が局所的に残ると誤運用のリスク。
+- history JSON 生成漏れがあると個別曲の履歴表示が欠落する。
 
 ## Verification Checklist
-- [ ] workflow・script・README の前提が一致しているか
-- [ ] archive 同期 ON/OFF の挙動が手順どおりか
-- [ ] 履歴データが意図せず欠落・重複しないか
-- [ ] 更新ルール（Decision Log/Roadmap 先行更新）が守られているか
+- [x] 1) 一覧データ源が `songs/gags/meta` に固定されている
+- [x] 2) 履歴表示が `historyRef` 単一 fetch で動作する
+- [x] 3) 1曲ごとの `public-data/history/<id>.json` が存在する
+- [x] 4) 通常フローで GAS `archive` API を呼ばない
+- [x] 5) 旧 archive exact/paging 経路が退役扱いで明記されている
+- [x] 6) README と実装の前提が一致している
+- [x] 7) Decision Log に確定判断が日付付きで残っている
+- [ ] 8) 最終クローズ時の手順（Phase 6）が完了している
 
 ## Next Step
-- Phase 2 として、`ENABLE_ARCHIVE_SYNC` と archive 生成方針の差分を表形式で整理し、修正対象ファイルを確定する。
+- Phase 6 として、残る未チェック項目（Verification Checklist 8）を完了として確定し、完了記録を追記する。
