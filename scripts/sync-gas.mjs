@@ -439,7 +439,6 @@ async function main() {
 
   const outputs = {};
   const historyDir = `${OUT_DIR}/${HISTORY_DIR_NAME}`;
-  await clearHistoryDir(historyDir);
   for (const tab of CORE_TABS) {
     const payload = await fetchJsonWithRetry(tab);
     outputs[tab] = {
@@ -488,6 +487,7 @@ async function main() {
   const archiveRows = normalizeRowsForArchive(archiveRowsSource);
   const historyBuilt = buildHistoryFromArchiveRows(archiveRows);
 
+  await clearHistoryDir(historyDir);
   for (const historyFile of historyBuilt.historyFiles) {
     await writeFile(
       `${historyDir}/${historyFile.id}.json`,
