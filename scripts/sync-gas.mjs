@@ -487,22 +487,25 @@ async function main() {
     : await loadArchiveRowsFromDisk();
   const archiveRows = normalizeRowsForArchive(archiveRowsSource);
   const historyBuilt = buildHistoryFromArchiveRows(archiveRows);
+  const historySkipped = archiveRows.length === 0 && ENABLE_ARCHIVE_SYNC !== true;
 
-  await clearHistoryDir(historyDir);
-  for (const historyFile of historyBuilt.historyFiles) {
-    await writeFile(
-      `${historyDir}/${historyFile.id}.json`,
-      `${JSON.stringify(historyFile.payload, null, 2)}\n`,
-      'utf8',
-    );
-  }
+  if (!historySkipped) {
+    await clearHistoryDir(historyDir);
+    for (const historyFile of historyBuilt.historyFiles) {
+      await writeFile(
+        `${historyDir}/${historyFile.id}.json`,
+        `${JSON.stringify(historyFile.payload, null, 2)}\n`,
+        'utf8',
+      );
+    }
 
-  for (const tab of CORE_TABS) {
-    const rowsWithHistory = appendHistoryInfoToRows(outputs[tab].rows, historyBuilt.historyByRowId);
-    outputs[tab].rows = rowsWithHistory;
-    outputs[tab].total = rowsWithHistory.length;
-    outputs[tab].matched = rowsWithHistory.length;
-    await writeFile(`${OUT_DIR}/${tab}.json`, `${JSON.stringify(outputs[tab], null, 2)}\n`, 'utf8');
+    for (const tab of CORE_TABS) {
+      const rowsWithHistory = appendHistoryInfoToRows(outputs[tab].rows, historyBuilt.historyByRowId);
+      outputs[tab].rows = rowsWithHistory;
+      outputs[tab].total = rowsWithHistory.length;
+      outputs[tab].matched = rowsWithHistory.length;
+      await writeFile(`${OUT_DIR}/${tab}.json`, `${JSON.stringify(outputs[tab], null, 2)}\n`, 'utf8');
+    }
   }
 
   const outputTabs = [...CORE_TABS];
@@ -519,6 +522,7 @@ async function main() {
       generatedAt: new Date().toISOString(),
       sourceRows: archiveRows.length,
       files: historyBuilt.historyFiles.length,
+      skipped: historySkipped,
     },
   };
   await writeFile(`${OUT_DIR}/meta.json`, `${JSON.stringify(meta, null, 2)}\n`, 'utf8');
