@@ -19,7 +19,7 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 
 ## 2. リポジトリの役割（全体像）
 
-- **データ同期**: `scripts/sync-gas.mjs` が GAS API からデータを取得して `public-data/*.json` を更新。
+- **データ同期**: `scripts/sync-gas.mjs` が GAS API からデータを取得して `public-data`（`*.json` と `history/*.json`）を更新。
 - **静的配信**: `public-data` を Cloudflare R2 などで配信し、フロントは静的 JSON を利用。
 - **フロント表示**: `index.html` はまず `songs` / `gags` の一覧を表示し、必要なときだけ `history/<id>.json` を読む。
 
@@ -130,7 +130,7 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 node scripts/sync-gas.mjs
 ```
 
-成功時は `public-data/*.json` が更新され、`sync complete` ログが出ます。
+成功時は `public-data/*.json` と `public-data/history/*.json` が更新され、`sync complete` ログが出ます。
 
 ## 9. 運用メモ
 
