@@ -470,16 +470,6 @@
       lastScroll: 0,
       histKey: null,
       kindFilters: [],
-      archiveMeta: {
-        phase: 'idle',
-        source: 'unknown',
-        transport: '-',
-        useDeploy: false,
-        retry: 0,
-        lastError: '',
-        rows: 0,
-        updatedAt: 0
-      },
       serverResponse: {
         inflight: 0,
         lastOkAt: 0,
@@ -733,55 +723,6 @@
       return sortHistoryEntriesDesc(merged);
     }
 
-    function uniqueArchiveRows(rows){
-      const seen = new Set();
-      const out = [];
-      for (const r of rows || []) {
-        const key = String(r.rowId || '').trim()
-          || `${normalize(r.artist)}|${normalize(r.title)}|${r.kind || ''}|${r.dUrl || ''}`;
-        if (seen.has(key)) continue;
-        seen.add(key);
-        out.push(r);
-      }
-      return out;
-    }
-
-    function buildArchiveIndex(rows){
-      const sourceRows = uniqueArchiveRows(rows || []);
-      state.archiveRows = sourceRows;
-
-      const byKey = new Map();
-      const byTitle = new Map();
-      for (const r of sourceRows) {
-        const artist = normalize(r.artist);
-        const title = normalize(r.title);
-        const url = r.dUrl || urlFromText(r.dText);
-        if (!url) continue;
-        const date = Number(r.date8) || extractDate8(r.dText);
-        const kind = (r.kind || '').toString();
-        const rowId = String(r.rowId || '').trim();
-        const key = `${artist}|${title}`;
-
-        if (!byKey.has(key)) byKey.set(key, []);
-        byKey.get(key).push({ date, url, kind, rowId });
-
-        if (!byTitle.has(title)) byTitle.set(title, []);
-        byTitle.get(title).push({ date, url, kind, rowId });
-      }
-
-      byKey.forEach((list, key) => byKey.set(key, sortHistoryEntriesDesc(list)));
-      byTitle.forEach((list, key) => byTitle.set(key, sortHistoryEntriesDesc(list)));
-
-      state.archiveByKey = byKey;
-      state.archiveByTitle = byTitle;
-    }
-
-    function mergeArchiveRows(rows){
-      const merged = uniqueArchiveRows([...(state.archiveRows || []), ...(rows || [])]);
-      buildArchiveIndex(merged);
-      return merged;
-    }
-
     let __jsonpHit = false;
     const REQUEST_MAX_RETRY = 2;
     const REQUEST_TIMEOUT_MS = 8000;
@@ -790,20 +731,9 @@
     const INITIAL_ERROR_NOTICE_DELAY_MS = 12000;
     const JSONP_ALLOWED_ORIGIN = 'script.google.com';
     const JSONP_CALLBACK_RE = /^[A-Za-z_$][0-9A-Za-z_$]*$/;
-    // 検証時の通信量と失敗率を抑えるため、取得件数を小さめに固定
-    const ARCHIVE_FETCH_LIMIT = 50;
-    const ARCHIVE_EXACT_FETCH_LIMIT = 40;
-    const INITIAL_FETCH_LIMIT = 50;
-    const SECOND_FETCH_LIMIT = 120;
-    const ARCHIVE_SAFE_FETCH_LIMIT = 120;
-    const ARCHIVE_LIMIT_BACKOFFS = [120, 80, 50, 30, 20, 10];
-    const ARCHIVE_PAGE_LIMIT = 30;
-    const ARCHIVE_MAX_PAGES = 8;
-
     const requestState = {
       songs: { id:0, timer:null, inflight:false },
-      gags: { id:0, timer:null, inflight:false },
-      archive: { id:0, timer:null, inflight:false }
+      gags: { id:0, timer:null, inflight:false }
     };
 
     function clearRequestTimer(tab){
@@ -831,8 +761,6 @@
       wrap.innerHTML = '';
       empty.style.display = 'block';
       $('hist-sub').textContent = message;
-      state.archiveMeta.phase = 'error';
-      state.archiveMeta.lastError = message;
       renderHistoryProcess();
     }
 
@@ -848,25 +776,11 @@
 
       if (attempt < REQUEST_MAX_RETRY) {
         const next = attempt + 1;
-        const retryTransport = (tab === 'archive' && state.archiveMeta.transport === 'fetch')
-          ? 'fetch'
-          : 'jsonp';
-        if (tab === 'archive') {
-          state.archiveMeta.phase = 'loading';
-          state.archiveMeta.retry = next;
-          state.archiveMeta.lastError = reason;
-          renderHistoryProcess();
-        }
         console.warn(`[${tab}] request failed: ${reason}. retry=${next}/${REQUEST_MAX_RETRY}`);
-        setTimeout(()=>requestData(tab, next, false, retryTransport), REQUEST_RETRY_DELAY_MS * next);
+        setTimeout(()=>requestData(tab, next, false, 'jsonp'), REQUEST_RETRY_DELAY_MS * next);
         return;
       }
 
-      if (tab === 'archive') {
-        state.archiveMeta.phase = 'error';
-        state.archiveMeta.lastError = reason;
-        showHistoryLoadError(`履歴の取得に失敗しました: ${reason}`);
-      }
       showRequestError(tab, reason);
     }
 
@@ -906,16 +820,6 @@
         .map(normalizeBaseRow)
         .filter(r => ((r.artist||'')+(r.title||'')).trim() !== '');
     }
-    function normalizeArchiveRows(payloadRows){
-      return (payloadRows || [])
-        .map(normalizeBaseRow)
-        .filter(r => {
-          const hasMain = ((r.artist||'') + (r.title||'')).trim() !== '';
-          const hasArchiveOnly = String(r.dText||'').trim() !== '' || String(r.dUrl||'').trim() !== '';
-          return hasMain || hasArchiveOnly;
-        });
-    }
-
     function resolvePayloadRows(payload){
       const visited = new Set();
       const queue = [payload];
@@ -982,7 +886,6 @@
         payload.result,
         payload.payload,
         payload.response,
-        payload.archive,
         payload.histories,
         payload.history
       ];
@@ -1017,7 +920,7 @@
 
     function normalizeRowsForTab(tab, payload){
       const parsed = parsePayloadLoose(payload);
-      const rowsPayload = resolvePayloadRows(parsed) || (tab === 'archive' ? extractArchiveRowsFallback(parsed) : null);
+      const rowsPayload = resolvePayloadRows(parsed);
       if (!rowsPayload) {
         const serverError = parsed && typeof parsed === 'object'
           ? (parsed.error || parsed.message || (parsed.result && parsed.result.error))
@@ -1031,7 +934,6 @@
         throw new Error(`取得元不一致: request=${tab}, response=${rawSheet}`);
       }
 
-      if (tab === 'archive') return normalizeArchiveRows(rowsPayload);
       return normalizeListRows(rowsPayload).map(r => ({
         ...r,
         _na: normalize(r.artist),
@@ -1052,22 +954,6 @@
           render();
         } else {
           setStatus(UI_TEXT.loading);
-        }
-        return;
-      }
-
-      if (tab === 'archive') {
-        markRequestSuccess(tab);
-        buildArchiveIndex(rows);
-        state.archiveMeta.phase = 'ready';
-        state.archiveMeta.source = 'network';
-        state.archiveMeta.retry = 0;
-        state.archiveMeta.lastError = '';
-        state.archiveMeta.rows = rows.length;
-        state.archiveMeta.updatedAt = Date.now();
-        renderHistoryProcess();
-        if ($('page-history').classList.contains('active') && state.histKey?.historyRef) {
-          renderHistory(state.histKey);
         }
         return;
       }
@@ -1172,14 +1058,6 @@
       beginServerRequest();
       req.id += 1;
       req.inflight = true;
-      if (tab === 'archive') {
-        state.archiveMeta.phase = 'loading';
-        state.archiveMeta.source = 'network';
-        state.archiveMeta.transport = 'jsonp';
-        state.archiveMeta.useDeploy = useDeploy;
-        state.archiveMeta.retry = attempt;
-        renderHistoryProcess();
-      }
       const requestId = req.id;
       const callbackName = `__jsonp_${tab}_${Date.now()}_${Math.random().toString(36).slice(2)}`;
       if (!JSONP_CALLBACK_RE.test(callbackName)) {
@@ -1222,10 +1100,6 @@
         req.inflight = false;
         cleanup();
         endServerRequest(false, `${tab}/jsonp`, 'script読込失敗');
-        if (tab === 'archive') {
-          handleRequestFailure(tab, attempt, 'script読込失敗');
-          return;
-        }
         requestData(tab, attempt, useDeploy, 'fetch');
       };
       document.head.appendChild(script);
@@ -1235,10 +1109,6 @@
         req.inflight = false;
         cleanup();
         endServerRequest(false, `${tab}/jsonp`, 'タイムアウト');
-        if (tab === 'archive') {
-          handleRequestFailure(tab, attempt, 'タイムアウト');
-          return;
-        }
         requestData(tab, attempt, useDeploy, 'fetch');
       }, REQUEST_TIMEOUT_MS);
     }
@@ -1249,14 +1119,6 @@
       clearRequestTimer(tab);
       req.id += 1;
       req.inflight = true;
-      if (tab === 'archive') {
-        state.archiveMeta.phase = 'loading';
-        state.archiveMeta.source = 'network';
-        state.archiveMeta.transport = 'fetch';
-        state.archiveMeta.useDeploy = useDeploy;
-        state.archiveMeta.retry = attempt;
-        renderHistoryProcess();
-      }
       const requestId = req.id;
 
       const controller = new AbortController();
@@ -1304,120 +1166,6 @@
       jsonp(tab, attempt, useDeploy);
     }
 
-    function ensureArchiveFast(){
-      renderHistoryProcess();
-      if (!requestState.archive.inflight) requestData('archive');
-    }
-
-    async function fetchArchiveRowsByQuery(query, limit = ARCHIVE_SAFE_FETCH_LIMIT){
-      const opts = { q: query, limit };
-      const run = async (useDeploy = false) => {
-        beginServerRequest();
-        try {
-          const res = await fetch(buildApiFetchUrl('archive', useDeploy, opts), {
-            mode: 'cors',
-            credentials: 'omit',
-            cache: 'no-store'
-          });
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          const rows = normalizeRowsForTab('archive', await res.text());
-          endServerRequest(true, 'archive/fetch(query)');
-          return rows;
-        } catch (err) {
-          const reason = err instanceof Error ? err.message : String(err);
-          endServerRequest(false, 'archive/fetch(query)', reason);
-          throw err;
-        }
-      };
-
-      try {
-        return await run(false);
-      } catch (err) {
-        const msg = err instanceof Error ? err.message : String(err);
-        if (msg.startsWith('取得元不一致')) return run(true);
-        throw err;
-      }
-    }
-
-    function isArgumentTooLargeErrorMessage(message){
-      const msg = (message || '').toString();
-      return msg.includes('引数が大きすぎます') || msg.toLowerCase().includes('argument too large');
-    }
-
-    function buildArchiveLimitCandidates(limit){
-      const upper = Number.isFinite(limit) && limit > 0 ? Math.floor(limit) : ARCHIVE_SAFE_FETCH_LIMIT;
-      const candidates = [upper, ...ARCHIVE_LIMIT_BACKOFFS.filter(v => v < upper)];
-      return [...new Set(candidates.filter(v => Number.isFinite(v) && v > 0))];
-    }
-
-    function archiveRowKey(row){
-      const normalized = normalizeBaseRow(row);
-      return String(normalized.rowId || '').trim() || [
-        normalize(normalized.artist),
-        normalize(normalized.title),
-        normalize(normalized.kind),
-        normalize(normalized.dUrl)
-      ].join('|');
-    }
-
-    async function fetchArchiveRowsChunked(limit = ARCHIVE_SAFE_FETCH_LIMIT){
-      const pageLimit = Math.max(1, Math.min(ARCHIVE_PAGE_LIMIT, Math.floor(limit || ARCHIVE_PAGE_LIMIT)));
-      const maxPages = Math.max(1, Math.min(ARCHIVE_MAX_PAGES, Math.ceil(limit / pageLimit)));
-
-      const merged = [];
-      const seenKeys = new Set();
-      let repeatedPageCount = 0;
-
-      for (let page = 0; page < maxPages; page++) {
-        const offset = page * pageLimit;
-        const rows = await fetchSheetRowsWithFallback('archive', { limit: pageLimit, offset });
-        if (!Array.isArray(rows) || rows.length === 0) break;
-
-        let added = 0;
-        for (const row of rows) {
-          const key = archiveRowKey(row);
-          if (seenKeys.has(key)) continue;
-          seenKeys.add(key);
-          merged.push(normalizeBaseRow(row));
-          added++;
-        }
-
-        if (added === 0) {
-          repeatedPageCount++;
-          if (repeatedPageCount >= 1) break;
-        } else {
-          repeatedPageCount = 0;
-        }
-
-        if (rows.length < pageLimit) break;
-      }
-
-      return normalizeArchiveRows(merged).slice(0, limit);
-    }
-
-    async function fetchArchiveRowsResilient({ query = '', limit = ARCHIVE_SAFE_FETCH_LIMIT } = {}){
-      const candidates = buildArchiveLimitCandidates(limit);
-      let lastErr = null;
-
-      for (let i = 0; i < candidates.length; i++) {
-        const candidateLimit = candidates[i];
-        try {
-          if ((query || '').trim()) {
-            return await fetchArchiveRowsByQuery(query, candidateLimit);
-          }
-          return await fetchArchiveRowsChunked(candidateLimit);
-        } catch (err) {
-          lastErr = err;
-          const msg = err instanceof Error ? err.message : String(err);
-          const canRetrySmaller = isArgumentTooLargeErrorMessage(msg) && i < candidates.length - 1;
-          if (!canRetrySmaller) throw err;
-        }
-      }
-
-      if (lastErr) throw lastErr;
-      return [];
-    }
-
     async function fetchSheetRows(tab, useDeploy = false, extraParams = {}){
       beginServerRequest();
       try {
@@ -1447,29 +1195,6 @@
 
     function getCurrentTabLabel(){
       return TAB_LABELS[state.current] || state.current;
-    }
-
-    async function fetchInStages(tab, { onStage } = {}){
-      const limits = tab === 'archive'
-        ? [INITIAL_FETCH_LIMIT, ARCHIVE_SAFE_FETCH_LIMIT]
-        : [INITIAL_FETCH_LIMIT, SECOND_FETCH_LIMIT, null];
-      let lastRows = [];
-      for (let i = 0; i < limits.length; i++) {
-        const limit = limits[i];
-        const params = limit ? { limit } : {};
-        try {
-          const rows = tab === 'archive'
-            ? await fetchArchiveRowsResilient({ limit: limit || ARCHIVE_SAFE_FETCH_LIMIT })
-            : await fetchSheetRowsWithFallback(tab, params);
-          lastRows = rows;
-          if (typeof onStage === 'function') onStage(rows, { limit, stage: i + 1 });
-          if (limit && rows.length < limit) break;
-        } catch (err) {
-          if (i === 0) throw err;
-          break;
-        }
-      }
-      return lastRows;
     }
 
     async function warmCaches({ forceReload = false } = {}){
@@ -1507,15 +1232,6 @@
 
           state.cache.songs = songsRows;
           state.cache.gags = gagsRows;
-          if (state.archiveMeta.phase === 'idle' || state.archiveMeta.phase === 'error') {
-            state.archiveMeta.source = 'gas-direct';
-            state.archiveMeta.transport = 'jsonp(exact)';
-            state.archiveMeta.useDeploy = false;
-            state.archiveMeta.retry = 0;
-            state.archiveMeta.lastError = '';
-            state.archiveMeta.rows = 0;
-            state.archiveMeta.updatedAt = Date.now();
-          }
           renderHistoryProcess();
 
           if (state.cache[state.current]) {
@@ -1529,8 +1245,6 @@
           endServerRequest(true, 'warmCaches/static');
         } catch (err) {
           const msg = err instanceof Error ? err.message : String(err);
-          state.archiveMeta.phase = 'error';
-          state.archiveMeta.lastError = msg;
           renderHistoryProcess();
           setStatus(`データ取得に失敗しました: ${msg}`);
           endServerRequest(false, 'warmCaches/static', msg);
@@ -1577,10 +1291,6 @@
 
     async function fetchSongHistoryByRef(historyRef){
       if (!historyRef) return [];
-      state.archiveMeta.phase = 'loading';
-      state.archiveMeta.source = 'historyRef';
-      state.archiveMeta.transport = 'fetch(historyRef)';
-      state.archiveMeta.lastError = '';
       renderHistoryProcess();
 
       beginServerRequest();
@@ -1588,11 +1298,6 @@
         const res = await fetch(historyRef, { cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const entries = extractHistoryEntriesFromRefPayload(await res.text());
-        state.archiveMeta.phase = 'ready';
-        state.archiveMeta.retry = 0;
-        state.archiveMeta.lastError = '';
-        state.archiveMeta.rows = entries.length;
-        state.archiveMeta.updatedAt = Date.now();
         renderHistoryProcess();
         endServerRequest(true, 'historyRef/fetch');
         return entries;
@@ -1668,7 +1373,7 @@
       } catch (err) {
         if (renderSeq !== state.historyRenderSeq) return;
         const reason = err instanceof Error ? err.message : String(err);
-        showHistoryLoadError(`履歴の取得に失敗しました: ${reason}`);
+        showHistoryLoadError(`historyRef の取得に失敗しました: ${reason}`);
       }
     }
 
