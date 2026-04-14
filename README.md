@@ -4,14 +4,14 @@
 >
 > 上記はこのリポジトリ名に合わせた Pages の想定 URL です。実際のユーザー名に置き換えて利用してください。
 
-Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta`）を一次データとして使い、`archive` は必要時のみ GAS から動的取得する構成です。
+Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `history/<id>.json`）を一次データとして使う構成です。通常フローでは GAS `archive` API は使いません。
 
 ## 1. 総点検結果（不要箇所・統合可能箇所）
 
 ### 1-1. 結論
 - 仕様を `docs/new-repo-seed-spec.md` に統合したため、旧仕様書は削除済みです。
 - 日常運用の参照は `README`、新規環境立ち上げ時のタネデータは `docs/new-repo-seed-spec.md` を利用します。
-- `archive` 同期の制御仕様は実装済みで妥当（ページング・limit縮小・health check）です。
+- 通常フローは `songs/gags/meta + history/<id>.json` に統一し、旧 `archive` 直接取得は退役扱いです。
 
 ### 1-2. 統合・整理した方針
 - 仕様の中心を `README` に寄せ、各資料は補助資料として役割を明確化。
@@ -20,8 +20,8 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta`）を一次
 ## 2. リポジトリの役割（全体像）
 
 - **データ同期**: `scripts/sync-gas.mjs` が GAS API からデータを取得して `public-data/*.json` を更新。
-- **静的配信**: `public-data` を Cloudflare R2 などで配信し、フロントは静的 JSON を優先利用。
-- **フロント表示**: `index.html` が `songs` / `gags` を高速検索表示し、`archive` は必要時のみ取得。
+- **静的配信**: `public-data` を Cloudflare R2 などで配信し、フロントは静的 JSON を利用。
+- **フロント表示**: `index.html` はまず `songs` / `gags` の一覧を表示し、必要なときだけ `history/<id>.json` を読む。
 
 ## 3. ディレクトリ構成
 
@@ -30,7 +30,9 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta`）を一次
 - `scripts/sync-gas.mjs`
   - GAS 取得・正規化・保存・`meta.json` 生成。
 - `public-data/*.json`
-  - 配信対象のスナップショット。
+  - 配信対象のスナップショット（`songs` / `gags` / `meta`）。
+- `public-data/history/<id>.json`
+  - 曲・ネタ単位の履歴データ。
 - `google-apps-script-reference/`
   - GAS 参照コード（運用原本の複製を保持）。
 - `docs/new-repo-seed-spec.md`
@@ -41,36 +43,35 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta`）を一次
 ## 4. 仕様書（コード別）
 
 ### 4-1. `index.html`（フロントエンド）
-- 単一ページで `songs` / `gags` / `archive` を検索・表示。
+- 単一ページで `songs` / `gags` 一覧を検索・表示し、履歴は `history/<id>.json` で表示。
 - 読込優先順位:
   1. `?static_base=<URL>`
   2. `localStorage.staticDataBase`
   3. 同一オリジン相対パス
-- `songs` / `gags` は静的 JSON を優先。`archive` は JSONP による動的取得を許容。
+- `songs` / `gags` は静的 JSON を利用し、選択時に `historyRef` から履歴 JSON を読む。
 - `meta.tabs` と `meta.counts` を使い、静的データ整合性を検証。不整合時はフォールバック。
 
 ### 4-2. `scripts/sync-gas.mjs`（同期バッチ）
-- `songs` / `gags` は毎回取得して保存。
-- 取得行を正規化し、`date8` と `rowId` を補完。
-- `ENABLE_ARCHIVE_SYNC=true` の場合のみ `archive` を同期。
-  - `limit=1` で health check。
-  - ページング取得 + `Argument too large` 時の limit 縮小再試行。
-  - `offset` は実取得件数で進める。
+- `songs` / `gags` を取得して保存。
+- 取得行を正規化し、`date8` / `rowId` / `historyCount` / `lastSungAt` / `historyRef` を補完。
+- `history/<id>.json` を生成し、一覧→履歴の参照経路を固定。
 - 最後に `meta.json` を再生成し、件数と対象タブを記録。
 
 ### 4-3. `google-apps-script-reference/code.gs`（GAS API 参照実装）
-- スプレッドシートを API 化し、`songs` / `gags` / `archive` を返却。
+- スプレッドシートを API 化し、`songs` / `gags` / `archive` を返却できる。
 - 返却行は `artist/title/kind/dText/dUrl/date8/rowId`。
-- `exact=1` 時は `artist/title` 完全一致の検索動作。
+- `exact=1` と `offset/limit` ページングは **退役（通常フロー未使用）**。デバッグ用途のみ。
 
 ### 4-4. `google-apps-script-reference/merge-songs-gags-archive.gs`（GAS 補助）
-- `songs/gags/archive` の統合処理を担う補助スクリプト。
-- 投稿日・タイムスタンプ等の付与ロジックを保持。
-- 本番反映時は Apps Script 側との差分管理に注意。
+- 旧 `archive` 統合の補助スクリプト（退役）。
+- 通常フローでは使わず、Apps Script 側の検証・デバッグ時のみ参照。
 
-### 4-5. `public-data/*.json`（配信データ仕様）
-- `songs.json` / `gags.json` / `archive.json`:
+### 4-5. `public-data`（配信データ仕様）
+- `songs.json` / `gags.json`:
   - `ok`, `sheet`, `fetchedAt`, `rows`, `total`, `matched`
+  - 各 `row` に `historyCount`, `lastSungAt`, `historyRef` を含む
+- `history/<id>.json`:
+  - `ok`, `id`, `sheet`, `fetchedAt`, `rows`, `total`
 - `meta.json`:
   - `ok`, `source`, `generatedAt`, `startedAt`, `tabs`, `counts`
 
@@ -78,21 +79,27 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta`）を一次
 - PWA 表示名・テーマ色・アイコン定義。
 - 端末ショートカット追加時の見た目に影響。
 
-## 5. 同期フロー（`scripts/sync-gas.mjs`）
+## 5. データフロー（`songs/gags/meta + history/<id>.json`）
 
-1. `songs` / `gags` を取得。
-2. 行を正規化し `date8` / `rowId` を補完。
-3. `public-data/songs.json`, `public-data/gags.json` を更新。
-4. `ENABLE_ARCHIVE_SYNC=true` 時のみ `archive` を段階取得。
-5. `meta.json` を生成。
+通常フローでは GAS `archive` API を呼びません。
 
-### archive 取得制御（重要）
-- `ARCHIVE_PAGE_LIMIT` を基準値として利用。
-- `ARCHIVE_LIMITS` の候補は `ARCHIVE_PAGE_LIMIT` 以下のみ採用。
-- `Argument too large` 発生時に limit を下げて再試行。
-- 上限制御:
-  - `ARCHIVE_MAX_PAGES`
-  - `ARCHIVE_TOTAL_CAP`
+1. 同期バッチが `songs` / `gags` を取得。
+2. 一覧行に `historyCount` / `lastSungAt` / `historyRef` を付与。
+3. `public-data/songs.json`, `public-data/gags.json`, `public-data/meta.json` を更新。
+4. 各行の `historyRef` が指す `public-data/history/<id>.json` を生成。
+5. 画面は「一覧 → `historyRef` で履歴」の順で読み込む。
+
+### `historyRef` の意味と利用経路
+- 意味: その行の履歴 JSON の場所（例: `history/song-123.json`）。
+- 利用経路:
+  - 一覧表示: `songs.json` / `gags.json` を読む
+  - ユーザーが1件選択
+  - `historyRef` を取り出す
+  - `history/<id>.json` を取得して履歴表示
+
+### 旧方式（退役）
+- `exact=1` 検索、`offset-limit` ページング、GAS `archive` API 直接呼び出しは **退役**。
+- これらはデバッグ専用で、通常フローでは使いません。
 
 ## 6. 行データ仕様（共通）
 
@@ -115,12 +122,7 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta`）を一次
 ### 7-2. 同期制御
 - `SYNC_TIMEOUT_MS`（既定 `8000`）
 - `SYNC_MAX_RETRY`（既定 `3`）
-- `ENABLE_ARCHIVE_SYNC`（既定 `false`、`true` で archive 同期有効）
-- `ARCHIVE_STRICT_SYNC`（`true` なら archive 失敗で全体失敗）
-- `ARCHIVE_PAGE_LIMIT`（既定 `2`）
-- `ARCHIVE_LIMITS`（既定 `5,3,2,1`）
-- `ARCHIVE_MAX_PAGES`（既定 `4000`）
-- `ARCHIVE_TOTAL_CAP`（既定 `20000`）
+- 旧 `archive` 同期系の環境変数は退役（通常フロー未使用、デバッグ専用）
 
 ## 8. 実行方法
 
@@ -132,7 +134,7 @@ node scripts/sync-gas.mjs
 
 ## 9. 運用メモ
 
-- `archive` は負荷が高くなりやすいため、通常は静的配信対象から分離して扱う。
+- 通常運用は `songs/gags/meta + history/<id>.json` を静的配信し、一覧→履歴で読む。
 - `public-data` はキャッシュとして扱い、取得失敗時は前回成功分を残す。
 - 仕様変更時は `README` と `docs/new-repo-seed-spec.md` を合わせて更新する。
 
@@ -142,7 +144,7 @@ node scripts/sync-gas.mjs
 
 ### 10-1. 現在の検証機で有効なもの（そのまま有効）
 
-- `scripts/sync-gas.mjs` の同期仕様（`songs/gags` 静的化、`archive` 条件同期）はそのまま流用可能。
+- `scripts/sync-gas.mjs` の同期仕様（`songs/gags/meta + history/<id>.json`）はそのまま流用可能。
 - GAS / Cloudflare R2 の基本設計（`GAS_URL`, `R2_*` シークレット利用）はそのまま流用可能。
 - `static_base` クエリまたは `localStorage.staticDataBase` による静的JSON参照先の切り替え仕様はそのまま流用可能。
 
