@@ -401,9 +401,7 @@
     <div class="card" style="margin-top:12px;">
       <div id="hist-list" class="history-list"></div>
       <div id="hist-empty" class="muted" style="display:none;">該当する履歴が見つかりませんでした。</div>
-      <div id="hist-more-wrap" class="history-more-wrap" style="display:none;">
-        <button id="hist-more" class="history-more" type="button">▶さらに読み込む</button>
-      </div>
+      <div id="hist-more-wrap" class="history-more-wrap" style="display:none;"></div>
     </div>
   </div>
 
@@ -482,9 +480,6 @@
       cache: { songs:null, gags:null },
       preloadPromise: null,
       debounce: null,
-      archiveRows: [],
-      archiveByKey: null,
-      archiveByTitle: null,
       lastScroll: 0,
       histKey: null,
       kindFilters: [],
@@ -508,9 +503,7 @@
       historyRenderSeq: 0,
       historyView: {
         allEntries: [],
-        shownCount: 0,
-        hasMore: false,
-        loadingMore: false
+        shownCount: 0
       },
       isFilterCompact: false,
       isFilterExpandedManually: false,
@@ -810,7 +803,6 @@
     const REQUEST_TIMEOUT_MS = 8000;
     const REQUEST_RETRY_DELAY_MS = 500;
     const FETCH_TIMEOUT_MS = 10000;
-    const HISTORY_PAGE_SIZE = 5;
     const INITIAL_ERROR_NOTICE_DELAY_MS = 12000;
     const JSONP_ALLOWED_ORIGIN = 'script.google.com';
     const JSONP_CALLBACK_RE = /^[A-Za-z_$][0-9A-Za-z_$]*$/;
@@ -904,7 +896,8 @@
           dText : r[3] ?? '',
           dUrl  : r[4] ?? '',
           date8 : Number(r[5]) || extractDate8(r[3]),
-          rowId : String(r[6] ?? '').trim()
+          rowId : String(r[6] ?? '').trim(),
+          historyRef: String(r[7] ?? '').trim()
         };
       }
       const row = r && typeof r === 'object' ? r : {};
@@ -913,6 +906,7 @@
       const date8Raw = row.date8 ?? row.date ?? row.投稿日 ?? row.postedDate ?? '';
       const date8 = Number(date8Raw) || extractDate8(dText);
       const rowId = String(row.rowId ?? row.rowid ?? '').trim();
+      const historyRef = String(row.historyRef ?? row.historyref ?? row.history ?? row.historyUrl ?? '').trim();
       return {
         artist: row.artist ?? row.Artist ?? row.artistName ?? row.singer ?? row.アーティスト ?? row.アーティスト名 ?? row.歌手名 ?? '',
         title : row.title  ?? row.Title  ?? row.song ?? row.songName ?? row.曲名 ?? row.楽曲名 ?? '',
@@ -921,6 +915,7 @@
         dUrl,
         date8,
         rowId,
+        historyRef
       };
     }
     function normalizeListRows(payloadRows){
@@ -1088,8 +1083,8 @@
         state.archiveMeta.rows = rows.length;
         state.archiveMeta.updatedAt = Date.now();
         renderHistoryProcess();
-        if ($('page-history').classList.contains('active') && state.histKey) {
-          renderHistory(state.histKey.artist, state.histKey.title);
+        if ($('page-history').classList.contains('active') && state.histKey?.historyRef) {
+          renderHistory(state.histKey);
         }
         return;
       }
@@ -1496,7 +1491,7 @@
 
     async function warmCaches({ forceReload = false } = {}){
       if (state.preloadPromise) return state.preloadPromise;
-      if (!forceReload && state.cache.songs && state.cache.gags && state.archiveByKey && state.archiveByTitle) {
+      if (!forceReload && state.cache.songs && state.cache.gags) {
         return;
       }
 
@@ -1529,15 +1524,13 @@
 
           state.cache.songs = songsRows;
           state.cache.gags = gagsRows;
-          buildArchiveIndex(state.archiveRows || []);
-
           if (state.archiveMeta.phase === 'idle' || state.archiveMeta.phase === 'error') {
             state.archiveMeta.source = 'gas-direct';
             state.archiveMeta.transport = 'jsonp(exact)';
             state.archiveMeta.useDeploy = false;
             state.archiveMeta.retry = 0;
             state.archiveMeta.lastError = '';
-            state.archiveMeta.rows = state.archiveRows.length;
+            state.archiveMeta.rows = 0;
             state.archiveMeta.updatedAt = Date.now();
           }
           renderHistoryProcess();
@@ -1547,8 +1540,8 @@
             render();
           }
 
-          if ($('page-history').classList.contains('active') && state.histKey) {
-            renderHistory(state.histKey.artist, state.histKey.title);
+          if ($('page-history').classList.contains('active') && state.histKey?.historyRef) {
+            renderHistory(state.histKey);
           }
           endServerRequest(true, 'warmCaches/static');
         } catch (err) {
@@ -1581,53 +1574,48 @@
       }
     }
 
-    async function fetchSongHistoryPageFromArchive(artist, title, offset = 0){
-      if (!artist || !title) return { entries: [], hasMore: false };
-      const isHistoryDebug = new URLSearchParams(window.location.search).get('debug_history') === '1';
-      const fetchLimit = HISTORY_PAGE_SIZE + 1;
+    function extractHistoryEntriesFromRefPayload(payload){
+      const parsed = parsePayloadLoose(payload);
+      const rowsPayload = resolvePayloadRows(parsed)
+        || (Array.isArray(parsed) ? parsed : null)
+        || extractArchiveRowsFallback(parsed);
+      if (!rowsPayload) return [];
 
+      return sortHistoryEntriesDesc((rowsPayload || []).map((raw) => {
+        const row = normalizeBaseRow(raw);
+        return {
+          date: Number(row.date8) || extractDate8(row.dText),
+          url: row.dUrl || urlFromText(row.dText),
+          kind: (row.kind || '').toString(),
+          rowId: String(row.rowId || '').trim()
+        };
+      }).filter((entry) => entry.date || entry.url || entry.kind));
+    }
+
+    async function fetchSongHistoryByRef(historyRef){
+      if (!historyRef) return [];
       state.archiveMeta.phase = 'loading';
-      state.archiveMeta.source = 'gas-direct';
-      state.archiveMeta.transport = 'fetch(exact)';
+      state.archiveMeta.source = 'historyRef';
+      state.archiveMeta.transport = 'fetch(historyRef)';
       state.archiveMeta.lastError = '';
       renderHistoryProcess();
 
       beginServerRequest();
       try {
-        const fetchedRows = await fetchSheetRowsWithFallback('archive', {
-          artist,
-          title,
-          exact: '1',
-          offset,
-          limit: fetchLimit
-        });
-        const filteredRows = normalizeArchiveRows(fetchedRows).filter((r) =>
-          normalize(r.artist) === normalize(artist) && normalize(r.title) === normalize(title)
-        );
-
-        if (isHistoryDebug && filteredRows.length > 0) {
-          console.debug('[history] archive page first row', {
-            artist: filteredRows[0]?.artist,
-            title: filteredRows[0]?.title,
-            offset
-          });
-        }
-
-        const pageRows = filteredRows.slice(0, HISTORY_PAGE_SIZE);
-        const entries = sortHistoryEntriesDesc(toHistoryEntries(pageRows, artist, title));
-        const hasMore = filteredRows.length > HISTORY_PAGE_SIZE;
-
+        const res = await fetch(historyRef, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const entries = extractHistoryEntriesFromRefPayload(await res.text());
         state.archiveMeta.phase = 'ready';
         state.archiveMeta.retry = 0;
         state.archiveMeta.lastError = '';
         state.archiveMeta.rows = entries.length;
         state.archiveMeta.updatedAt = Date.now();
         renderHistoryProcess();
-        endServerRequest(true, 'archive/fetch(exact-page)');
-        return { entries, hasMore };
+        endServerRequest(true, 'historyRef/fetch');
+        return entries;
       } catch (err) {
         const reason = err instanceof Error ? err.message : String(err);
-        endServerRequest(false, 'archive/fetch(exact-page)', reason);
+        endServerRequest(false, 'historyRef/fetch', reason);
         throw err;
       }
     }
@@ -1648,23 +1636,32 @@
       target.append(document.createTextNode(` ${titleText}`));
     }
 
-    async function renderHistory(artist, title){
+    function parseArtistTitleFromRowId(rowId){
+      const parts = String(rowId || '').split('|');
+      return {
+        artist: (parts[0] || '').trim(),
+        title: (parts[1] || '').trim()
+      };
+    }
+
+    function updateHistoryRouteParams({ rowId, historyRef }){
+      const u = new URL(window.location.href);
+      if (rowId) u.searchParams.set('rowId', rowId);
+      else u.searchParams.delete('rowId');
+      if (historyRef) u.searchParams.set('historyRef', historyRef);
+      else u.searchParams.delete('historyRef');
+      history.replaceState({}, '', u.toString());
+    }
+
+    async function renderHistory({ artist, title, rowId, historyRef }){
       const renderSeq = ++state.historyRenderSeq;
-      state.histKey = { artist, title };
+      state.histKey = { artist, title, rowId, historyRef };
       state.historyView = {
         allEntries: [],
-        shownCount: 0,
-        hasMore: false,
-        loadingMore: false
+        shownCount: 0
       };
       renderHistoryTitle(artist, title);
-      const latestOnly = sortHistoryEntriesDesc(
-        toHistoryEntries(state.cache.songs || [], artist, title)
-      ).slice(0, HISTORY_PAGE_SIZE);
-
-      $('hist-sub').textContent = latestOnly.length > 0
-        ? `最新履歴 ${latestOnly.length} 件を表示中…過去履歴を取得しています。`
-        : '履歴を読み込み中…';
+      $('hist-sub').textContent = '履歴を読み込み中…';
       renderHistoryProcess();
 
       const wrap = $('hist-list');
@@ -1673,73 +1670,29 @@
       wrap.innerHTML = '';
       empty.style.display = 'none';
       moreWrap.style.display = 'none';
-      if (latestOnly.length > 0) {
-        drawHistoryEntries(wrap, latestOnly);
-      } else {
-        for (let i = 0; i < 3; i++) {
-          const sk = document.createElement('div');
-          sk.className = 'skeleton';
-          wrap.appendChild(sk);
-        }
+      for (let i = 0; i < 3; i++) {
+        const sk = document.createElement('div');
+        sk.className = 'skeleton';
+        wrap.appendChild(sk);
       }
 
-      let initialPage = { entries: [], hasMore: false };
       try {
-        initialPage = await fetchSongHistoryPageFromArchive(artist, title, 0);
+        const entries = await fetchSongHistoryByRef(historyRef);
+        if (renderSeq !== state.historyRenderSeq) return;
+        wrap.innerHTML = '';
+        state.historyView.allEntries = entries;
+        state.historyView.shownCount = entries.length;
+        if (entries.length === 0) {
+          empty.style.display = 'block';
+          $('hist-sub').textContent = '該当する履歴が見つかりませんでした。';
+          return;
+        }
+        $('hist-sub').textContent = `新しい順に ${entries.length} 件を表示しています。`;
+        drawHistoryEntries(wrap, entries);
       } catch (err) {
         if (renderSeq !== state.historyRenderSeq) return;
         const reason = err instanceof Error ? err.message : String(err);
         showHistoryLoadError(`履歴の取得に失敗しました: ${reason}`);
-        return;
-      }
-      if (renderSeq !== state.historyRenderSeq) return;
-
-      wrap.innerHTML = '';
-      state.historyView.allEntries = initialPage.entries;
-      state.historyView.shownCount = initialPage.entries.length;
-      state.historyView.hasMore = initialPage.hasMore;
-
-      if (initialPage.entries.length === 0) {
-        empty.style.display = 'block';
-        $('hist-sub').textContent = '該当する履歴が見つかりませんでした。';
-        moreWrap.style.display = 'none';
-        return;
-      }
-
-      $('hist-sub').textContent = `新しい順に ${state.historyView.shownCount} 件を表示しています。`;
-
-      drawHistoryEntries(wrap, initialPage.entries);
-      updateHistoryMoreButton();
-    }
-
-    function updateHistoryMoreButton(){
-      const moreWrap = $('hist-more-wrap');
-      const moreBtn = $('hist-more');
-      if (!moreWrap || !moreBtn) return;
-      moreWrap.style.display = state.historyView.hasMore ? 'flex' : 'none';
-      moreBtn.disabled = state.historyView.loadingMore;
-    }
-
-    async function loadMoreHistoryEntries(){
-      if (!state.historyView.hasMore || state.historyView.loadingMore) return;
-      state.historyView.loadingMore = true;
-      updateHistoryMoreButton();
-      try {
-        const { artist, title } = state.histKey || {};
-        const nextPage = await fetchSongHistoryPageFromArchive(artist, title, state.historyView.shownCount);
-        state.historyView.allEntries = [...state.historyView.allEntries, ...nextPage.entries];
-        state.historyView.shownCount = state.historyView.allEntries.length;
-        state.historyView.hasMore = nextPage.hasMore;
-
-        $('hist-list').innerHTML = '';
-        drawHistoryEntries($('hist-list'), state.historyView.allEntries);
-        $('hist-sub').textContent = `新しい順に ${state.historyView.shownCount} 件を表示しています。`;
-      } catch (err) {
-        const reason = err instanceof Error ? err.message : String(err);
-        $('hist-sub').textContent = `追加読み込みに失敗しました: ${reason}`;
-      } finally {
-        state.historyView.loadingMore = false;
-        updateHistoryMoreButton();
       }
     }
 
@@ -1784,10 +1737,15 @@
       requestAnimationFrame(drawChunk);
     }
 
-    function openHistory(artist, title){
+    function openHistory({ artist, title, rowId, historyRef }){
+      if (!historyRef) {
+        showToast('historyRef が未設定です');
+        return;
+      }
       state.lastScroll = currentScrollTop();
+      updateHistoryRouteParams({ rowId, historyRef });
       showPage('page-history');
-      renderHistory(artist, title);
+      renderHistory({ artist, title, rowId, historyRef });
     }
 
     function scheduleFilterMetrics(){
@@ -1863,7 +1821,7 @@
       }
     }
 
-    function appendItemActions(target, {artist, title, kind, dText, dUrl}){
+    function appendItemActions(target, {artist, title, kind, dText, dUrl, rowId, historyRef}){
       if ((kind||'').trim()!==''){
         const k=document.createElement('span'); k.className='kind-chip'; k.textContent=kind;
         target.appendChild(k);
@@ -1876,7 +1834,8 @@
       }
 
       const hbtn=document.createElement('button'); hbtn.className='btn'; hbtn.textContent='履歴';
-      hbtn.addEventListener('click', ()=>openHistory(artist, title));
+      hbtn.disabled = !historyRef;
+      hbtn.addEventListener('click', ()=>openHistory({ artist, title, rowId, historyRef }));
       target.appendChild(hbtn);
 
       const btn=document.createElement('button'); btn.className='btn'; btn.textContent='コピー';
@@ -1958,7 +1917,7 @@
         thead.appendChild(trh); table.appendChild(thead);
 
         const tbody=document.createElement('tbody');
-        rows.forEach(({artist,title,kind,dText,dUrl})=>{
+        rows.forEach(({artist,title,kind,dText,dUrl,rowId,historyRef})=>{
           const tr=document.createElement('tr');
 
           let td=document.createElement('td'); td.textContent=artist||''; tr.appendChild(td);
@@ -1967,14 +1926,14 @@
           const tdOps=document.createElement('td');
           const ops=document.createElement('div'); ops.className='ops';
 
-          appendItemActions(ops, {artist, title, kind, dText, dUrl});
+          appendItemActions(ops, {artist, title, kind, dText, dUrl, rowId, historyRef});
 
           tdOps.appendChild(ops); tr.appendChild(tdOps); tbody.appendChild(tr);
         });
         table.appendChild(tbody); tableWrap.appendChild(table);
         tableWrap.style.display = 'block'; listWrap.style.display = 'none';
       } else {
-        rows.forEach(({artist,title,kind,dText,dUrl})=>{
+        rows.forEach(({artist,title,kind,dText,dUrl,rowId,historyRef})=>{
           const item=document.createElement('div'); item.className='item';
           const l1=document.createElement('div'); l1.className='l1';
           const a1=document.createElement('span'); a1.className='artist'; a1.textContent=artist||'';
@@ -1984,7 +1943,7 @@
 
           const l2=document.createElement('div'); l2.className='l2';
 
-          appendItemActions(l2, {artist, title, kind, dText, dUrl});
+          appendItemActions(l2, {artist, title, kind, dText, dUrl, rowId, historyRef});
 
           item.appendChild(l1); item.appendChild(l2); $('mblist').appendChild(item);
         });
@@ -2012,12 +1971,16 @@
     }
 
     $('btn-back').addEventListener('click', ()=>{
+      updateHistoryRouteParams({ rowId: '', historyRef: '' });
       showPage('page-list');
       const scroller = getListScroller();
       if (scroller) scroller.scrollTop = state.lastScroll || 0;
+      if (!state.cache[state.current]) {
+        setActiveTab('songs');
+        warmCaches().catch(()=>{});
+      }
       updateCompactFilterMode();
     });
-    $('hist-more').addEventListener('click', loadMoreHistoryEntries);
 
     window.addEventListener('resize', ()=>{
       clearTimeout(state.debounce);
@@ -2082,8 +2045,22 @@
       showPage('page-list');
       updateKeyboardOffset();
       updateViewportMetrics();
-      setActiveTab('songs');
-      warmCaches().catch(()=>{});
+      const params = new URLSearchParams(window.location.search);
+      const historyRef = params.get('historyRef') || '';
+      const rowId = params.get('rowId') || '';
+      if (historyRef) {
+        const guessed = parseArtistTitleFromRowId(rowId);
+        showPage('page-history');
+        renderHistory({
+          artist: guessed.artist || '不明',
+          title: guessed.title || '不明',
+          rowId,
+          historyRef
+        });
+      } else {
+        setActiveTab('songs');
+        warmCaches().catch(()=>{});
+      }
       renderServerResponse();
       updateCompactFilterMode();
       updateScrollGradient();
