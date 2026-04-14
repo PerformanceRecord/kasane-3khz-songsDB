@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "ヨルシカ|夕凪、某、花惑い|歌枠|https://www.youtube.com/watch?v=QB_7m37IjlE&t=5941s",
+  "generatedAt": "2026-04-14T07:56:11.513Z",
+  "total": 1,
+  "lastSungAt": 20250815,
+  "rows": [
+    {
+      "artist": "ヨルシカ",
+      "title": "夕凪、某、花惑い",
+      "kind": "歌枠",
+      "dText": "20250815【深夜の歌枠】眠れない夜に会いましょう 花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=QB_7m37IjlE&t=5941s",
+      "date8": 20250815,
+      "rowId": "ヨルシカ|夕凪、某、花惑い|歌枠|https://www.youtube.com/watch?v=QB_7m37IjlE&t=5941s"
+    }
+  ]
+}

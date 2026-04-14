@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "椎名林檎|サカナ|歌枠|https://www.youtube.com/watch?v=mq9GyEV__v0&t=2802s",
+  "generatedAt": "2026-04-14T07:56:11.511Z",
+  "total": 1,
+  "lastSungAt": 20251002,
+  "rows": [
+    {
+      "artist": "椎名林檎",
+      "title": "サカナ",
+      "kind": "歌枠",
+      "dText": "20251002 【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=mq9GyEV__v0&t=2802s",
+      "date8": 20251002,
+      "rowId": "椎名林檎|サカナ|歌枠|https://www.youtube.com/watch?v=mq9GyEV__v0&t=2802s"
+    }
+  ]
+}

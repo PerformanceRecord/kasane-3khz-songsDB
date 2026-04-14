@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "宇多田ヒカル|time will tell|歌枠|https://www.youtube.com/watch?v=_GtDFCzcTV0&t=8106s",
+  "generatedAt": "2026-04-14T07:56:11.512Z",
+  "total": 1,
+  "lastSungAt": 20250816,
+  "rows": [
+    {
+      "artist": "宇多田ヒカル",
+      "title": "time will tell",
+      "kind": "歌枠",
+      "dText": "20250816 【歌枠】初見歓迎 花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=_GtDFCzcTV0&t=8106s",
+      "date8": 20250816,
+      "rowId": "宇多田ヒカル|time will tell|歌枠|https://www.youtube.com/watch?v=_GtDFCzcTV0&t=8106s"
+    }
+  ]
+}

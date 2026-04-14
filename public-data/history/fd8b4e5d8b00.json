@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "orangestar|alice in 冷凍庫|歌枠|https://www.youtube.com/watch?v=ge1juO_XRG4&t=796s",
+  "generatedAt": "2026-04-14T07:56:11.511Z",
+  "total": 1,
+  "lastSungAt": 20251029,
+  "rows": [
+    {
+      "artist": "Orangestar",
+      "title": "Alice in 冷凍庫",
+      "kind": "歌枠",
+      "dText": "20251029 【縦型】お昼の歌枠🌟元気が出る歌を歌います！花彩音_3kHz【#新人vtuber #shorts 】",
+      "dUrl": "https://www.youtube.com/watch?v=ge1juO_XRG4&t=796s",
+      "date8": 20251029,
+      "rowId": "orangestar|alice in 冷凍庫|歌枠|https://www.youtube.com/watch?v=ge1juO_XRG4&t=796s"
+    }
+  ]
+}

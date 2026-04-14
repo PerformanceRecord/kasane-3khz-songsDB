@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "aiko|桜の時|歌枠|https://www.youtube.com/watch?v=cDemkFbzqAM&t=9055s",
+  "generatedAt": "2026-04-14T07:56:11.509Z",
+  "total": 1,
+  "lastSungAt": 20260309,
+  "rows": [
+    {
+      "artist": "aiko",
+      "title": "桜の時",
+      "kind": "歌枠",
+      "dText": "20260309 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=cDemkFbzqAM&t=9055s",
+      "date8": 20260309,
+      "rowId": "aiko|桜の時|歌枠|https://www.youtube.com/watch?v=cDemkFbzqAM&t=9055s"
+    }
+  ]
+}

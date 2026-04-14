@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "gas-sync",
-  "generatedAt": "2026-04-14T07:18:16.093Z",
-  "startedAt": "2026-04-14T07:18:01.507Z",
+  "generatedAt": "2026-04-14T07:56:11.685Z",
+  "startedAt": "2026-04-14T07:35:33.424Z",
   "tabs": [
     "songs",
     "gags"
@@ -13,9 +13,9 @@
   },
   "history": {
     "version": 1,
-    "generatedAt": "2026-04-14T07:18:16.093Z",
-    "sourceRows": 0,
-    "files": 0,
+    "generatedAt": "2026-04-14T07:56:11.685Z",
+    "sourceRows": 820,
+    "files": 820,
     "skipped": false
   }
 }

@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "aiko|カブトムシ|歌枠|https://www.youtube.com/watch?v=ZdtlFfboxRY&t=380s",
+  "generatedAt": "2026-04-14T07:56:11.511Z",
+  "total": 1,
+  "lastSungAt": 20251023,
+  "rows": [
+    {
+      "artist": "aiko",
+      "title": "カブトムシ",
+      "kind": "歌枠",
+      "dText": "20251023 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=ZdtlFfboxRY&t=380s",
+      "date8": 20251023,
+      "rowId": "aiko|カブトムシ|歌枠|https://www.youtube.com/watch?v=ZdtlFfboxRY&t=380s"
+    }
+  ]
+}

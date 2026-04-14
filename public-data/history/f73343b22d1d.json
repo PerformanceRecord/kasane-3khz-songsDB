@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "大塚愛|プラネタリウム|歌枠|https://www.youtube.com/watch?v=I-bRS6dTW74&t=591s",
+  "generatedAt": "2026-04-14T07:56:11.510Z",
+  "total": 1,
+  "lastSungAt": 20260114,
+  "rows": [
+    {
+      "artist": "大塚愛",
+      "title": "プラネタリウム",
+      "kind": "歌枠",
+      "dText": "20260114 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=I-bRS6dTW74&t=591s",
+      "date8": 20260114,
+      "rowId": "大塚愛|プラネタリウム|歌枠|https://www.youtube.com/watch?v=I-bRS6dTW74&t=591s"
+    }
+  ]
+}

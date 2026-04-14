@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "milet|anytime anywhere|歌枠|https://www.youtube.com/watch?v=QB_7m37IjlE&t=3199s",
+  "generatedAt": "2026-04-14T07:56:11.513Z",
+  "total": 1,
+  "lastSungAt": 20250815,
+  "rows": [
+    {
+      "artist": "milet",
+      "title": "Anytime Anywhere",
+      "kind": "歌枠",
+      "dText": "20250815【深夜の歌枠】眠れない夜に会いましょう 花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=QB_7m37IjlE&t=3199s",
+      "date8": 20250815,
+      "rowId": "milet|anytime anywhere|歌枠|https://www.youtube.com/watch?v=QB_7m37IjlE&t=3199s"
+    }
+  ]
+}

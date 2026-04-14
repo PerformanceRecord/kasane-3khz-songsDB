@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "judy and mary|クラシック|ショート|https://www.youtube.com/shorts/dRixmYxiSu0",
+  "generatedAt": "2026-04-14T07:56:11.511Z",
+  "total": 1,
+  "lastSungAt": 20251002,
+  "rows": [
+    {
+      "artist": "JUDY AND MARY",
+      "title": "クラシック",
+      "kind": "ショート",
+      "dText": "20251002 クラシック/JUDY AND MARY #jam #クラシック #アカペラ #vtuber",
+      "dUrl": "https://www.youtube.com/shorts/dRixmYxiSu0",
+      "date8": 20251002,
+      "rowId": "judy and mary|クラシック|ショート|https://www.youtube.com/shorts/dRixmYxiSu0"
+    }
+  ]
+}

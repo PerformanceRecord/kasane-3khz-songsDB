@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "宇多田ヒカル|first love|歌枠|https://www.youtube.com/watch?v=msg_2asi2RM&t=1751s",
+  "generatedAt": "2026-04-14T07:56:11.513Z",
+  "total": 1,
+  "lastSungAt": 20250813,
+  "rows": [
+    {
+      "artist": "宇多田ヒカル",
+      "title": "first love",
+      "kind": "歌枠",
+      "dText": "20250813【深夜の歌枠】誰でも歓迎！花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=msg_2asi2RM&t=1751s",
+      "date8": 20250813,
+      "rowId": "宇多田ヒカル|first love|歌枠|https://www.youtube.com/watch?v=msg_2asi2RM&t=1751s"
+    }
+  ]
+}

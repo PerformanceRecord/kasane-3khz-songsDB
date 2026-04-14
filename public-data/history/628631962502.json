@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "音田雅則|fake face dance music|歌枠|https://www.youtube.com/watch?v=lGWgegAZsIk&t=320s",
+  "generatedAt": "2026-04-14T07:56:11.510Z",
+  "total": 1,
+  "lastSungAt": 20251121,
+  "rows": [
+    {
+      "artist": "音田雅則",
+      "title": "fake face dance music",
+      "kind": "歌枠",
+      "dText": "20251121 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=lGWgegAZsIk&t=320s",
+      "date8": 20251121,
+      "rowId": "音田雅則|fake face dance music|歌枠|https://www.youtube.com/watch?v=lGWgegAZsIk&t=320s"
+    }
+  ]
+}

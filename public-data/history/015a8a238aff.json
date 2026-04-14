@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "hana|all in|ショート|https://www.youtube.com/watch?v=thoVADkMEjI",
+  "generatedAt": "2026-04-14T07:56:11.509Z",
+  "total": 1,
+  "lastSungAt": 20260313,
+  "rows": [
+    {
+      "artist": "HANA",
+      "title": "ALL IN",
+      "kind": "ショート",
+      "dText": "20260313 ALL IN/HANA #歌ってみた #HANA #karaoke #ちゃんみな #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=thoVADkMEjI",
+      "date8": 20260313,
+      "rowId": "hana|all in|ショート|https://www.youtube.com/watch?v=thoVADkMEjI"
+    }
+  ]
+}

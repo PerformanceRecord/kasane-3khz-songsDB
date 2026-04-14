@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "椎名林檎|罪と罰|歌枠|https://www.youtube.com/watch?v=a7dvUuObXxo&t=5098s",
+  "generatedAt": "2026-04-14T07:56:11.512Z",
+  "total": 1,
+  "lastSungAt": 20250901,
+  "rows": [
+    {
+      "artist": "椎名林檎",
+      "title": "罪と罰",
+      "kind": "歌枠",
+      "dText": "20250901 【歌枠】初見歓迎🌸歌枠リレーに向けて歌練習！花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=a7dvUuObXxo&t=5098s",
+      "date8": 20250901,
+      "rowId": "椎名林檎|罪と罰|歌枠|https://www.youtube.com/watch?v=a7dvUuObXxo&t=5098s"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "一青窈|ハナミズキ|歌枠|https://www.youtube.com/watch?v=ZpP_Z-AvgOw&t=5866s",
+  "generatedAt": "2026-04-14T07:56:11.512Z",
+  "total": 1,
+  "lastSungAt": 20250818,
+  "rows": [
+    {
+      "artist": "一青窈",
+      "title": "ハナミズキ",
+      "kind": "歌枠",
+      "dText": "20250818 【歌枠】平成のヒット曲！みんなが知ってる名曲を歌う♪初見歓迎 花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=ZpP_Z-AvgOw&t=5866s",
+      "date8": 20250818,
+      "rowId": "一青窈|ハナミズキ|歌枠|https://www.youtube.com/watch?v=ZpP_Z-AvgOw&t=5866s"
+    }
+  ]
+}

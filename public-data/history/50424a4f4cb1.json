@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "東京事変|秘密|歌枠|https://www.youtube.com/watch?v=mdeFS8kgFcM&t=2275s",
+  "generatedAt": "2026-04-14T07:56:11.509Z",
+  "total": 1,
+  "lastSungAt": 20260121,
+  "rows": [
+    {
+      "artist": "東京事変",
+      "title": "秘密",
+      "kind": "歌枠",
+      "dText": "20260121 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=mdeFS8kgFcM&t=2275s",
+      "date8": 20260121,
+      "rowId": "東京事変|秘密|歌枠|https://www.youtube.com/watch?v=mdeFS8kgFcM&t=2275s"
+    }
+  ]
+}

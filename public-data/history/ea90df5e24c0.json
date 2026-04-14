@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "hana|blue jeans|ショート|https://www.youtube.com/shorts/VomOndmFxKk",
+  "generatedAt": "2026-04-14T07:56:11.512Z",
+  "total": 1,
+  "lastSungAt": 20250903,
+  "rows": [
+    {
+      "artist": "HANA",
+      "title": "Blue Jeans",
+      "kind": "ショート",
+      "dText": "20250903 Blue Jeans/HANA #cover #歌ってみた #hana #bluejeans #ちゃんみな",
+      "dUrl": "https://www.youtube.com/shorts/VomOndmFxKk",
+      "date8": 20250903,
+      "rowId": "hana|blue jeans|ショート|https://www.youtube.com/shorts/VomOndmFxKk"
+    }
+  ]
+}

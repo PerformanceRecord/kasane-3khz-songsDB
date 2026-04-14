@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "aiko|カブトムシ|歌枠|https://www.youtube.com/watch?v=aClH33lmUjc&t=4178s",
+  "generatedAt": "2026-04-14T07:56:11.512Z",
+  "total": 1,
+  "lastSungAt": 20250908,
+  "rows": [
+    {
+      "artist": "aiko",
+      "title": "カブトムシ",
+      "kind": "歌枠",
+      "dText": "20250908 【歌枠】もうすぐデビュー1か月✨⚛️🌐リクエスト中心で歌う♪ 花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aClH33lmUjc&t=4178s",
+      "date8": 20250908,
+      "rowId": "aiko|カブトムシ|歌枠|https://www.youtube.com/watch?v=aClH33lmUjc&t=4178s"
+    }
+  ]
+}

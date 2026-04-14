@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "ちゃんみな|sad song|歌枠|https://www.youtube.com/watch?v=vWXOXMNjwnM&t=4197s",
+  "generatedAt": "2026-04-14T07:56:11.510Z",
+  "total": 1,
+  "lastSungAt": 20251126,
+  "rows": [
+    {
+      "artist": "ちゃんみな",
+      "title": "SAD SONG",
+      "kind": "歌枠",
+      "dText": "20251126 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=vWXOXMNjwnM&t=4197s",
+      "date8": 20251126,
+      "rowId": "ちゃんみな|sad song|歌枠|https://www.youtube.com/watch?v=vWXOXMNjwnM&t=4197s"
+    }
+  ]
+}

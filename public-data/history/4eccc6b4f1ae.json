@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "shakalabbits|pivot|歌枠|https://www.youtube.com/watch?v=2Sc9fZQ4YWs&t=1465s",
+  "generatedAt": "2026-04-14T07:56:11.510Z",
+  "total": 1,
+  "lastSungAt": 20251230,
+  "rows": [
+    {
+      "artist": "SHAKALABBITS",
+      "title": "Pivot",
+      "kind": "歌枠",
+      "dText": "20251230 【#歌枠 昼の部】初見歓迎🌟年内最後の歌枠♪午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=2Sc9fZQ4YWs&t=1465s",
+      "date8": 20251230,
+      "rowId": "shakalabbits|pivot|歌枠|https://www.youtube.com/watch?v=2Sc9fZQ4YWs&t=1465s"
+    }
+  ]
+}

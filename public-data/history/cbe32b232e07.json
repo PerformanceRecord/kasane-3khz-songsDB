@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "hakubi|twilight|ショート|https://www.youtube.com/watch?v=dQz389g626g",
+  "generatedAt": "2026-04-14T07:56:11.509Z",
+  "total": 1,
+  "lastSungAt": 20260307,
+  "rows": [
+    {
+      "artist": "Hakubi",
+      "title": "Twilight",
+      "kind": "ショート",
+      "dText": "20260307 twilight/Hakubi #歌ってみた #邦ロック #karaoke #メメントモリ #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=dQz389g626g",
+      "date8": 20260307,
+      "rowId": "hakubi|twilight|ショート|https://www.youtube.com/watch?v=dQz389g626g"
+    }
+  ]
+}

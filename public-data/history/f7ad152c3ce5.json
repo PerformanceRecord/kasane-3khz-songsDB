@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "kanaria|酔いどれ知らず|歌枠|https://www.youtube.com/watch?v=DoWEJ7pYDWE&t=6721s",
+  "generatedAt": "2026-04-14T07:56:11.510Z",
+  "total": 1,
+  "lastSungAt": 20251206,
+  "rows": [
+    {
+      "artist": "kanaria",
+      "title": "酔いどれ知らず",
+      "kind": "歌枠",
+      "dText": "20251206 【#歌枠 #朝活】おはよう歌枠🌟元気になれる歌を歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=DoWEJ7pYDWE&t=6721s",
+      "date8": 20251206,
+      "rowId": "kanaria|酔いどれ知らず|歌枠|https://www.youtube.com/watch?v=DoWEJ7pYDWE&t=6721s"
+    }
+  ]
+}

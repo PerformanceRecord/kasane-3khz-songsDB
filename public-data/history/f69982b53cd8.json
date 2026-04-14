@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "hana|blue jeans|歌枠|https://www.youtube.com/watch?v=nUJTiA31n0Y&t=780s",
+  "generatedAt": "2026-04-14T07:56:11.510Z",
+  "total": 1,
+  "lastSungAt": 20251220,
+  "rows": [
+    {
+      "artist": "HANA",
+      "title": "Blue Jeans",
+      "kind": "歌枠",
+      "dText": "20251220 【#うたすきVどんちゃん忘年会歌枠リレー】2回目の歌枠リレー！出会ってくれてありがとう2025年【花彩音_3kHz 】【＃新人Vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=nUJTiA31n0Y&t=780s",
+      "date8": 20251220,
+      "rowId": "hana|blue jeans|歌枠|https://www.youtube.com/watch?v=nUJTiA31n0Y&t=780s"
+    }
+  ]
+}
