@@ -2,7 +2,10 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, unlink, writeFile } from 'node:fs/promises';
 
-const GAS_URL = process.env.GAS_URL || 'https://script.google.com/macros/s/AKfycbwonCr_o4oHpOc--o6eIncmq_lwHmaNjYmlXsjKWTn7OjYGWFt5OqgaTvzJ3qjYTE5F/exec';
+const GAS_URL = process.env.GAS_URL;
+if (!GAS_URL) {
+  throw new Error('GAS_URL is required. Set GAS_URL env (e.g. GitHub Actions secret).');
+}
 const OUT_DIR = process.env.OUT_DIR || 'public-data';
 const CORE_TABS = ['songs', 'gags'];
 const ARCHIVE_TAB = 'archive';
