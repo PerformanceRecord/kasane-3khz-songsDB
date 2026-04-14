@@ -51,13 +51,34 @@
 
 ## Verification Checklist
 - [x] 1) 一覧データ源が `songs/gags/meta` に固定されている
-- [x] 2) 履歴表示が `historyRef` 単一 fetch で動作する
-- [x] 3) 1曲ごとの `public-data/history/<id>.json` が存在する
+- [ ] 2) 履歴表示が `historyRef` 単一 fetch で動作する
+- [ ] 3) 1曲ごとの `public-data/history/<id>.json` が存在する
 - [x] 4) 通常フローで GAS `archive` API を呼ばない
 - [x] 5) 旧 archive exact/paging 経路が退役扱いで明記されている
-- [x] 6) README と実装の前提が一致している
+- [ ] 6) README と実装の前提が一致している
 - [x] 7) Decision Log に確定判断が日付付きで残っている
 - [ ] 8) 最終クローズ時の手順（Phase 6）が完了している
 
 ## Next Step
 - Phase 6 として、残る未チェック項目（Verification Checklist 8）を完了として確定し、完了記録を追記する。
+
+## Recheck (main反映後)
+- 対象5ファイル: `PROGRESS.md` / `README.md` / `index.html` / `scripts/sync-gas.mjs` / `public-data/songs.json`
+- 実施日: 2026-04-14
+
+### 受け入れ条件 再チェック（1〜8）
+- 1) 一覧データ源が `songs/gags/meta` に固定されている: **OK**
+- 2) 履歴表示が `historyRef` 単一 fetch で動作する: **NG**（`public-data/songs.json` の行に `historyRef` が未付与）
+- 3) 1曲ごとの `public-data/history/<id>.json` が存在する: **NG**（`public-data/history/` が未生成）
+- 4) 通常フローで GAS `archive` API を呼ばない: **OK**
+- 5) 旧 archive exact/paging 経路が退役扱いで明記されている: **OK**
+- 6) README と実装の前提が一致している: **NG**（README は `historyRef` 前提、現行 `songs.json` は未付与）
+- 7) Decision Log に確定判断が日付付きで残っている: **OK**
+- 8) 最終クローズ時の手順（Phase 6）が完了している: **NG**（未クローズ）
+
+### NGの最小タスク分割（次アクション）
+1. `scripts/sync-gas.mjs` を実行し、`public-data/songs.json` / `public-data/gags.json` に `historyRef` が付与されることを確認する。
+2. 同期結果として `public-data/history/<id>.json` が生成されることを確認する。
+3. 生成後に受け入れ条件 2/3/6 を再チェックし、`PROGRESS.md` の判定を更新する。
+4. Phase 6 クローズ手順を実施し、Decision Log と Task Checklist に完了記録を追記する。
+
