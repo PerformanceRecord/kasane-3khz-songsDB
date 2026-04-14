@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "yoasobi|undead|歌枠|https://www.youtube.com/watch?v=_JHUCrunBnw&t=2483s",
+  "generatedAt": "2026-04-14T08:15:41.419Z",
+  "total": 1,
+  "lastSungAt": 20260220,
+  "rows": [
+    {
+      "artist": "YOASOBI",
+      "title": "UNDEAD",
+      "kind": "歌枠",
+      "dText": "20260220 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=_JHUCrunBnw&t=2483s",
+      "date8": 20260220,
+      "rowId": "yoasobi|undead|歌枠|https://www.youtube.com/watch?v=_JHUCrunBnw&t=2483s"
+    }
+  ]
+}

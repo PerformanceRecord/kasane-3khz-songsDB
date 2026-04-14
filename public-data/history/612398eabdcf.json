@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "椎名林檎|流行|歌枠|https://www.youtube.com/watch?v=839lfQ940sI&t=1971s",
+  "generatedAt": "2026-04-14T08:15:41.422Z",
+  "total": 1,
+  "lastSungAt": 20260204,
+  "rows": [
+    {
+      "artist": "椎名林檎",
+      "title": "流行",
+      "kind": "歌枠",
+      "dText": "20260204 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=839lfQ940sI&t=1971s",
+      "date8": 20260204,
+      "rowId": "椎名林檎|流行|歌枠|https://www.youtube.com/watch?v=839lfQ940sI&t=1971s"
+    }
+  ]
+}

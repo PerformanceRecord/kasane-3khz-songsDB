@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "ariana grande|one last time|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=7505s",
+  "generatedAt": "2026-04-14T08:15:41.407Z",
+  "total": 1,
+  "lastSungAt": 20260319,
+  "rows": [
+    {
+      "artist": "Ariana Grande",
+      "title": "One Last Time",
+      "kind": "歌枠",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=7505s",
+      "date8": 20260319,
+      "rowId": "ariana grande|one last time|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=7505s"
+    }
+  ]
+}

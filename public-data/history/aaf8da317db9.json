@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "hana|my body|ショート|https://www.youtube.com/shorts/6DPfj1z_HQU",
+  "generatedAt": "2026-04-14T08:15:41.441Z",
+  "total": 1,
+  "lastSungAt": 20251124,
+  "rows": [
+    {
+      "artist": "HANA",
+      "title": "My Body",
+      "kind": "ショート",
+      "dText": "20251124 MyBody/HANA #歌ってみた #hana #mybody #mahina #ノノガ",
+      "dUrl": "https://www.youtube.com/shorts/6DPfj1z_HQU",
+      "date8": 20251124,
+      "rowId": "hana|my body|ショート|https://www.youtube.com/shorts/6DPfj1z_HQU"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "deco*27|テレパシ|歌枠|https://www.youtube.com/watch?v=I-bRS6dTW74&t=2109s",
+  "generatedAt": "2026-04-14T08:15:41.427Z",
+  "total": 1,
+  "lastSungAt": 20260114,
+  "rows": [
+    {
+      "artist": "DECO*27",
+      "title": "テレパシ",
+      "kind": "歌枠",
+      "dText": "20260114 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=I-bRS6dTW74&t=2109s",
+      "date8": 20260114,
+      "rowId": "deco*27|テレパシ|歌枠|https://www.youtube.com/watch?v=I-bRS6dTW74&t=2109s"
+    }
+  ]
+}

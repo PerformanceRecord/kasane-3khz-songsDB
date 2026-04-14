@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "宇多田ヒカル|another chance|歌枠|https://www.youtube.com/watch?v=O1XJN0l_pPc&t=2211s",
+  "generatedAt": "2026-04-14T08:15:41.420Z",
+  "total": 1,
+  "lastSungAt": 20260213,
+  "rows": [
+    {
+      "artist": "宇多田ヒカル",
+      "title": "Another Chance",
+      "kind": "歌枠",
+      "dText": "20260213 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=O1XJN0l_pPc&t=2211s",
+      "date8": 20260213,
+      "rowId": "宇多田ヒカル|another chance|歌枠|https://www.youtube.com/watch?v=O1XJN0l_pPc&t=2211s"
+    }
+  ]
+}

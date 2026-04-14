@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "aiko|花火|歌枠|https://www.youtube.com/watch?v=Lm7BJxovoI8&t=4838s",
+  "generatedAt": "2026-04-14T08:15:41.433Z",
+  "total": 1,
+  "lastSungAt": 20251218,
+  "rows": [
+    {
+      "artist": "aiko",
+      "title": "花火",
+      "kind": "歌枠",
+      "dText": "20251218 【#歌枠 昼の部】歌練習🌟歌枠リレーに向けて午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=Lm7BJxovoI8&t=4838s",
+      "date8": 20251218,
+      "rowId": "aiko|花火|歌枠|https://www.youtube.com/watch?v=Lm7BJxovoI8&t=4838s"
+    }
+  ]
+}

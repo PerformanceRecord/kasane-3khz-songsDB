@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "aimer|茜さす|歌枠|https://www.youtube.com/watch?v=kGvlLfFiqVY&t=5486s",
+  "generatedAt": "2026-04-14T08:15:41.401Z",
+  "total": 1,
+  "lastSungAt": 20260326,
+  "rows": [
+    {
+      "artist": "Aimer",
+      "title": "茜さす",
+      "kind": "歌枠",
+      "dText": "20260326 【#歌枠 】昼の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=kGvlLfFiqVY&t=5486s",
+      "date8": 20260326,
+      "rowId": "aimer|茜さす|歌枠|https://www.youtube.com/watch?v=kGvlLfFiqVY&t=5486s"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "山口百恵|ロックンロール・ウィドウ|歌枠|https://www.youtube.com/watch?v=f8c9_q2autc&t=3052s",
+  "generatedAt": "2026-04-14T08:15:41.453Z",
+  "total": 1,
+  "lastSungAt": 20250922,
+  "rows": [
+    {
+      "artist": "山口百恵",
+      "title": "ロックンロール・ウィドウ",
+      "kind": "歌枠",
+      "dText": "20250922 【歌枠】ロックな曲多め🎸⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=f8c9_q2autc&t=3052s",
+      "date8": 20250922,
+      "rowId": "山口百恵|ロックンロール・ウィドウ|歌枠|https://www.youtube.com/watch?v=f8c9_q2autc&t=3052s"
+    }
+  ]
+}

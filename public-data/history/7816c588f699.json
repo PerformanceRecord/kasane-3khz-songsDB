@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "judy and mary|brand new wave upper ground|歌枠|https://www.youtube.com/watch?v=cDemkFbzqAM&t=8225s",
+  "generatedAt": "2026-04-14T08:15:41.414Z",
+  "total": 1,
+  "lastSungAt": 20260309,
+  "rows": [
+    {
+      "artist": "JUDY AND MARY",
+      "title": "Brand New Wave Upper Ground",
+      "kind": "歌枠",
+      "dText": "20260309 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=cDemkFbzqAM&t=8225s",
+      "date8": 20260309,
+      "rowId": "judy and mary|brand new wave upper ground|歌枠|https://www.youtube.com/watch?v=cDemkFbzqAM&t=8225s"
+    }
+  ]
+}

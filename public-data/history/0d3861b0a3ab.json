@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "version": 1,
+  "rowId": "amazarashi|スターライト|ショート|https://www.youtube.com/watch?v=YEnfTUuc_60",
+  "generatedAt": "2026-04-14T08:15:41.414Z",
+  "total": 1,
+  "lastSungAt": 20260311,
+  "rows": [
+    {
+      "artist": "amazarashi",
+      "title": "スターライト",
+      "kind": "ショート",
+      "dText": "20260311 スターライト/amazarashi #歌ってみた #karaoke #amazarashi #邦ロック #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=YEnfTUuc_60",
+      "date8": 20260311,
+      "rowId": "amazarashi|スターライト|ショート|https://www.youtube.com/watch?v=YEnfTUuc_60"
+    }
+  ]
+}
