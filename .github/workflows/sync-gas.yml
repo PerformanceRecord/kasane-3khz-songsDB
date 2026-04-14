@@ -30,7 +30,7 @@ jobs:
       - name: Sync data from GAS
         env:
           GAS_URL: ${{ secrets.GAS_URL }}
-          ENABLE_ARCHIVE_SYNC: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.enable_archive_sync || 'false' }}
+          ENABLE_ARCHIVE_SYNC: ${{ github.event_name == 'schedule' && 'true' || (github.event_name == 'workflow_dispatch' && github.event.inputs.enable_archive_sync) || 'false' }}
           ARCHIVE_LIMITS: '5,3,2,1'
           ARCHIVE_PAGE_LIMIT: '2'
           ARCHIVE_MAX_PAGES: '4000'
