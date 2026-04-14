@@ -115,10 +115,10 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta`）を一次
 ### 7-2. 同期制御
 - `SYNC_TIMEOUT_MS`（既定 `8000`）
 - `SYNC_MAX_RETRY`（既定 `3`）
-- `ENABLE_ARCHIVE_SYNC`（`true` で archive 同期有効）
+- `ENABLE_ARCHIVE_SYNC`（既定 `false`、`true` で archive 同期有効）
 - `ARCHIVE_STRICT_SYNC`（`true` なら archive 失敗で全体失敗）
-- `ARCHIVE_PAGE_LIMIT`（既定 `5`）
-- `ARCHIVE_LIMITS`（既定 `20,10,5,3,1`）
+- `ARCHIVE_PAGE_LIMIT`（既定 `2`）
+- `ARCHIVE_LIMITS`（既定 `5,3,2,1`）
 - `ARCHIVE_MAX_PAGES`（既定 `4000`）
 - `ARCHIVE_TOTAL_CAP`（既定 `20000`）
 
