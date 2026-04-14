@@ -1,0 +1,65 @@
+name: Validate history artifacts
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate songs/gags historyRef and history artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          function fail(msg) {
+            console.error(`ERROR: ${msg}`);
+            process.exit(1);
+          }
+
+          function readJson(file) {
+            if (!fs.existsSync(file)) fail(`${file} が存在しません`);
+            try {
+              return JSON.parse(fs.readFileSync(file, 'utf8'));
+            } catch (e) {
+              fail(`${file} のJSON解析に失敗: ${e.message}`);
+            }
+          }
+
+          function nonEmptyHistoryRefCount(file) {
+            const data = readJson(file);
+            const rows = Array.isArray(data.rows) ? data.rows : [];
+            return rows.filter((row) => typeof row?.historyRef === 'string' && row.historyRef.trim() !== '').length;
+          }
+
+          const songsCount = nonEmptyHistoryRefCount('public-data/songs.json');
+          const gagsCount = nonEmptyHistoryRefCount('public-data/gags.json');
+
+          if (songsCount <= 0) fail('public-data/songs.json の historyRef 非空件数が 0 件です');
+          if (gagsCount <= 0) fail('public-data/gags.json の historyRef 非空件数が 0 件です');
+
+          const historyDir = 'public-data/history';
+          const historyFiles = fs.existsSync(historyDir)
+            ? fs.readdirSync(historyDir).filter((name) => name.endsWith('.json'))
+            : [];
+
+          if (historyFiles.length <= 0) fail('public-data/history/*.json が 1 件も存在しません');
+
+          const readme = fs.readFileSync('README.md', 'utf8');
+          const readmeMentionsHistory = /history\/<id>\.json|public-data\/history\/\*\.json|history\//.test(readme);
+
+          if (readmeMentionsHistory && historyFiles.length <= 0) {
+            fail('README の history 成果物前提と実データが矛盾しています（historyファイルなし）');
+          }
+
+          console.log(`OK: songs.historyRef=${songsCount}, gags.historyRef=${gagsCount}, historyFiles=${historyFiles.length}`);
+          NODE
