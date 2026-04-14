@@ -4,7 +4,10 @@
 >
 > 上記はこのリポジトリ名に合わせた Pages の想定 URL です。実際のユーザー名に置き換えて利用してください。
 
-Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `history/<id>.json`）を一次データとして使う構成です。通常フローでは GAS `archive` API は使いません。
+Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `history/<id>.json`）を一次データとして使う構成です。
+
+- **通常フロー**: GAS `archive` API は使いません。
+- **同期バッチ**: 必要なときだけ `ENABLE_ARCHIVE_SYNC=true` で archive sheet を参照します（既定は無効）。
 
 ## 1. 総点検結果（不要箇所・統合可能箇所）
 
@@ -52,7 +55,8 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 - `meta.tabs` と `meta.counts` を使い、静的データ整合性を検証。不整合時はフォールバック。
 
 ### 4-2. `scripts/sync-gas.mjs`（同期バッチ）
-- `songs` / `gags` を取得して保存。
+- `songs` / `gags` を取得して保存（通常フロー）。
+- archive sheet は `ENABLE_ARCHIVE_SYNC=true` のときだけ参照（必要時のみ）。
 - 取得行を正規化し、`date8` / `rowId` / `historyCount` / `lastSungAt` / `historyRef` を補完。
 - `history/<id>.json` を生成し、一覧→履歴の参照経路を固定。
 - 最後に `meta.json` を再生成し、件数と対象タブを記録。
@@ -81,7 +85,7 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 
 ## 5. データフロー（`songs/gags/meta + history/<id>.json`）
 
-通常フローでは GAS `archive` API を呼びません。
+通常フローでは GAS `archive` API を呼びません。同期バッチで archive が必要なときのみ `ENABLE_ARCHIVE_SYNC=true` を使います。
 
 1. 同期バッチが `songs` / `gags` を取得。
 2. 一覧行に `historyCount` / `lastSungAt` / `historyRef` を付与。
@@ -122,7 +126,9 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 ### 7-2. 同期制御
 - `SYNC_TIMEOUT_MS`（既定 `8000`）
 - `SYNC_MAX_RETRY`（既定 `3`）
-- 旧 `archive` 同期系の環境変数は退役（通常フロー未使用、デバッグ専用）
+- `ENABLE_ARCHIVE_SYNC`（既定 `false`）: `true` のときだけ archive sheet を取得
+- `ARCHIVE_STRICT_SYNC`（既定 `false`）: archive 取得失敗を同期エラーとして扱う
+- `ARCHIVE_LIMITS` / `ARCHIVE_PAGE_LIMIT` / `ARCHIVE_MAX_PAGES` / `ARCHIVE_TOTAL_CAP`: archive 同期時のみ有効
 
 ## 8. 実行方法
 

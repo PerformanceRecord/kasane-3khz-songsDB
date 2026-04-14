@@ -8,6 +8,7 @@ const CORE_TABS = ['songs', 'gags'];
 const ARCHIVE_TAB = 'archive';
 const HISTORY_DIR_NAME = 'history';
 const HISTORY_VERSION = 1;
+// 通常フローでは archive は使わない。必要な同期バッチ時のみ有効化する。
 const ENABLE_ARCHIVE_SYNC = process.env.ENABLE_ARCHIVE_SYNC === 'true';
 const ARCHIVE_STRICT_SYNC = process.env.ARCHIVE_STRICT_SYNC === 'true';
 const DEFAULT_LIMITS = {
@@ -478,7 +479,7 @@ async function main() {
       }
     }
   } else {
-    console.warn('[archive] ENABLE_ARCHIVE_SYNC=true になるまで archive の取得をスキップします（隔離中）');
+    console.warn('[archive] 通常フローのため archive 取得をスキップしました。必要時のみ ENABLE_ARCHIVE_SYNC=true を指定してください');
   }
 
   const archiveRowsSource = outputs.archive?.rows?.length

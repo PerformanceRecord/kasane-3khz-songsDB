@@ -2,6 +2,12 @@ name: Sync GAS data
 
 on:
   workflow_dispatch:
+    inputs:
+      enable_archive_sync:
+        description: 'archive sheet も同期する（必要時のみ）'
+        required: false
+        type: boolean
+        default: false
   schedule:
     # GitHub Actions の cron は UTC 基準: 01:00/13:00 JST = 16:00/04:00 UTC
     - cron: '0 16,4 * * *'
@@ -24,11 +30,11 @@ jobs:
       - name: Sync data from GAS
         env:
           GAS_URL: ${{ secrets.GAS_URL }}
-          ENABLE_ARCHIVE_SYNC: "true"
-          ARCHIVE_LIMITS: "5,3,2,1"
-          ARCHIVE_PAGE_LIMIT: "2"
-          ARCHIVE_MAX_PAGES: "4000"
-          ARCHIVE_TOTAL_CAP: "20000"
+          ENABLE_ARCHIVE_SYNC: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.enable_archive_sync || 'false' }}
+          ARCHIVE_LIMITS: '5,3,2,1'
+          ARCHIVE_PAGE_LIMIT: '2'
+          ARCHIVE_MAX_PAGES: '4000'
+          ARCHIVE_TOTAL_CAP: '20000'
         run: node scripts/sync-gas.mjs
 
       - name: Commit and push if changed
