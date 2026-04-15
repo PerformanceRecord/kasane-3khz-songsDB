@@ -1319,11 +1319,18 @@
     }
 
     function resolveHistoryRefUrl(historyRef){
-      const ref = String(historyRef || '').trim();
+      let ref = String(historyRef || '').trim();
       if (!ref) return '';
       // historyRef ルール: 絶対URLはそのまま使う。相対パスは STATIC_DATA_BASE 基準で解決する。
       if (/^https?:\/\//i.test(ref)) return ref;
       const base = new URL(STATIC_DATA_BASE, window.location.href);
+      const basePath = String(base.pathname || '');
+      if (
+        ref.startsWith('public-data/') &&
+        /\/public-data\/?$/.test(basePath)
+      ) {
+        ref = ref.slice('public-data/'.length);
+      }
       return new URL(ref, base).toString();
     }
 
