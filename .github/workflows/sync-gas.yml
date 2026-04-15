@@ -40,14 +40,18 @@ jobs:
             throw new Error('GAS_URL secret is required');
           }
           const src = fs.readFileSync(file, 'utf8');
-          const replaced = src.replace(
-            /const\s+DEFAULT_GAS_API_URL\s*=\s*["'][^"']*["']/,
-            `const DEFAULT_GAS_API_URL = ${JSON.stringify(gasUrl)}`
-          );
-          if (src === replaced) {
+          const targetPattern = /const\s+DEFAULT_GAS_API_URL\s*=\s*["'][^"']*["']/;
+          if (!targetPattern.test(src)) {
             const matchLines = src.split('\n').filter((line) => line.includes('DEFAULT_GAS_API_URL'));
             console.error('Debug: candidate lines containing DEFAULT_GAS_API_URL:', matchLines);
             throw new Error('DEFAULT_GAS_API_URL replacement target was not found in index.html');
+          }
+          const replaced = src.replace(
+            targetPattern,
+            `const DEFAULT_GAS_API_URL = ${JSON.stringify(gasUrl)}`
+          );
+          if (src === replaced) {
+            console.log('DEFAULT_GAS_API_URL is already up to date; skip rewrite.');
           }
           fs.writeFileSync(file, replaced);
           NODE
