@@ -1056,6 +1056,7 @@
     }
 
     async function renderHistory({ artist, title, rowId, historyRef }){
+      // 通常フローでは archive を取得しない（PROGRESS Final Goal: historyRef 単一 fetch）。
       const renderSeq = ++state.historyRenderSeq;
       state.histKey = { artist, title, rowId, historyRef };
       state.historyView = {};

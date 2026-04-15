@@ -33,6 +33,7 @@
 - 2026-04-15: R2段階移行 Phase 1 に着手。`sync-r2.yml` で `public-data/history/*.json` もR2へ並行保存する方針を採用。
 - 2026-04-15: R2段階移行 Phase 2 を開始。`historyRef` は「相対パス/絶対URL」を許容し、`index.html` と `README.md` の解決ルールを統一。
 - 2026-04-15: `sync-r2.yml` に運用証跡強化を追加。history 事前件数チェック・R2アップロード後件数チェックを導入し、`GITHUB_STEP_SUMMARY` へ自動記録する運用に更新。
+- 2026-04-15: `renderHistory()` の取得方針を再確認。通常フローは `historyRef` 単一 fetch を維持し、`archive` 二重取得経路を持ち込まない方針を明文化。
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）
