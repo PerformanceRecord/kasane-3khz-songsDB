@@ -42,6 +42,7 @@
       overflow:hidden;
     }
     .app-shell{max-width:760px;margin:0 auto}
+    .card,.input-console{width:100%;max-width:760px;margin-left:auto;margin-right:auto}
     .list-layout{
       height:100dvh;
       min-height:320px;
@@ -218,12 +219,13 @@
         margin-inline:0;
         border:1px solid var(--line);
         border-radius:14px;
-        padding:12px 10px;
-        display:flex;
-        flex-direction:column;
-        gap:8px;
+        padding:8px 9px;
+        display:grid;
+        grid-template-columns:minmax(0,1fr) auto;
+        gap:6px 8px;
+        align-items:start;
         background:#f8fffb;
-        margin-bottom:9px;
+        margin-bottom:7px;
         transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
       }
       .item.item-blank{
@@ -252,9 +254,34 @@
         border-color:#84bca2;
         box-shadow:0 10px 18px rgba(29,77,60,.14);
       }
-      .l1{font-size:16px;line-height:1.5;font-weight:700;display:flex;gap:6px;flex-wrap:wrap}
+      .l1{
+        min-width:0;
+        font-size:13px;
+        line-height:1.25;
+        font-weight:700;
+        display:flex;
+        flex-direction:column;
+        gap:5px;
+      }
       .l1 .sep{opacity:.6}
-      .l2{display:flex;align-items:center;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+      .song-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;min-width:0}
+      .song-meta .artist,.song-meta .title{overflow-wrap:anywhere;word-break:break-word}
+      .thumb-link{
+        width:88px;height:50px;border-radius:8px;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;
+        border:1px solid var(--line);background:#eaf3ee;text-decoration:none;color:#4a6b61;font-size:10px;font-weight:700;
+      }
+      .thumb-link img{width:100%;height:100%;object-fit:cover;display:block}
+      .l2{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-end;
+        gap:4px;
+        justify-content:flex-start;
+      }
+      .mobile-date{font-size:11px;line-height:1.2;color:#4f6f65}
+      .mobile-actions{display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+      .mobile-actions .btn{font-size:12px;padding:5px 7px;border-radius:9px}
+      .mobile-actions .kind-chip{font-size:11px;padding:3px 6px}
       .dm-select-wrap{flex:7 1 0}
       .dm-btn-wrap{flex:3 1 0}
       .input-dock{padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
@@ -1523,6 +1550,57 @@
       btn.addEventListener('click', ()=>copyPair(title,artist));
       target.appendChild(btn);
     }
+    function formatDate8(date8){
+      const n = Number(date8) || 0;
+      if (!n) return '----/--/--';
+      const yyyy = Math.floor(n / 10000);
+      const mm = Math.floor((n % 10000) / 100);
+      const dd = n % 100;
+      return `${yyyy}/${String(mm).padStart(2,'0')}/${String(dd).padStart(2,'0')}`;
+    }
+    function youtubeThumbFromUrl(url){
+      const raw = String(url || '').trim();
+      if (!raw) return '';
+      try{
+        const parsed = new URL(raw);
+        const host = parsed.hostname.toLowerCase();
+        let id = '';
+        if (host === 'youtu.be') {
+          id = parsed.pathname.replace(/^\/+/, '').split('/')[0] || '';
+        } else if (host.endsWith('youtube.com')) {
+          id = parsed.searchParams.get('v') || '';
+          if (!id && parsed.pathname.startsWith('/shorts/')) {
+            id = parsed.pathname.split('/')[2] || '';
+          }
+        }
+        if (!id) return '';
+        return `https://i.ytimg.com/vi/${encodeURIComponent(id)}/mqdefault.jpg`;
+      }catch{
+        return '';
+      }
+    }
+    function createThumbElement({ dUrl, dText, title }){
+      const url = dUrl || urlFromText(dText);
+      const thumbUrl = youtubeThumbFromUrl(url);
+      const thumb = document.createElement(url ? 'a' : 'span');
+      thumb.className = 'thumb-link';
+      if (url) {
+        thumb.href = url;
+        thumb.target = '_blank';
+        thumb.rel = 'noopener';
+      }
+      if (thumbUrl) {
+        const img = document.createElement('img');
+        img.src = thumbUrl;
+        img.alt = `${title || '楽曲'} のサムネイル`;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        thumb.appendChild(img);
+      } else {
+        thumb.textContent = 'NO IMAGE';
+      }
+      return thumb;
+    }
     function render(){
       const tableWrap = $('table'); tableWrap.innerHTML = '';
       const listWrap  = $('mblist'); listWrap.innerHTML = '';
@@ -1614,17 +1692,36 @@
         table.appendChild(tbody); tableWrap.appendChild(table);
         tableWrap.style.display = 'block'; listWrap.style.display = 'none';
       } else {
-        rows.forEach(({artist,title,kind,dText,dUrl,rowId,historyRef})=>{
+        rows.forEach(({artist,title,kind,dText,dUrl,rowId,historyRef,date8})=>{
           const item=document.createElement('div'); item.className='item';
           const l1=document.createElement('div'); l1.className='l1';
+          const meta=document.createElement('div'); meta.className='song-meta';
           const a1=document.createElement('span'); a1.className='artist'; a1.textContent=artist||'';
           const sep=document.createElement('span'); sep.className='sep'; sep.textContent='/';
           const t1=document.createElement('span'); t1.className='title'; t1.textContent=title||'';
-          l1.appendChild(a1); l1.appendChild(sep); l1.appendChild(t1);
+          meta.appendChild(a1); meta.appendChild(sep); meta.appendChild(t1);
+          l1.appendChild(meta);
+          l1.appendChild(createThumbElement({ dUrl, dText, title }));
 
           const l2=document.createElement('div'); l2.className='l2';
-
-          appendItemActions(l2, {artist, title, kind, dText, dUrl, rowId, historyRef});
+          if ((kind||'').trim()!==''){
+            const k=document.createElement('span'); k.className='kind-chip'; k.textContent=kind;
+            l2.appendChild(k);
+          }
+          const dateEl = document.createElement('div');
+          dateEl.className = 'mobile-date';
+          dateEl.textContent = formatDate8(date8);
+          l2.appendChild(dateEl);
+          const actions = document.createElement('div');
+          actions.className = 'mobile-actions';
+          const hbtn=document.createElement('button'); hbtn.className='btn'; hbtn.textContent='履歴';
+          hbtn.disabled = !historyRef;
+          hbtn.addEventListener('click', ()=>openHistory({ artist, title, rowId, historyRef }));
+          actions.appendChild(hbtn);
+          const btn=document.createElement('button'); btn.className='btn'; btn.textContent='コピー';
+          btn.addEventListener('click', ()=>copyPair(title,artist));
+          actions.appendChild(btn);
+          l2.appendChild(actions);
 
           item.appendChild(l1); item.appendChild(l2); $('mblist').appendChild(item);
         });
