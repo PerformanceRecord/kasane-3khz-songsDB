@@ -450,7 +450,6 @@
 
   <script>
     const DEFAULT_STATIC_BASE = new URL('./public-data/', window.location.href).toString();
-    const DEFAULT_GAS_API_URL = "https://script.google.com/macros/s/AKfycbxgHk2_aghjIUohtfh0EOgKfTOLLbHmkDIClUShYas9PMp2y3kVLHG8aLq-Q0VJXrra/exec";
     const UI_TEXT = {
       loading: '読み込み中…',
       statusIdle: 'サーバー状態：＼ﾅｧﾝ／',
@@ -473,13 +472,6 @@
       } catch {}
       return fallback;
     }
-    function resolveApiUrl(){
-      return resolveUrlFromQueryOrStorage({
-        queryKey: 'gas_url',
-        storageKey: 'gasApiUrl',
-        fallback: DEFAULT_GAS_API_URL
-      });
-    }
     function resolveStaticDataBase(){
       return resolveUrlFromQueryOrStorage({
         queryKey: 'static_base',
@@ -487,8 +479,6 @@
         fallback: DEFAULT_STATIC_BASE
       });
     }
-    const API_URL = resolveApiUrl();
-    const DEPLOY_URL = API_URL;
     const STATIC_DATA_BASE = resolveStaticDataBase();
     const HARD_LIMIT = 10000;
     const AUTO_COMPACT_FINAL_THRESHOLD = 0.9;
@@ -587,52 +577,6 @@
         clearTimeout(timer);
       }
     }
-    function describeFetchError(err){
-      if (err && err.name === 'AbortError') return 'タイムアウト';
-      const msg = err instanceof Error ? (err.message || '').trim() : String(err || '').trim();
-      if (!msg) return 'ネットワーク/ブロック';
-      const lower = msg.toLowerCase();
-      if (lower.includes('failed to fetch') || lower.includes('load failed')) {
-        return `ネットワーク/ブロック (${msg})`;
-      }
-      return `通信エラー (${msg})`;
-    }
-
-    function fetchByJsonp(tab, { timeoutMs = REQUEST_TIMEOUT_MS, extraParams = {} } = {}){
-      return new Promise((resolve, reject) => {
-        const callbackName = `__direct_jsonp_${tab}_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-        if (!JSONP_CALLBACK_RE.test(callbackName)) {
-          reject(new Error('callback名の生成に失敗'));
-          return;
-        }
-
-        const timer = setTimeout(() => {
-          cleanup();
-          reject(new Error('JSONP timeout'));
-        }, timeoutMs);
-
-        let script = null;
-        const cleanup = () => {
-          clearTimeout(timer);
-          if (script && script.parentNode) script.parentNode.removeChild(script);
-          delete window[callbackName];
-        };
-
-        window[callbackName] = (payload) => {
-          cleanup();
-          resolve(payload);
-        };
-
-        script = document.createElement('script');
-        script.src = buildApiRequestUrl(tab, callbackName, false, extraParams);
-        script.referrerPolicy = 'no-referrer';
-        script.onerror = () => {
-          cleanup();
-          reject(new Error('JSONP script load error'));
-        };
-        document.head.appendChild(script);
-      });
-    }
 
     function currentScrollTop(){
       if ($('page-list').classList.contains('active')) {
@@ -713,25 +657,6 @@
       updateViewportMetrics();
     }
 
-    function toHistoryEntries(rows, artist, title){
-      const na = normalize(artist);
-      const nt = normalize(title);
-      const unique = new Set();
-      const out = [];
-      for(const r of rows || []){
-        if (normalize(r.artist) !== na || normalize(r.title) !== nt) continue;
-        const url = r.dUrl || urlFromText(r.dText);
-        const date = Number(r.date8) || extractDate8(r.dText);
-        const kind = (r.kind || '').toString();
-        const rowId = String(r.rowId || '').trim();
-        const key = rowId || `${date}|${url}|${kind}`;
-        if (unique.has(key)) continue;
-        unique.add(key);
-        out.push({ date, url, kind, rowId });
-      }
-      return out;
-    }
-
     function sortHistoryEntriesDesc(entries){
       return [...(entries || [])].sort((a, b) => {
         if ((b.date || 0) !== (a.date || 0)) return (b.date || 0) - (a.date || 0);
@@ -739,50 +664,8 @@
       });
     }
 
-    function mergeHistoryEntriesUnique(...entryLists){
-      const seen = new Set();
-      const merged = [];
-      for (const list of entryLists) {
-        for (const entry of list || []) {
-          const key = String(entry.rowId || '').trim() || `${entry.date || 0}|${entry.url || ''}|${entry.kind || ''}`;
-          if (seen.has(key)) continue;
-          seen.add(key);
-          merged.push(entry);
-        }
-      }
-      return sortHistoryEntriesDesc(merged);
-    }
-
-    let __jsonpHit = false;
-    const REQUEST_MAX_RETRY = 2;
-    const REQUEST_TIMEOUT_MS = 8000;
-    const REQUEST_RETRY_DELAY_MS = 500;
     const FETCH_TIMEOUT_MS = 10000;
     const INITIAL_ERROR_NOTICE_DELAY_MS = 12000;
-    const JSONP_ALLOWED_ORIGIN = 'script.google.com';
-    const JSONP_CALLBACK_RE = /^[A-Za-z_$][0-9A-Za-z_$]*$/;
-    const requestState = {
-      songs: { id:0, timer:null, inflight:false },
-      gags: { id:0, timer:null, inflight:false }
-    };
-
-    function clearRequestTimer(tab){
-      const req = requestState[tab];
-      if (!req) return;
-      if (req.timer) clearTimeout(req.timer);
-      req.timer = null;
-    }
-    function markRequestSuccess(tab){
-      if (!requestState[tab]) return;
-      const req = requestState[tab];
-      req.inflight = false;
-      clearRequestTimer(tab);
-    }
-    function showRequestError(tab, reason){
-      if (state.current === tab || !state.cache[state.current]) {
-        setStatus(`データ取得（${tab}）に失敗しました: ${reason}`);
-      }
-    }
 
     function showHistoryLoadError(message){
       if (!$('page-history').classList.contains('active')) return;
@@ -796,22 +679,6 @@
 
     function renderHistoryProcess(){
       // 履歴ページの内部処理表示は非表示運用
-    }
-
-    function handleRequestFailure(tab, attempt, reason){
-      const req = requestState[tab];
-      if (!req) return;
-      req.inflight = false;
-      clearRequestTimer(tab);
-
-      if (attempt < REQUEST_MAX_RETRY) {
-        const next = attempt + 1;
-        console.warn(`[${tab}] request failed: ${reason}. retry=${next}/${REQUEST_MAX_RETRY}`);
-        setTimeout(()=>requestData(tab, next, false, 'jsonp'), REQUEST_RETRY_DELAY_MS * next);
-        return;
-      }
-
-      showRequestError(tab, reason);
     }
 
     function normalizeBaseRow(r){
@@ -971,77 +838,19 @@
       }));
     }
 
-    function handlePayload(tab, payload){
-      __jsonpHit = true;
-      const rows = normalizeRowsForTab(tab, payload);
-
-      if (tab === 'songs' || tab === 'gags') {
-        markRequestSuccess(tab);
-        state.cache[tab] = rows;
-
-        if (state.cache[state.current]) {
-          setStatus(`読み込み完了：${state.cache[state.current].length}件`);
-          render();
-        } else {
-          setStatus(UI_TEXT.loading);
-        }
-        return;
-      }
-
-      throw new Error('不明なタブ種別');
-    }
-
     function isListDataReady(){
       return Boolean(state.cache.songs || state.cache.gags);
     }
     function isListRequestInflight(){
-      return Boolean(requestState.songs?.inflight || requestState.gags?.inflight);
+      return Boolean(state.preloadPromise);
     }
 
     setTimeout(()=>{
-      if (__jsonpHit) return;
       if (!$('page-list').classList.contains('active')) return;
       if (isListDataReady()) return;
       if (isListRequestInflight()) return;
       setStatus('データ取得に失敗しました（R2静的データ設定を確認）');
     }, INITIAL_ERROR_NOTICE_DELAY_MS);
-
-    function toSafeApiBase(rawUrl){
-      const src = String(rawUrl || '').replace(/\/macros\/u\/\d+\//,'/macros/');
-      const u = new URL(src);
-      if (u.protocol !== 'https:') throw new Error('API URLはhttpsのみ許可しています');
-      if (u.hostname !== JSONP_ALLOWED_ORIGIN) throw new Error('許可されていないJSONPホストです');
-      if (!/^\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(u.pathname)) throw new Error('API URL形式が不正です');
-      return u;
-    }
-
-    function buildApiRequestUrl(tab, callbackName, useDeploy, extraParams = {}){
-      const base = toSafeApiBase(useDeploy ? DEPLOY_URL : API_URL);
-      const params = new URLSearchParams({
-        callback: callbackName,
-        sheet: tab,
-        authuser: '0',
-        v: String(Date.now())
-      });
-      Object.entries(extraParams || {}).forEach(([k,v]) => {
-        if (v !== null && v !== undefined && `${v}` !== '') params.set(k, String(v));
-      });
-      base.search = params.toString();
-      return base.toString();
-    }
-    function buildApiFetchUrl(tab, useDeploy, extraParams = {}){
-      const base = toSafeApiBase(useDeploy ? DEPLOY_URL : API_URL);
-      const params = new URLSearchParams({
-        sheet: tab,
-        authuser: '0',
-        v: String(Date.now())
-      });
-      Object.entries(extraParams || {}).forEach(([k,v]) => {
-        if (v !== null && v !== undefined && `${v}` !== '') params.set(k, String(v));
-      });
-      base.search = params.toString();
-      return base.toString();
-    }
     function buildStaticDataUrl(tab){
       const base = new URL(STATIC_DATA_BASE, window.location.href);
       const filename = tab === 'meta' ? 'meta.json' : `${tab}.json`;
@@ -1080,148 +889,6 @@
       return normalizeRowsForTab(tab, payload);
     }
 
-    function jsonp(tab, attempt, useDeploy = false){
-      const req = requestState[tab];
-      if (!req) return;
-
-      clearRequestTimer(tab);
-      beginServerRequest();
-      req.id += 1;
-      req.inflight = true;
-      const requestId = req.id;
-      const callbackName = `__jsonp_${tab}_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-      if (!JSONP_CALLBACK_RE.test(callbackName)) {
-        handleRequestFailure(tab, attempt, 'callback名の生成に失敗');
-        return;
-      }
-
-      let script = null;
-      const cleanup = () => {
-        clearRequestTimer(tab);
-        if (script && script.parentNode) script.parentNode.removeChild(script);
-        script = null;
-        delete window[callbackName];
-      };
-
-      window[callbackName] = (payload) => {
-        if (req.id !== requestId) return;
-        req.inflight = false;
-        cleanup();
-        try {
-          handlePayload(tab, payload);
-          endServerRequest(true, `${tab}/jsonp`);
-        } catch (err) {
-          const reason = err instanceof Error ? err.message : String(err);
-          endServerRequest(false, `${tab}/jsonp`, reason);
-          if (!useDeploy && reason.startsWith('取得元不一致')) {
-            console.warn(`[${tab}] ${reason}. deploy URLへフォールバックします。`);
-            requestData(tab, attempt, true);
-            return;
-          }
-          handleRequestFailure(tab, attempt, reason);
-        }
-      };
-
-      script=document.createElement('script');
-      script.src = buildApiRequestUrl(tab, callbackName, useDeploy);
-      script.referrerPolicy = 'no-referrer';
-      script.onerror=()=>{
-        if (req.id !== requestId) return;
-        req.inflight = false;
-        cleanup();
-        endServerRequest(false, `${tab}/jsonp`, 'script読込失敗');
-        requestData(tab, attempt, useDeploy, 'fetch');
-      };
-      document.head.appendChild(script);
-
-      req.timer = setTimeout(()=>{
-        if (req.id !== requestId || !req.inflight) return;
-        req.inflight = false;
-        cleanup();
-        endServerRequest(false, `${tab}/jsonp`, 'タイムアウト');
-        requestData(tab, attempt, useDeploy, 'fetch');
-      }, REQUEST_TIMEOUT_MS);
-    }
-    async function requestByFetch(tab, attempt, useDeploy = false){
-      const req = requestState[tab];
-      if (!req) return;
-
-      clearRequestTimer(tab);
-      req.id += 1;
-      req.inflight = true;
-      const requestId = req.id;
-
-      const controller = new AbortController();
-      beginServerRequest();
-      req.timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-
-      try {
-        const res = await fetch(buildApiFetchUrl(tab, useDeploy), {
-          signal: controller.signal,
-          mode: 'cors',
-          credentials: 'omit',
-          cache: 'no-store'
-        });
-        if (req.id !== requestId) return;
-        req.inflight = false;
-        clearRequestTimer(tab);
-
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-        const text = await res.text();
-        let payload;
-        try {
-          payload = JSON.parse(text);
-        } catch {
-          payload = text;
-        }
-        handlePayload(tab, payload);
-        endServerRequest(true, `${tab}/fetch`);
-      } catch (err) {
-        if (req.id !== requestId) return;
-        req.inflight = false;
-        clearRequestTimer(tab);
-
-        const reason = describeFetchError(err);
-        endServerRequest(false, `${tab}/fetch`, reason);
-        handleRequestFailure(tab, attempt, reason);
-      }
-    }
-    function requestData(tab, attempt = 0, useDeploy = false, transport = 'jsonp'){
-      if (requestState[tab]?.inflight && attempt === 0) return;
-      if (transport === 'fetch') {
-        requestByFetch(tab, attempt, useDeploy);
-        return;
-      }
-      jsonp(tab, attempt, useDeploy);
-    }
-
-    async function fetchSheetRows(tab, useDeploy = false, extraParams = {}){
-      beginServerRequest();
-      try {
-        const res = await fetch(buildApiFetchUrl(tab, useDeploy, extraParams), {
-          mode: 'cors',
-          credentials: 'omit',
-          cache: 'no-store'
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const rows = normalizeRowsForTab(tab, await res.text());
-        endServerRequest(true, `${tab}/fetch(stage)`);
-        return rows;
-      } catch (err) {
-        const reason = err instanceof Error ? err.message : String(err);
-        endServerRequest(false, `${tab}/fetch(stage)`, reason);
-        throw err;
-      }
-    }
-
-    async function fetchSheetRowsWithFallback(tab, extraParams = {}){
-      try {
-        return await fetchSheetRows(tab, false, extraParams);
-      } catch (err) {
-        return fetchSheetRows(tab, true, extraParams);
-      }
-    }
 
     function getCurrentTabLabel(){
       return TAB_LABELS[state.current] || state.current;
