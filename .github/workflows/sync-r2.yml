@@ -48,6 +48,20 @@ jobs:
       - name: Build public-data from GAS
         run: node scripts/sync-gas.mjs
 
+      - name: Preflight check (history files)
+        run: |
+          history_count=$(find public-data/history -type f -name '*.json' | wc -l | tr -d ' ')
+          echo "History JSON count: ${history_count}"
+          if [ "${history_count}" -eq 0 ]; then
+            echo "history files are missing"
+            exit 1
+          fi
+          {
+            echo "## sync-r2 preflight"
+            echo "- UTC: $(date -u '+%Y-%m-%d %H:%M:%S')"
+            echo "- history JSON count: ${history_count}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Install awscli
         run: |
           if ! command -v aws >/dev/null 2>&1; then
@@ -110,3 +124,20 @@ jobs:
 
           echo "History upload failed after 3 attempts"
           exit 1
+
+      - name: Verify uploaded history files on R2
+        run: |
+          remote_history_count=$(aws s3 ls "s3://$R2_BUCKET/public-data/history/" \
+            --endpoint-url "$R2_ENDPOINT" \
+            --region auto \
+            --recursive | wc -l | tr -d ' ')
+          echo "R2 history object count: ${remote_history_count}"
+          if [ "${remote_history_count}" -eq 0 ]; then
+            echo "R2 history objects are missing"
+            exit 1
+          fi
+          {
+            echo "## sync-r2 post-check"
+            echo "- UTC: $(date -u '+%Y-%m-%d %H:%M:%S')"
+            echo "- R2 history object count: ${remote_history_count}"
+          } >> "$GITHUB_STEP_SUMMARY"
