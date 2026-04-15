@@ -29,6 +29,7 @@
 - 2026-04-14: 履歴表示は `historyRef` 単一 fetch を正式採用（1曲1JSON）。
 - 2026-04-14: 旧 `archive` 動的取得（exact/paging）を通常フローから退役。
 - 2026-04-15: Phase 6 クローズ完了。受け入れ条件 8 を充足。
+- 2026-04-15: GitHub Actions `sync-gas.yml` で `DEFAULT_GAS_API_URL` 置換ステップが失敗。原因を「HTML書換え前提の脆弱性」とし、`GAS_URL` 存在チェックへ置換して再発防止。
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）
@@ -49,6 +50,7 @@
 ## Risks/Blockers
 - 旧 archive 前提の運用手順が局所的に残ると誤運用のリスク。
 - history JSON 生成漏れがあると個別曲の履歴表示が欠落する。
+- `index.html` の直接書換えを前提にした CI ステップは壊れやすく、同期ジョブ停止のリスク。
 
 ## Verification Checklist
 - [x] 1) 一覧データ源が `songs/gags/meta` に固定されている
@@ -62,6 +64,7 @@
 
 ## Next Step
 - 次回方針変更時は `Decision Log` / `Roadmap` を先に更新する。
+- `sync-gas.yml` の secret 検証ステップを維持し、`index.html` 書換えステップは再導入しない。
 
 ## Recheck (main反映後)
 - 対象5ファイル: `PROGRESS.md` / `README.md` / `index.html` / `scripts/sync-gas.mjs` / `public-data/songs.json`
@@ -79,6 +82,7 @@
 
 ### NGの最小タスク分割（次アクション）
 - なし（全受け入れ条件を充足）。
+- 追記: 2026-04-15 の Actions 失敗（`DEFAULT_GAS_API_URL` 置換）を記録し、workflow を secret 検証方式へ修正済み。
 
 
 ## R2段階移行（最小変更案）
