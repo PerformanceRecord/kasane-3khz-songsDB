@@ -378,7 +378,7 @@ function appendHistoryInfoToRows(rows, historyByRowId) {
     }
     return {
       ...row,
-      historyRef: `${OUT_DIR}/${HISTORY_DIR_NAME}/${info.id}.json`,
+      historyRef: `${HISTORY_DIR_NAME}/${info.id}.json`,
       historyCount: info.count,
       lastSungAt: info.lastSungAt || 0,
     };
