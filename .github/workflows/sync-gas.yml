@@ -28,33 +28,14 @@ jobs:
           node-version: '20'
 
 
-      - name: Inject GAS URL into index.html
+      - name: Validate GAS_URL secret
         env:
           GAS_URL: ${{ secrets.GAS_URL }}
         run: |
-          node <<'NODE'
-          const fs = require('fs');
-          const file = 'index.html';
-          const gasUrl = process.env.GAS_URL;
-          if (!gasUrl) {
-            throw new Error('GAS_URL secret is required');
-          }
-          const src = fs.readFileSync(file, 'utf8');
-          const targetPattern = /const\s+DEFAULT_GAS_API_URL\s*=\s*["'][^"']*["']/;
-          if (!targetPattern.test(src)) {
-            const matchLines = src.split('\n').filter((line) => line.includes('DEFAULT_GAS_API_URL'));
-            console.error('Debug: candidate lines containing DEFAULT_GAS_API_URL:', matchLines);
-            throw new Error('DEFAULT_GAS_API_URL replacement target was not found in index.html');
-          }
-          const replaced = src.replace(
-            targetPattern,
-            `const DEFAULT_GAS_API_URL = ${JSON.stringify(gasUrl)}`
-          );
-          if (src === replaced) {
-            console.log('DEFAULT_GAS_API_URL is already up to date; skip rewrite.');
-          }
-          fs.writeFileSync(file, replaced);
-          NODE
+          if [ -z "${GAS_URL}" ]; then
+            echo "GAS_URL secret is required" >&2
+            exit 1
+          fi
 
       - name: Sync data from GAS
         env:
