@@ -28,6 +28,7 @@
 - 2026-04-14: 方針変更時は `Decision Log` / `Roadmap` を実装前に更新する運用を確定。
 - 2026-04-14: 履歴表示は `historyRef` 単一 fetch を正式採用（1曲1JSON）。
 - 2026-04-14: 旧 `archive` 動的取得（exact/paging）を通常フローから退役。
+- 2026-04-15: Phase 6 クローズ完了。受け入れ条件 8 を充足。
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）
@@ -35,7 +36,7 @@
 3. Phase 3: 実装の整合化（`historyRef` 経路に統一）
 4. Phase 4: ドキュメント整合（README/運用手順の更新）
 5. Phase 5: 検証（受け入れ条件チェック）
-6. Phase 6: クローズ準備（残タスク0化・最終記録）
+6. Phase 6: クローズ準備（残タスク0化・最終記録）（完了）
 
 ## Task Checklist
 - [x] 進捗管理ファイル（`PROGRESS.md`）作成
@@ -43,7 +44,7 @@
 - [x] Roadmap を Phase 1〜6 に統一
 - [x] 確定判断を Decision Log に追記
 - [x] Verification Checklist を受け入れ条件 8 項目へ更新
-- [ ] Phase 6 のクローズ完了
+- [x] Phase 6 のクローズ完了
 
 ## Risks/Blockers
 - 旧 archive 前提の運用手順が局所的に残ると誤運用のリスク。
@@ -57,10 +58,10 @@
 - [x] 5) 旧 archive exact/paging 経路が退役扱いで明記されている
 - [x] 6) README と実装の前提が一致している
 - [x] 7) Decision Log に確定判断が日付付きで残っている
-- [ ] 8) 最終クローズ時の手順（Phase 6）が完了している
+- [x] 8) 最終クローズ時の手順（Phase 6）が完了している
 
 ## Next Step
-- Phase 6 として、残る未チェック項目（Verification Checklist 8）を完了として確定し、完了記録を追記する。
+- 次回方針変更時は `Decision Log` / `Roadmap` を先に更新する。
 
 ## Recheck (main反映後)
 - 対象5ファイル: `PROGRESS.md` / `README.md` / `index.html` / `scripts/sync-gas.mjs` / `public-data/songs.json`
@@ -74,11 +75,10 @@
 - 5) 旧 archive exact/paging 経路が退役扱いで明記されている: **OK**
 - 6) README と実装の前提が一致している: **OK**（README の `songs/gags/meta + history/<id>.json` 前提と `songs.json` の `historyRef` / `history/*.json` 実体が一致）
 - 7) Decision Log に確定判断が日付付きで残っている: **OK**
-- 8) 最終クローズ時の手順（Phase 6）が完了している: **NG**（未クローズ）
+- 8) 最終クローズ時の手順（Phase 6）が完了している: **OK**（2026-04-15 クローズ完了）
 
 ### NGの最小タスク分割（次アクション）
-1. 残タスク（受け入れ条件 8）のみを対象に、Phase 6 クローズ手順を実施する。
-2. クローズ完了後、Decision Log と Task Checklist に最終記録を追記する。
+- なし（全受け入れ条件を充足）。
 
 
 ## R2段階移行（最小変更案）
