@@ -30,6 +30,7 @@
 - 2026-04-14: 旧 `archive` 動的取得（exact/paging）を通常フローから退役。
 - 2026-04-15: Phase 6 クローズ完了。受け入れ条件 8 を充足。
 - 2026-04-15: GitHub Actions `sync-gas.yml` で `DEFAULT_GAS_API_URL` 置換ステップが失敗。原因を「HTML書換え前提の脆弱性」とし、`GAS_URL` 存在チェックへ置換して再発防止。
+- 2026-04-15: R2段階移行 Phase 1 に着手。`sync-r2.yml` で `public-data/history/*.json` もR2へ並行保存する方針を採用。
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）
@@ -46,6 +47,8 @@
 - [x] 確定判断を Decision Log に追記
 - [x] Verification Checklist を受け入れ条件 8 項目へ更新
 - [x] Phase 6 のクローズ完了
+- [x] Phase 1: history JSON のR2並行保存を workflow に追加
+- [x] Phase 1: R2並行保存のREADME運用手順を追記
 
 ## Risks/Blockers
 - 旧 archive 前提の運用手順が局所的に残ると誤運用のリスク。
@@ -65,6 +68,7 @@
 ## Next Step
 - 次回方針変更時は `Decision Log` / `Roadmap` を先に更新する。
 - `sync-gas.yml` の secret 検証ステップを維持し、`index.html` 書換えステップは再導入しない。
+- Phase 1の確認として、次回 `sync-r2.yml` 実行時に `public-data/history/*.json` がR2へ同期されることを確認する。
 
 ## Recheck (main反映後)
 - 対象5ファイル: `PROGRESS.md` / `README.md` / `index.html` / `scripts/sync-gas.mjs` / `public-data/songs.json`
@@ -92,6 +96,7 @@
 - 目的: 本番影響なしでR2配信の可否を確認する。
 - リスク: 二重保存による運用ミス。
 - ロールバック: R2保存処理だけ停止し、現行運用に戻す。
+- 実装メモ（2026-04-15）: `sync-r2.yml` に `public-data/history/` の再帰同期ステップを追加し、一覧JSONと同じジョブで並行保存する。
 
 ### Phase 2（参照先の柔軟化）
 - 内容: `historyRef` を「相対パス（GitHub）」と「絶対URL（R2）」の両方で読める前提にそろえる。

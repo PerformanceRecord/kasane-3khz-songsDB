@@ -90,3 +90,23 @@ jobs:
 
           echo "R2 upload failed after 3 attempts"
           exit 1
+
+      - name: Upload history files to R2
+        run: |
+          for attempt in 1 2 3; do
+            if aws s3 sync public-data/history "s3://$R2_BUCKET/public-data/history" \
+              --endpoint-url "$R2_ENDPOINT" \
+              --region auto \
+              --delete; then
+              echo "History upload succeeded on attempt ${attempt}"
+              exit 0
+            fi
+
+            if [ "$attempt" -lt 3 ]; then
+              echo "History upload failed on attempt ${attempt}; retrying..."
+              sleep $((attempt * 10))
+            fi
+          done
+
+          echo "History upload failed after 3 attempts"
+          exit 1
