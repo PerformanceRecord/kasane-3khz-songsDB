@@ -31,6 +31,7 @@
 - 2026-04-15: Phase 6 クローズ完了。受け入れ条件 8 を充足。
 - 2026-04-15: GitHub Actions `sync-gas.yml` で `DEFAULT_GAS_API_URL` 置換ステップが失敗。原因を「HTML書換え前提の脆弱性」とし、`GAS_URL` 存在チェックへ置換して再発防止。
 - 2026-04-15: R2段階移行 Phase 1 に着手。`sync-r2.yml` で `public-data/history/*.json` もR2へ並行保存する方針を採用。
+- 2026-04-15: R2段階移行 Phase 2 を開始。`historyRef` は「相対パス/絶対URL」を許容し、`index.html` と `README.md` の解決ルールを統一。
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）
@@ -64,6 +65,7 @@
 - [x] 6) README と実装の前提が一致している
 - [x] 7) Decision Log に確定判断が日付付きで残っている
 - [x] 8) 最終クローズ時の手順（Phase 6）が完了している
+- [x] 9) 初期表示で history 一括取得をしない（詳細は選択時の `historyRef` fetch のみ）
 
 ## Next Step
 - 次回方針変更時は `Decision Log` / `Roadmap` を先に更新する。

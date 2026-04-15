@@ -1316,13 +1316,23 @@
       }).filter((entry) => entry.date || entry.url || entry.kind));
     }
 
+    function resolveHistoryRefUrl(historyRef){
+      const ref = String(historyRef || '').trim();
+      if (!ref) return '';
+      // historyRef ルール: 絶対URLはそのまま使う。相対パスは STATIC_DATA_BASE 基準で解決する。
+      if (/^https?:\/\//i.test(ref)) return ref;
+      const base = new URL(STATIC_DATA_BASE, window.location.href);
+      return new URL(ref, base).toString();
+    }
+
     async function fetchSongHistoryByRef(historyRef){
-      if (!historyRef) return [];
+      const resolvedRef = resolveHistoryRefUrl(historyRef);
+      if (!resolvedRef) return [];
       renderHistoryProcess();
 
       beginServerRequest();
       try {
-        const res = await fetch(historyRef, { cache: 'no-store' });
+        const res = await fetch(resolvedRef, { cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const entries = extractHistoryEntriesFromRefPayload(await res.text());
         renderHistoryProcess();
