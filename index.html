@@ -275,13 +275,14 @@
       .thumb-link img{width:100%;height:100%;object-fit:cover;display:block}
       .l2{
         display:flex;
-        justify-content:flex-end;
-        align-items:center;
+        justify-content:space-between;
+        align-items:flex-end;
         grid-column:1 / -1;
         grid-row:2;
+        gap:8px;
       }
-      .mobile-date{font-size:11px;line-height:1.2;color:#4f6f65}
-      .mobile-actions{display:flex;align-items:center;gap:4px;flex-wrap:nowrap;justify-content:flex-end}
+      .mobile-date{font-size:11px;line-height:1.2;color:#4f6f65;white-space:nowrap;text-align:right;margin-left:auto}
+      .mobile-actions{display:flex;align-items:center;gap:4px;flex-wrap:nowrap;justify-content:flex-start}
       .mobile-actions .btn{font-size:12px;padding:4px 7px;border-radius:9px;line-height:1.1}
       .mobile-actions .kind-chip{font-size:11px;padding:3px 6px}
       .dm-select-wrap{flex:7 1 0}
@@ -1738,10 +1739,6 @@
           const thumb = createThumbElement({ dUrl, dText, title });
 
           const l2=document.createElement('div'); l2.className='l2';
-          const dateEl = document.createElement('div');
-          dateEl.className = 'mobile-date';
-          dateEl.textContent = formatDate8(date8);
-          l1.appendChild(dateEl);
           const actions = document.createElement('div');
           actions.className = 'mobile-actions';
           actions.appendChild(createKindButton(kind));
@@ -1752,7 +1749,11 @@
           const btn=document.createElement('button'); btn.className='btn'; btn.textContent='コピー';
           btn.addEventListener('click', ()=>copyPair(title,artist));
           actions.appendChild(btn);
+          const dateEl = document.createElement('div');
+          dateEl.className = 'mobile-date';
+          dateEl.textContent = formatDate8(date8);
           l2.appendChild(actions);
+          l2.appendChild(dateEl);
 
           item.appendChild(l1); item.appendChild(thumb); item.appendChild(l2); $('mblist').appendChild(item);
         });
