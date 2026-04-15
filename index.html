@@ -1544,13 +1544,13 @@
     function createKindButton(kind){
       const btn = document.createElement('button');
       btn.className = 'btn';
-      btn.textContent = 'タグ';
+      btn.textContent = (kind || '').trim() || '区分未設定';
       if ((kind || '').trim() === '') {
         btn.disabled = true;
-        btn.title = 'タグ未設定';
+        btn.title = '区分未設定';
         return btn;
       }
-      btn.title = `タグ: ${kind}`;
+      btn.title = `区分: ${kind}`;
       btn.addEventListener('click', ()=>{
         ensureFilterPanelExpanded();
         state.kindFilters = [kind];
