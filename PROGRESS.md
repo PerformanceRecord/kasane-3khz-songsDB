@@ -70,6 +70,29 @@
 - `sync-gas.yml` の secret 検証ステップを維持し、`index.html` 書換えステップは再導入しない。
 - Phase 1の確認として、次回 `sync-r2.yml` 実行時に `public-data/history/*.json` がR2へ同期されることを確認する。
 
+## 中間評価（2026-04-15）
+
+### 1) どこまでできているか（事実チェック）
+- `sync-r2.yml` に `public-data/history/` の再帰同期（`aws s3 sync ... --delete`）が実装済み。
+- `songs.json` / `gags.json` の全行で `historyRef` が存在し、参照先ファイルも実在（欠損0）。
+- `index.html` は履歴表示時のみ `historyRef` を fetch する遅延読込方式で、巨大 archive を一括取得しない。
+
+### 2) ゴール到達性の途中評価
+- ゴール1（履歴情報のR2取り込み）: **進捗は良好（Phase 1実装済み）**。ただし「実運用で毎回成功している証跡」は未記録。
+- ゴール2（膨大なarchiveをスムーズにHTML表示）: **方向性は妥当**。`historyRef` 分割＋遅延読込により、画面初期負荷を抑える設計になっている。
+- 総合: **改善は正しい方向で進行中**。未完了点は「運用証跡」と「Phase 2（参照先の柔軟化）」。
+
+### 3) 直近アクション（チェックと改善）
+1. `sync-r2.yml` 実行ログで以下を確認し、実施日付きで Decision Log に追記する。  
+   - `Upload songs/gags/meta to R2` 成功  
+   - `Upload history files to R2` 成功
+2. Phase 2開始前チェックとして、`historyRef` の許容形式（相対/絶対URL）を README と `index.html` で同一ルールに明文化する。
+3. archive 大量化に備え、受け入れ条件へ「初期表示で history 一括取得をしない」を明示追加する（回帰防止）。
+
+### 4) 判断
+- 現時点では **問題なく前進している**。  
+- ただし最終ゴール達成判定には、R2同期の継続成功記録（最低数回）と、Phase 2着手記録が必要。
+
 ## Recheck (main反映後)
 - 対象5ファイル: `PROGRESS.md` / `README.md` / `index.html` / `scripts/sync-gas.mjs` / `public-data/songs.json`
 - 実施日: 2026-04-14
