@@ -73,6 +73,19 @@
 - `sync-gas.yml` の secret 検証ステップを維持し、`index.html` 書換えステップは再導入しない。
 - `sync-r2.yml` 実行時は `GITHUB_STEP_SUMMARY` の preflight/post-check を確認し、history 件数が 0 でないことを運用記録に残す。
 
+## 直近実行アクション（2026-04-15 時点）
+1. GitHub Actions の `sync-r2.yml` を手動実行し、以下3点を確認する。  
+   - `Upload songs/gags/meta to R2` が成功  
+   - `Upload history files to R2` が成功  
+   - `GITHUB_STEP_SUMMARY` に preflight/post-check の件数が記録されている
+2. 上記の実行結果（実施日・実行URL・件数）を `Decision Log` に1行追記する。
+3. これを最低3回連続で満たしたら、Phase 2 の完了判定を実施する。
+
+### Phase 2 完了判定（合格条件）
+- 連続3回の `sync-r2.yml` 実行で、history の preflight/post-check 件数がすべて一致。
+- `README.md` と `index.html` の `historyRef` 解決ルール（相対/絶対URL許容）が一致。
+- Decision Log に「Phase 2 完了」の日付付き記録がある。
+
 ## 中間評価（2026-04-15）
 
 ### 1) どこまでできているか（事実チェック）
