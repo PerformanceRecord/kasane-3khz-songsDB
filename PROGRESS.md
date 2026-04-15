@@ -32,6 +32,7 @@
 - 2026-04-15: GitHub Actions `sync-gas.yml` で `DEFAULT_GAS_API_URL` 置換ステップが失敗。原因を「HTML書換え前提の脆弱性」とし、`GAS_URL` 存在チェックへ置換して再発防止。
 - 2026-04-15: R2段階移行 Phase 1 に着手。`sync-r2.yml` で `public-data/history/*.json` もR2へ並行保存する方針を採用。
 - 2026-04-15: R2段階移行 Phase 2 を開始。`historyRef` は「相対パス/絶対URL」を許容し、`index.html` と `README.md` の解決ルールを統一。
+- 2026-04-15: `sync-r2.yml` に運用証跡強化を追加。history 事前件数チェック・R2アップロード後件数チェックを導入し、`GITHUB_STEP_SUMMARY` へ自動記録する運用に更新。
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）
@@ -70,7 +71,7 @@
 ## Next Step
 - 次回方針変更時は `Decision Log` / `Roadmap` を先に更新する。
 - `sync-gas.yml` の secret 検証ステップを維持し、`index.html` 書換えステップは再導入しない。
-- Phase 1の確認として、次回 `sync-r2.yml` 実行時に `public-data/history/*.json` がR2へ同期されることを確認する。
+- `sync-r2.yml` 実行時は `GITHUB_STEP_SUMMARY` の preflight/post-check を確認し、history 件数が 0 でないことを運用記録に残す。
 
 ## 中間評価（2026-04-15）
 
