@@ -101,6 +101,7 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 - 解決ルール:
   - 絶対URLはそのまま取得する。
   - 相対パスは `STATIC_DATA_BASE`（`?static_base` / `localStorage.staticDataBase` / 同一オリジン既定）を基準にURL解決する。
+  - 運用では `static_base` を `.../public-data/` で終わるURLに統一する（パス不整合による404を防ぐ）。
 - 利用経路:
   - 一覧表示: `songs.json` / `gags.json` を読む
   - ユーザーが1件選択
