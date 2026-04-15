@@ -41,8 +41,8 @@ jobs:
           }
           const src = fs.readFileSync(file, 'utf8');
           const replaced = src.replace(
-            /(const\s+DEFAULT_GAS_API_URL\s*=\s*)["'][^"']*["'](\s*;?)/m,
-            (_, p1, p2) => `${p1}${JSON.stringify(gasUrl)}${p2}`
+            /const\s+DEFAULT_GAS_API_URL\s*=\s*["'][^"']*["']/,
+            `const DEFAULT_GAS_API_URL = ${JSON.stringify(gasUrl)}`
           );
           if (src === replaced) {
             const matchLines = src.split('\n').filter((line) => line.includes('DEFAULT_GAS_API_URL'));
