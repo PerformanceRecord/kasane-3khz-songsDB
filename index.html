@@ -986,40 +986,66 @@
       }).filter((entry) => entry.date || entry.url || entry.kind));
     }
 
-    function resolveHistoryRefUrl(historyRef){
-      let ref = String(historyRef || '').trim();
-      if (!ref) return '';
-      // historyRef ルール: 絶対URLはそのまま使う。相対パスは STATIC_DATA_BASE 基準で解決する。
-      if (/^https?:\/\//i.test(ref)) return ref;
-      const base = new URL(STATIC_DATA_BASE, window.location.href);
+    function normalizeHistoryRefByBase(ref, base){
       const basePath = String(base.pathname || '');
       if (
         ref.startsWith('public-data/') &&
         /\/public-data\/?$/.test(basePath)
       ) {
-        ref = ref.slice('public-data/'.length);
+        return ref.slice('public-data/'.length);
       }
-      return new URL(ref, base).toString();
+      return ref;
+    }
+
+    function resolveHistoryRefUrls(historyRef){
+      const rawRef = String(historyRef || '').trim();
+      if (!rawRef) return [];
+      if (/^https?:\/\//i.test(rawRef)) return [rawRef];
+
+      const urls = [];
+      const addUrl = (u) => {
+        if (!u || urls.includes(u)) return;
+        urls.push(u);
+      };
+
+      // 第1候補: 既存ルール（STATIC_DATA_BASE 基準）
+      const base = new URL(STATIC_DATA_BASE, window.location.href);
+      addUrl(new URL(normalizeHistoryRefByBase(rawRef, base), base).toString());
+
+      // 第2候補: HTML と同階層の public-data（static_base 未設定/誤設定の救済）
+      const localPublicBase = new URL('./public-data/', window.location.href);
+      addUrl(new URL(normalizeHistoryRefByBase(rawRef, localPublicBase), localPublicBase).toString());
+
+      // 第3候補: historyRef が public-data/ 付きの場合の直指定
+      if (rawRef.startsWith('public-data/')) {
+        addUrl(new URL(rawRef, window.location.href).toString());
+      }
+      return urls;
     }
 
     async function fetchSongHistoryByRef(historyRef){
-      const resolvedRef = resolveHistoryRefUrl(historyRef);
-      if (!resolvedRef) return [];
+      const resolvedRefs = resolveHistoryRefUrls(historyRef);
+      if (resolvedRefs.length === 0) return [];
       renderHistoryProcess();
 
       beginServerRequest();
-      try {
-        const res = await fetch(resolvedRef, { cache: 'no-store' });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const entries = extractHistoryEntriesFromRefPayload(await res.text());
-        renderHistoryProcess();
-        endServerRequest(true, 'historyRef/fetch');
-        return entries;
-      } catch (err) {
-        const reason = err instanceof Error ? err.message : String(err);
-        endServerRequest(false, 'historyRef/fetch', reason);
-        throw err;
+      const errors = [];
+      for (const refUrl of resolvedRefs) {
+        try {
+          const res = await fetch(refUrl, { cache: 'no-store' });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const entries = extractHistoryEntriesFromRefPayload(await res.text());
+          renderHistoryProcess();
+          endServerRequest(true, 'historyRef/fetch');
+          return entries;
+        } catch (err) {
+          const reason = err instanceof Error ? err.message : String(err);
+          errors.push(`${refUrl} (${reason})`);
+        }
       }
+      const reason = errors.join(' | ') || 'unknown';
+      endServerRequest(false, 'historyRef/fetch', reason);
+      throw new Error(reason);
     }
 
     function renderHistoryTitle(artist, title){
