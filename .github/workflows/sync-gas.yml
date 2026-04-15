@@ -41,7 +41,7 @@ jobs:
           }
           const src = fs.readFileSync(file, 'utf8');
           const replaced = src.replace(
-            /const DEFAULT_GAS_API_URL = '.*';/,
+            /const DEFAULT_GAS_API_URL = ["'][^"']*["'];/,
             `const DEFAULT_GAS_API_URL = ${JSON.stringify(gasUrl)};`
           );
           if (src === replaced) {
