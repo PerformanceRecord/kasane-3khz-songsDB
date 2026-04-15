@@ -265,8 +265,8 @@
         gap:5px;
       }
       .l1 .sep{opacity:.6}
-      .song-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;min-width:0}
-      .song-meta .artist,.song-meta .title{overflow-wrap:anywhere;word-break:break-word}
+      .song-meta{display:flex;flex-direction:column;gap:2px;align-items:flex-start;min-width:0}
+      .song-meta .artist,.song-meta .title{display:block;line-height:1.25;overflow-wrap:anywhere;word-break:break-word}
       .thumb-link{
         width:92px;height:52px;border-radius:8px;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;
         border:1px solid var(--line);background:#eaf3ee;text-decoration:none;color:#4a6b61;font-size:10px;font-weight:700;
@@ -1613,8 +1613,8 @@
       thumb.className = 'thumb-link';
       if (url) {
         thumb.href = url;
-        thumb.target = '_blank';
         thumb.rel = 'noopener';
+        thumb.setAttribute('aria-label', '動画を開く');
       }
       if (thumbUrl) {
         const img = document.createElement('img');
@@ -1724,9 +1724,8 @@
           const l1=document.createElement('div'); l1.className='l1';
           const meta=document.createElement('div'); meta.className='song-meta';
           const a1=document.createElement('span'); a1.className='artist'; a1.textContent=artist||'';
-          const sep=document.createElement('span'); sep.className='sep'; sep.textContent='/';
           const t1=document.createElement('span'); t1.className='title'; t1.textContent=title||'';
-          meta.appendChild(a1); meta.appendChild(sep); meta.appendChild(t1);
+          meta.appendChild(a1); meta.appendChild(t1);
           l1.appendChild(meta);
 
           const thumb = createThumbElement({ dUrl, dText, title });
