@@ -52,6 +52,7 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
   2. `localStorage.staticDataBase`
   3. 同一オリジン相対パス
 - `songs` / `gags` は静的 JSON を利用し、選択時に `historyRef` から履歴 JSON を読む。
+- キャッシュ方針: 一覧（`songs/gags/meta`）はメモリキャッシュ、履歴（`historyRef`）は表示ごとに最新取得。`localStorage` は `staticDataBase` 設定値のみ。
 - `meta.tabs` と `meta.counts` を使い、静的データ整合性を検証。不整合時はフォールバック。
 
 ### 4-2. `scripts/sync-gas.mjs`（同期バッチ）
@@ -102,10 +103,10 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
   - 絶対URLはそのまま取得する。
   - 相対パスは `STATIC_DATA_BASE`（`?static_base` / `localStorage.staticDataBase` / 同一オリジン既定）を基準にURL解決する。
 - 利用経路:
-  - 一覧表示: `songs.json` / `gags.json` を読む
+  - 一覧表示: `songs.json` / `gags.json` を読む（同一セッション中はメモリ再利用）
   - ユーザーが1件選択
   - `historyRef` を取り出す
-  - `history/<id>.json` を取得して履歴表示
+  - `history/<id>.json` を毎回取得して履歴表示（最新優先）
 
 ### 旧方式（退役）
 - `exact=1` 検索、`offset-limit` ページング、GAS `archive` API 直接呼び出しは **退役**。

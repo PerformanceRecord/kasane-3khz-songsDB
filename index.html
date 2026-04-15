@@ -480,6 +480,9 @@
       });
     }
     const STATIC_DATA_BASE = resolveStaticDataBase();
+    // キャッシュ方針:
+    // - songs/gags/meta は起動時に取得し、state.cache（メモリ）で再利用する。
+    // - 履歴(historyRef)は表示のたびに最新取得する（localStorageへ保存しない）。
     const HARD_LIMIT = 10000;
     const AUTO_COMPACT_FINAL_THRESHOLD = 0.9;
     const state = {
@@ -895,6 +898,7 @@
     }
 
     async function warmCaches({ forceReload = false } = {}){
+      // 一覧はメモリキャッシュを使う。永続化(localStorage)は staticDataBase 設定のみ。
       if (state.preloadPromise) return state.preloadPromise;
       if (!forceReload && state.cache.songs && state.cache.gags) {
         return;
@@ -1009,6 +1013,7 @@
 
       beginServerRequest();
       try {
+        // 履歴は常に最新優先。ブラウザHTTPキャッシュを使わず毎回取り直す。
         const res = await fetch(resolvedRef, { cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const entries = extractHistoryEntriesFromRefPayload(await res.text());
