@@ -144,13 +144,13 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 node scripts/sync-gas.mjs
 ```
 
-成功時は `public-data/*.json` と `public-data/history/*.json` が更新され、`sync complete` ログが出ます。
+成功時は、ワークスペース上の `public-data/*.json` と `public-data/history/*.json` が生成・更新され、`sync complete` ログが出ます（`public-data/history/*.json` は GitHub tracked 前提ではありません）。
 
 ## 9. 運用メモ
 
 - 通常運用は `songs/gags/meta + history/<id>.json` を静的配信し、一覧→履歴で読む。
 - `public-data` はキャッシュとして扱い、取得失敗時は前回成功分を残す。
-- `sync-r2.yml` は `songs/gags/meta` と `public-data/history/*.json` だけをR2へ同期する。
+- `sync-r2.yml` は build 後ワークスペースに生成された `songs/gags/meta` と `public-data/history/*.json` をR2へ同期する。
 - `public-data/history/` はローカル生成・R2配信用で、GitHub では追跡しない（`.gitignore` 管理）。
 - `public-data/archive.json` は公開配信対象にしない。build入力専用で、GitHubの履歴保存先として運用しない。
 - `sync-r2` は archive live 取得に失敗したら fail する（silent fallback しない）。
