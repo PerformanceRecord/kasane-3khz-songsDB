@@ -26,6 +26,8 @@
 - 同一楽曲の履歴ページを作るには、行ID（`rowId`）と分離した `historyKey` が必要。
 - 今回の運用では `artist | title` を履歴グルーピングの必要最小限キーとする。
 - 今回の変更で、GitHub保存前提ではなく「build時 live archive 取得 → history生成 → R2 upload」へ切り替える。
+- CI失敗の原因は「historyのGitHub非追跡化」自体ではなく、repo 現物の `public-data/history/*.json` を必須にする stale validation だった。
+- build 後ワークスペースの history 生成確認（`meta.history.sourceMode=live-archive` / `meta.history.files>0`）は継続する。
 
 ## Decision Log
 - 2026-04-14: `PROGRESS.md` を進捗管理ファイルとして導入。
@@ -45,6 +47,7 @@
 - 2026-04-16: archive 依存撤去を実施。`sync-r2.yml` から通常 archive アップロードを削除、`scripts/sync-gas.mjs` は archive 不在でも history 生成を継続、`README.md` を実装へ同期。
 - 2026-04-16: R2公開URLの直接検証を実施（PowerShell実測記録）。`songs.json` は HTTP 200 / `rows=493` / `historyRef` 保持 493/493、`history/428fa06c1437.json` は HTTP 200。検証URL: `https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/`
 - 2026-04-16: history の複数件表示を達成するため、archive は build 時のみ live 取得し、生成物は R2 にのみ配置する。GitHub は履歴データ保存先にしない。
+- 2026-04-16: `validate-history-artifacts.yml` の stale validation（repo上 `public-data/history/*.json` 必須）を撤去。`sync-r2.yml` と同条件（`GAS_URL` + `ENABLE_ARCHIVE_SYNC=true` + `ARCHIVE_STRICT_SYNC=true`）で build 後成果物を検証し、fork PR は secret 不可のため skip へ変更。
 - 2026-04-16: 履歴グルーピングを `rowId` から分離する方針を確定。`rowId` は行識別として維持し、`buildHistoryKey(artist,title)` で同一楽曲履歴を束ねる。`kind` / `dUrl` は履歴ページ束ね条件に使わない。目的は「同一楽曲の履歴ページを1つにまとめる」こと。
 
 ## Roadmap

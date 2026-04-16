@@ -12,14 +12,38 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate songs/gags historyRef and history artifacts
+      - name: Setup Node.js
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate GAS_URL secret
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
+        env:
+          GAS_URL: ${{ secrets.GAS_URL }}
+        run: |
+          if [ -z "${GAS_URL}" ]; then
+            echo "GAS_URL secret is required" >&2
+            exit 1
+          fi
+
+      - name: Build public-data from GAS (sync-r2 parity)
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
+        env:
+          GAS_URL: ${{ secrets.GAS_URL }}
+          ENABLE_ARCHIVE_SYNC: 'true'
+          ARCHIVE_STRICT_SYNC: 'true'
+        run: node scripts/sync-gas.mjs
+
+      - name: Validate build artifacts (songs/gags/meta/history)
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
         shell: bash
         run: |
           set -euo pipefail
 
           node <<'NODE'
           const fs = require('fs');
-          const path = require('path');
 
           function fail(msg) {
             console.error(`ERROR: ${msg}`);
@@ -51,15 +75,18 @@ jobs:
           const historyFiles = fs.existsSync(historyDir)
             ? fs.readdirSync(historyDir).filter((name) => name.endsWith('.json'))
             : [];
+          if (historyFiles.length <= 0) fail('build 後の public-data/history/*.json が 1 件も存在しません');
 
-          if (historyFiles.length <= 0) fail('public-data/history/*.json が 1 件も存在しません');
+          const meta = readJson('public-data/meta.json');
+          const history = meta?.history || {};
+          const sourceMode = String(history.sourceMode || '');
+          const files = Number(history.files || 0);
+          if (sourceMode !== 'live-archive') fail(`meta.history.sourceMode must be live-archive, got: ${sourceMode}`);
+          if (files <= 0) fail(`meta.history.files must be > 0, got: ${files}`);
 
-          const readme = fs.readFileSync('README.md', 'utf8');
-          const readmeMentionsHistory = /history\/<id>\.json|public-data\/history\/\*\.json|history\//.test(readme);
-
-          if (readmeMentionsHistory && historyFiles.length <= 0) {
-            fail('README の history 成果物前提と実データが矛盾しています（historyファイルなし）');
-          }
-
-          console.log(`OK: songs.historyRef=${songsCount}, gags.historyRef=${gagsCount}, historyFiles=${historyFiles.length}`);
+          console.log(`OK: songs.historyRef=${songsCount}, gags.historyRef=${gagsCount}, historyFiles=${historyFiles.length}, sourceMode=${sourceMode}`);
           NODE
+
+      - name: Skip note (fork PR)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true
+        run: echo "Skipped: fork PR cannot use GAS_URL secret for build validation."
