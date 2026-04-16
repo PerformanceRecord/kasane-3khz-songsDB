@@ -92,6 +92,25 @@
   - Verification Checklist 1〜9 を充足。
   - `site.webmanifest` の相対パス仕様と `index.html` の manifest 参照に矛盾がない。
 
+
+## History ディレクトリ GitHub管理終了計画（独立段）
+
+### 目的
+- GitHub上の `public-data/history/` を運用対象から外し、R2配信を正とする。
+- 本番導線は壊さず、先に本番既定参照をR2へ固定してから追跡解除する。
+
+### 実施方針（最小差分）
+1. `index.html` の既定参照を本番R2へ変更（優先順位: query > localStorage > 本番既定R2 > local/dev fallback）。
+2. `sync-gas.yml` は schedule を維持しつつ、`public-data/history` を commit 対象から除外。
+3. `.gitignore` で `public-data/history/` を明示的に除外。
+4. `public-data/history/` を Git追跡解除（`git rm --cached` 相当）。
+
+### 実行ゲート
+- [x] 本番導線が R2 既定で動作
+- [x] `sync-gas.yml` が history を GitHub に再コミットしない
+- [x] `public-data/history/` の Git追跡解除完了
+- [x] rollback 手順確認済み
+
 ## Next Step
 - archive依存撤去は完了済み。直近の未充足ゲートは「本番URLで一覧→詳細履歴の動作確認」のみ。
 - Pages本番URLに `?static_base=https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/` を付け、一覧表示→1件選択→履歴表示を実測確認する。

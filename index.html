@@ -449,6 +449,7 @@
   </div>
 
   <script>
+    const PROD_R2_STATIC_BASE = 'https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/';
     const DEFAULT_STATIC_BASE = new URL('./public-data/', window.location.href).toString();
     const UI_TEXT = {
       loading: '読み込み中…',
@@ -472,11 +473,16 @@
       } catch {}
       return fallback;
     }
+    function isLocalDevHost(){
+      const host = String(window.location.hostname || '').toLowerCase();
+      return !host || host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0';
+    }
     function resolveStaticDataBase(){
+      const fallback = isLocalDevHost() ? DEFAULT_STATIC_BASE : PROD_R2_STATIC_BASE;
       return resolveUrlFromQueryOrStorage({
         queryKey: 'static_base',
         storageKey: 'staticDataBase',
-        fallback: DEFAULT_STATIC_BASE
+        fallback
       });
     }
     const STATIC_DATA_BASE = resolveStaticDataBase();
