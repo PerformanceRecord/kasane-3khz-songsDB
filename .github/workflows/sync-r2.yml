@@ -40,9 +40,12 @@ jobs:
       #   run: npm ci
 
       - name: Build public-data from GAS
+        env:
+          ENABLE_ARCHIVE_SYNC: "true"
+          ARCHIVE_STRICT_SYNC: "true"
         run: node scripts/sync-gas.mjs
 
-      - name: Preflight check (history files)
+      - name: Preflight check (history/meta)
         run: |
           history_count=$(find public-data/history -type f -name '*.json' | wc -l | tr -d ' ')
           echo "History JSON count: ${history_count}"
@@ -50,11 +53,44 @@ jobs:
             echo "history files are missing"
             exit 1
           fi
-          {
-            echo "## sync-r2 preflight"
-            echo "- UTC: $(date -u '+%Y-%m-%d %H:%M:%S')"
-            echo "- history JSON count: ${history_count}"
-          } >> "$GITHUB_STEP_SUMMARY"
+
+          node <<'NODE'
+          const fs = require('fs');
+          const meta = JSON.parse(fs.readFileSync('public-data/meta.json', 'utf8'));
+          const history = meta?.history || {};
+          const sourceMode = String(history.sourceMode || '');
+          const sourceRows = Number(history.sourceRows || 0);
+          const files = Number(history.files || 0);
+          const multiEntryFiles = Number(history.multiEntryFiles || 0);
+
+          if (sourceMode !== 'live-archive') {
+            console.error(`history.sourceMode must be live-archive, got: ${sourceMode}`);
+            process.exit(1);
+          }
+          if (sourceRows <= 0) {
+            console.error(`history.sourceRows must be > 0, got: ${sourceRows}`);
+            process.exit(1);
+          }
+          if (files <= 0) {
+            console.error(`history.files must be > 0, got: ${files}`);
+            process.exit(1);
+          }
+          if (multiEntryFiles <= 0) {
+            console.warn(`warning: history.multiEntryFiles is ${multiEntryFiles}`);
+          }
+
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, [
+            '## sync-r2 preflight',
+            `- UTC: ${new Date().toISOString()}`,
+            `- history JSON count: ${files}`,
+            `- archive source mode: ${sourceMode}`,
+            `- archive source rows: ${sourceRows}`,
+            `- history files: ${files}`,
+            `- history multiEntryFiles: ${multiEntryFiles}`,
+            ...(multiEntryFiles <= 0 ? ['- warning: multiEntryFiles is 0'] : []),
+            ''
+          ].join('\n'));
+          NODE
 
       - name: Install awscli
         run: |

@@ -534,10 +534,20 @@ async function main() {
     console.warn('[archive] 通常フローのため archive 取得をスキップしました。必要時のみ ENABLE_ARCHIVE_SYNC=true を指定してください');
   }
 
-  const archiveRowsSource = outputs.archive?.rows?.length
-    ? outputs.archive.rows
-    : await loadArchiveRowsFromDisk();
-  const archiveRows = normalizeRowsForArchive(archiveRowsSource);
+  let historySourceMode = 'core-fallback';
+  let archiveRows = [];
+
+  if (ENABLE_ARCHIVE_SYNC) {
+    historySourceMode = 'live-archive';
+    archiveRows = normalizeRowsForArchive(outputs.archive?.rows || []);
+  } else {
+    const diskArchiveRows = normalizeRowsForArchive(await loadArchiveRowsFromDisk());
+    if (diskArchiveRows.length > 0) {
+      historySourceMode = 'disk-archive';
+      archiveRows = diskArchiveRows;
+    }
+  }
+
   const historyBuilt = buildHistoryFromArchiveRows(archiveRows);
   ensureHistoryCoverageForCoreRows(outputs, historyBuilt);
   await clearHistoryDir(historyDir);
@@ -569,8 +579,10 @@ async function main() {
     history: {
       version: HISTORY_VERSION,
       generatedAt: new Date().toISOString(),
+      sourceMode: historySourceMode,
       sourceRows: archiveRows.length,
       files: historyBuilt.historyFiles.length,
+      multiEntryFiles: historyBuilt.historyFiles.filter((file) => Number(file?.payload?.total || 0) > 1).length,
       skipped: false,
     },
   };

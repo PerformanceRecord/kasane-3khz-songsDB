@@ -6,8 +6,9 @@
 
 ## Final Goal
 - 履歴表示は **1曲1JSON（`historyRef`）** を唯一の経路とする。
-- 通常フローでは **GAS `archive` API を呼ばない**。
-- 一覧は `songs/gags/meta`、履歴は `history/<id>.json` の組み合わせで完結させる。
+- **本番ランタイム**は GAS `archive` API 非依存にする。
+- **build/sync 時のみ** GAS `archive` API を live 取得し、同一楽曲の複数履歴を生成する。
+- 一覧は `songs/gags/meta`、履歴は `history/<id>.json` を **R2のみ** で配信し、GitHubはコード/文書中心にする。
 
 ## Non-Goals
 - 新機能追加や UI 改修。
@@ -20,10 +21,9 @@
 
 ## Current Findings
 - `index.html` は `historyRef` 単一 fetch で履歴描画している。
-- `site.webmanifest` は project page 対応の相対パス化済み。
-- `sync-r2.yml` は通常運用から archive アップロードを外し、`songs/gags/meta/history` 配信に統一済み。
-- `scripts/sync-gas.mjs` は archive 不在でも history JSON を生成し、全 row の `historyRef` を維持する構成に更新済み。
-- `README.md` は history JSON 構造・`GAS_URL` 必須・archive の位置づけを実装に同期済み。
+- 現在の「1件履歴」は `ensureHistoryCoverageForCoreRows()` の fallback 由来で、表示バグではなく供給データ不足が原因。
+- `buildHistoryFromArchiveRows()` は `rowId` 単位で複数履歴を構築できる。
+- 今回の変更で、GitHub保存前提ではなく「build時 live archive 取得 → history生成 → R2 upload」へ切り替える。
 
 ## Decision Log
 - 2026-04-14: `PROGRESS.md` を進捗管理ファイルとして導入。
@@ -42,6 +42,7 @@
 - 2026-04-15: `sync-r2.yml` 実行記録（Run: 24443606455）を確認。`Upload songs/gags/meta to R2` / `Upload history files to R2` は成功、`GITHUB_STEP_SUMMARY` の件数は preflight=1355 / post-check=1355。URL: https://github.com/PerformanceRecord/kasane-3khz-songsDB/actions/runs/24443606455
 - 2026-04-16: archive 依存撤去を実施。`sync-r2.yml` から通常 archive アップロードを削除、`scripts/sync-gas.mjs` は archive 不在でも history 生成を継続、`README.md` を実装へ同期。
 - 2026-04-16: R2公開URLの直接検証を実施（PowerShell実測記録）。`songs.json` は HTTP 200 / `rows=493` / `historyRef` 保持 493/493、`history/428fa06c1437.json` は HTTP 200。検証URL: `https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/`
+- 2026-04-16: history の複数件表示を達成するため、archive は build 時のみ live 取得し、生成物は R2 にのみ配置する。GitHub は履歴データ保存先にしない。
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）
@@ -66,20 +67,19 @@
 - [x] README の実装同期（history JSON構造・GAS_URL必須）
 
 ## Risks/Blockers
-- 旧 archive 前提の運用手順が局所的に残ると誤運用のリスク。
-- history JSON 生成漏れがあると個別曲の履歴表示が欠落する。
-- `index.html` の直接書換えを前提にした CI ステップは壊れやすく、同期ジョブ停止のリスク。
+- GAS archive API 障害時は history 生成が停止するリスク（strict sync で fail）。
+- archive live fetch が silent fallback すると履歴品質が 1件構成に劣化するリスク。
+- GitHub 上の stale `public-data/archive.json` に依存すると設計方針が崩れるリスク。
+- archive のページング量増加で sync 時間が伸びるリスク。
 
 ## Verification Checklist
-- [x] 1) 一覧データ源が `songs/gags/meta` に固定されている
-- [x] 2) 履歴表示が `historyRef` 単一 fetch で動作する
-- [x] 3) 1曲ごとの `public-data/history/<id>.json` が存在する
-- [x] 4) 通常フローで GAS `archive` API を呼ばない
-- [x] 5) 旧 archive exact/paging 経路が退役扱いで明記されている
-- [x] 6) README と実装の前提が一致している
-- [x] 7) Decision Log に確定判断が日付付きで残っている
-- [x] 8) 最終クローズ時の手順（Phase 6）が完了している
-- [x] 9) 初期表示で history 一括取得をしない（詳細は選択時の `historyRef` fetch のみ）
+- [ ] 本番ランタイムは archive API 非依存
+- [ ] build/sync 時のみ archive API を利用する
+- [ ] `history/*.json` は R2 に存在し、GitHub 運用対象外
+- [ ] 同一楽曲の複数履歴が少なくとも1件は生成される
+- [ ] `meta.json` で `history.sourceMode=live-archive` を確認できる
+- [ ] archive fetch 失敗時に silent fallback せず fail する
+- [ ] README / workflow / script の前提が一致している
 
 ## Phase 完了判定（archive依存撤去後）
 - Phase 3 完了条件:
@@ -112,9 +112,10 @@
 - [x] rollback 手順確認済み
 
 ## Next Step
-- archive依存撤去は完了済み。直近の未充足ゲートは「本番URLで一覧→詳細履歴の動作確認」のみ。
-- Pages本番URLに `?static_base=https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/` を付け、一覧表示→1件選択→履歴表示を実測確認する。
-- 確認後に削除実行ゲートを更新し、Phase C（GitHub側 `songs.json` 凍結期間開始）へ進む。
+- Phase X: live archive build 導入（`ENABLE_ARCHIVE_SYNC=true` + strict fail）
+- Phase Y: R2 上で複数履歴生成を確認（`meta.history.multiEntryFiles` を含む）
+- Phase Z: GitHub 側 archive/history データ依存を完全撤去
+- その後に songs.json 側の GitHub管理終了計画へ接続
 
 ## Recheck (main反映後)
 - 対象5ファイル: `PROGRESS.md` / `README.md` / `index.html` / `scripts/sync-gas.mjs` / `public-data/songs.json`
