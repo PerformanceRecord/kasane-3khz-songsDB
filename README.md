@@ -151,6 +151,7 @@ node scripts/sync-gas.mjs
 - `public-data` はキャッシュとして扱い、取得失敗時は前回成功分を残す。
 - `sync-r2.yml` では `songs/gags/meta/archive` に加えて `public-data/history/*.json` もR2へ同期する（Phase 1: 並行保存）。
 - 仕様変更時は `README` と `docs/new-repo-seed-spec.md` を合わせて更新する。
+- 削除実行ゲート5項目のうち1項目でも未達がある場合は、削除フェーズ（Phase D）へ進まない。
 
 ## 10. 本番URL固定時の移行メモ（`https://performancerecord.github.io/kasane-3khz-songsDB/`）
 
