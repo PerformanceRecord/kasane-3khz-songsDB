@@ -152,6 +152,23 @@ node scripts/sync-gas.mjs
 - 仕様変更時は `README` と `docs/new-repo-seed-spec.md` を合わせて更新する。
 - 削除実行ゲート5項目のうち1項目でも未達がある場合は、削除フェーズ（Phase D）へ進まない。
 
+### 9-1. 本番導線の確認手順（R2優先運用）
+- 確認URL: `https://performancerecord.github.io/kasane-3khz-songsDB/?static_base=https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/`
+- 手順: ① 一覧が表示される ② 任意の1件を選択する ③ 履歴が表示されることを確認する。
+- 成功条件: 一覧表示と履歴表示でエラー文言が出ないこと。
+- 注意: 本番URLでの「一覧→1件選択→履歴表示」は未実測の間は、`PROGRESS.md` の削除実行ゲートを完了扱いにしない。
+
+### 9-2. 最小監視（404/5xx）
+- 日次で次のURLを直叩きし、HTTPステータスを記録する: `songs.json`, `gags.json`, `meta.json`, `history/428fa06c1437.json`。
+- 週1回、GitHub Actions `sync-r2.yml` の最新実行結果を確認し、失敗時は同日中に再実行または原因切り分けを行う。
+- 404/5xx が1件でもあれば障害扱いとして、9-3 の復旧手順に進む。
+
+### 9-3. 復旧担当と最短復旧手順
+- 復旧判断者（一次責任）: リポジトリ管理者（`main` へ直接反映できる担当者）。
+- 障害時の確認順: ① R2直叩きHTTPコード ② GitHub Pages本番表示 ③ `sync-r2.yml` の最新ログ。
+- R2障害時の一時退避: 本番URLで `?static_base=<GitHub Pages の public-data URL>` を指定して表示継続する。
+- GitHub側へ一時復元する最短手順: 直近バックアップの `public-data/songs.json` を `main` に戻して公開し、障害解消後にR2優先運用へ戻す。
+
 ## 10. 現行実装メモ（2026-04-16 時点）
 
 ### 10-1. 参照URLとアセット解決

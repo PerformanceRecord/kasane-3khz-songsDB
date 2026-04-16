@@ -41,6 +41,7 @@
 - 2026-04-15: `sync-r2.yml` 実行記録（Run: 24442339098）を確認。`Upload songs/gags/meta to R2` / `Upload history files to R2` は成功、`GITHUB_STEP_SUMMARY` の件数は preflight=1355 / post-check=1355。URL: https://github.com/PerformanceRecord/kasane-3khz-songsDB/actions/runs/24442339098/job/71410114838
 - 2026-04-15: `sync-r2.yml` 実行記録（Run: 24443606455）を確認。`Upload songs/gags/meta to R2` / `Upload history files to R2` は成功、`GITHUB_STEP_SUMMARY` の件数は preflight=1355 / post-check=1355。URL: https://github.com/PerformanceRecord/kasane-3khz-songsDB/actions/runs/24443606455
 - 2026-04-16: archive 依存撤去を実施。`sync-r2.yml` から通常 archive アップロードを削除、`scripts/sync-gas.mjs` は archive 不在でも history 生成を継続、`README.md` を実装へ同期。
+- 2026-04-16: R2公開URLの直接検証を実施（PowerShell実測記録）。`songs.json` は HTTP 200 / `rows=493` / `historyRef` 保持 493/493、`history/428fa06c1437.json` は HTTP 200。検証URL: `https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/`
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）
@@ -160,10 +161,10 @@
 
 ### 削除実行ゲート（満たすまで削除禁止）
 - [x] 連続3回のR2同期成功ログがある。
-- [ ] `songs.json` をR2 URLで直接取得して内容検証済み。
+- [x] `songs.json` をR2 URLで直接取得して内容検証済み。
 - [ ] 本番URLで一覧→詳細履歴の動作確認済み。
-- [ ] 404/5xx監視手段がある（簡易でも可）。
-- [ ] 復旧担当と手順が文書化済み。
+- [x] 404/5xx監視手段がある（簡易でも可）。
+- [x] 復旧担当と手順が文書化済み。
 
 ### 次アクション（この後の実行順）
 1. Phase A の証跡を `Decision Log` に3件そろえる。
