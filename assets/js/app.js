@@ -26,6 +26,9 @@
       const host = String(window.location.hostname || '').toLowerCase();
       return !host || host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0';
     }
+function isCoarsePointer(){
+      return window.matchMedia('(pointer: coarse)').matches;
+    }
     function resolveStaticDataBase(){
       const fallback = isLocalDevHost() ? DEFAULT_STATIC_BASE : PROD_R2_STATIC_BASE;
       return resolveUrlFromQueryOrStorage({
@@ -151,7 +154,7 @@
     }
 
     function updateKeyboardOffset(){
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const isMobile = isCoarsePointer();
       if (!isMobile || !window.visualViewport) {
         document.documentElement.style.setProperty('--keyboard-offset', '0px');
         return;
@@ -179,14 +182,14 @@
     }
 
     function syncInitialMobileOffset(){
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const isMobile = isCoarsePointer();
       const onListPage = $('page-list').classList.contains('active');
       if (!isMobile || !onListPage) return;
       const filterHeight = Math.ceil($('filter-panel').getBoundingClientRect().height);
       document.documentElement.style.setProperty('--filter-panel-height', `${Math.max(filterHeight, 0)}px`);
     }
     function syncMobileCardWidths(){
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const isMobile = isCoarsePointer();
       const onListPage = $('page-list').classList.contains('active');
       if (!isMobile || !onListPage) return;
       const filter = $('filter-panel');
@@ -198,7 +201,7 @@
       document.documentElement.style.setProperty('--mobile-unified-width', `${unifiedWidth}px`);
     }
     function stabilizeMobileActionRows(){
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const isMobile = isCoarsePointer();
       if (!isMobile) return;
       const list = $('mblist');
       if (!list || list.style.display === 'none') return;
@@ -992,34 +995,7 @@
       }
       hint.textContent = '';
 
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
-      if (!isMobile) {
-        state.activeSnapIndex = -1;
-        const table=document.createElement('table');
-        const thead=document.createElement('thead');
-        const trh=document.createElement('tr');
-        ['アーティスト名','曲名','操作'].forEach(h=>{ const th=document.createElement('th'); th.textContent=h; trh.appendChild(th); });
-        thead.appendChild(trh); table.appendChild(thead);
-
-        const tbody=document.createElement('tbody');
-        rows.forEach(({artist,title,kind,dText,dUrl,rowId,historyRef})=>{
-          const tr=document.createElement('tr');
-
-          let td=document.createElement('td'); td.textContent=artist||''; tr.appendChild(td);
-          td=document.createElement('td'); td.textContent=title||''; tr.appendChild(td);
-
-          const tdOps=document.createElement('td');
-          const ops=document.createElement('div'); ops.className='ops';
-
-          appendItemActions(ops, {artist, title, kind, dText, dUrl, rowId, historyRef});
-
-          tdOps.appendChild(ops); tr.appendChild(tdOps); tbody.appendChild(tr);
-        });
-        table.appendChild(tbody); tableWrap.appendChild(table);
-        tableWrap.style.display = 'block'; listWrap.style.display = 'none';
-        scheduleMobileLayoutSync();
-      } else {
-        rows.forEach(({artist,title,kind,dText,dUrl,rowId,historyRef,date8})=>{
+      rows.forEach(({artist,title,kind,dText,dUrl,rowId,historyRef,date8})=>{
           const item=document.createElement('div'); item.className='item';
           const kindClass = getMobileItemKindClass(kind);
           if (kindClass) item.classList.add(kindClass);
@@ -1070,7 +1046,6 @@
         scheduleFilterMetrics();
         state.activeSnapIndex = 0;
         scheduleMobileLayoutSync();
-      }
 
       updateScrollGradient();
     }
