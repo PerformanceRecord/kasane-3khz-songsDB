@@ -35,6 +35,9 @@
 - 2026-04-15: `sync-r2.yml` に運用証跡強化を追加。history 事前件数チェック・R2アップロード後件数チェックを導入し、`GITHUB_STEP_SUMMARY` へ自動記録する運用に更新。
 - 2026-04-15: `renderHistory()` の取得方針を再確認。通常フローは `historyRef` 単一 fetch を維持し、`archive` 二重取得経路を持ち込まない方針を明文化。
 - 2026-04-15: `public-data/songs.json` のGitHub管理を終了する完遂ロードマップ（判定条件付き）を定義。
+- 2026-04-15: `sync-r2.yml` 実行記録（Run: 24440765131）を確認。`Upload songs/gags/meta to R2` / `Upload history files to R2` は成功、`GITHUB_STEP_SUMMARY` の件数は preflight=1355 / post-check=1355。URL: https://github.com/PerformanceRecord/kasane-3khz-songsDB/actions/runs/24440765131/job/71405022542
+- 2026-04-15: `sync-r2.yml` 実行記録（Run: 24442339098）を確認。`Upload songs/gags/meta to R2` / `Upload history files to R2` は成功、`GITHUB_STEP_SUMMARY` の件数は preflight=1355 / post-check=1355。URL: https://github.com/PerformanceRecord/kasane-3khz-songsDB/actions/runs/24442339098/job/71410114838
+- 2026-04-15: `sync-r2.yml` 実行記録（Run: 24443606455）を確認。`Upload songs/gags/meta to R2` / `Upload history files to R2` は成功、`GITHUB_STEP_SUMMARY` の件数は preflight=1355 / post-check=1355。URL: https://github.com/PerformanceRecord/kasane-3khz-songsDB/actions/runs/24443606455
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）
@@ -175,7 +178,7 @@
   - 直近バックアップで即日復旧。
 
 ### 削除実行ゲート（満たすまで削除禁止）
-- [ ] 連続3回のR2同期成功ログがある。
+- [x] 連続3回のR2同期成功ログがある。
 - [ ] `songs.json` をR2 URLで直接取得して内容検証済み。
 - [ ] 本番URLで一覧→詳細履歴の動作確認済み。
 - [ ] 404/5xx監視手段がある（簡易でも可）。
