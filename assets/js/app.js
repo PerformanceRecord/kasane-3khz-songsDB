@@ -837,41 +837,32 @@ function isCoarsePointer(){
       }
     }
 
-    function createKindButton(kind){
-      const btn = document.createElement('button');
-      btn.className = 'btn';
-      btn.textContent = (kind || '').trim() || '区分未設定';
-      if ((kind || '').trim() === '') {
-        btn.disabled = true;
-        btn.title = '区分未設定';
-        return btn;
-      }
-      btn.title = `区分: ${kind}`;
-      btn.addEventListener('click', ()=>{
-        ensureFilterPanelExpanded();
-        state.kindFilters = [kind];
-        render();
-      });
-      return btn;
+    function createTagInfo(kind){
+      const tag = document.createElement('span');
+      tag.className = 'tag-info';
+      const normalized = (kind || '').trim();
+      tag.textContent = normalized || '区分未設定';
+      tag.title = normalized ? `タグ情報: ${normalized}` : 'タグ情報: 区分未設定';
+      return tag;
     }
 
     function appendItemActions(target, {artist, title, kind, dText, dUrl, rowId, historyRef}){
-      target.appendChild(createKindButton(kind));
-
-      const url = dUrl || urlFromText(dText);
-      if (url){
-        const a=document.createElement('a'); a.href=url; a.target='_blank'; a.rel='noopener'; a.className='link-icon'; a.textContent='▶'; a.title='リンクを開く';
-        target.appendChild(a);
-      }
+      const copyBtn=document.createElement('button'); copyBtn.className='btn'; copyBtn.textContent='コピー';
+      copyBtn.addEventListener('click', ()=>copyPair(title,artist));
+      target.appendChild(copyBtn);
 
       const hbtn=document.createElement('button'); hbtn.className='btn'; hbtn.textContent='履歴';
       hbtn.disabled = !historyRef;
       hbtn.addEventListener('click', ()=>openHistory({ artist, title, rowId, historyRef }));
       target.appendChild(hbtn);
 
-      const btn=document.createElement('button'); btn.className='btn'; btn.textContent='コピー';
-      btn.addEventListener('click', ()=>copyPair(title,artist));
-      target.appendChild(btn);
+      target.appendChild(createTagInfo(kind));
+
+      const url = dUrl || urlFromText(dText);
+      if (url){
+        const a=document.createElement('a'); a.href=url; a.target='_blank'; a.rel='noopener'; a.className='link-icon'; a.textContent='▶'; a.title='リンクを開く';
+        target.appendChild(a);
+      }
     }
     function getMobileItemKindClass(kind){
       const normalized = (kind || '').toString().trim();
@@ -1011,14 +1002,14 @@ function isCoarsePointer(){
           const l2=document.createElement('div'); l2.className='l2';
           const actions = document.createElement('div');
           actions.className = 'mobile-actions';
-          actions.appendChild(createKindButton(kind));
+          const copyBtn=document.createElement('button'); copyBtn.className='btn'; copyBtn.textContent='コピー';
+          copyBtn.addEventListener('click', ()=>copyPair(title,artist));
+          actions.appendChild(copyBtn);
           const hbtn=document.createElement('button'); hbtn.className='btn'; hbtn.textContent='履歴';
           hbtn.disabled = !historyRef;
           hbtn.addEventListener('click', ()=>openHistory({ artist, title, rowId, historyRef }));
           actions.appendChild(hbtn);
-          const btn=document.createElement('button'); btn.className='btn'; btn.textContent='コピー';
-          btn.addEventListener('click', ()=>copyPair(title,artist));
-          actions.appendChild(btn);
+          actions.appendChild(createTagInfo(kind));
           const dateEl = document.createElement('div');
           dateEl.className = 'mobile-date';
           dateEl.textContent = formatDate8(date8);
