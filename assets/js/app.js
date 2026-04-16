@@ -870,6 +870,12 @@
       btn.addEventListener('click', ()=>copyPair(title,artist));
       target.appendChild(btn);
     }
+    function getMobileItemKindClass(kind){
+      const normalized = (kind || '').toString().trim();
+      if (normalized === '歌ってみた') return 'item-kind-utattemita';
+      if (normalized === 'ショート') return 'item-kind-short';
+      return '';
+    }
     function formatDate8(date8){
       const n = Number(date8) || 0;
       if (!n) return '----/--/--';
@@ -1015,6 +1021,8 @@
       } else {
         rows.forEach(({artist,title,kind,dText,dUrl,rowId,historyRef,date8})=>{
           const item=document.createElement('div'); item.className='item';
+          const kindClass = getMobileItemKindClass(kind);
+          if (kindClass) item.classList.add(kindClass);
           const l1=document.createElement('div'); l1.className='l1';
           const meta=document.createElement('div'); meta.className='song-meta';
           const a1=document.createElement('span'); a1.className='artist'; a1.textContent=artist||'';
