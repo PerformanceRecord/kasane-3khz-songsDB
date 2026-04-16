@@ -209,6 +209,12 @@
         margin-bottom:7px;
         transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
       }
+      .item.item-kind-utattemita{
+        background:#effcf0;
+      }
+      .item.item-kind-short{
+        background:#eef7ff;
+      }
       .item.item-blank{
         min-height:90px;
         background:linear-gradient(160deg,rgba(255,255,255,.5) 0%,rgba(236,248,255,.35) 100%);
