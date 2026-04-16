@@ -6,8 +6,8 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 
 - 本番既定の参照先は R2 `public-data/` です。
 
-- **通常フロー**: GAS `archive` API は使いません。
-- **同期バッチ**: 通常は `songs/gags/meta/history` を生成・配信します。archive は手動再構築などのメンテ用途でのみ使います。
+- **本番ランタイム**: `songs/gags/meta/history` を R2 から読みます。
+- **build/sync 時のみ**: GAS `archive` API を live 取得して複数履歴を生成します。
 
 ## 1. 総点検結果（不要箇所・統合可能箇所）
 
@@ -86,7 +86,7 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 
 ## 5. データフロー（`songs/gags/meta + history/<id>.json`）
 
-通常フローでは GAS `archive` API を呼びません。同期バッチで archive が必要なときのみ `ENABLE_ARCHIVE_SYNC=true` を使います（通常運用では不要）。
+本番ランタイムは GAS `archive` API を呼びません。`sync-r2` の build/sync 時のみ `ENABLE_ARCHIVE_SYNC=true` で archive を live 取得し、複数履歴を生成します。
 
 1. 同期バッチが `songs` / `gags` を取得。
 2. 一覧行に `historyCount` / `lastSungAt` / `historyRef` を付与。
@@ -134,8 +134,8 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 ### 7-2. 同期制御
 - `SYNC_TIMEOUT_MS`（既定 `8000`）
 - `SYNC_MAX_RETRY`（既定 `3`）
-- `ENABLE_ARCHIVE_SYNC`（既定 `false`）: `true` のときだけ archive sheet を取得
-- `ARCHIVE_STRICT_SYNC`（既定 `false`）: archive 取得失敗を同期エラーとして扱う
+- `ENABLE_ARCHIVE_SYNC`（既定 `false`）: `true` のとき archive sheet を live 取得して履歴生成元にする
+- `ARCHIVE_STRICT_SYNC`（既定 `false`）: archive live 取得失敗を同期エラーとして扱う（`sync-r2` では `true` を使用）
 - `ARCHIVE_LIMITS` / `ARCHIVE_PAGE_LIMIT` / `ARCHIVE_MAX_PAGES` / `ARCHIVE_TOTAL_CAP`: archive 同期時のみ有効
 
 ## 8. 実行方法
@@ -150,9 +150,10 @@ node scripts/sync-gas.mjs
 
 - 通常運用は `songs/gags/meta + history/<id>.json` を静的配信し、一覧→履歴で読む。
 - `public-data` はキャッシュとして扱い、取得失敗時は前回成功分を残す。
-- `sync-r2.yml` は `songs/gags/meta` と `public-data/history/*.json` をR2へ同期する。
+- `sync-r2.yml` は `songs/gags/meta` と `public-data/history/*.json` だけをR2へ同期する。
 - `public-data/history/` はローカル生成・R2配信用で、GitHub では追跡しない（`.gitignore` 管理）。
-- `archive.json` は通常のR2アップロード対象に含めない（必要時のみ手動運用）。
+- `public-data/archive.json` は公開配信対象にしない。build入力専用で、GitHubの履歴保存先として運用しない。
+- `sync-r2` は archive live 取得に失敗したら fail する（silent fallback しない）。
 - 仕様変更時は `README` と `docs/new-repo-seed-spec.md` を合わせて更新する。
 - 削除実行ゲート5項目のうち1項目でも未達がある場合は、削除フェーズ（Phase D）へ進まない。
 
