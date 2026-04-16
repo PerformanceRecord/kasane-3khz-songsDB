@@ -4,6 +4,8 @@
 
 Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `history/<id>.json`）を一次データとして使う構成です。
 
+- 本番既定の参照先は R2 `public-data/` です。
+
 - **通常フロー**: GAS `archive` API は使いません。
 - **同期バッチ**: 通常は `songs/gags/meta/history` を生成・配信します。archive は手動再構築などのメンテ用途でのみ使います。
 
@@ -48,7 +50,8 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 - 読込優先順位:
   1. `?static_base=<URL>`
   2. `localStorage.staticDataBase`
-  3. 同一オリジン相対パス
+  3. 本番既定（R2 `public-data/`）
+  4. local/dev のみ同一オリジン相対パス
 - `songs` / `gags` は静的 JSON を利用し、選択時に `historyRef` から履歴 JSON を読む。
 - `meta.tabs` と `meta.counts` を使い、静的データ整合性を検証。不整合時はフォールバック。
 
@@ -98,7 +101,7 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
   - 絶対URL: `https://<bucket-domain>/history/song-123.json`
 - 解決ルール:
   - 絶対URLはそのまま取得する。
-  - 相対パスは `STATIC_DATA_BASE`（`?static_base` / `localStorage.staticDataBase` / 同一オリジン既定）を基準にURL解決する。
+  - 相対パスは `STATIC_DATA_BASE`（`?static_base` / `localStorage.staticDataBase` / 本番既定R2 / local-dev同一オリジン）を基準にURL解決する。
   - 運用では `static_base` を `.../public-data/` で終わるURLに統一する（パス不整合による404を防ぐ）。
 - 利用経路:
   - 一覧表示: `songs.json` / `gags.json` を読む
@@ -148,6 +151,7 @@ node scripts/sync-gas.mjs
 - 通常運用は `songs/gags/meta + history/<id>.json` を静的配信し、一覧→履歴で読む。
 - `public-data` はキャッシュとして扱い、取得失敗時は前回成功分を残す。
 - `sync-r2.yml` は `songs/gags/meta` と `public-data/history/*.json` をR2へ同期する。
+- `public-data/history/` はローカル生成・R2配信用で、GitHub では追跡しない（`.gitignore` 管理）。
 - `archive.json` は通常のR2アップロード対象に含めない（必要時のみ手動運用）。
 - 仕様変更時は `README` と `docs/new-repo-seed-spec.md` を合わせて更新する。
 - 削除実行ゲート5項目のうち1項目でも未達がある場合は、削除フェーズ（Phase D）へ進まない。
@@ -166,8 +170,8 @@ node scripts/sync-gas.mjs
 ### 9-3. 復旧担当と最短復旧手順
 - 復旧判断者（一次責任）: リポジトリ管理者（`main` へ直接反映できる担当者）。
 - 障害時の確認順: ① R2直叩きHTTPコード ② GitHub Pages本番表示 ③ `sync-r2.yml` の最新ログ。
-- R2障害時の一時退避: 本番URLで `?static_base=<GitHub Pages の public-data URL>` を指定して表示継続する。
-- GitHub側へ一時復元する最短手順: 直近バックアップの `public-data/songs.json` を `main` に戻して公開し、障害解消後にR2優先運用へ戻す。
+- R2障害時の一時退避: 本番URLで `?static_base=./public-data/` を付けて same-origin を一時利用する（必要なら `localStorage.staticDataBase` も同値に設定）。
+- GitHub側へ一時復元する最短手順: 直近バックアップの `public-data/songs.json` / `gags.json` / `meta.json` を `main` に戻して公開し、障害解消後にR2優先運用へ戻す。
 
 ## 10. 現行実装メモ（2026-04-16 時点）
 
