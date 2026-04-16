@@ -22,7 +22,9 @@
 ## Current Findings
 - `index.html` は `historyRef` 単一 fetch で履歴描画している。
 - 現在の「1件履歴」は `ensureHistoryCoverageForCoreRows()` の fallback 由来で、表示バグではなく供給データ不足が原因。
-- `buildHistoryFromArchiveRows()` は `rowId` 単位で複数履歴を構築できる。
+- `meta.history.multiEntryFiles=0` の主因は archive 取得失敗ではなく、`rowId`（`dUrl` 含む）で履歴を束ねていたこと。
+- 同一楽曲の履歴ページを作るには、行ID（`rowId`）と分離した `historyKey` が必要。
+- 今回の運用では `artist | title` を履歴グルーピングの必要最小限キーとする。
 - 今回の変更で、GitHub保存前提ではなく「build時 live archive 取得 → history生成 → R2 upload」へ切り替える。
 
 ## Decision Log
@@ -43,6 +45,7 @@
 - 2026-04-16: archive 依存撤去を実施。`sync-r2.yml` から通常 archive アップロードを削除、`scripts/sync-gas.mjs` は archive 不在でも history 生成を継続、`README.md` を実装へ同期。
 - 2026-04-16: R2公開URLの直接検証を実施（PowerShell実測記録）。`songs.json` は HTTP 200 / `rows=493` / `historyRef` 保持 493/493、`history/428fa06c1437.json` は HTTP 200。検証URL: `https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/`
 - 2026-04-16: history の複数件表示を達成するため、archive は build 時のみ live 取得し、生成物は R2 にのみ配置する。GitHub は履歴データ保存先にしない。
+- 2026-04-16: 履歴グルーピングを `rowId` から分離する方針を確定。`rowId` は行識別として維持し、`buildHistoryKey(artist,title)` で同一楽曲履歴を束ねる。`kind` / `dUrl` は履歴ページ束ね条件に使わない。目的は「同一楽曲の履歴ページを1つにまとめる」こと。
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）
@@ -112,7 +115,8 @@
 - [x] rollback 手順確認済み
 
 ## Next Step
-- Phase X: live archive build 導入（`ENABLE_ARCHIVE_SYNC=true` + strict fail）
+- Phase X: `historyKey` 導入（`buildHistoryKey(artist,title)`）
+- Phase X2: `rowId` 依存の履歴グルーピング解消（history参照/coverage を `historyKey` ベースへ統一）
 - Phase Y: R2 上で複数履歴生成を確認（`meta.history.multiEntryFiles` を含む）
 - Phase Z: GitHub 側 archive/history データ依存を完全撤去
 - その後に songs.json 側の GitHub管理終了計画へ接続

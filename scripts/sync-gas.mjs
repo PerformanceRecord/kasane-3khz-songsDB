@@ -93,6 +93,10 @@ function buildRowId({ artist = '', title = '', kind = '', dUrl = '' } = {}) {
   return [artist, title, kind, dUrl].map((v) => String(v ?? '').trim().toLowerCase()).join('|');
 }
 
+function buildHistoryKey({ artist = '', title = '' } = {}) {
+  return [artist, title].map((v) => String(v ?? '').trim().toLowerCase()).join('|');
+}
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -272,8 +276,8 @@ function archiveRowKey(row) {
   return `${artist}${title}${kind}${dUrl}`;
 }
 
-function makeHistoryId(rowId) {
-  return createHash('sha1').update(String(rowId || '')).digest('hex').slice(0, 12);
+function makeHistoryId(historyKey) {
+  return createHash('sha1').update(String(historyKey || '')).digest('hex').slice(0, 12);
 }
 
 function normalizeArchiveHistoryEntry(row) {
@@ -293,6 +297,10 @@ function normalizeArchiveHistoryEntry(row) {
       kind: row.kind,
       dUrl,
     }),
+    historyKey: String(row.historyKey ?? '').trim() || buildHistoryKey({
+      artist: row.artist,
+      title: row.title,
+    }),
   };
 }
 
@@ -300,33 +308,34 @@ function buildHistoryFromArchiveRows(archiveRows) {
   const groups = new Map();
   for (const rawRow of archiveRows || []) {
     const row = normalizeArchiveHistoryEntry(rawRow);
-    if (!row || !row.rowId) continue;
-    if (!groups.has(row.rowId)) groups.set(row.rowId, []);
-    groups.get(row.rowId).push(row);
+    if (!row || !row.historyKey) continue;
+    if (!groups.has(row.historyKey)) groups.set(row.historyKey, []);
+    groups.get(row.historyKey).push(row);
   }
 
-  const historyByRowId = new Map();
+  const historyByKey = new Map();
   const historyFiles = [];
 
-  for (const [rowId, rows] of groups.entries()) {
+  for (const [historyKey, rows] of groups.entries()) {
     const sortedRows = rows.sort((a, b) => {
       const dateDiff = (Number(b.date8) || 0) - (Number(a.date8) || 0);
       if (dateDiff !== 0) return dateDiff;
       return String(b.dText || '').localeCompare(String(a.dText || ''));
     });
-    const id = makeHistoryId(rowId);
+    const id = makeHistoryId(historyKey);
     const lastSungAt = Number(sortedRows[0]?.date8) || 0;
     const historyPayload = {
       ok: true,
       version: HISTORY_VERSION,
-      rowId,
+      historyKey,
+      rowId: sortedRows[0]?.rowId || '',
       generatedAt: new Date().toISOString(),
       total: sortedRows.length,
       lastSungAt,
       rows: sortedRows,
     };
     historyFiles.push({ id, payload: historyPayload });
-    historyByRowId.set(rowId, {
+    historyByKey.set(historyKey, {
       id,
       count: sortedRows.length,
       lastSungAt,
@@ -334,7 +343,7 @@ function buildHistoryFromArchiveRows(archiveRows) {
   }
 
   return {
-    historyByRowId,
+    historyByKey,
     historyFiles,
   };
 }
@@ -361,13 +370,16 @@ async function loadArchiveRowsFromDisk() {
 function normalizeRowsForArchive(rows) {
   return (rows || [])
     .map((row) => normalizeArchiveHistoryEntry(row))
-    .filter((row) => row && row.rowId);
+    .filter((row) => row && row.historyKey);
 }
 
-function appendHistoryInfoToRows(rows, historyByRowId) {
+function appendHistoryInfoToRows(rows, historyByKey) {
   return (rows || []).map((row) => {
-    const rowId = String(row?.rowId ?? '').trim();
-    const info = historyByRowId.get(rowId);
+    const historyKey = buildHistoryKey({
+      artist: row?.artist ?? '',
+      title: row?.title ?? '',
+    });
+    const info = historyByKey.get(historyKey);
     if (!info) {
       return {
         ...row,
@@ -391,13 +403,22 @@ function ensureHistoryCoverageForCoreRows(coreOutputs, historyBuilt) {
   for (const tab of CORE_TABS) {
     const rows = coreOutputs?.[tab]?.rows || [];
     for (const row of rows) {
-      const rowId = String(row?.rowId ?? '').trim();
-      if (!rowId) continue;
-      if (historyBuilt.historyByRowId.has(rowId)) continue;
+      const historyKey = buildHistoryKey({
+        artist: row?.artist ?? '',
+        title: row?.title ?? '',
+      });
+      if (!historyKey) continue;
+      if (historyBuilt.historyByKey.has(historyKey)) continue;
 
-      const id = makeHistoryId(rowId);
+      const id = makeHistoryId(historyKey);
       const dText = String(row?.dText ?? '');
       const date8 = Number(row?.date8) || extractDate8(dText);
+      const rowId = String(row?.rowId ?? '').trim() || buildRowId({
+        artist: row?.artist ?? '',
+        title: row?.title ?? '',
+        kind: row?.kind ?? '',
+        dUrl: row?.dUrl ?? '',
+      });
       const normalized = normalizeArchiveHistoryEntry({
         artist: row?.artist ?? '',
         title: row?.title ?? '',
@@ -406,10 +427,11 @@ function ensureHistoryCoverageForCoreRows(coreOutputs, historyBuilt) {
         dUrl: row?.dUrl ?? '',
         date8,
         rowId,
+        historyKey,
       });
       if (!normalized) continue;
 
-      historyBuilt.historyByRowId.set(rowId, {
+      historyBuilt.historyByKey.set(historyKey, {
         id,
         count: 1,
         lastSungAt: date8,
@@ -421,6 +443,7 @@ function ensureHistoryCoverageForCoreRows(coreOutputs, historyBuilt) {
           payload: {
             ok: true,
             version: HISTORY_VERSION,
+            historyKey,
             rowId,
             generatedAt: new Date().toISOString(),
             total: 1,
@@ -560,7 +583,7 @@ async function main() {
   }
 
   for (const tab of CORE_TABS) {
-    const rowsWithHistory = appendHistoryInfoToRows(outputs[tab].rows, historyBuilt.historyByRowId);
+    const rowsWithHistory = appendHistoryInfoToRows(outputs[tab].rows, historyBuilt.historyByKey);
     outputs[tab].rows = rowsWithHistory;
     outputs[tab].total = rowsWithHistory.length;
     outputs[tab].matched = rowsWithHistory.length;
