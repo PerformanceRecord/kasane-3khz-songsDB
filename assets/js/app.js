@@ -57,7 +57,9 @@
       isFilterCompact: false,
       isFilterExpandedManually: false,
       filterAutoCollapseProgress: 0,
-      filterAutoCollapseFrame: null
+      filterAutoCollapseFrame: null,
+      mobileLayoutFrame: null,
+      mobileResizeObserver: null
     };
 
     const $ = id => document.getElementById(id);
@@ -145,6 +147,7 @@
       const dockHeight = Math.ceil(dock.getBoundingClientRect().height) + 22;
       document.documentElement.style.setProperty('--dock-height', `${dockHeight}px`);
       syncInitialMobileOffset();
+      scheduleMobileLayoutSync();
     }
 
     function updateKeyboardOffset(){
@@ -181,6 +184,39 @@
       if (!isMobile || !onListPage) return;
       const filterHeight = Math.ceil($('filter-panel').getBoundingClientRect().height);
       document.documentElement.style.setProperty('--filter-panel-height', `${Math.max(filterHeight, 0)}px`);
+    }
+    function syncMobileCardWidths(){
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const onListPage = $('page-list').classList.contains('active');
+      if (!isMobile || !onListPage) return;
+      const filter = $('filter-panel');
+      if (!filter) return;
+      const filterRect = filter.getBoundingClientRect();
+      const sideGap = Math.max(4, Math.round(filterRect.left));
+      const unifiedWidth = Math.max(0, Math.round(window.innerWidth - sideGap * 2));
+      document.documentElement.style.setProperty('--mobile-card-side-gap', `${sideGap}px`);
+      document.documentElement.style.setProperty('--mobile-unified-width', `${unifiedWidth}px`);
+    }
+    function stabilizeMobileActionRows(){
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (!isMobile) return;
+      const list = $('mblist');
+      if (!list || list.style.display === 'none') return;
+      const actions = [...list.querySelectorAll('.mobile-actions')];
+      const dates = [...list.querySelectorAll('.mobile-date')];
+      if (actions.length === 0) return;
+      const maxActionHeight = Math.max(...actions.map(el => Math.ceil(el.getBoundingClientRect().height)));
+      const maxDateWidth = dates.length ? Math.max(...dates.map(el => Math.ceil(el.getBoundingClientRect().width))) : 0;
+      actions.forEach(el => el.style.setProperty('--mobile-actions-height', `${maxActionHeight}px`));
+      dates.forEach(el => el.style.setProperty('--mobile-date-width', `${maxDateWidth}px`));
+    }
+    function scheduleMobileLayoutSync(){
+      if (state.mobileLayoutFrame) cancelAnimationFrame(state.mobileLayoutFrame);
+      state.mobileLayoutFrame = requestAnimationFrame(()=>{
+        state.mobileLayoutFrame = null;
+        syncMobileCardWidths();
+        stabilizeMobileActionRows();
+      });
     }
 
     function updateScrollGradient(){
@@ -975,6 +1011,7 @@
         });
         table.appendChild(tbody); tableWrap.appendChild(table);
         tableWrap.style.display = 'block'; listWrap.style.display = 'none';
+        scheduleMobileLayoutSync();
       } else {
         rows.forEach(({artist,title,kind,dText,dUrl,rowId,historyRef,date8})=>{
           const item=document.createElement('div'); item.className='item';
@@ -1024,6 +1061,7 @@
         $('mblist').style.display = 'block'; $('table').style.display = 'none';
         scheduleFilterMetrics();
         state.activeSnapIndex = 0;
+        scheduleMobileLayoutSync();
       }
 
       updateScrollGradient();
@@ -1055,6 +1093,7 @@
       const onViewportChanged = () => {
         updateKeyboardOffset();
         updateViewportMetrics();
+        scheduleMobileLayoutSync();
       };
       window.visualViewport.addEventListener('resize', onViewportChanged);
       window.visualViewport.addEventListener('scroll', onViewportChanged);
@@ -1123,6 +1162,11 @@
       updateCompactFilterMode();
       updateScrollGradient();
       updateAutoFilterCollapse();
+      scheduleMobileLayoutSync();
+      if (window.ResizeObserver) {
+        state.mobileResizeObserver = new ResizeObserver(()=>scheduleMobileLayoutSync());
+        state.mobileResizeObserver.observe($('mblist'));
+      }
 
     })();
   
