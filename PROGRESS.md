@@ -45,9 +45,9 @@
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）
 2. Phase 2: 最終方針（1曲1JSON / archive非依存）の明文化（完了）
-3. Phase 3: 実装の整合化（`historyRef` 経路に統一・archive通常依存の撤去）
-4. Phase 4: ドキュメント整合（README/運用手順の更新）
-5. Phase 5: 検証（受け入れ条件チェック）
+3. Phase 3: 実装の整合化（`historyRef` 経路に統一・archive通常依存の撤去）（完了）
+4. Phase 4: ドキュメント整合（README/運用手順の更新）（完了）
+5. Phase 5: 検証（受け入れ条件チェック）（完了）
 6. Phase 6: クローズ準備（残タスク0化・最終記録）（完了）
 
 ## Task Checklist
@@ -80,45 +80,20 @@
 - [x] 8) 最終クローズ時の手順（Phase 6）が完了している
 - [x] 9) 初期表示で history 一括取得をしない（詳細は選択時の `historyRef` fetch のみ）
 
+## Phase 完了判定（archive依存撤去後）
+- Phase 3 完了条件:
+  - `index.html` が `historyRef` 単一 fetch を維持している。
+  - `scripts/sync-gas.mjs` が archive 取得なしでも `history/<id>.json` を生成できる。
+- Phase 4 完了条件:
+  - `README.md` / `docs/new-repo-seed-spec.md` / 運用メモが通常フロー（`songs/gags/meta/history`）で一致。
+  - archive は「通常運用では無効、必要時のみ `ENABLE_ARCHIVE_SYNC=true`」で統一。
+- Phase 5 完了条件:
+  - Verification Checklist 1〜9 を充足。
+  - `site.webmanifest` の相対パス仕様と `index.html` の manifest 参照に矛盾がない。
+
 ## Next Step
-- 最優先（完了）: 通常運用から archive 依存を外す（workflow / sync script / README を同時に整合化）。
-- `sync-r2.yml` 実行時は `GITHUB_STEP_SUMMARY` の preflight/post-check を確認し、history 件数が 0 でないことを運用記録に残す。
-
-## 直近実行アクション（2026-04-15 時点）
-1. GitHub Actions の `sync-r2.yml` を手動実行し、以下3点を確認する。  
-   - `Upload songs/gags/meta to R2` が成功  
-   - `Upload history files to R2` が成功  
-   - `GITHUB_STEP_SUMMARY` に preflight/post-check の件数が記録されている
-2. 上記の実行結果（実施日・実行URL・件数）を `Decision Log` に1行追記する。
-3. これを最低3回連続で満たしたら、Phase 2 の完了判定を実施する。
-
-### Phase 2 完了判定（合格条件）
-- 連続3回の `sync-r2.yml` 実行で、history の preflight/post-check 件数がすべて一致。
-- `README.md` と `index.html` の `historyRef` 解決ルール（相対/絶対URL許容）が一致。
-- Decision Log に「Phase 2 完了」の日付付き記録がある。
-
-## 中間評価（2026-04-15）
-
-### 1) どこまでできているか（事実チェック）
-- `sync-r2.yml` に `public-data/history/` の再帰同期（`aws s3 sync ... --delete`）が実装済み。
-- `songs.json` / `gags.json` の全行で `historyRef` が存在し、参照先ファイルも実在（欠損0）。
-- `index.html` は履歴表示時のみ `historyRef` を fetch する遅延読込方式で、巨大 archive を一括取得しない。
-
-### 2) ゴール到達性の途中評価
-- ゴール1（履歴情報のR2取り込み）: **進捗は良好（Phase 1実装済み）**。ただし「実運用で毎回成功している証跡」は未記録。
-- ゴール2（膨大なarchiveをスムーズにHTML表示）: **方向性は妥当**。`historyRef` 分割＋遅延読込により、画面初期負荷を抑える設計になっている。
-- 総合: **改善は正しい方向で進行中**。未完了点は「運用証跡」と「Phase 2（参照先の柔軟化）」。
-
-### 3) 直近アクション（チェックと改善）
-1. `sync-r2.yml` 実行ログで以下を確認し、実施日付きで Decision Log に追記する。  
-   - `Upload songs/gags/meta to R2` 成功  
-   - `Upload history files to R2` 成功
-2. Phase 2開始前チェックとして、`historyRef` の許容形式（相対/絶対URL）を README と `index.html` で同一ルールに明文化する。
-3. archive 大量化に備え、受け入れ条件へ「初期表示で history 一括取得をしない」を明示追加する（回帰防止）。
-
-### 4) 判断
-- 現時点では **問題なく前進している**。  
-- ただし最終ゴール達成判定には、R2同期の継続成功記録（最低数回）と、Phase 2着手記録が必要。
+- archive依存撤去は完了済み。次は R2移行ロードマップ（Phase A〜D）の残ゲートを順に解消する。
+- 直近は「`songs.json` のR2 URL直接検証」「本番URLの一覧→履歴確認」「監視/復旧担当の明文化」を優先する。
 
 ## Recheck (main反映後)
 - 対象5ファイル: `PROGRESS.md` / `README.md` / `index.html` / `scripts/sync-gas.mjs` / `public-data/songs.json`

@@ -8,11 +8,11 @@
 
 以下を最短で再構築できることを目的とします。
 
-1. スプレッドシートで `songs / gags / archive` を管理
+1. スプレッドシートで `songs / gags`（必要時のみ `archive`）を管理
 2. GAS Web API で JSON / JSONP 取得
 3. GitHub Actions で `public-data/*.json` を定期生成
 4. Cloudflare R2 へ同期し静的配信
-5. フロント（`index.html`）で静的優先 + 必要時動的取得
+5. フロント（`index.html`）で静的一覧 + `historyRef` による履歴取得
 
 ---
 
@@ -34,8 +34,8 @@
 
 運用方針:
 - 真実データは Spreadsheet。
-- 閲覧系（songs/gags/meta）は静的JSON優先。
-- archive は「静的 + 必要時動的取得」のハイブリッド。
+- 閲覧系は `songs/gags/meta + history/<id>.json` を静的配信する。
+- archive は通常運用で使わず、必要時のみ同期バッチで取得する。
 
 ---
 
@@ -49,8 +49,8 @@
 ├─ public-data/
 │  ├─ songs.json
 │  ├─ gags.json
-│  ├─ archive.json
-│  └─ meta.json
+│  ├─ meta.json
+│  └─ history/
 ├─ .github/workflows/
 │  ├─ sync-gas.yml
 │  └─ sync-r2.yml
@@ -81,8 +81,10 @@
 
 ### 4.2 出力ファイル形式
 
-- `songs.json` / `gags.json` / `archive.json`
+- `songs.json` / `gags.json`
   - `{ ok, sheet, fetchedAt, rows, total, matched }`
+- `history/<id>.json`
+  - `{ ok, version, rowId, generatedAt, total, lastSungAt, rows }`
 - `meta.json`
   - `{ ok, source, generatedAt, startedAt, tabs, counts }`
 
@@ -129,7 +131,7 @@
 ### 6.2 `sync-r2.yml`
 
 - 同期後に `aws s3 cp` でR2へアップロード
-- 対象: `songs.json`, `gags.json`, `meta.json`, `archive.json`
+- 対象: `songs.json`, `gags.json`, `meta.json`, `public-data/history/*.json`
 - 失敗時はリトライ（最大3回を推奨）
 - `SYNC_TIMEOUT_MS=15000`, `SYNC_MAX_RETRY=5` を推奨（ネットワーク揺らぎ対策）
 
@@ -144,6 +146,12 @@ GitHub Secrets に次を登録:
 - `R2_SECRET_ACCESS_KEY`
 - `R2_ENDPOINT`（例: `https://<ACCOUNT_ID>.r2.cloudflarestorage.com`）
 - `R2_BUCKET`
+
+追加の実行時環境変数（通常運用）:
+- `GAS_URL`（必須）
+- `OUT_DIR`（既定: `public-data`）
+- `ENABLE_ARCHIVE_SYNC`（既定: `false`）
+- `ARCHIVE_STRICT_SYNC`（既定: `false`）
 
 ---
 
@@ -168,11 +176,12 @@ GitHub Secrets に次を登録:
 
 - `songs / gags / meta` は静的JSONを先に取得
 - `meta.tabs` / `meta.counts` の整合性を確認し、不整合なら採用しない
-- `archive` は必要時のみ動的取得（exact + paging + backoff）
+- 履歴は各行の `historyRef` を使って `history/<id>.json` を単一 fetch で取得する
 - 静的データ参照先の優先順位:
   1. `?static_base=https://<R2公開URL>/public-data/`
   2. `localStorage.staticDataBase`
   3. 同一オリジン相対パス
+- `historyRef` は相対パス/絶対URLを許容し、相対パスは `static_base` を基準に解決する
 - 参照先切替:
   - クエリ: `?static_base=https://<R2公開URL>/public-data/`
   - または `localStorage.staticDataBase`
@@ -182,7 +191,7 @@ GitHub Secrets に次を登録:
 ## 10. archive 同期ポリシー（原則）
 
 - 原則、`archive` は静的同期しない（`ENABLE_ARCHIVE_SYNC=false` を標準とする）。
-- 画面上の履歴検索は GAS へ直接問い合わせて取得する。
+- 画面上の履歴表示は `historyRef` を使う（archive 直接取得はしない）。
 - 理由:
   1. `archive` は件数増加で同期負荷・失敗率が高くなりやすい
   2. `songs/gags` の高速表示と運用安定を優先する
@@ -194,10 +203,10 @@ GitHub Secrets に次を登録:
 
 ## 11. 初回セットアップ手順（新規リポジトリ）
 
-1. Spreadsheet に `songs/gags/archive` を用意
+1. Spreadsheet に `songs/gags`（必要時のみ `archive`）を用意
 2. GAS 実装を貼り付け・デプロイして `/exec` URL を取得
 3. GitHub Secrets 設定
-4. `sync-gas.yml` を手動実行して `public-data/*.json` 生成確認
+4. `sync-gas.yml` を手動実行して `public-data/*.json` と `public-data/history/*.json` 生成確認
 5. `sync-r2.yml` を手動実行してR2更新確認
 6. `index.html?static_base=...` で表示確認
 
@@ -268,7 +277,7 @@ GAS無改修でも、利用側（例: Streamlit）で以下を追加すると安
 1. `songs.json` / `gags.json` / `meta.json` が生成される
 2. `meta.tabs` に `songs,gags` が入り、`counts` 件数と一致する
 3. フロントで `songs/gags` が静的データから表示される
-4. `archive` 検索時のみ GAS へ通信し、結果が表示される
+4. 履歴表示が `historyRef` 単一 fetch で動作する
 5. `?static_base=...` 指定時に参照先が切り替わる
 
 ---
