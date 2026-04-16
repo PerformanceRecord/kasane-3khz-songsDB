@@ -93,8 +93,9 @@
   - `site.webmanifest` の相対パス仕様と `index.html` の manifest 参照に矛盾がない。
 
 ## Next Step
-- archive依存撤去は完了済み。次は R2移行ロードマップ（Phase A〜D）の残ゲートを順に解消する。
-- 直近は「`songs.json` のR2 URL直接検証」「本番URLの一覧→履歴確認」「監視/復旧担当の明文化」を優先する。
+- archive依存撤去は完了済み。直近の未充足ゲートは「本番URLで一覧→詳細履歴の動作確認」のみ。
+- Pages本番URLに `?static_base=https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/` を付け、一覧表示→1件選択→履歴表示を実測確認する。
+- 確認後に削除実行ゲートを更新し、Phase C（GitHub側 `songs.json` 凍結期間開始）へ進む。
 
 ## Recheck (main反映後)
 - 対象5ファイル: `PROGRESS.md` / `README.md` / `index.html` / `scripts/sync-gas.mjs` / `public-data/songs.json`
@@ -167,7 +168,7 @@
 - [x] 復旧担当と手順が文書化済み。
 
 ### 次アクション（この後の実行順）
-1. Phase A の証跡を `Decision Log` に3件そろえる。
-2. Phase B の運用文言を README に反映する。
-3. Phase C の凍結期間（7日）を開始する。
-4. ゲートを全て満たしたら Phase D を実施する。
+1. 本番URLで一覧→詳細履歴の動作確認を実施する（Pages本番URL + `?static_base=https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/`）。
+2. Phase C の凍結期間（7日）を開始する。
+3. 凍結期間中の監視（404/5xx・JSON取得失敗）を継続する。
+4. ゲート全充足後に Phase D を実施する。
