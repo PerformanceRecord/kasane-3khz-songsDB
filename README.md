@@ -29,7 +29,11 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 ## 3. ディレクトリ構成
 
 - `index.html`
-  - フロントエンド本体（単一 HTML）。
+  - フロントエンドのエントリ（HTML骨組み）。
+- `assets/css/app.css`
+  - フロントエンドのスタイル定義。
+- `assets/js/app.js`
+  - フロントエンドの画面ロジック。
 - `scripts/sync-gas.mjs`
   - GAS 取得・正規化・保存・`meta.json` 生成。
 - `public-data/*.json`
@@ -47,6 +51,7 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 
 ### 4-1. `index.html`（フロントエンド）
 - 単一ページで `songs` / `gags` 一覧を検索・表示し、履歴は `history/<id>.json` で表示。
+- スタイルは `assets/css/app.css`、スクリプトは `assets/js/app.js` を読み込む。
 - 読込優先順位:
   1. `?static_base=<URL>`
   2. `localStorage.staticDataBase`
