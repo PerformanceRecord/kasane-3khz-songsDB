@@ -167,6 +167,13 @@
       #filter-panel{
         top:10px;
       }
+      #filter-panel,
+      .input-console{
+        width:var(--mobile-unified-width, 100%);
+        max-width:var(--mobile-unified-width, 100%);
+        margin-left:auto;
+        margin-right:auto;
+      }
       .card{padding:14px;border-radius:16px}
       .hero-title{font-size:18px}
       table{display:none}
@@ -247,15 +254,33 @@
       }
       .thumb-link img{width:100%;height:100%;object-fit:cover;display:block}
       .l2{
-        display:flex;
-        justify-content:space-between;
-        align-items:flex-end;
+        display:grid;
+        grid-template-columns:minmax(0,1fr) auto;
+        align-items:center;
         grid-column:1 / -1;
         grid-row:2;
         gap:8px;
+        width:100%;
+        min-width:0;
       }
-      .mobile-date{font-size:11px;line-height:1.2;color:#4f6f65;white-space:nowrap;text-align:right;margin-left:auto}
-      .mobile-actions{display:flex;align-items:center;gap:4px;flex-wrap:nowrap;justify-content:flex-start}
+      .mobile-date{
+        font-size:11px;
+        line-height:1.2;
+        color:#4f6f65;
+        white-space:nowrap;
+        text-align:right;
+        min-width:var(--mobile-date-width, auto);
+      }
+      .mobile-actions{
+        display:flex;
+        align-items:center;
+        gap:4px;
+        flex-wrap:nowrap;
+        justify-content:flex-start;
+        min-height:var(--mobile-actions-height, auto);
+        min-width:0;
+        width:100%;
+      }
       .mobile-actions .btn{font-size:12px;padding:4px 7px;border-radius:9px;line-height:1.1}
       .mobile-actions .kind-chip{font-size:11px;padding:3px 6px}
       .dm-select-wrap{flex:7 1 0}
@@ -265,7 +290,6 @@
       .to-top{right:10px;bottom:126px}
 
       .result-card{
-        --mobile-card-side-gap:4px;
         position:fixed;
         left:var(--mobile-card-side-gap);
         right:var(--mobile-card-side-gap);
