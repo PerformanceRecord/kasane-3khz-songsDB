@@ -7,7 +7,7 @@
 Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `history/<id>.json`）を一次データとして使う構成です。
 
 - **通常フロー**: GAS `archive` API は使いません。
-- **同期バッチ**: 必要なときだけ `ENABLE_ARCHIVE_SYNC=true` で archive sheet を参照します（既定は無効）。
+- **同期バッチ**: 通常は `songs/gags/meta/history` を生成・配信します。archive は手動再構築などのメンテ用途でのみ使います。
 
 ## 1. 総点検結果（不要箇所・統合可能箇所）
 
@@ -56,9 +56,9 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 
 ### 4-2. `scripts/sync-gas.mjs`（同期バッチ）
 - `songs` / `gags` を取得して保存（通常フロー）。
-- archive sheet は `ENABLE_ARCHIVE_SYNC=true` のときだけ参照（必要時のみ）。
+- archive sheet は `ENABLE_ARCHIVE_SYNC=true` のときだけ参照（任意の補強データ）。
 - 取得行を正規化し、`date8` / `rowId` / `historyCount` / `lastSungAt` / `historyRef` を補完。
-- `history/<id>.json` を生成し、一覧→履歴の参照経路を固定。
+- `history/<id>.json` を必ず生成し、一覧→履歴の参照経路を固定。
 - 最後に `meta.json` を再生成し、件数と対象タブを記録。
 
 ### 4-3. `google-apps-script-reference/code.gs`（GAS API 参照実装）
@@ -75,7 +75,7 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
   - `ok`, `sheet`, `fetchedAt`, `rows`, `total`, `matched`
   - 各 `row` に `historyCount`, `lastSungAt`, `historyRef` を含む
 - `history/<id>.json`:
-  - `ok`, `id`, `sheet`, `fetchedAt`, `rows`, `total`
+  - `ok`, `version`, `rowId`, `generatedAt`, `total`, `lastSungAt`, `rows`
 - `meta.json`:
   - `ok`, `source`, `generatedAt`, `startedAt`, `tabs`, `counts`
 
@@ -85,7 +85,7 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 
 ## 5. データフロー（`songs/gags/meta + history/<id>.json`）
 
-通常フローでは GAS `archive` API を呼びません。同期バッチで archive が必要なときのみ `ENABLE_ARCHIVE_SYNC=true` を使います。
+通常フローでは GAS `archive` API を呼びません。同期バッチで archive が必要なときのみ `ENABLE_ARCHIVE_SYNC=true` を使います（通常運用では不要）。
 
 1. 同期バッチが `songs` / `gags` を取得。
 2. 一覧行に `historyCount` / `lastSungAt` / `historyRef` を付与。
@@ -127,7 +127,7 @@ Cloudflare R2 で配信する静的 JSON（`songs` / `gags` / `meta` と `histor
 ## 7. 環境変数
 
 ### 7-1. 通常利用
-- `GAS_URL`: GAS API URL（未設定時はスクリプト既定値）
+- `GAS_URL`: GAS API URL（**必須**）
 - `OUT_DIR`: 出力先（既定 `public-data`）
 
 ### 7-2. 同期制御
@@ -149,7 +149,8 @@ node scripts/sync-gas.mjs
 
 - 通常運用は `songs/gags/meta + history/<id>.json` を静的配信し、一覧→履歴で読む。
 - `public-data` はキャッシュとして扱い、取得失敗時は前回成功分を残す。
-- `sync-r2.yml` では `songs/gags/meta/archive` に加えて `public-data/history/*.json` もR2へ同期する（Phase 1: 並行保存）。
+- `sync-r2.yml` は `songs/gags/meta` と `public-data/history/*.json` をR2へ同期する。
+- `archive.json` は通常のR2アップロード対象に含めない（必要時のみ手動運用）。
 - 仕様変更時は `README` と `docs/new-repo-seed-spec.md` を合わせて更新する。
 - 削除実行ゲート5項目のうち1項目でも未達がある場合は、削除フェーズ（Phase D）へ進まない。
 

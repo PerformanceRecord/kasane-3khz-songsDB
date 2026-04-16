@@ -20,8 +20,10 @@
 
 ## Current Findings
 - `index.html` は `historyRef` 単一 fetch で履歴描画している。
-- `README.md` も通常フローで GAS `archive` 非利用を明記済み。
-- 旧 archive 動的取得系は退役扱いとして整理済み。
+- `site.webmanifest` は project page 対応の相対パス化済み。
+- `sync-r2.yml` は通常運用から archive アップロードを外し、`songs/gags/meta/history` 配信に統一済み。
+- `scripts/sync-gas.mjs` は archive 不在でも history JSON を生成し、全 row の `historyRef` を維持する構成に更新済み。
+- `README.md` は history JSON 構造・`GAS_URL` 必須・archive の位置づけを実装に同期済み。
 
 ## Decision Log
 - 2026-04-14: `PROGRESS.md` を進捗管理ファイルとして導入。
@@ -38,11 +40,12 @@
 - 2026-04-15: `sync-r2.yml` 実行記録（Run: 24440765131）を確認。`Upload songs/gags/meta to R2` / `Upload history files to R2` は成功、`GITHUB_STEP_SUMMARY` の件数は preflight=1355 / post-check=1355。URL: https://github.com/PerformanceRecord/kasane-3khz-songsDB/actions/runs/24440765131/job/71405022542
 - 2026-04-15: `sync-r2.yml` 実行記録（Run: 24442339098）を確認。`Upload songs/gags/meta to R2` / `Upload history files to R2` は成功、`GITHUB_STEP_SUMMARY` の件数は preflight=1355 / post-check=1355。URL: https://github.com/PerformanceRecord/kasane-3khz-songsDB/actions/runs/24442339098/job/71410114838
 - 2026-04-15: `sync-r2.yml` 実行記録（Run: 24443606455）を確認。`Upload songs/gags/meta to R2` / `Upload history files to R2` は成功、`GITHUB_STEP_SUMMARY` の件数は preflight=1355 / post-check=1355。URL: https://github.com/PerformanceRecord/kasane-3khz-songsDB/actions/runs/24443606455
+- 2026-04-16: archive 依存撤去を実施。`sync-r2.yml` から通常 archive アップロードを削除、`scripts/sync-gas.mjs` は archive 不在でも history 生成を継続、`README.md` を実装へ同期。
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）
 2. Phase 2: 最終方針（1曲1JSON / archive非依存）の明文化（完了）
-3. Phase 3: 実装の整合化（`historyRef` 経路に統一）
+3. Phase 3: 実装の整合化（`historyRef` 経路に統一・archive通常依存の撤去）
 4. Phase 4: ドキュメント整合（README/運用手順の更新）
 5. Phase 5: 検証（受け入れ条件チェック）
 6. Phase 6: クローズ準備（残タスク0化・最終記録）（完了）
@@ -56,6 +59,10 @@
 - [x] Phase 6 のクローズ完了
 - [x] Phase 1: history JSON のR2並行保存を workflow に追加
 - [x] Phase 1: R2並行保存のREADME運用手順を追記
+- [x] 完了済み整理: フロント static fetch 化 / manifest 相対化 / historyRef ベース表示
+- [x] `sync-r2.yml` の通常 archive アップロード撤去
+- [x] `scripts/sync-gas.mjs` の archive 必須分岐撤去（archiveなしでも history 生成）
+- [x] README の実装同期（history JSON構造・GAS_URL必須）
 
 ## Risks/Blockers
 - 旧 archive 前提の運用手順が局所的に残ると誤運用のリスク。
@@ -74,8 +81,7 @@
 - [x] 9) 初期表示で history 一括取得をしない（詳細は選択時の `historyRef` fetch のみ）
 
 ## Next Step
-- 次回方針変更時は `Decision Log` / `Roadmap` を先に更新する。
-- `sync-gas.yml` の secret 検証ステップを維持し、`index.html` 書換えステップは再導入しない。
+- 最優先（完了）: 通常運用から archive 依存を外す（workflow / sync script / README を同時に整合化）。
 - `sync-r2.yml` 実行時は `GITHUB_STEP_SUMMARY` の preflight/post-check を確認し、history 件数が 0 でないことを運用記録に残す。
 
 ## 直近実行アクション（2026-04-15 時点）
