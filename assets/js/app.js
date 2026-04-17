@@ -866,6 +866,7 @@ function isCoarsePointer(){
     }
     function getMobileItemKindClass(kind){
       const normalized = (kind || '').toString().trim();
+      if (normalized === '歌枠') return 'item-kind-karaoke';
       if (normalized === '歌ってみた') return 'item-kind-utattemita';
       if (normalized === 'ショート') return 'item-kind-short';
       return '';
