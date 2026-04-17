@@ -12,6 +12,10 @@ on:
     # GitHub Actions の cron は UTC 基準: 11:00 JST = 02:00 UTC
     - cron: '0 2 * * *'
 
+concurrency:
+  group: sync-gas
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -21,12 +25,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync local main to remote main
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
 
       - name: Validate GAS_URL secret
         env:
@@ -49,16 +60,42 @@ jobs:
 
       - name: Commit and push if changed
         run: |
-          if git diff --quiet; then
-            echo "No changes to commit"
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html public-data/*.json
-          git commit -m "chore: sync GAS snapshot"
-          if ! git pull --rebase origin main; then
-            echo "git pull failed. Resolve conflicts or retry later."
-            exit 1
+
+          git add index.html public-data/
+
+          if git diff --cached --quiet; then
+            echo "No staged changes to commit"
+            exit 0
           fi
-          git push origin main
+
+          git commit -m "chore: sync GAS snapshot"
+
+          max_retries=3
+          attempt=1
+          while [ "$attempt" -le "$max_retries" ]; do
+            echo "Push attempt ${attempt}/${max_retries}"
+
+            git fetch origin main
+            if ! git rebase origin/main; then
+              echo "Rebase failed"
+              git rebase --abort || true
+              exit 1
+            fi
+
+            if git push origin HEAD:main; then
+              echo "Push succeeded"
+              exit 0
+            fi
+
+            if [ "$attempt" -lt "$max_retries" ]; then
+              echo "Push failed, retrying after short sleep"
+              sleep 5
+            fi
+
+            attempt=$((attempt + 1))
+          done
+
+          echo "Push failed after ${max_retries} attempts"
+          exit 1
