@@ -261,13 +261,13 @@ function isCoarsePointer(){
     const FETCH_TIMEOUT_MS = 10000;
     const INITIAL_ERROR_NOTICE_DELAY_MS = 12000;
 
-    function showHistoryLoadError(message){
+    function showHistoryLoadError(_message){
       if (!$('page-history').classList.contains('active')) return;
       const wrap = $('hist-list');
       const empty = $('hist-empty');
       wrap.innerHTML = '';
       empty.style.display = 'block';
-      $('hist-sub').textContent = message;
+      $('hist-sub').textContent = '歌唱履歴を新しい順に表示します。';
       renderHistoryProcess();
     }
 
@@ -443,7 +443,7 @@ function isCoarsePointer(){
       if (!$('page-list').classList.contains('active')) return;
       if (isListDataReady()) return;
       if (isListRequestInflight()) return;
-      setStatus('データ取得に失敗しました（R2静的データ設定を確認）');
+      setStatus(UI_TEXT.loading);
     }, INITIAL_ERROR_NOTICE_DELAY_MS);
     function buildStaticDataUrl(tab){
       const base = new URL(STATIC_DATA_BASE, window.location.href);
@@ -537,7 +537,7 @@ function isCoarsePointer(){
         } catch (err) {
           const msg = err instanceof Error ? err.message : String(err);
           renderHistoryProcess();
-          setStatus(`データ取得に失敗しました: ${msg}`);
+          setStatus(UI_TEXT.loading);
           endServerRequest(false, 'warmCaches/static', msg);
           throw err;
         } finally {
