@@ -31,8 +31,7 @@ jobs:
       - name: Sync local main to remote main
         run: |
           git fetch origin main
-          git checkout main
-          git reset --hard origin/main
+          git checkout -B main origin/main
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
