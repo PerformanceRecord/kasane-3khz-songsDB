@@ -9,8 +9,8 @@ on:
         type: boolean
         default: false
   schedule:
-    # GitHub Actions の cron は UTC 基準: 11:00 JST = 02:00 UTC
-    - cron: '0 2 * * *'
+    # GitHub Actions の cron は UTC 基準: 09:00 JST = 00:00 UTC
+    - cron: '0 0 * * *'
 
 concurrency:
   group: sync-gas
