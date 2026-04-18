@@ -8,6 +8,16 @@ on:
         required: false
         type: boolean
         default: false
+      archive_reset_cursor:
+        description: 'archive cursor を先頭に戻す（次回以降はローリング巡回）'
+        required: false
+        type: boolean
+        default: false
+      archive_force_reseed:
+        description: 'archive.json を信頼せず先頭から再収集を開始（1回で全件取得はしない）'
+        required: false
+        type: boolean
+        default: false
   schedule:
     # GitHub Actions の cron は UTC 基準: 09:00 JST = 00:00 UTC
     - cron: '0 0 * * *'
@@ -53,10 +63,11 @@ jobs:
         env:
           GAS_URL: ${{ secrets.GAS_URL }}
           ENABLE_ARCHIVE_SYNC: ${{ github.event_name == 'schedule' && 'true' || (github.event_name == 'workflow_dispatch' && github.event.inputs.enable_archive_sync) || 'false' }}
-          ARCHIVE_LIMITS: '5,3,2,1'
-          ARCHIVE_PAGE_LIMIT: '2'
-          ARCHIVE_MAX_PAGES: '4000'
-          ARCHIVE_TOTAL_CAP: '20000'
+          ARCHIVE_RESET_CURSOR: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.archive_reset_cursor || 'false' }}
+          ARCHIVE_FORCE_RESEED: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.archive_force_reseed || 'false' }}
+          ARCHIVE_BATCH_SIZE_MIN: '50'
+          ARCHIVE_BATCH_SIZE_MAX: '500'
+          ARCHIVE_BATCH_SIZE_FALLBACK: '150'
         run: node scripts/sync-gas.mjs
 
       - name: Commit and push if changed
