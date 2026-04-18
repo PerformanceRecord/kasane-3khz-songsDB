@@ -57,6 +57,7 @@ function isCoarsePointer(){
       activeSnapIndex: -1,
       historyRenderSeq: 0,
       historyView: {},
+      listStatusText: '',
       isFilterCompact: false,
       isFilterExpandedManually: false,
       filterAutoCollapseProgress: 0,
@@ -67,7 +68,10 @@ function isCoarsePointer(){
 
     const $ = id => document.getElementById(id);
     const normalize = s => (s||'').toString().toLowerCase().replace(/\s+/g,' ').trim();
-    const setStatus = (text) => { $('status').textContent = text; };
+    const setStatus = (text) => {
+      state.listStatusText = text || '';
+      renderServerResponse();
+    };
     const showToast = msg => { const t=$('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1400); };
     async function copyText(text){
       try{
@@ -97,18 +101,19 @@ function isCoarsePointer(){
       const el = $('server-response');
       if (!el) return;
       const probe = state.serverResponse;
+      const suffix = state.listStatusText ? ` ｜ ${state.listStatusText}` : '';
       el.className = 'server-response';
       if (probe.inflight > 0) {
         el.classList.add('loading');
-        el.textContent = UI_TEXT.statusIdle;
+        el.textContent = `${UI_TEXT.statusIdle}${suffix}`;
       } else if (probe.lastError) {
         el.classList.add('error');
-        el.textContent = UI_TEXT.statusError;
+        el.textContent = `${UI_TEXT.statusError}${suffix}`;
       } else if (probe.lastOkAt) {
         el.classList.add('ok');
-        el.textContent = UI_TEXT.statusOk;
+        el.textContent = `${UI_TEXT.statusOk}${suffix}`;
       } else {
-        el.textContent = UI_TEXT.statusIdle;
+        el.textContent = `${UI_TEXT.statusIdle}${suffix}`;
       }
       scheduleFilterMetrics();
     }
@@ -974,9 +979,9 @@ function isCoarsePointer(){
         });
       });
 
-      $('status').textContent = q
+      setStatus(q
         ? `${rows.length}件ヒット（全${filtered.length}件）`
-        : `表示中 ${rows.length}件（全${(state.cache[state.current]||[]).length}件）`;
+        : `表示中 ${rows.length}件（全${(state.cache[state.current]||[]).length}件）`);
 
       if(rows.length===0){
         hint.textContent = q ? '該当なし' : '検索結果がここに表示されます。';
