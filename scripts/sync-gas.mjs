@@ -524,7 +524,8 @@ async function fetchArchiveRollingBatch(currentState, existingRows) {
   const batchSize = resolveArchiveBatchSize(totalHint);
   const cursorDate8 = ARCHIVE_RESET_CURSOR ? 0 : Number(currentState?.cursorDate8 || 0);
   const cursorKey = ARCHIVE_RESET_CURSOR ? '' : String(currentState?.cursorKey || '');
-  const reseedMode = ARCHIVE_FORCE_RESEED || ARCHIVE_RESET_CURSOR;
+  // reset は cursor のみ先頭化、reseed は既存 archive を使わず再収集開始。
+  const reseedMode = ARCHIVE_FORCE_RESEED;
 
   // archive は週次ローリング更新: 毎回1バッチだけ進める。
   const payload = await fetchJsonWithRetry('archive', {
@@ -611,8 +612,6 @@ async function main() {
       const archive = await fetchArchiveRollingBatch(currentState, existingArchiveRows);
       if (!archive.ok) {
         console.warn(`[archive] 巡回取得をスキップ: ${archive.reason}`);
-      } else {
-        await writeArchiveState(archive.nextState);
       }
       const archivePayload = {
         ok: true,
@@ -624,6 +623,9 @@ async function main() {
       };
       outputs.archive = archivePayload;
       await writeFile(`${OUT_DIR}/${ARCHIVE_TAB}.json`, `${JSON.stringify(archivePayload, null, 2)}\n`, 'utf8');
+      if (archive.ok) {
+        await writeArchiveState(archive.nextState);
+      }
     } catch (e) {
       const strictMsg = '[archive] 取得に失敗しました。前回の public-data/archive.json を維持して続行します';
       if (ARCHIVE_STRICT_SYNC) {
