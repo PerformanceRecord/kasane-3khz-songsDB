@@ -11,13 +11,19 @@ const CORE_TABS = ['songs', 'gags'];
 const ARCHIVE_TAB = 'archive';
 const HISTORY_DIR_NAME = 'history';
 const HISTORY_VERSION = 1;
+const ARCHIVE_STATE_FILE = `${OUT_DIR}/archive-crawl-state.json`;
 // 通常フローでは archive は使わない。必要な同期バッチ時のみ有効化する。
 const ENABLE_ARCHIVE_SYNC = process.env.ENABLE_ARCHIVE_SYNC === 'true';
 const ARCHIVE_STRICT_SYNC = process.env.ARCHIVE_STRICT_SYNC === 'true';
+const ARCHIVE_RESET_CURSOR = process.env.ARCHIVE_RESET_CURSOR === 'true';
+const ARCHIVE_FORCE_RESEED = process.env.ARCHIVE_FORCE_RESEED === 'true';
+const ARCHIVE_BATCH_SIZE_MIN = Number(process.env.ARCHIVE_BATCH_SIZE_MIN || 50);
+const ARCHIVE_BATCH_SIZE_MAX = Number(process.env.ARCHIVE_BATCH_SIZE_MAX || 500);
+const ARCHIVE_BATCH_SIZE_FALLBACK = Number(process.env.ARCHIVE_BATCH_SIZE_FALLBACK || 150);
 const DEFAULT_LIMITS = {
   songs: 500,
   gags: 100,
-  archive: 5,
+  archive: ARCHIVE_BATCH_SIZE_FALLBACK,
 };
 const TIMEOUT_MS = Number(process.env.SYNC_TIMEOUT_MS || 8000);
 const MAX_RETRY = Number(process.env.SYNC_MAX_RETRY || 3);
@@ -117,7 +123,9 @@ function isArgumentTooLargeError(err) {
   return false;
 }
 
-function buildUrl(tab, { offset = 0, limit } = {}) {
+function buildUrl(tab, {
+  offset = 0, limit, afterDate8, afterKey,
+} = {}) {
   const url = new URL(GAS_URL);
   url.searchParams.set('sheet', tab);
   const resolvedLimit = Number.isFinite(limit) && limit > 0 ? limit : DEFAULT_LIMITS[tab];
@@ -127,12 +135,20 @@ function buildUrl(tab, { offset = 0, limit } = {}) {
   if (Number.isFinite(offset) && offset > 0) {
     url.searchParams.set('offset', String(Math.floor(offset)));
   }
+  if (Number.isFinite(Number(afterDate8)) && Number(afterDate8) > 0) {
+    url.searchParams.set('afterDate8', String(Math.floor(Number(afterDate8))));
+  }
+  if (typeof afterKey === 'string' && afterKey.trim()) {
+    url.searchParams.set('afterKey', afterKey.trim());
+  }
   url.searchParams.set('authuser', '0');
   url.searchParams.set('v', String(Date.now()));
   return url.toString();
 }
 
-async function fetchJsonWithRetry(tab, { offset = 0, limit } = {}) {
+async function fetchJsonWithRetry(tab, {
+  offset = 0, limit, afterDate8, afterKey,
+} = {}) {
   let lastError = null;
 
   for (let attempt = 1; attempt <= MAX_RETRY; attempt += 1) {
@@ -140,7 +156,9 @@ async function fetchJsonWithRetry(tab, { offset = 0, limit } = {}) {
     const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
     try {
-      const res = await fetch(buildUrl(tab, { offset, limit }), {
+      const res = await fetch(buildUrl(tab, {
+        offset, limit, afterDate8, afterKey,
+      }), {
         method: 'GET',
         signal: controller.signal,
         headers: { Accept: 'application/json' },
@@ -199,6 +217,9 @@ async function fetchJsonWithRetry(tab, { offset = 0, limit } = {}) {
         sheet: parsedPayload.sheet,
         total: parsedPayload.total,
         matched: parsedPayload.matched,
+        hasMore: parsedPayload.hasMore,
+        nextCursorDate8: parsedPayload.nextCursorDate8,
+        nextCursorKey: parsedPayload.nextCursorKey,
         rows: normalized,
       };
     } catch (error) {
@@ -229,51 +250,22 @@ async function verifyArchiveHealthCheck() {
   return payload;
 }
 
-function buildArchiveLimitCandidates(pageLimit) {
-  const envLimits = (process.env.ARCHIVE_LIMITS ?? '5,3,2,1')
-    .split(',')
-    .map((s) => parseInt(s.trim(), 10))
-    .filter((n) => Number.isFinite(n) && n > 0);
-
-  const normalizedPageLimit = Number.isFinite(Number(pageLimit)) && Number(pageLimit) > 0
-    ? Math.floor(Number(pageLimit))
-    : 2;
-
-  const candidates = [normalizedPageLimit];
-  for (const limit of envLimits) {
-    if (limit >= normalizedPageLimit) continue;
-    if (!candidates.includes(limit)) candidates.push(limit);
-  }
-  return candidates;
-}
-
-async function fetchArchivePageWithBackoff({ offset = 0, pageLimit = 5 } = {}) {
-  const limits = buildArchiveLimitCandidates(pageLimit);
-  let lastErr;
-
-  for (const limit of limits) {
-    try {
-      const payload = await fetchJsonWithRetry('archive', { limit, offset });
-      return { payload, usedLimit: limit };
-    } catch (e) {
-      lastErr = e;
-      if (!isArgumentTooLargeError(e)) throw e;
-      console.warn(`[archive] limit=${limit}, offset=${offset} で失敗（Argument too large）→ 縮小して再試行します`);
-    }
-  }
-
-  throw lastErr;
-}
-
-function archiveRowKey(row) {
+function archiveLogicalKey(row) {
   if (!row || typeof row !== 'object') return '';
-  const rowId = String(row.rowId ?? '').trim();
-  if (rowId) return rowId;
-  const artist = String(row.artist ?? '').trim();
-  const title = String(row.title ?? '').trim();
-  const kind = String(row.kind ?? '').trim();
-  const dUrl = String(row.dUrl ?? '').trim();
-  return `${artist}${title}${kind}${dUrl}`;
+  const artist = String(row.artist ?? '').trim().toLowerCase();
+  const title = String(row.title ?? '').trim().toLowerCase();
+  const kind = String(row.kind ?? '').trim().toLowerCase();
+  const date8 = Number(row.date8) || extractDate8(row.dText);
+  return `${artist}${title}${kind}${Number.isFinite(date8) ? date8 : 0}`;
+}
+
+function archiveCursorKey(row) {
+  if (!row || typeof row !== 'object') return '';
+  const artist = String(row.artist ?? '').trim().toLowerCase();
+  const title = String(row.title ?? '').trim().toLowerCase();
+  const kind = String(row.kind ?? '').trim().toLowerCase();
+  const date8 = Number(row.date8) || extractDate8(row.dText);
+  return `${artist}|${title}|${kind}|${Number.isFinite(date8) ? date8 : 0}`;
 }
 
 function makeHistoryId(historyKey) {
@@ -367,6 +359,35 @@ async function loadArchiveRowsFromDisk() {
   }
 }
 
+async function loadArchiveState() {
+  const fallback = {
+    cursorDate8: 0,
+    cursorKey: '',
+    batchSize: ARCHIVE_BATCH_SIZE_FALLBACK,
+    wrapped: false,
+    cycle: 0,
+    lastCycleCompletedAt: '',
+    lastCollisionCount: 0,
+    updatedAt: new Date(0).toISOString(),
+  };
+
+  try {
+    const text = await readFile(ARCHIVE_STATE_FILE, 'utf8');
+    const parsed = parseJsonLoose(text);
+    if (!parsed || typeof parsed !== 'object') return { ...fallback };
+    return {
+      ...fallback,
+      ...parsed,
+    };
+  } catch {
+    return { ...fallback };
+  }
+}
+
+async function writeArchiveState(state) {
+  await writeFile(ARCHIVE_STATE_FILE, `${JSON.stringify(state, null, 2)}\n`, 'utf8');
+}
+
 function normalizeRowsForArchive(rows) {
   return (rows || [])
     .map((row) => normalizeArchiveHistoryEntry(row))
@@ -458,54 +479,108 @@ function ensureHistoryCoverageForCoreRows(coreOutputs, historyBuilt) {
 }
 
 
-async function fetchArchivePaged() {
-  const pageLimit = Number(process.env.ARCHIVE_PAGE_LIMIT || 2);
-  const maxPages = Number(process.env.ARCHIVE_MAX_PAGES || 4000);
-  const totalCap = Number(process.env.ARCHIVE_TOTAL_CAP || 20000);
+function resolveArchiveBatchSize(totalRows) {
+  const safeMin = Math.max(1, Number.isFinite(ARCHIVE_BATCH_SIZE_MIN) ? Math.floor(ARCHIVE_BATCH_SIZE_MIN) : 1);
+  const safeMax = Math.max(safeMin, Number.isFinite(ARCHIVE_BATCH_SIZE_MAX) ? Math.floor(ARCHIVE_BATCH_SIZE_MAX) : safeMin);
+  const total = Number.isFinite(Number(totalRows)) ? Number(totalRows) : 0;
+  if (total <= 0) {
+    return Math.min(safeMax, Math.max(safeMin, ARCHIVE_BATCH_SIZE_FALLBACK));
+  }
+  return Math.min(safeMax, Math.max(safeMin, Math.ceil(total / 7)));
+}
 
-  let offset = 0;
-  let total = null;
-  let matched = null;
-  const merged = [];
-  const seen = new Set();
+function upsertArchiveRows({ existingRows, incomingRows }) {
+  const merged = new Map();
+  const collisionKeys = new Set();
 
-  for (let page = 0; page < maxPages; page += 1) {
-    const { payload, usedLimit } = await fetchArchivePageWithBackoff({ offset, pageLimit });
+  for (const row of normalizeRowsForArchive(existingRows)) {
+    const key = archiveLogicalKey(row);
+    if (!key) continue;
+    if (merged.has(key)) collisionKeys.add(key);
+    merged.set(key, row);
+  }
 
-    if (total == null && Number.isFinite(Number(payload.total))) total = Number(payload.total);
-    if (matched == null && Number.isFinite(Number(payload.matched))) matched = Number(payload.matched);
+  for (const row of normalizeRowsForArchive(incomingRows)) {
+    const key = archiveLogicalKey(row);
+    if (!key) continue;
+    if (merged.has(key)) collisionKeys.add(key);
+    merged.set(key, row);
+  }
 
-    const rows = Array.isArray(payload.rows) ? payload.rows : [];
-    if (rows.length === 0) break;
+  const rows = Array.from(merged.values()).sort((a, b) => {
+    const d = (Number(a.date8) || 0) - (Number(b.date8) || 0);
+    if (d !== 0) return d;
+    return archiveCursorKey(a).localeCompare(archiveCursorKey(b));
+  });
 
-    let newCount = 0;
-    for (const row of rows) {
-      const key = archiveRowKey(row);
-      if (!key || seen.has(key)) continue;
-      seen.add(key);
-      merged.push(row);
-      newCount += 1;
-      if (merged.length >= totalCap) break;
-    }
+  return {
+    rows,
+    collisionCount: collisionKeys.size,
+  };
+}
 
-    if (merged.length >= totalCap) {
-      console.warn(`[archive] total cap (${totalCap}) に到達したため取得を打ち切ります`);
-      break;
-    }
-    if (rows.length < usedLimit) break;
-    if (newCount === 0) {
-      console.warn('[archive] 同一ページ応答の可能性があるため取得を打ち切ります');
-      break;
-    }
-    if (total != null && merged.length >= total) break;
+async function fetchArchiveRollingBatch(currentState, existingRows) {
+  const totalHint = Array.isArray(existingRows) ? existingRows.length : 0;
+  const batchSize = resolveArchiveBatchSize(totalHint);
+  const cursorDate8 = ARCHIVE_RESET_CURSOR ? 0 : Number(currentState?.cursorDate8 || 0);
+  const cursorKey = ARCHIVE_RESET_CURSOR ? '' : String(currentState?.cursorKey || '');
+  const reseedMode = ARCHIVE_FORCE_RESEED || ARCHIVE_RESET_CURSOR;
 
-    offset += rows.length;
+  // archive は週次ローリング更新: 毎回1バッチだけ進める。
+  const payload = await fetchJsonWithRetry('archive', {
+    limit: batchSize,
+    afterDate8: cursorDate8 > 0 ? cursorDate8 : undefined,
+    afterKey: cursorKey || undefined,
+  });
+  const rows = normalizeRowsForArchive(payload.rows || []);
+  const nextCursorDate8 = Number(payload.nextCursorDate8 || 0);
+  const nextCursorKey = String(payload.nextCursorKey || '');
+  const hasMore = payload.hasMore !== false;
+
+  if (rows.length === 0 && hasMore) {
+    return { ok: false, reason: 'rows が 0 件なのに hasMore=true です', batchSize };
+  }
+  if (rows.length > 0 && nextCursorDate8 === cursorDate8 && nextCursorKey === cursorKey) {
+    return { ok: false, reason: 'cursor が進行していません', batchSize };
+  }
+
+  const upserted = upsertArchiveRows({
+    existingRows: reseedMode ? [] : existingRows,
+    incomingRows: rows,
+  });
+  if (upserted.collisionCount > 0) {
+    console.warn(`[archive] 論理キー衝突を検知: ${upserted.collisionCount} 件`);
+  }
+
+  const nowIso = new Date().toISOString();
+  let wrapped = false;
+  let cycle = Number(currentState?.cycle || 0);
+  let lastCycleCompletedAt = String(currentState?.lastCycleCompletedAt || '');
+  let resolvedDate8 = nextCursorDate8;
+  let resolvedKey = nextCursorKey;
+  if (!hasMore || rows.length === 0) {
+    wrapped = true;
+    cycle += 1;
+    lastCycleCompletedAt = nowIso;
+    resolvedDate8 = 0;
+    resolvedKey = '';
   }
 
   return {
-    rows: merged,
-    total: total ?? merged.length,
-    matched: matched ?? merged.length,
+    ok: true,
+    rows: upserted.rows,
+    batchSize,
+    collisionCount: upserted.collisionCount,
+    nextState: {
+      cursorDate8: resolvedDate8,
+      cursorKey: resolvedKey,
+      batchSize,
+      wrapped,
+      cycle,
+      lastCycleCompletedAt,
+      lastCollisionCount: upserted.collisionCount,
+      updatedAt: nowIso,
+    },
   };
 }
 
@@ -529,29 +604,42 @@ async function main() {
   }
 
   if (ENABLE_ARCHIVE_SYNC) {
+    const existingArchiveRows = normalizeRowsForArchive(await loadArchiveRowsFromDisk());
+    const currentState = await loadArchiveState();
     try {
       await verifyArchiveHealthCheck();
-      const archive = await fetchArchivePaged();
+      const archive = await fetchArchiveRollingBatch(currentState, existingArchiveRows);
+      if (!archive.ok) {
+        console.warn(`[archive] 巡回取得をスキップ: ${archive.reason}`);
+      } else {
+        await writeArchiveState(archive.nextState);
+      }
       const archivePayload = {
         ok: true,
         sheet: ARCHIVE_TAB,
         fetchedAt: new Date().toISOString(),
-        rows: archive.rows,
-        total: archive.total ?? archive.rows.length,
-        matched: archive.matched ?? archive.rows.length,
+        rows: archive.ok ? archive.rows : existingArchiveRows,
+        total: archive.ok ? archive.rows.length : existingArchiveRows.length,
+        matched: archive.ok ? archive.rows.length : existingArchiveRows.length,
       };
       outputs.archive = archivePayload;
       await writeFile(`${OUT_DIR}/${ARCHIVE_TAB}.json`, `${JSON.stringify(archivePayload, null, 2)}\n`, 'utf8');
     } catch (e) {
-      if (isArgumentTooLargeError(e)) {
-        const strictMsg = '[archive] 全limitで失敗（Argument too large）。ARCHIVE_LIMITS / ARCHIVE_PAGE_LIMIT を見直してください';
-        if (ARCHIVE_STRICT_SYNC) {
-          throw new Error(strictMsg, { cause: e });
-        }
-        console.warn(`${strictMsg}。前回の public-data/archive.json を維持して続行します`);
+      const strictMsg = '[archive] 取得に失敗しました。前回の public-data/archive.json を維持して続行します';
+      if (ARCHIVE_STRICT_SYNC) {
+        throw new Error(strictMsg, { cause: e });
       } else {
-        throw e;
+        console.warn(strictMsg);
+        console.warn(e);
       }
+      outputs.archive = {
+        ok: true,
+        sheet: ARCHIVE_TAB,
+        fetchedAt: new Date().toISOString(),
+        rows: existingArchiveRows,
+        total: existingArchiveRows.length,
+        matched: existingArchiveRows.length,
+      };
     }
   } else {
     console.warn('[archive] 通常フローのため archive 取得をスキップしました。必要時のみ ENABLE_ARCHIVE_SYNC=true を指定してください');

@@ -50,6 +50,7 @@
 - 2026-04-16: `validate-history-artifacts.yml` の stale validation（repo上 `public-data/history/*.json` 必須）を撤去。`sync-r2.yml` と同条件（`GAS_URL` + `ENABLE_ARCHIVE_SYNC=true` + `ARCHIVE_STRICT_SYNC=true`）で build 後成果物を検証し、fork PR は secret 不可のため skip へ変更。
 - 2026-04-16: 履歴グルーピングを `rowId` から分離する方針を確定。`rowId` は行識別として維持し、`buildHistoryKey(artist,title)` で同一楽曲履歴を束ねる。`kind` / `dUrl` は履歴ページ束ね条件に使わない。目的は「同一楽曲の履歴ページを1つにまとめる」こと。
 - 2026-04-16: フロントエンドの保守性改善として、`index.html` のインラインCSS/JSを `assets/css/app.css` / `assets/js/app.js` へ分離。動作仕様は維持し、フォルダ階層で責務を明確化。
+- 2026-04-18: archive 同期のタイムアウト緩和として、offset 方式を廃止し cursor 方式のローリング取得へ変更。`public-data/archive-crawl-state.json` で巡回状態を保持し、upsert は URL 非依存キー（`artist|title|kind|date8`）で実施。衝突件数は state に `lastCollisionCount` として保存。
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）

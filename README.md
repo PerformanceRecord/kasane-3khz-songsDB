@@ -31,6 +31,7 @@
 - `history/<id>.json` を生成
 - `meta.json` を再生成
 - 必要時のみ `ENABLE_ARCHIVE_SYNC=true` で archive を live 取得
+- archive は cursor 方式のローリング更新（毎回1バッチ）で取得し、`public-data/archive-crawl-state.json` で巡回状態を保持
 
 ## 4. 必須環境変数（最小）
 
@@ -40,6 +41,9 @@
 よく使う制御:
 - `ENABLE_ARCHIVE_SYNC`（既定 `false`）
 - `ARCHIVE_STRICT_SYNC`（既定 `false`）
+- `ARCHIVE_BATCH_SIZE_MIN` / `ARCHIVE_BATCH_SIZE_MAX` / `ARCHIVE_BATCH_SIZE_FALLBACK`
+- `ARCHIVE_RESET_CURSOR`（先頭から再開）
+- `ARCHIVE_FORCE_RESEED`（1回で全件再取得はせず、先頭からローリング再収集）
 
 ## 5. 実行方法
 
@@ -65,4 +69,3 @@ node scripts/sync-gas.mjs
 
 - 進捗・判定ログ: `PROGRESS.md`
 - 新規環境立ち上げの仕様: `docs/new-repo-seed-spec.md`
-
