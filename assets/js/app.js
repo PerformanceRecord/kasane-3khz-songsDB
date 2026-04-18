@@ -952,13 +952,6 @@ function isCoarsePointer(){
       if (filterByKinds) filtered = filtered.filter(r => selectedKinds.has((r.kind || '').trim()));
       const rows = filtered.slice(0, HARD_LIMIT);
 
-      const uniqueArtists = new Set(allRows.map(r => r._na).filter(Boolean)).size;
-      const stats = [
-        `登録曲数: ${allRows.length}曲`,
-        `アーティスト数: ${uniqueArtists}人`
-      ];
-      $('stats-row').innerHTML = stats.map(text => `<span class="pill">${text}</span>`).join('');
-
       const filterButtons = kinds.map(kind => {
         const active = selectedKinds.has(kind);
         return `<button type="button" class="filter-chip${active ? ' active' : ''}" data-kind="${kind}">${kind}</button>`;
