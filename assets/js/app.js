@@ -191,7 +191,9 @@ function isCoarsePointer(){
       const onListPage = $('page-list').classList.contains('active');
       if (!isMobile || !onListPage) return;
       const filterHeight = Math.ceil($('filter-panel').getBoundingClientRect().height);
-      document.documentElement.style.setProperty('--filter-panel-height', `${Math.max(filterHeight, 0)}px`);
+      const listStartOffsetPx = 8;
+      const panelHeightWithOffset = Math.max(filterHeight + listStartOffsetPx, 0);
+      document.documentElement.style.setProperty('--filter-panel-height', `${panelHeightWithOffset}px`);
     }
     function syncMobileCardWidths(){
       const isMobile = isCoarsePointer();
