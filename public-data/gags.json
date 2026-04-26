@@ -1,8 +1,20 @@
 {
   "ok": true,
   "sheet": "gags",
-  "fetchedAt": "2026-04-25T01:20:08.894Z",
+  "fetchedAt": "2026-04-26T01:29:30.157Z",
   "rows": [
+    {
+      "artist": "Yukopi",
+      "title": "強風オールバック (吹いてみた)",
+      "kind": "ショート",
+      "dText": "20260420 【カズー吹いてみた】強風オールバック/ゆこぴ #cover #kazoo #歌ってみた #吹いてみた #ボカロ",
+      "dUrl": "https://www.youtube.com/watch?v=i1iRDePnzdA",
+      "date8": 20260420,
+      "rowId": "yukopi|強風オールバック (吹いてみた)|ショート|https://www.youtube.com/watch?v=i1iRDePnzdA",
+      "historyRef": "history/12fc245314e3.json",
+      "historyCount": 1,
+      "lastSungAt": 20260420
+    },
     {
       "artist": "木村わいP",
       "title": "高音域テスト(吹いてみた)",
@@ -508,6 +520,6 @@
       "lastSungAt": 20250912
     }
   ],
-  "total": 42,
-  "matched": 42
+  "total": 43,
+  "matched": 43
 }
