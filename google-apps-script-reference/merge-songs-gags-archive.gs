@@ -1,6 +1,6 @@
 /**
  * ==============================
- * 定数定義（仕分け／発表年／統計／動画監査：統合版）
+ * 定数定義（仕分け／統計／動画監査：統合版）
  * ==============================
  */
 const MAIN_SHEET_NAME = '歌った曲リスト';
@@ -56,9 +56,6 @@ function onOpen() {
   ui.createMenu('仕分け')
     .addItem('重複を整理（最新のみ残す）', 'dedupeAndArchive')
     .addItem('一覧シートを更新（不足分のみ追記）', 'updateUnifiedListSheet')
-    .addSeparator()
-    .addItem('発表年＆元号を更新（全体）', 'updateReleaseYears')
-    .addItem('発表年＆元号を更新（選択範囲）', 'updateReleaseYearsForSelection')
     .addSeparator()
     .addItem('統計シートを更新', 'createSongStatistics')
     .addToUi();
