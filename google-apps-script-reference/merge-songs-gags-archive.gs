@@ -89,6 +89,8 @@ function dedupeAndArchive() {
   if (!main) throw new Error('シート「' + MAIN_SHEET_NAME + '」が見つかりません。');
   let archive = ss.getSheetByName(ARCHIVE_SHEET_NAME);
   if (!archive) archive = ss.insertSheet(ARCHIVE_SHEET_NAME);
+  ensureSheetHasRequiredColumns_(main, MAIN_SHEET_NAME, COL_COUNT);
+  ensureSheetHasRequiredColumns_(archive, ARCHIVE_SHEET_NAME, COL_COUNT);
 
   // アーカイブのヘッダーを保証（1行目）
   ensureArchiveHeader_(archive);
@@ -809,10 +811,16 @@ function collectLoggedVideosMap_() {
   const map = new Map();
 
   const main = ss.getSheetByName(MAIN_SHEET_NAME);
-  if (main) collectLoggedVideosFromSheet_(main, START_ROW, map);
+  if (main) {
+    ensureSheetHasRequiredColumns_(main, MAIN_SHEET_NAME, COL_COUNT);
+    collectLoggedVideosFromSheet_(main, START_ROW, map);
+  }
 
   const archive = ss.getSheetByName(ARCHIVE_SHEET_NAME);
-  if (archive) collectLoggedVideosFromSheet_(archive, ARCHIVE_START_ROW, map);
+  if (archive) {
+    ensureSheetHasRequiredColumns_(archive, ARCHIVE_SHEET_NAME, COL_COUNT);
+    collectLoggedVideosFromSheet_(archive, ARCHIVE_START_ROW, map);
+  }
 
   return map;
 }
@@ -863,6 +871,13 @@ function collectLoggedVideosFromSheet_(sheet, startRow, outMap) {
     if (!prev.url && url) {
       outMap.set(vid, { yyyymmdd: prev.yyyymmdd, title: prev.title, url });
     }
+  }
+}
+
+function ensureSheetHasRequiredColumns_(sheet, sheetName, requiredColumns) {
+  const maxColumns = sheet.getMaxColumns();
+  if (maxColumns < requiredColumns) {
+    throw new Error(`列数不足: シート「${sheetName}」はA:Dの4列が必要です（現在${maxColumns}列）。`);
   }
 }
 
@@ -1016,6 +1031,7 @@ function updateUnifiedListSheet() {
   for (const src of sources) {
     const sh = ss.getSheetByName(src.name);
     if (!sh) continue;
+    ensureSheetHasRequiredColumns_(sh, src.name, COL_COUNT);
 
     const lastRow = sh.getLastRow();
     if (lastRow < src.startRow) continue;
