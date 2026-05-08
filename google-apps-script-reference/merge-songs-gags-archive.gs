@@ -106,7 +106,7 @@ function dedupeAndArchive() {
   const rows = readRange.getValues();              // [[artist, title, category, linkText], ...]
   const richRows = readRange.getRichTextValues();  // [[RT, RT, RT, RT], ... ]
 
-  const entries = [];
+  const baseEntries = [];
   for (let i = 0; i < rows.length; i++) {
     const r = rows[i];
     const rr = richRows[i];
@@ -118,33 +118,22 @@ function dedupeAndArchive() {
     // 空行（アーティスト名・曲名ともに空）はスキップ
     if (!artist && !title) continue;
 
-    const key = buildKey(artist, title);
-    const prio = PRIORITY.hasOwnProperty(cat) ? PRIORITY[cat] : 0;
-
-    // 表示テキストから日付抽出（文頭）
-    const dateObj = parseHeadDate(linkText);
-    if (!dateObj) {
-      const rowNo = START_ROW + i;
-      main.getRange(rowNo, 4).setBackground('#ffd1d1'); // 直リンクセルを赤系でマーキング
-      throw new Error(`日付抽出に失敗しました（${rowNo}行目, 直リンク="${linkText}"）。直リンク文頭に日付を入れてください。`);
-    }
-
     // ハイパーリンクURL（リッチテキストのURLを優先）
     const url = extractFirstUrlFromRichText_(rr[3]) || linkText;
     const normalizedUrl = normalizeUrlForCompare_(url);
 
-    entries.push({
+    baseEntries.push({
       rowIndex: START_ROW + i, // 1始まりのシート行番号
-      key,                     // 正規化キー（アーティスト｜曲名）
-      prio,                    // 区分優先度
-      date: dateObj,           // Date
+      artist,
+      title,
+      cat,
       linkText,                // 表示テキスト
       url,                     // URL（なければ表示テキスト）
       normalizedUrl,           // 完全一致判定用URL（trim）
     });
   }
 
-  if (entries.length === 0) {
+  if (baseEntries.length === 0) {
     ss.toast('有効なデータがありません。', '仕分け', 5);
     return;
   }
@@ -159,7 +148,7 @@ function dedupeAndArchive() {
   const rowsToDeleteByUrl = new Set();
   const seenUrl = new Set(archiveUrlSet); // アーカイブに存在するURLは先に「既出」にする
 
-  const entriesByRow = [...entries].sort((a, b) => a.rowIndex - b.rowIndex);
+  const entriesByRow = [...baseEntries].sort((a, b) => a.rowIndex - b.rowIndex);
   for (const e of entriesByRow) {
     if (!e.normalizedUrl) continue;
     if (seenUrl.has(e.normalizedUrl)) {
@@ -170,11 +159,30 @@ function dedupeAndArchive() {
   }
 
   // URL重複で削除されない行だけを、同一データ（A+B）判定の対象にする
-  const remainingEntries = entries.filter(e => !rowsToDeleteByUrl.has(e.rowIndex));
+  const remainingBaseEntries = baseEntries.filter(e => !rowsToDeleteByUrl.has(e.rowIndex));
+
+  // URL重複を先に取り除いた後で、A+B重複整理用のデータを組み立てる
+  const entries = remainingBaseEntries.map(e => {
+    const key = buildKey(e.artist, e.title);
+    const prio = PRIORITY.hasOwnProperty(e.cat) ? PRIORITY[e.cat] : 0;
+    const dateObj = parseHeadDate(e.linkText);
+    if (!dateObj) {
+      main.getRange(e.rowIndex, 4).setBackground('#ffd1d1'); // 直リンクセルを赤系でマーキング
+      throw new Error(`日付抽出に失敗しました（${e.rowIndex}行目, 直リンク="${e.linkText}"）。直リンク文頭に日付を入れてください。`);
+    }
+    return {
+      rowIndex: e.rowIndex,
+      key,
+      prio,
+      date: dateObj,
+      linkText: e.linkText,
+      url: e.url,
+    };
+  });
 
   // 2) 同一データ（A+B）の現行重複整理（区分優先＞日付降順）
   const byKey = new Map();
-  for (const e of remainingEntries) {
+  for (const e of entries) {
     if (!byKey.has(e.key)) byKey.set(e.key, []);
     byKey.get(e.key).push(e);
   }
