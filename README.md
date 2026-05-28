@@ -27,7 +27,7 @@
 
 `scripts/sync-gas.mjs` が担当します。
 
-- `songs` / `gags` を取得して `public-data/*.json` を更新
+- `songs` はページングで全件取得し、`gags` は単発取得して `public-data/*.json` を更新
 - `history/<id>.json` を生成
 - `meta.json` を再生成
 - 必要時のみ `ENABLE_ARCHIVE_SYNC=true` で archive を live 取得
@@ -43,6 +43,7 @@
 - `ARCHIVE_STRICT_SYNC`（既定 `false`）
 - `ARCHIVE_BATCH_SIZE_MIN` / `ARCHIVE_BATCH_SIZE_MAX` / `ARCHIVE_BATCH_SIZE_FALLBACK`
 - `ARCHIVE_RESET_CURSOR`（先頭から再開）
+- `SONGS_MAX_PAGES`（songs 全件取得の安全上限。既定 `20`）
 - `ARCHIVE_FORCE_RESEED`（1回で全件再取得はせず、先頭からローリング再収集）
 
 ## 5. 実行方法
