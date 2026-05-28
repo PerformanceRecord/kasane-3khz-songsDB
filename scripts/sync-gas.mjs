@@ -25,6 +25,7 @@ const DEFAULT_LIMITS = {
   gags: 100,
   archive: ARCHIVE_BATCH_SIZE_FALLBACK,
 };
+const SONGS_MAX_PAGES = Number(process.env.SONGS_MAX_PAGES || 20);
 const TIMEOUT_MS = Number(process.env.SYNC_TIMEOUT_MS || 8000);
 const MAX_RETRY = Number(process.env.SYNC_MAX_RETRY || 3);
 
@@ -585,6 +586,41 @@ async function fetchArchiveRollingBatch(currentState, existingRows) {
   };
 }
 
+
+async function fetchCoreRowsPaged(tab) {
+  const baseLimit = DEFAULT_LIMITS[tab];
+  if (!Number.isFinite(baseLimit) || baseLimit <= 0) {
+    return fetchJsonWithRetry(tab);
+  }
+
+  let offset = 0;
+  let page = 0;
+  let total = null;
+  let matched = null;
+  const allRows = [];
+
+  while (page < SONGS_MAX_PAGES) {
+    const payload = await fetchJsonWithRetry(tab, { offset, limit: baseLimit });
+    const rows = payload.rows || [];
+    allRows.push(...rows);
+    total = payload.total ?? total;
+    matched = payload.matched ?? matched;
+
+    const hasMore = payload.hasMore !== false;
+    if (!hasMore || rows.length < baseLimit || rows.length === 0) {
+      break;
+    }
+
+    offset += rows.length;
+    page += 1;
+  }
+
+  return {
+    rows: allRows,
+    total: total ?? allRows.length,
+    matched: matched ?? allRows.length,
+  };
+}
 async function main() {
   await mkdir(OUT_DIR, { recursive: true });
   const startedAt = new Date().toISOString();
@@ -592,7 +628,7 @@ async function main() {
   const outputs = {};
   const historyDir = `${OUT_DIR}/${HISTORY_DIR_NAME}`;
   for (const tab of CORE_TABS) {
-    const payload = await fetchJsonWithRetry(tab);
+    const payload = tab === 'songs' ? await fetchCoreRowsPaged(tab) : await fetchJsonWithRetry(tab);
     outputs[tab] = {
       ok: true,
       sheet: tab,
