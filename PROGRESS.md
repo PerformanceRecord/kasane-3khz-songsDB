@@ -52,6 +52,7 @@
 - 2026-04-16: フロントエンドの保守性改善として、`index.html` のインラインCSS/JSを `assets/css/app.css` / `assets/js/app.js` へ分離。動作仕様は維持し、フォルダ階層で責務を明確化。
 - 2026-04-18: archive 同期のタイムアウト緩和として、offset 方式を廃止し cursor 方式のローリング取得へ変更。`public-data/archive-crawl-state.json` で巡回状態を保持し、upsert は URL 非依存キー（`artist|title|kind|date8`）で実施。衝突件数は state に `lastCollisionCount` として保存。
 - 2026-05-28: `songs` 同期の 500 件頭打ち解消として、`scripts/sync-gas.mjs` に offset ページング全件取得を追加。無制限化は避け、`SONGS_MAX_PAGES`（既定20）で安全上限を導入。
+- 2026-05-28: `SONGS_MAX_PAGES` 到達時に欠損した `songs.json` を正常成果物として出さないよう、songs ページング取得の上限到達判定・env正規化・空ページ異常検知を補強。
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）

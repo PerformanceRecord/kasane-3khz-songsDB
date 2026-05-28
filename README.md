@@ -43,7 +43,8 @@
 - `ARCHIVE_STRICT_SYNC`（既定 `false`）
 - `ARCHIVE_BATCH_SIZE_MIN` / `ARCHIVE_BATCH_SIZE_MAX` / `ARCHIVE_BATCH_SIZE_FALLBACK`
 - `ARCHIVE_RESET_CURSOR`（先頭から再開）
-- `SONGS_MAX_PAGES`（songs 全件取得の安全上限。既定 `20`）
+- `SONGS_MAX_PAGES`（songs ページング全件取得の安全上限。既定 `20`）
+  - 上限に到達しても続きがある場合は、欠損データを正常扱いせず sync を失敗させます。
 - `ARCHIVE_FORCE_RESEED`（1回で全件再取得はせず、先頭からローリング再収集）
 
 ## 5. 実行方法
