@@ -25,7 +25,15 @@ const DEFAULT_LIMITS = {
   gags: 100,
   archive: ARCHIVE_BATCH_SIZE_FALLBACK,
 };
-const SONGS_MAX_PAGES = Number(process.env.SONGS_MAX_PAGES || 20);
+function resolvePositiveIntEnv(name, fallback) {
+  const raw = Number(process.env[name] ?? fallback);
+  if (!Number.isFinite(raw) || raw < 1) {
+    return fallback;
+  }
+  return Math.floor(raw);
+}
+
+const SONGS_MAX_PAGES = resolvePositiveIntEnv('SONGS_MAX_PAGES', 20);
 const TIMEOUT_MS = Number(process.env.SYNC_TIMEOUT_MS || 8000);
 const MAX_RETRY = Number(process.env.SYNC_MAX_RETRY || 3);
 
@@ -587,39 +595,46 @@ async function fetchArchiveRollingBatch(currentState, existingRows) {
 }
 
 
-async function fetchCoreRowsPaged(tab) {
-  const baseLimit = DEFAULT_LIMITS[tab];
+// songs 専用: gags / archive の取得方式は変更しない。
+async function fetchSongsRowsPaged() {
+  const baseLimit = DEFAULT_LIMITS.songs;
   if (!Number.isFinite(baseLimit) || baseLimit <= 0) {
-    return fetchJsonWithRetry(tab);
+    return fetchJsonWithRetry('songs');
   }
 
   let offset = 0;
-  let page = 0;
   let total = null;
   let matched = null;
   const allRows = [];
 
-  while (page < SONGS_MAX_PAGES) {
-    const payload = await fetchJsonWithRetry(tab, { offset, limit: baseLimit });
+  for (let page = 0; page < SONGS_MAX_PAGES; page += 1) {
+    const payload = await fetchJsonWithRetry('songs', { offset, limit: baseLimit });
     const rows = payload.rows || [];
+
+    if (rows.length === 0 && payload.hasMore !== false) {
+      throw new Error('[songs] rows=0 なのに hasMore が false ではありません');
+    }
+
     allRows.push(...rows);
     total = payload.total ?? total;
     matched = payload.matched ?? matched;
 
     const hasMore = payload.hasMore !== false;
-    if (!hasMore || rows.length < baseLimit || rows.length === 0) {
-      break;
+    if (!hasMore || rows.length < baseLimit) {
+      return {
+        rows: allRows,
+        total: total ?? allRows.length,
+        matched: matched ?? allRows.length,
+      };
     }
 
     offset += rows.length;
-    page += 1;
   }
 
-  return {
-    rows: allRows,
-    total: total ?? allRows.length,
-    matched: matched ?? allRows.length,
-  };
+  throw new Error(
+    `[songs] SONGS_MAX_PAGES=${SONGS_MAX_PAGES} に到達しました。`
+    + `取得済み=${allRows.length}件。GAS API の hasMore/limit/offset または SONGS_MAX_PAGES を確認してください。`,
+  );
 }
 async function main() {
   await mkdir(OUT_DIR, { recursive: true });
@@ -628,7 +643,7 @@ async function main() {
   const outputs = {};
   const historyDir = `${OUT_DIR}/${HISTORY_DIR_NAME}`;
   for (const tab of CORE_TABS) {
-    const payload = tab === 'songs' ? await fetchCoreRowsPaged(tab) : await fetchJsonWithRetry(tab);
+    const payload = tab === 'songs' ? await fetchSongsRowsPaged() : await fetchJsonWithRetry(tab);
     outputs[tab] = {
       ok: true,
       sheet: tab,
