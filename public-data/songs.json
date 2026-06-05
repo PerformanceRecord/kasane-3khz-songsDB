@@ -1,8 +1,56 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-06-04T02:35:32.071Z",
+  "fetchedAt": "2026-06-05T02:10:18.491Z",
   "rows": [
+    {
+      "artist": "Vaundy",
+      "title": "怪獣の花唄",
+      "kind": "ショート",
+      "dText": "20260604 怪獣の花唄/Vaundy #歌ってみた #怪獣の花唄 #vaundy #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=7TIEihlT9YA",
+      "date8": 20260604,
+      "rowId": "vaundy|怪獣の花唄|ショート|https://www.youtube.com/watch?v=7TIEihlT9YA",
+      "historyRef": "history/e1c01e1cb236.json",
+      "historyCount": 1,
+      "lastSungAt": 20260604
+    },
+    {
+      "artist": "アイナ・ジ・エンド",
+      "title": "ルミナス",
+      "kind": "ショート",
+      "dText": "20260601 ルミナス/アイナ・ジ・エンド #歌ってみた #アイナジエンド #ルミナス #アニソン #ワンピース",
+      "dUrl": "https://www.youtube.com/watch?v=ZkrntJHkVOs",
+      "date8": 20260601,
+      "rowId": "アイナ・ジ・エンド|ルミナス|ショート|https://www.youtube.com/watch?v=ZkrntJHkVOs",
+      "historyRef": "history/4d3ecb835008.json",
+      "historyCount": 1,
+      "lastSungAt": 20260601
+    },
+    {
+      "artist": "小沢健二",
+      "title": "今夜はブギー・バック",
+      "kind": "ショート",
+      "dText": "20260531 今夜はブギー・バック/小沢健二 #歌ってみた #今夜はブギーバック #小沢健二 #新人vtuber #karaoke",
+      "dUrl": "https://www.youtube.com/watch?v=g_fLgK-hUuw",
+      "date8": 20260531,
+      "rowId": "小沢健二|今夜はブギー・バック|ショート|https://www.youtube.com/watch?v=g_fLgK-hUuw",
+      "historyRef": "history/29330c4cc56c.json",
+      "historyCount": 1,
+      "lastSungAt": 20260531
+    },
+    {
+      "artist": "9lana",
+      "title": "確定一発",
+      "kind": "ショート",
+      "dText": "20260530 確定一発/9lana #歌ってみた #9lana #確定一発 #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=gKtFi1L0dXc",
+      "date8": 20260530,
+      "rowId": "9lana|確定一発|ショート|https://www.youtube.com/watch?v=gKtFi1L0dXc",
+      "historyRef": "history/43881eb6b7ed.json",
+      "historyCount": 1,
+      "lastSungAt": 20260530
+    },
     {
       "artist": "椎名林檎",
       "title": "17",
@@ -6676,6 +6724,6 @@
       "lastSungAt": 20260220
     }
   ],
-  "total": 556,
-  "matched": 556
+  "total": 560,
+  "matched": 560
 }

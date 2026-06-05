@@ -1,8 +1,20 @@
 {
   "ok": true,
   "sheet": "gags",
-  "fetchedAt": "2026-06-04T02:35:34.566Z",
+  "fetchedAt": "2026-06-05T02:10:20.560Z",
   "rows": [
+    {
+      "artist": "花彩音_3kHz",
+      "title": "お風呂キャンセルしました",
+      "kind": "ショート",
+      "dText": "20260529 【オリジナル曲】お風呂キャンセルしました #オリジナル曲 #風呂キャンセル界隈 #新人vtuber #chill",
+      "dUrl": "https://www.youtube.com/watch?v=2WTuNIzzVKE",
+      "date8": 20260529,
+      "rowId": "花彩音_3khz|お風呂キャンセルしました|ショート|https://www.youtube.com/watch?v=2WTuNIzzVKE",
+      "historyRef": "history/4e7f535d8e88.json",
+      "historyCount": 1,
+      "lastSungAt": 20260529
+    },
     {
       "artist": "Yukopi",
       "title": "強風オールバック (吹いてみた)",
@@ -520,6 +532,6 @@
       "lastSungAt": 20250912
     }
   ],
-  "total": 43,
-  "matched": 43
+  "total": 44,
+  "matched": 44
 }
