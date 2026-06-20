@@ -1,0 +1,6 @@
+    .item.item-featured-artist{
+      border-color:#ffb703;
+      outline:2px solid rgba(255,183,3,.78);
+      outline-offset:-2px;
+      box-shadow:0 0 0 3px rgba(255,183,3,.24),0 10px 22px rgba(255,183,3,.18);
+    }
