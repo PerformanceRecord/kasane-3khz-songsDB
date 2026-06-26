@@ -1,8 +1,164 @@
 {
   "ok": true,
   "sheet": "gags",
-  "fetchedAt": "2026-06-25T02:07:08.832Z",
+  "fetchedAt": "2026-06-26T02:09:20.077Z",
   "rows": [
+    {
+      "artist": "星街すいせい",
+      "title": "ビビデバ(ずんだもん:クセ強)",
+      "kind": "歌枠",
+      "dText": "20260621 20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
+      "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=502s",
+      "date8": 20260621,
+      "rowId": "星街すいせい|ビビデバ(ずんだもん:クセ強)|歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=502s",
+      "historyRef": "history/b048df27cb6f.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
+    {
+      "artist": "ツミキ",
+      "title": "フォニイ (クセ強:演歌)",
+      "kind": "歌枠",
+      "dText": "20260621 20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
+      "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=834s",
+      "date8": 20260621,
+      "rowId": "ツミキ|フォニイ (クセ強:演歌)|歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=834s",
+      "historyRef": "history/d9ec98614a0c.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
+    {
+      "artist": "kanaria ",
+      "title": "酔いどれ知らず(かわいい:ハムボ)",
+      "kind": "歌枠",
+      "dText": "20260621 20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
+      "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=1211s",
+      "date8": 20260621,
+      "rowId": "kanaria|酔いどれ知らず(かわいい:ハムボ)|歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=1211s",
+      "historyRef": "history/a14149962d89.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "ギブス (透明感:かっこいい)",
+      "kind": "歌枠",
+      "dText": "20260621 20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
+      "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=1722s",
+      "date8": 20260621,
+      "rowId": "椎名林檎|ギブス (透明感:かっこいい)|歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=1722s",
+      "historyRef": "history/b7fa629f0410.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
+    {
+      "artist": "高橋洋子 ",
+      "title": "残酷な天使のテーゼ(演歌:ドラえもん)",
+      "kind": "歌枠",
+      "dText": "20260621 20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
+      "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=2250s",
+      "date8": 20260621,
+      "rowId": "高橋洋子|残酷な天使のテーゼ(演歌:ドラえもん)|歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=2250s",
+      "historyRef": "history/23abb18738a1.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
+    {
+      "artist": "みきとP ",
+      "title": "少女レイ(ドラえもん:ハムボ)",
+      "kind": "歌枠",
+      "dText": "20260621 20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
+      "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=2680s",
+      "date8": 20260621,
+      "rowId": "みきとp|少女レイ(ドラえもん:ハムボ)|歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=2680s",
+      "historyRef": "history/6b54d0a71d86.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
+    {
+      "artist": "Ado ",
+      "title": "唱(ハムボ:ずんだもん)",
+      "kind": "歌枠",
+      "dText": "20260621 20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
+      "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=3203s",
+      "date8": 20260621,
+      "rowId": "ado|唱(ハムボ:ずんだもん)|歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=3203s",
+      "historyRef": "history/bdcb1344573e.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
+    {
+      "artist": "YOASOBI ",
+      "title": "アイドル(セクシー:悲しみ)",
+      "kind": "歌枠",
+      "dText": "20260621 20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
+      "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=3719s",
+      "date8": 20260621,
+      "rowId": "yoasobi|アイドル(セクシー:悲しみ)|歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=3719s",
+      "historyRef": "history/c862a3ea1b0e.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
+    {
+      "artist": "aiko ",
+      "title": "カブトムシ(透明感:クセ強)",
+      "kind": "歌枠",
+      "dText": "20260621 20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
+      "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=4276s",
+      "date8": 20260621,
+      "rowId": "aiko|カブトムシ(透明感:クセ強)|歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=4276s",
+      "historyRef": "history/72e876cfab29.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
+    {
+      "artist": "石川さゆり ",
+      "title": "津軽海峡冬景色(クセ強:ハイテンション)",
+      "kind": "歌枠",
+      "dText": "20260621 20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
+      "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=4835s",
+      "date8": 20260621,
+      "rowId": "石川さゆり|津軽海峡冬景色(クセ強:ハイテンション)|歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=4835s",
+      "historyRef": "history/4fbeaad4d2de.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
+    {
+      "artist": "ヨルシカ ",
+      "title": "ただ君に晴れ(透明感:クセ強)",
+      "kind": "歌枠",
+      "dText": "20260621 20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
+      "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=5275s",
+      "date8": 20260621,
+      "rowId": "ヨルシカ|ただ君に晴れ(透明感:クセ強)|歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=5275s",
+      "historyRef": "history/64605c9800f2.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
+    {
+      "artist": "かいりきベア",
+      "title": "バグ (かっこいい:セクシー)",
+      "kind": "歌枠",
+      "dText": "20260621 20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
+      "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=5720s",
+      "date8": 20260621,
+      "rowId": "かいりきベア|バグ (かっこいい:セクシー)|歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=5720s",
+      "historyRef": "history/30396f6fe86f.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
+    {
+      "artist": "Superfly ",
+      "title": "愛をこめて花束を(イケボ:ハイテンション)",
+      "kind": "歌枠",
+      "dText": "20260621 20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
+      "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=6205s",
+      "date8": 20260621,
+      "rowId": "superfly|愛をこめて花束を(イケボ:ハイテンション)|歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=6205s",
+      "historyRef": "history/c9129483e7a6.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
     {
       "artist": "花彩音_3kHz",
       "title": "お風呂キャンセルしました",
@@ -421,7 +577,7 @@
       "rowId": "かいりきベア|バグ (かっこいい:セクシー)|ネタ歌枠|https://www.youtube.com/watch?v=v7zREcdxUEk&t=5720s",
       "historyRef": "history/30396f6fe86f.json",
       "historyCount": 1,
-      "lastSungAt": 20250914
+      "lastSungAt": 20260621
     },
     {
       "artist": "ツミキ",
@@ -433,7 +589,7 @@
       "rowId": "ツミキ|フォニイ (クセ強:演歌)|ネタ歌枠|https://www.youtube.com/watch?v=v7zREcdxUEk&t=834s",
       "historyRef": "history/d9ec98614a0c.json",
       "historyCount": 1,
-      "lastSungAt": 20250914
+      "lastSungAt": 20260621
     },
     {
       "artist": "みきとP",
@@ -496,18 +652,6 @@
       "lastSungAt": 20250914
     },
     {
-      "artist": "大野克夫",
-      "title": "名探偵コナンのテーマ (吹いてみた)",
-      "kind": "ショート",
-      "dText": "20250914 【吹いてみた】名探偵コナンのテーマ #kazoo",
-      "dUrl": "https://www.youtube.com/shorts/15KIO-R5FSE",
-      "date8": 20250914,
-      "rowId": "大野克夫|名探偵コナンのテーマ (吹いてみた)|ショート|https://www.youtube.com/shorts/15KIO-R5FSE",
-      "historyRef": "history/3b45830b12f0.json",
-      "historyCount": 1,
-      "lastSungAt": 20250914
-    },
-    {
       "artist": "椎名林檎",
       "title": "ギブス (透明感:かっこいい)",
       "kind": "ネタ歌枠",
@@ -516,6 +660,18 @@
       "date8": 20250914,
       "rowId": "椎名林檎|ギブス (透明感:かっこいい)|ネタ歌枠|https://www.youtube.com/watch?v=v7zREcdxUEk&t=1722s",
       "historyRef": "history/b7fa629f0410.json",
+      "historyCount": 1,
+      "lastSungAt": 20260621
+    },
+    {
+      "artist": "大野克夫",
+      "title": "名探偵コナンのテーマ (吹いてみた)",
+      "kind": "ショート",
+      "dText": "20250914 【吹いてみた】名探偵コナンのテーマ #kazoo",
+      "dUrl": "https://www.youtube.com/shorts/15KIO-R5FSE",
+      "date8": 20250914,
+      "rowId": "大野克夫|名探偵コナンのテーマ (吹いてみた)|ショート|https://www.youtube.com/shorts/15KIO-R5FSE",
+      "historyRef": "history/3b45830b12f0.json",
       "historyCount": 1,
       "lastSungAt": 20250914
     },
@@ -532,6 +688,6 @@
       "lastSungAt": 20250912
     }
   ],
-  "total": 44,
-  "matched": 44
+  "total": 57,
+  "matched": 57
 }
