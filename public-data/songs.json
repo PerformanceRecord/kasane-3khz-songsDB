@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-06-28T02:14:52.440Z",
+  "fetchedAt": "2026-06-28T03:52:24.858Z",
   "rows": [
     {
       "artist": "Awich",
@@ -184,14 +184,14 @@
       "lastSungAt": 20251126
     },
     {
-      "artist": "D.D.D.feat.SOULHEAD",
-      "title": "倖田來未",
+      "artist": "倖田來未 feat.SOULHEAD",
+      "title": "D.D.D.",
       "kind": "ショート",
       "dText": "20260621 【20年前の曲今聴いてもかっこいい】D.D.D.feat.SOULHEAD/倖田來未 #歌ってみた #SOULHEAD #倖田來未 #rap #平成",
       "dUrl": "https://www.youtube.com/watch?v=pdm5Kd4WEy0",
       "date8": 20260621,
-      "rowId": "d.d.d.feat.soulhead|倖田來未|ショート|https://www.youtube.com/watch?v=pdm5Kd4WEy0",
-      "historyRef": "history/668b5bfc04d6.json",
+      "rowId": "倖田來未 feat.soulhead|d.d.d.|ショート|https://www.youtube.com/watch?v=pdm5Kd4WEy0",
+      "historyRef": "history/a69266c8867f.json",
       "historyCount": 1,
       "lastSungAt": 20260621
     },
