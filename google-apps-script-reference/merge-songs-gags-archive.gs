@@ -23,6 +23,8 @@ const ARCHIVE_START_ROW = 2;
 const COL_COUNT = 4;
 const MAIN_DATA_COL_COUNT = 6;
 const SOURCE_URL_COL = 4;
+const BACKUP_PREFIX = '_backup_';
+const BACKUP_KEEP_GENERATIONS = 5;
 
 const PRIORITY = {
   '歌ってみた': 3,
@@ -88,6 +90,8 @@ function dedupeAndArchive() {
 
     placement.mainEntries.sort(compareSheetOrder_);
     placement.archiveEntries.sort(compareSheetOrder_);
+
+    createDedupeBackups_(ss, main, archive);
 
     rewriteSongSheet_(main, START_ROW, placement.mainEntries, true);
     rewriteSongSheet_(archive, ARCHIVE_START_ROW, placement.archiveEntries, false);
@@ -332,6 +336,40 @@ function normalizeDisplayText_(value) {
     .replace(/\s+/g, ' ')
     .trim()
     .toLowerCase();
+}
+
+function createDedupeBackups_(ss, mainSheet, archiveSheet) {
+  const timezone = ss.getSpreadsheetTimeZone() || Session.getScriptTimeZone() || 'Asia/Tokyo';
+  const timestamp = Utilities.formatDate(new Date(), timezone, 'yyyyMMdd_HHmmss');
+
+  const targets = [mainSheet, archiveSheet];
+  for (const source of targets) {
+    const backupName = makeUniqueBackupSheetName_(ss, source.getName(), timestamp);
+    source.copyTo(ss).setName(backupName).hideSheet();
+    pruneOldBackupSheets_(ss, source.getName());
+  }
+}
+
+function makeUniqueBackupSheetName_(ss, sourceName, timestamp) {
+  const base = `${BACKUP_PREFIX}${sourceName}_${timestamp}`.slice(0, 95);
+  if (!ss.getSheetByName(base)) return base;
+
+  for (let suffix = 2; suffix <= 99; suffix++) {
+    const candidate = `${base.slice(0, 97 - String(suffix).length)}_${suffix}`;
+    if (!ss.getSheetByName(candidate)) return candidate;
+  }
+  throw new Error(`バックアップシート名を確保できませんでした: ${sourceName}`);
+}
+
+function pruneOldBackupSheets_(ss, sourceName) {
+  const prefix = `${BACKUP_PREFIX}${sourceName}_`;
+  const backups = ss.getSheets()
+    .filter(sheet => sheet.getName().startsWith(prefix))
+    .sort((a, b) => b.getName().localeCompare(a.getName()));
+
+  for (const sheet of backups.slice(BACKUP_KEEP_GENERATIONS)) {
+    ss.deleteSheet(sheet);
+  }
 }
 
 function rewriteSongSheet_(sheet, startRow, entries, includeMainExtras) {
