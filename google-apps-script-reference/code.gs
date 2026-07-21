@@ -18,7 +18,7 @@ const CFG = {
   START_ROWS: {
     songs: 4,
     gags: 4,
-    archive: 4,
+    archive: 2,
   },
   COLS: 4,
   MAX_RETURN: 5000,
