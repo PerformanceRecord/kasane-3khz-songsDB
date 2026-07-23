@@ -91,6 +91,16 @@ function dedupeAndArchive() {
     placement.mainEntries.sort(compareSheetOrder_);
     placement.archiveEntries.sort(compareSheetOrder_);
 
+    if (!hasDedupePlacementChanges_(
+      mainEntries,
+      archiveEntries,
+      placement.mainEntries,
+      placement.archiveEntries
+    )) {
+      ss.toast('変更対象はありません。バックアップと書換えを省略しました。', '仕分け', 6);
+      return;
+    }
+
     createDedupeBackups_(ss, main, archive);
 
     rewriteSongSheet_(main, START_ROW, placement.mainEntries, true);
@@ -336,6 +346,35 @@ function normalizeDisplayText_(value) {
     .replace(/\s+/g, ' ')
     .trim()
     .toLowerCase();
+}
+
+function hasDedupePlacementChanges_(beforeMain, beforeArchive, afterMain, afterArchive) {
+  return serializeSheetEntries_(beforeMain, true) !== serializeSheetEntries_(afterMain, true)
+    || serializeSheetEntries_(beforeArchive, false) !== serializeSheetEntries_(afterArchive, false);
+}
+
+function serializeSheetEntries_(entries, includeMainExtras) {
+  return JSON.stringify((entries || []).map(entry => {
+    const base = [
+      String(entry.artist || ''),
+      String(entry.title || ''),
+      String(entry.kind || ''),
+      String(entry.linkText || ''),
+      normalizeUrlForCompare_(entry.url),
+    ];
+
+    if (includeMainExtras) {
+      const extras = Array.isArray(entry.extraValues) ? entry.extraValues : [];
+      base.push(...extras.map(serializeCellValue_));
+    }
+    return base;
+  }));
+}
+
+function serializeCellValue_(value) {
+  if (value instanceof Date) return value.toISOString();
+  if (value === null || value === undefined) return '';
+  return String(value);
 }
 
 function createDedupeBackups_(ss, mainSheet, archiveSheet) {

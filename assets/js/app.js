@@ -10,6 +10,8 @@
       songs: '歌唱曲',
       gags: '一発ネタ'
     };
+    const FEATURED_ARTIST = '花彩音_3kHz';
+    const LIST_RENDER_CHUNK_SIZE = 100;
 
     function resolveUrlFromQueryOrStorage({ queryKey, storageKey, fallback }){
       try {
@@ -57,13 +59,16 @@ function isCoarsePointer(){
       activeSnapIndex: -1,
       historyRenderSeq: 0,
       historyView: {},
+      historyCache: new Map(),
+      historyController: null,
+      dataVersion: '',
+      listRenderToken: 0,
       listStatusText: '',
       isFilterCompact: false,
       isFilterExpandedManually: false,
       filterAutoCollapseProgress: 0,
       filterAutoCollapseFrame: null,
-      mobileLayoutFrame: null,
-      mobileResizeObserver: null
+      mobileLayoutFrame: null
     };
 
     const $ = id => document.getElementById(id);
@@ -132,14 +137,24 @@ function isCoarsePointer(){
       }
       renderServerResponse();
     }
+    function cancelServerRequest(){
+      state.serverResponse.inflight = Math.max(0, state.serverResponse.inflight - 1);
+      renderServerResponse();
+    }
 
-    async function fetchWithTimeout(url, timeoutMs = 7000){
+    async function fetchWithTimeout(url, timeoutMs = 7000, { signal = null, cache = 'no-store' } = {}){
       const controller = new AbortController();
+      const abortFromParent = () => controller.abort();
+      if (signal) {
+        if (signal.aborted) controller.abort();
+        else signal.addEventListener('abort', abortFromParent, { once: true });
+      }
       const timer = setTimeout(()=>controller.abort(), timeoutMs);
       try {
-        return await fetch(url, { cache: 'no-store', signal: controller.signal });
+        return await fetch(url, { cache, signal: controller.signal });
       } finally {
         clearTimeout(timer);
+        if (signal) signal.removeEventListener('abort', abortFromParent);
       }
     }
 
@@ -432,11 +447,15 @@ function isCoarsePointer(){
         throw new Error(`取得元不一致: request=${tab}, response=${rawSheet}`);
       }
 
-      return normalizeListRows(rowsPayload).map(r => ({
-        ...r,
-        _na: normalize(r.artist),
-        _nt: normalize(r.title)
-      }));
+      return normalizeListRows(rowsPayload).map(r => {
+        const artistKey = normalize(r.artist);
+        const titleKey = normalize(r.title);
+        return {
+          ...r,
+          _search: `${artistKey}\n${titleKey}`,
+          _kind: (r.kind || '').trim()
+        };
+      });
     }
 
     function isListDataReady(){
@@ -513,6 +532,17 @@ function isCoarsePointer(){
           ]);
 
           const staticMeta = metaStatic.status === 'fulfilled' ? metaStatic.value : null;
+          const nextDataVersion = String(
+            staticMeta?.dataVersion
+            || staticMeta?.generatedAt
+            || staticMeta?.fetchedAt
+            || ''
+          );
+          if (state.dataVersion && nextDataVersion && state.dataVersion !== nextDataVersion) {
+            state.historyCache.clear();
+          }
+          state.dataVersion = nextDataVersion;
+
           const songsStaticCheck = songsStatic.status === 'fulfilled'
             ? validateStaticRowsWithMeta('songs', songsStatic.value, staticMeta)
             : { ok: false, reason: songsStatic.reason instanceof Error ? songsStatic.reason.message : 'static songs 取得失敗' };
@@ -624,22 +654,45 @@ function isCoarsePointer(){
       return urls;
     }
 
-    async function fetchSongHistoryByRef(historyRef){
+    function historyCacheKey_(historyRef){
+      return `${state.dataVersion || 'session'}|${String(historyRef || '').trim()}`;
+    }
+
+    function abortCurrentHistoryRequest(){
+      if (!state.historyController) return;
+      state.historyController.abort();
+      state.historyController = null;
+    }
+
+    async function fetchSongHistoryByRef(historyRef, { signal = null } = {}){
       const resolvedRefs = resolveHistoryRefUrls(historyRef);
       if (resolvedRefs.length === 0) return [];
-      renderHistoryProcess();
 
+      const cacheKey = historyCacheKey_(historyRef);
+      if (state.historyCache.has(cacheKey)) {
+        return state.historyCache.get(cacheKey);
+      }
+
+      renderHistoryProcess();
       beginServerRequest();
       const errors = [];
       for (const refUrl of resolvedRefs) {
         try {
-          const res = await fetch(refUrl, { cache: 'no-store' });
+          const res = await fetchWithTimeout(refUrl, FETCH_TIMEOUT_MS, {
+            signal,
+            cache: 'no-store'
+          });
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const entries = extractHistoryEntriesFromRefPayload(await res.text());
+          state.historyCache.set(cacheKey, entries);
           renderHistoryProcess();
           endServerRequest(true, 'historyRef/fetch');
           return entries;
         } catch (err) {
+          if (err && err.name === 'AbortError') {
+            cancelServerRequest();
+            throw err;
+          }
           const reason = err instanceof Error ? err.message : String(err);
           errors.push(`${refUrl} (${reason})`);
         }
@@ -684,6 +737,9 @@ function isCoarsePointer(){
 
     async function renderHistory({ artist, title, rowId, historyRef }){
       // 通常フローでは archive を取得しない（PROGRESS Final Goal: historyRef 単一 fetch）。
+      abortCurrentHistoryRequest();
+      const historyController = new AbortController();
+      state.historyController = historyController;
       const renderSeq = ++state.historyRenderSeq;
       state.histKey = { artist, title, rowId, historyRef };
       state.historyView = {};
@@ -702,7 +758,9 @@ function isCoarsePointer(){
       }
 
       try {
-        const entries = await fetchSongHistoryByRef(historyRef);
+        const entries = await fetchSongHistoryByRef(historyRef, {
+          signal: historyController.signal
+        });
         if (renderSeq !== state.historyRenderSeq) return;
         wrap.innerHTML = '';
         if (entries.length === 0) {
@@ -713,9 +771,14 @@ function isCoarsePointer(){
         $('hist-sub').textContent = `新しい順に ${entries.length} 件を表示しています。`;
         drawHistoryEntries(wrap, entries);
       } catch (err) {
+        if (err && err.name === 'AbortError') return;
         if (renderSeq !== state.historyRenderSeq) return;
         const reason = err instanceof Error ? err.message : String(err);
         showHistoryLoadError(`historyRef の取得に失敗しました: ${reason}`);
+      } finally {
+        if (state.historyController === historyController) {
+          state.historyController = null;
+        }
       }
     }
 
@@ -929,29 +992,128 @@ function isCoarsePointer(){
       }
       return thumb;
     }
+    function createSongListItem(row){
+      const { artist, title, kind, dText, dUrl, rowId, historyRef, date8 } = row;
+      const item = document.createElement('div');
+      item.className = 'item';
+
+      const kindClass = getMobileItemKindClass(kind);
+      if (kindClass) item.classList.add(kindClass);
+      if (String(artist || '').trim() === FEATURED_ARTIST) {
+        item.classList.add('item-featured-artist');
+      }
+
+      const l1 = document.createElement('div');
+      l1.className = 'l1';
+      const meta = document.createElement('div');
+      meta.className = 'song-meta';
+      const artistEl = document.createElement('span');
+      artistEl.className = 'artist';
+      artistEl.textContent = artist || '';
+      const titleEl = document.createElement('span');
+      titleEl.className = 'title';
+      titleEl.textContent = title || '';
+      meta.appendChild(artistEl);
+      meta.appendChild(titleEl);
+      l1.appendChild(meta);
+
+      const thumb = createThumbElement({ dUrl, dText, title });
+
+      const l2 = document.createElement('div');
+      l2.className = 'l2';
+      const actions = document.createElement('div');
+      actions.className = 'mobile-actions';
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'btn';
+      copyBtn.textContent = 'コピー';
+      copyBtn.addEventListener('click', ()=>copyPair(title, artist));
+      actions.appendChild(copyBtn);
+      const historyBtn = document.createElement('button');
+      historyBtn.className = 'btn';
+      historyBtn.textContent = '履歴';
+      historyBtn.disabled = !historyRef;
+      historyBtn.addEventListener('click', ()=>openHistory({ artist, title, rowId, historyRef }));
+      actions.appendChild(historyBtn);
+      actions.appendChild(createTagInfo(kind));
+
+      const dateEl = document.createElement('div');
+      dateEl.className = 'mobile-date';
+      dateEl.textContent = formatDate8(date8);
+      l2.appendChild(actions);
+      l2.appendChild(dateEl);
+
+      item.appendChild(l1);
+      item.appendChild(thumb);
+      item.appendChild(l2);
+      return item;
+    }
+
+    function appendBlankListItem(listWrap){
+      const blank = document.createElement('div');
+      blank.className = 'item item-blank';
+      blank.setAttribute('aria-hidden', 'true');
+      blank.appendChild(document.createTextNode('＼'));
+      const naanLink = document.createElement('a');
+      naanLink.href = 'https://youtube.com/@kasane_3khz?si=EJw9wRmkUnRrWfCn';
+      naanLink.target = '_blank';
+      naanLink.rel = 'noopener noreferrer';
+      naanLink.className = 'stealth-link';
+      naanLink.textContent = 'ﾅｧｧﾝ';
+      blank.appendChild(naanLink);
+      blank.appendChild(document.createTextNode('／'));
+      listWrap.appendChild(blank);
+    }
+
+    function renderListRowsInChunks(listWrap, rows, renderToken){
+      let index = 0;
+
+      const drawChunk = () => {
+        if (renderToken !== state.listRenderToken) return;
+
+        const fragment = document.createDocumentFragment();
+        const end = Math.min(index + LIST_RENDER_CHUNK_SIZE, rows.length);
+        for (; index < end; index++) {
+          fragment.appendChild(createSongListItem(rows[index]));
+        }
+        listWrap.appendChild(fragment);
+
+        if (index < rows.length) {
+          requestAnimationFrame(drawChunk);
+          return;
+        }
+
+        appendBlankListItem(listWrap);
+        scheduleMobileLayoutSync();
+      };
+
+      drawChunk();
+    }
+
     function render(){
-      const tableWrap = $('table'); tableWrap.innerHTML = '';
-      const listWrap  = $('mblist'); listWrap.innerHTML = '';
+      const renderToken = ++state.listRenderToken;
+      const tableWrap = $('table');
+      const listWrap = $('mblist');
+      tableWrap.innerHTML = '';
+      listWrap.innerHTML = '';
       const hint = $('hint');
 
       if (!state.cache[state.current]) {
         setStatus(UI_TEXT.loading);
         tableWrap.style.display = 'none';
-        listWrap.style.display  = 'none';
+        listWrap.style.display = 'none';
         return;
       }
 
-      const q = normalize($('q').value||'');
-
+      const q = normalize($('q').value || '');
       const allRows = state.cache[state.current] || [];
-      const kinds = [...new Set(allRows.map(r => (r.kind || '').trim()).filter(Boolean))].slice(0, 10);
+      const kinds = [...new Set(allRows.map(r => r._kind).filter(Boolean))].slice(0, 10);
       normalizeKindFilters(kinds);
       const selectedKinds = new Set(state.kindFilters);
       const filterByKinds = kinds.length > 0 && state.kindFilters.length < kinds.length;
 
       let filtered = allRows;
-      if(q){ filtered = filtered.filter(r => r._na.includes(q) || r._nt.includes(q)); }
-      if (filterByKinds) filtered = filtered.filter(r => selectedKinds.has((r.kind || '').trim()));
+      if (q) filtered = filtered.filter(r => r._search.includes(q));
+      if (filterByKinds) filtered = filtered.filter(r => selectedKinds.has(r._kind));
       const rows = filtered.slice(0, HARD_LIMIT);
 
       const filterButtons = kinds.map(kind => {
@@ -976,73 +1138,28 @@ function isCoarsePointer(){
 
       setStatus(q
         ? `${rows.length}件ヒット（全${filtered.length}件）`
-        : `表示中 ${rows.length}件（全${(state.cache[state.current]||[]).length}件）`);
+        : `表示中 ${rows.length}件（全${allRows.length}件）`);
 
-      if(rows.length===0){
+      if (rows.length === 0) {
         hint.textContent = q ? '該当なし' : '検索結果がここに表示されます。';
         tableWrap.style.display = 'none';
-        listWrap.style.display  = 'none';
+        listWrap.style.display = 'none';
         state.activeSnapIndex = -1;
         return;
       }
+
       hint.textContent = '';
-
-      rows.forEach(({artist,title,kind,dText,dUrl,rowId,historyRef,date8})=>{
-          const item=document.createElement('div'); item.className='item';
-          const kindClass = getMobileItemKindClass(kind);
-          if (kindClass) item.classList.add(kindClass);
-          const l1=document.createElement('div'); l1.className='l1';
-          const meta=document.createElement('div'); meta.className='song-meta';
-          const a1=document.createElement('span'); a1.className='artist'; a1.textContent=artist||'';
-          const t1=document.createElement('span'); t1.className='title'; t1.textContent=title||'';
-          meta.appendChild(a1); meta.appendChild(t1);
-          l1.appendChild(meta);
-
-          const thumb = createThumbElement({ dUrl, dText, title });
-
-          const l2=document.createElement('div'); l2.className='l2';
-          const actions = document.createElement('div');
-          actions.className = 'mobile-actions';
-          const copyBtn=document.createElement('button'); copyBtn.className='btn'; copyBtn.textContent='コピー';
-          copyBtn.addEventListener('click', ()=>copyPair(title,artist));
-          actions.appendChild(copyBtn);
-          const hbtn=document.createElement('button'); hbtn.className='btn'; hbtn.textContent='履歴';
-          hbtn.disabled = !historyRef;
-          hbtn.addEventListener('click', ()=>openHistory({ artist, title, rowId, historyRef }));
-          actions.appendChild(hbtn);
-          actions.appendChild(createTagInfo(kind));
-          const dateEl = document.createElement('div');
-          dateEl.className = 'mobile-date';
-          dateEl.textContent = formatDate8(date8);
-          l2.appendChild(actions);
-          l2.appendChild(dateEl);
-
-          item.appendChild(l1); item.appendChild(thumb); item.appendChild(l2); $('mblist').appendChild(item);
-        });
-
-        const blank = document.createElement('div');
-        blank.className = 'item item-blank';
-        blank.setAttribute('aria-hidden', 'true');
-        blank.appendChild(document.createTextNode('＼'));
-        const naanLink = document.createElement('a');
-        naanLink.href = 'https://youtube.com/@kasane_3khz?si=EJw9wRmkUnRrWfCn';
-        naanLink.target = '_blank';
-        naanLink.rel = 'noopener noreferrer';
-        naanLink.className = 'stealth-link';
-        naanLink.textContent = 'ﾅｧｧﾝ';
-        blank.appendChild(naanLink);
-        blank.appendChild(document.createTextNode('／'));
-        $('mblist').appendChild(blank);
-
-        $('mblist').style.display = 'block'; $('table').style.display = 'none';
-        scheduleFilterMetrics();
-        state.activeSnapIndex = 0;
-        scheduleMobileLayoutSync();
-
+      listWrap.style.display = 'block';
+      tableWrap.style.display = 'none';
+      scheduleFilterMetrics();
+      state.activeSnapIndex = 0;
+      renderListRowsInChunks(listWrap, rows, renderToken);
       updateScrollGradient();
     }
 
     $('btn-back').addEventListener('click', ()=>{
+      abortCurrentHistoryRequest();
+      state.historyRenderSeq += 1;
       updateHistoryRouteParams({ rowId: '', historyRef: '' });
       showPage('page-list');
       const scroller = getListScroller();
@@ -1059,7 +1176,6 @@ function isCoarsePointer(){
       state.debounce=setTimeout(()=>{
         updateKeyboardOffset();
         updateViewportMetrics();
-        render();
         updateCompactFilterMode();
       },150);
     });
@@ -1138,10 +1254,5 @@ function isCoarsePointer(){
       updateScrollGradient();
       updateAutoFilterCollapse();
       scheduleMobileLayoutSync();
-      if (window.ResizeObserver) {
-        state.mobileResizeObserver = new ResizeObserver(()=>scheduleMobileLayoutSync());
-        state.mobileResizeObserver.observe($('mblist'));
-      }
-
     })();
   
