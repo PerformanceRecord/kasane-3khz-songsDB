@@ -42,7 +42,7 @@ function patchApiCursor() {
     changed = true;
   }
 
-  if (!text.includes('if (tabKey === \'archive\' && (afterDate8 > 0 || afterKey))')) {
+  if (!text.includes("if (tabKey === 'archive' && (afterDate8 > 0 || afterKey))")) {
     text = replaceOnce(
       text,
       `  const offset = Number.isFinite(offsetParam) && offsetParam > 0
@@ -179,7 +179,7 @@ function archiveLogicalKey(row) {
   const kind = String(row.kind ?? '').trim().toLowerCase();
   const date8 = Number(row.date8) || extractDate8(row.dText);
   const stableRowKey = archiveStableRowKey(row);
-  return \`${artist}\u001f${title}\u001f${kind}\u001f${Number.isFinite(date8) ? date8 : 0}\u001f${stableRowKey}\`;
+  return \`\${artist}\u001f\${title}\u001f\${kind}\u001f\${Number.isFinite(date8) ? date8 : 0}\u001f\${stableRowKey}\`;
 }
 
 function archiveCursorKey(row) {
