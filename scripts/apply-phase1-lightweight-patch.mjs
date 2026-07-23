@@ -483,7 +483,7 @@ function patchApp() {
     changed = true;
   }
 
-  if (!text.includes("abortCurrentHistoryRequest();\n      updateHistoryRouteParams")) {
+  if (!text.includes("state.historyRenderSeq += 1;")) {
     text = replaceOnce(
       text,
       `    $('btn-back').addEventListener('click', ()=>{
