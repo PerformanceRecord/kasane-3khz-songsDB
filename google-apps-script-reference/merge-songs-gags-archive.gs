@@ -4,10 +4,12 @@
  *
  * 主な仕様
  * - 「歌った曲リスト」と「アーカイブ」を横断して重複を整理する
- * - 再アップロードは、新しくメイン末尾へ貼り付けた動画IDを正として旧動画IDを両シートから除外する
- * - 完全重複は両シートを通じて1件だけ残す
- * - 同一アーティスト×同一曲名は、日付の新しいものをメインへ、残りをアーカイブへ配置する
- * - 同日なら区分優先度、メイン由来、行番号の新しさで決定する
+ * - 再アップロードは、同一アーティスト×同一曲名×同一区分×同一投稿日で後から追加されたURLを正とする
+ * - A列＋B列＋D列表示文言＋D列URLの完全重複は、先に追加された1件だけ残す
+ * - 同一アーティスト×同一曲名は、区分優先度の最も高いものをメインへ配置する
+ * - 同一区分ならD列表示文言の文頭から抽出した投稿日が新しいものをメインへ、残りをアーカイブへ配置する
+ * - 日常用は前回処理後にメイン末尾へ追加された行の楽曲だけを照合する
+ * - 総点検用は両シート全件を再評価し、配置異常も含めて訂正する
  * - 並び順は 曲名昇順 → アーティスト名昇順 → 日付降順
  */
 
@@ -25,6 +27,7 @@ const MAIN_DATA_COL_COUNT = 6;
 const SOURCE_URL_COL = 4;
 const BACKUP_PREFIX = '_backup_';
 const BACKUP_KEEP_GENERATIONS = 5;
+const DAILY_LAST_MAIN_ROW_KEY = 'songMaintenance.lastMainDataRow';
 
 const PRIORITY = {
   '歌ってみた': 3,
@@ -44,7 +47,8 @@ function onOpen() {
   const ui = SpreadsheetApp.getUi();
 
   ui.createMenu('仕分け')
-    .addItem('重複を整理（両シート横断）', 'dedupeAndArchive')
+    .addItem('新規追加分を仕分け（日常用）', 'classifyNewSongEntries')
+    .addItem('全件を総点検・訂正', 'auditAllSongEntries')
     .addItem('一覧シートを再構築', 'updateUnifiedListSheet')
     .addSeparator()
     .addItem('統計シートを更新', 'createSongStatistics')
@@ -58,6 +62,25 @@ function onOpen() {
 }
 
 function dedupeAndArchive() {
+  return auditAllSongEntries();
+}
+
+function classifyNewSongEntries() {
+  const properties = PropertiesService.getDocumentProperties();
+  return runSongMaintenance_({
+    mode: 'daily',
+    properties,
+  });
+}
+
+function auditAllSongEntries() {
+  return runSongMaintenance_({
+    mode: 'audit',
+    properties: PropertiesService.getDocumentProperties(),
+  });
+}
+
+function runSongMaintenance_(options) {
   const lock = LockService.getDocumentLock();
   lock.waitLock(30000);
 
@@ -76,17 +99,43 @@ function dedupeAndArchive() {
     const mainEntries = readSongEntries_(main, START_ROW, 'main', true);
     const archiveEntries = readSongEntries_(archive, ARCHIVE_START_ROW, 'archive', false);
     const allEntries = [...mainEntries, ...archiveEntries];
+    const properties = options.properties;
+    const lastMainDataRow = options.mode === 'daily'
+      ? readDailyCheckpoint_(properties)
+      : null;
 
     if (allEntries.length === 0) {
+      saveDailyCheckpoint_(properties, mainEntries);
       ss.toast('整理対象のデータがありません。', '仕分け', 5);
       return;
     }
 
-    validateEntryDates_(allEntries);
+    let targetSongKeys = null;
+    let newMainEntries = [];
 
-    const replacement = resolveReuploadedVideos_(allEntries);
-    const exact = removeExactDuplicates_(replacement.entries);
-    const placement = placeEntriesBySong_(exact.entries);
+    if (options.mode === 'daily') {
+      const currentLastMainRow = getLastEntryRow_(mainEntries, START_ROW - 1);
+      if (currentLastMainRow < lastMainDataRow) {
+        throw new Error('歌った曲リストの行数が前回処理時より減っています。「全件を総点検・訂正」を実行してください。');
+      }
+
+      newMainEntries = mainEntries.filter(entry => entry.rowIndex > lastMainDataRow);
+      if (newMainEntries.length === 0) {
+        ss.toast('前回処理後に追加された新規データはありません。', '日常用仕分け', 5);
+        return;
+      }
+      targetSongKeys = new Set(newMainEntries.map(entry => entry.songKey));
+    }
+
+    const scopedEntries = targetSongKeys
+      ? allEntries.filter(entry => targetSongKeys.has(entry.songKey))
+      : allEntries;
+
+    validateEntryDates_(scopedEntries);
+    validateEntryKinds_(scopedEntries);
+
+    const result = buildMaintenancePlacement_(mainEntries, archiveEntries, targetSongKeys);
+    const placement = result.placement;
 
     placement.mainEntries.sort(compareSheetOrder_);
     placement.archiveEntries.sort(compareSheetOrder_);
@@ -97,7 +146,12 @@ function dedupeAndArchive() {
       placement.mainEntries,
       placement.archiveEntries
     )) {
-      ss.toast('変更対象はありません。バックアップと書換えを省略しました。', '仕分け', 6);
+      saveDailyCheckpoint_(properties, mainEntries);
+      const title = options.mode === 'daily' ? '日常用仕分け' : '総点検';
+      const message = options.mode === 'daily'
+        ? `新規${newMainEntries.length}行を確認しました。移動・削除対象はありません。`
+        : '異常はありません。バックアップと書換えを省略しました。';
+      ss.toast(message, title, 6);
       return;
     }
 
@@ -107,21 +161,73 @@ function dedupeAndArchive() {
     rewriteSongSheet_(archive, ARCHIVE_START_ROW, placement.archiveEntries, false);
 
     clearConditionalFormatting_(archive);
+    saveDailyCheckpoint_(properties, placement.mainEntries, true);
 
     ss.toast(
       [
-        `再アップロード置換=${replacement.replacedGroups}組`,
-        `旧リンク除外=${replacement.removedRows}行`,
-        `完全重複除外=${exact.removedRows}行`,
+        options.mode === 'daily' ? `新規確認=${newMainEntries.length}行` : '全件確認',
+        `再アップロード置換=${result.replacement.replacedGroups}組`,
+        `旧リンク除外=${result.replacement.removedRows}行`,
+        `完全重複除外=${result.exact.removedRows}行`,
         `歌唱曲=${placement.mainEntries.length}行`,
         `履歴=${placement.archiveEntries.length}行`,
       ].join('、'),
-      '仕分け完了',
+      options.mode === 'daily' ? '日常用仕分け完了' : '総点検完了',
       10
     );
   } finally {
     lock.releaseLock();
   }
+}
+
+function buildMaintenancePlacement_(mainEntries, archiveEntries, targetSongKeys) {
+  const isTarget = entry => !targetSongKeys || targetSongKeys.has(entry.songKey);
+  const targetEntries = [...mainEntries, ...archiveEntries].filter(isTarget);
+  const untouchedMain = targetSongKeys ? mainEntries.filter(entry => !isTarget(entry)) : [];
+  const untouchedArchive = targetSongKeys ? archiveEntries.filter(entry => !isTarget(entry)) : [];
+
+  const replacement = resolveReuploadedVideos_(targetEntries);
+  const exact = removeExactDuplicates_(replacement.entries);
+  const scopedPlacement = placeEntriesBySong_(exact.entries);
+
+  return {
+    replacement,
+    exact,
+    placement: {
+      mainEntries: [...untouchedMain, ...scopedPlacement.mainEntries],
+      archiveEntries: [...untouchedArchive, ...scopedPlacement.archiveEntries],
+    },
+  };
+}
+
+function getLastEntryRow_(entries, fallback) {
+  return (entries || []).reduce(
+    (maxRow, entry) => Math.max(maxRow, Number(entry.rowIndex) || 0),
+    fallback
+  );
+}
+
+function readDailyCheckpoint_(properties) {
+  const checkpointText = properties.getProperty(DAILY_LAST_MAIN_ROW_KEY);
+  if (checkpointText === null) {
+    throw new Error('日常用仕分けの初回実行前に「全件を総点検・訂正」を実行してください。');
+  }
+
+  const lastMainDataRow = Number(checkpointText);
+  if (!Number.isInteger(lastMainDataRow) || lastMainDataRow < START_ROW - 1) {
+    throw new Error('日常用仕分けの基準位置が不正です。「全件を総点検・訂正」を実行し直してください。');
+  }
+  return lastMainDataRow;
+}
+
+function saveDailyCheckpoint_(properties, mainEntries, rowsWereCompacted) {
+  const lastMainDataRow = rowsWereCompacted
+    ? ((mainEntries || []).length > 0 ? START_ROW + mainEntries.length - 1 : START_ROW - 1)
+    : getLastEntryRow_(mainEntries, START_ROW - 1);
+  properties.setProperty(
+    DAILY_LAST_MAIN_ROW_KEY,
+    String(lastMainDataRow)
+  );
 }
 
 function readSongEntries_(sheet, startRow, source, includeMainExtras) {
@@ -197,26 +303,44 @@ function validateEntryDates_(entries) {
   throw new Error(`日付を抽出できない行が${invalid.length}件あります。D列文頭をYYYYMMDDにしてください。例：${sample}`);
 }
 
+function validateEntryKinds_(entries) {
+  const invalid = entries.filter(
+    entry => !Object.prototype.hasOwnProperty.call(PRIORITY, entry.kind)
+  );
+  if (invalid.length === 0) return;
+
+  for (const entry of invalid.slice(0, 20)) {
+    entry.sourceSheet.getRange(entry.rowIndex, 3).setBackground('#ffd1d1');
+  }
+
+  const sample = invalid
+    .slice(0, 5)
+    .map(entry => `${entry.source === 'main' ? MAIN_SHEET_NAME : ARCHIVE_SHEET_NAME} ${entry.rowIndex}行目「${entry.kind}」`)
+    .join(' / ');
+
+  throw new Error(
+    `区分が「歌ってみた・歌枠・ショート」のいずれでもない行が${invalid.length}件あります。例：${sample}`
+  );
+}
+
 function resolveReuploadedVideos_(entries) {
   const byReplacementKey = groupBy_(entries, entry => entry.replacementKey);
   const removed = new Set();
   let replacedGroups = 0;
 
   for (const group of byReplacementKey.values()) {
-    const videoIds = new Set(group.map(entry => entry.videoId).filter(Boolean));
-    if (videoIds.size <= 1) continue;
+    const urlCandidates = group
+      .filter(entry => normalizeUrlForCompare_(entry.url))
+      .sort(compareNewestAddition_);
+    const urls = new Set(urlCandidates.map(entry => normalizeUrlForCompare_(entry.url)));
+    if (urls.size <= 1) continue;
 
-    const mainCandidates = group
-      .filter(entry => entry.source === 'main' && entry.videoId)
-      .sort((a, b) => b.rowIndex - a.rowIndex);
-
-    if (mainCandidates.length === 0) continue;
-
-    const preferredVideoId = mainCandidates[0].videoId;
+    const preferredUrl = normalizeUrlForCompare_(urlCandidates[0].url);
     let groupRemoved = 0;
 
     for (const entry of group) {
-      if (entry.videoId && entry.videoId !== preferredVideoId) {
+      const normalizedUrl = normalizeUrlForCompare_(entry.url);
+      if (normalizedUrl && normalizedUrl !== preferredUrl) {
         removed.add(entry);
         groupRemoved++;
       }
@@ -261,13 +385,22 @@ function placeEntriesBySong_(entries) {
 }
 
 function compareDuplicateRepresentative_(a, b) {
+  // 完全重複が区分をまたぐ場合も、歌ってみた＞歌枠＞ショートを絶対優先する。
+  if (b.priority !== a.priority) return b.priority - a.priority;
+  // 同一区分なら履歴にある行を既存データ、同一シートでは上の行ほど先に追加されたものとして扱う。
+  if (a.source !== b.source) return a.source === 'archive' ? -1 : 1;
+  return a.rowIndex - b.rowIndex;
+}
+
+function compareNewestAddition_(a, b) {
+  // 再アップロードはメインへ追記する運用を優先し、同一シートでは下の行ほど新しいものとする。
   if (a.source !== b.source) return a.source === 'main' ? -1 : 1;
   return b.rowIndex - a.rowIndex;
 }
 
 function compareWinnerCandidates_(a, b) {
-  if (b.dateMs !== a.dateMs) return b.dateMs - a.dateMs;
   if (b.priority !== a.priority) return b.priority - a.priority;
+  if (b.dateMs !== a.dateMs) return b.dateMs - a.dateMs;
   if (a.source !== b.source) return a.source === 'main' ? -1 : 1;
   return b.rowIndex - a.rowIndex;
 }
@@ -303,7 +436,7 @@ function buildReplacementKey_(entry) {
     normalizeSongText_(entry.artist),
     normalizeSongText_(entry.title),
     normalizeSongText_(entry.kind),
-    normalizeDisplayText_(entry.linkText),
+    entry.date ? toYYYYMMDD_(entry.date) : String(entry.dateMs || ''),
   ].join('｜');
 }
 
@@ -311,22 +444,9 @@ function buildExactOccurrenceKey_(entry) {
   return [
     normalizeSongText_(entry.artist),
     normalizeSongText_(entry.title),
-    normalizeSongText_(entry.kind),
-    canonicalSourceIdentity_(entry),
+    normalizeDisplayText_(entry.linkText),
+    normalizeUrlForCompare_(entry.url),
   ].join('｜');
-}
-
-function canonicalSourceIdentity_(entry) {
-  if (entry.videoId) {
-    const timestamp = Number.isFinite(entry.timestampSeconds) && entry.timestampSeconds !== Number.MAX_SAFE_INTEGER
-      ? String(entry.timestampSeconds)
-      : 'none';
-    return `youtube:${entry.videoId}:t=${timestamp}`;
-  }
-
-  const normalizedUrl = normalizeUrlForCompare_(entry.url);
-  if (normalizedUrl) return `url:${normalizedUrl}`;
-  return `label:${normalizeDisplayText_(entry.linkText)}`;
 }
 
 function normalizeSongText_(value) {
