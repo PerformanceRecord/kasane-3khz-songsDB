@@ -59,6 +59,8 @@ function main_(e) {
   const exact = String(p.exact || '') === '1';
   const limitParam = Number(p.limit || 0);
   const offsetParam = Number(p.offset || 0);
+  const afterDate8Param = Number(p.afterDate8 || 0);
+  const afterKeyParam = String(p.afterKey || '').trim();
   const sheetMaxReturn = CFG.SHEET_MAX_RETURN[tabKey] || CFG.MAX_RETURN;
 
   const limit = Number.isFinite(limitParam) && limitParam > 0
@@ -67,6 +69,10 @@ function main_(e) {
   const offset = Number.isFinite(offsetParam) && offsetParam > 0
     ? Math.floor(offsetParam)
     : 0;
+  const afterDate8 = Number.isFinite(afterDate8Param) && afterDate8Param > 0
+    ? Math.floor(afterDate8Param)
+    : 0;
+  const afterKey = afterKeyParam;
 
   if (tabKey === 'archive' && exact && exactArtist && exactTitle) {
     const exactResult = readArchiveExactRows_(sheetName, startRow, includeSrc, {
@@ -105,6 +111,25 @@ function main_(e) {
     (r) => r.rowId || makeRowId_(r.artist, r.title, r.kind, r.dUrl)
   );
 
+  if (tabKey === 'archive' && (afterDate8 > 0 || afterKey)) {
+    const cursorSorted = uniq.sort(compareArchiveCursorRows_);
+    const remaining = cursorSorted.filter((row) => isAfterArchiveCursor_(row, afterDate8, afterKey));
+    const pageRows = remaining.slice(0, limit);
+    const lastRow = pageRows.length > 0 ? pageRows[pageRows.length - 1] : null;
+    return {
+      ok: true,
+      sheet: tabKey,
+      total: rows.length,
+      matched: cursorSorted.length,
+      offset: 0,
+      limit,
+      hasMore: remaining.length > pageRows.length,
+      nextCursorDate8: lastRow ? Number(lastRow.date8 || 0) : afterDate8,
+      nextCursorKey: lastRow ? archiveCursorKey_(lastRow) : afterKey,
+      rows: pageRows,
+    };
+  }
+
   const sorted = uniq.sort((a, b) => (b.date8 || 0) - (a.date8 || 0));
 
   return {
@@ -116,6 +141,25 @@ function main_(e) {
     limit,
     rows: sorted.slice(offset, offset + limit),
   };
+}
+
+function archiveCursorKey_(row) {
+  return String(
+    row && (row.rowId || makeRowId_(row.artist, row.title, row.kind, row.dUrl)) || ''
+  ).trim();
+}
+
+function compareArchiveCursorRows_(a, b) {
+  const dateDiff = Number(a && a.date8 || 0) - Number(b && b.date8 || 0);
+  if (dateDiff !== 0) return dateDiff;
+  return archiveCursorKey_(a).localeCompare(archiveCursorKey_(b));
+}
+
+function isAfterArchiveCursor_(row, afterDate8, afterKey) {
+  const date8 = Number(row && row.date8 || 0);
+  if (date8 > afterDate8) return true;
+  if (date8 < afterDate8) return false;
+  return archiveCursorKey_(row).localeCompare(String(afterKey || '')) > 0;
 }
 
 function out_(payload, e) {

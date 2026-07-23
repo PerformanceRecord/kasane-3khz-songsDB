@@ -259,22 +259,30 @@ async function verifyArchiveHealthCheck() {
   return payload;
 }
 
+function archiveStableRowKey(row) {
+  if (!row || typeof row !== 'object') return '';
+  const existingRowId = String(row.rowId ?? '').trim().toLowerCase();
+  if (existingRowId) return existingRowId;
+  return buildRowId({
+    artist: row.artist,
+    title: row.title,
+    kind: row.kind,
+    dUrl: row.dUrl,
+  });
+}
+
 function archiveLogicalKey(row) {
   if (!row || typeof row !== 'object') return '';
   const artist = String(row.artist ?? '').trim().toLowerCase();
   const title = String(row.title ?? '').trim().toLowerCase();
   const kind = String(row.kind ?? '').trim().toLowerCase();
   const date8 = Number(row.date8) || extractDate8(row.dText);
-  return `${artist}${title}${kind}${Number.isFinite(date8) ? date8 : 0}`;
+  const stableRowKey = archiveStableRowKey(row);
+  return `${artist}${title}${kind}${Number.isFinite(date8) ? date8 : 0}${stableRowKey}`;
 }
 
 function archiveCursorKey(row) {
-  if (!row || typeof row !== 'object') return '';
-  const artist = String(row.artist ?? '').trim().toLowerCase();
-  const title = String(row.title ?? '').trim().toLowerCase();
-  const kind = String(row.kind ?? '').trim().toLowerCase();
-  const date8 = Number(row.date8) || extractDate8(row.dText);
-  return `${artist}|${title}|${kind}|${Number.isFinite(date8) ? date8 : 0}`;
+  return archiveStableRowKey(row);
 }
 
 function makeHistoryId(historyKey) {

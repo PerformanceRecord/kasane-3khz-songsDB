@@ -152,7 +152,7 @@ function patchApp() {
         const titleKey = normalize(r.title);
         return {
           ...r,
-          _search: \`${artistKey}\\n${titleKey}\`,
+          _search: \`\${artistKey}\\n\${titleKey}\`,
           _kind: (r.kind || '').trim()
         };
       });
