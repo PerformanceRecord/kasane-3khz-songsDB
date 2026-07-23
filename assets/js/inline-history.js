@@ -22,15 +22,14 @@
       return;
     }
     const region = expandedCard.querySelector('.inline-history');
-    const button = expandedCard.querySelector('.inline-history-toggle');
+    const control = expandedCard.querySelector('.inline-history-trigger');
+    const affordance = expandedCard.querySelector('.inline-history-affordance');
     if (region) {
       region.hidden = true;
       region.replaceChildren();
     }
-    if (button) {
-      button.setAttribute('aria-expanded', 'false');
-      button.textContent = '履歴 ▼';
-    }
+    if (control) control.setAttribute('aria-expanded', 'false');
+    if (affordance) affordance.textContent = '履歴を見る ↓';
     expandedCard.classList.remove('item-history-open');
     expandedCard = null;
     expandedKey = '';
@@ -57,7 +56,7 @@
     region.appendChild(status);
   }
 
-  function renderError(region, row, button) {
+  function renderError(region, row, control) {
     region.replaceChildren();
     const status = document.createElement('div');
     status.className = 'inline-history-status inline-history-error';
@@ -66,7 +65,7 @@
     retry.type = 'button';
     retry.className = 'btn btn-subtle inline-history-retry';
     retry.textContent = '再試行';
-    retry.addEventListener('click', () => openInlineHistory(button.closest('.item'), row, button, true));
+    retry.addEventListener('click', () => openInlineHistory(control.closest('.item'), row, control, true));
     region.append(status, retry);
   }
 
@@ -104,7 +103,7 @@
     region.appendChild(list);
   }
 
-  async function openInlineHistory(card, row, button, forceReload = false) {
+  async function openInlineHistory(card, row, control, forceReload = false) {
     if (!card || !row.historyRef) return;
     const key = historyKey(row);
     if (!forceReload && expandedCard === card && expandedKey === key) {
@@ -120,8 +119,9 @@
     const region = card.querySelector('.inline-history');
     if (!region) return;
     region.hidden = false;
-    button.setAttribute('aria-expanded', 'true');
-    button.textContent = '履歴 ▲';
+    control.setAttribute('aria-expanded', 'true');
+    const affordance = card.querySelector('.inline-history-affordance');
+    if (affordance) affordance.textContent = '履歴を閉じる ↑';
     renderLoading(region);
     scheduleMobileLayoutSync();
 
@@ -143,7 +143,7 @@
     } catch (error) {
       if (error && error.name === 'AbortError') return;
       if (seq !== inlineRequestSeq || expandedCard !== card || expandedKey !== key) return;
-      renderError(region, row, button);
+      renderError(region, row, control);
       scheduleMobileLayoutSync();
     } finally {
       if (inlineController === controller) inlineController = null;
@@ -154,22 +154,43 @@
     const item = originalCreateSongListItem(row);
     const oldButton = [...item.querySelectorAll('.mobile-actions .btn')]
       .find((button) => button.textContent.trim() === '履歴');
+    if (oldButton) oldButton.remove();
 
     const region = document.createElement('div');
     region.className = 'inline-history';
     region.hidden = true;
     item.appendChild(region);
 
-    if (!oldButton) return item;
-    const button = oldButton.cloneNode(true);
-    button.classList.add('inline-history-toggle');
-    button.textContent = '履歴 ▼';
-    button.disabled = !row.historyRef;
-    button.setAttribute('aria-expanded', 'false');
-    button.setAttribute('aria-controls', `inline-history-${String(row.rowId || Math.random()).replace(/[^a-zA-Z0-9_-]/g, '-').slice(-48)}`);
-    region.id = button.getAttribute('aria-controls');
-    button.addEventListener('click', () => openInlineHistory(item, row, button));
-    oldButton.replaceWith(button);
+    const trigger = item.querySelector('.l1');
+    if (!trigger) return item;
+    trigger.classList.add('inline-history-trigger');
+    const regionId = `inline-history-${String(row.rowId || Math.random()).replace(/[^a-zA-Z0-9_-]/g, '-').slice(-48)}`;
+    trigger.setAttribute('aria-controls', regionId);
+    trigger.setAttribute('aria-expanded', 'false');
+    region.id = regionId;
+
+    const affordance = document.createElement('span');
+    affordance.className = 'inline-history-affordance';
+    affordance.textContent = row.historyRef ? '履歴を見る ↓' : '履歴なし';
+    trigger.appendChild(affordance);
+
+    if (!row.historyRef) {
+      trigger.setAttribute('aria-disabled', 'true');
+      return item;
+    }
+    item.classList.add('item-history-interactive');
+    trigger.tabIndex = 0;
+    trigger.setAttribute('role', 'button');
+    trigger.setAttribute('aria-label', `${row.artist || ''} ${row.title || ''} の歌唱履歴を開く`);
+    trigger.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      openInlineHistory(item, row, trigger);
+    });
+    item.addEventListener('click', (event) => {
+      if (event.target.closest('a,button,input,select')) return;
+      openInlineHistory(item, row, trigger);
+    });
     return item;
   };
 

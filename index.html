@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#87ceeb">
   <meta name="description" content="Vtuber 花彩音_3kHzの歌唱楽曲を検索・閲覧できるデータベースです。">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -44,6 +44,7 @@
 
         <div class="server-response" id="server-response" aria-live="polite">サーバー状態：＼ﾅｧﾝ／</div>
         <div class="quick-filter-row filter-collapse-target">
+          <div class="filter-summary" id="active-filter-summary" aria-live="polite">区分：すべて</div>
           <div class="quick-filters" id="quick-filters" aria-label="区分で絞り込み"></div>
         </div>
       </div>
@@ -54,6 +55,17 @@
           <div id="table" style="display:none;"></div>
           <div id="mblist" class="mobile-list" style="display:none;"></div>
         </div>
+        <aside id="desktop-history-panel" class="desktop-history-panel" aria-label="選択した楽曲の歌唱履歴">
+          <div class="desktop-history-header">
+            <div>
+              <div class="desktop-history-eyebrow">歌唱履歴</div>
+              <h2 id="desktop-history-title" class="desktop-history-title">楽曲を選択</h2>
+            </div>
+            <button id="desktop-history-close" class="desktop-history-close" type="button" aria-label="履歴を閉じる" hidden>×</button>
+          </div>
+          <p id="desktop-history-sub" class="desktop-history-sub">一覧の行を選ぶと、ここに履歴を表示します。</p>
+          <div id="desktop-history-list" class="desktop-history-list" aria-live="polite"></div>
+        </aside>
       </div>
     </div>
   </div>
@@ -97,6 +109,27 @@
       </div>
     </div>
   </div>
+  <div id="mobile-filter-backdrop" class="mobile-filter-backdrop" hidden></div>
+  <section
+    id="mobile-filter-sheet"
+    class="mobile-filter-sheet"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="mobile-filter-title"
+    tabindex="-1"
+    hidden
+  >
+    <div class="mobile-filter-handle" aria-hidden="true"></div>
+    <div class="mobile-filter-heading">
+      <h2 id="mobile-filter-title">区分で絞り込み</h2>
+      <button id="mobile-filter-close" class="mobile-filter-close" type="button" aria-label="絞り込みを閉じる">×</button>
+    </div>
+    <div id="mobile-filter-options" class="mobile-filter-options"></div>
+    <div class="mobile-filter-actions">
+      <button id="mobile-filter-reset" class="btn btn-subtle" type="button">すべて選択</button>
+      <button id="mobile-filter-apply" class="btn" type="button">適用</button>
+    </div>
+  </section>
   </div>
 
   <script src="./assets/js/app.js" defer></script>
