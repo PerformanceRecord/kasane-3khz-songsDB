@@ -12,6 +12,7 @@ on:
       - 'scripts/sync-gas.mjs'
       - 'scripts/apply-phase1-lightweight-patch.mjs'
       - 'scripts/apply-archive-cursor-safety-patch.mjs'
+      - 'scripts/repair-phase1-patcher.mjs'
       - 'tests/phase1-lightweight.test.mjs'
       - '.github/workflows/phase1-lightweight.yml'
 
@@ -32,6 +33,9 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Repair phase 1 patcher
+        run: node scripts/repair-phase1-patcher.mjs
+
       - name: Apply frontend and GAS lightweight patch
         run: node scripts/apply-phase1-lightweight-patch.mjs
 
@@ -44,6 +48,7 @@ jobs:
           node --check scripts/sync-gas.mjs
           node --check scripts/apply-phase1-lightweight-patch.mjs
           node --check scripts/apply-archive-cursor-safety-patch.mjs
+          node --check scripts/repair-phase1-patcher.mjs
           cp google-apps-script-reference/code.gs /tmp/code.js
           cp google-apps-script-reference/merge-songs-gags-archive.gs /tmp/merge.js
           node --check /tmp/code.js
@@ -69,9 +74,10 @@ jobs:
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/js/app.js assets/js/featured-artist.js index.html \
+          git add -A assets/js index.html \
             google-apps-script-reference/code.gs \
             google-apps-script-reference/merge-songs-gags-archive.gs \
-            scripts/sync-gas.mjs
+            scripts/sync-gas.mjs \
+            scripts/apply-phase1-lightweight-patch.mjs
           git commit -m 'Apply phase 1 lightweight refactor'
           git push
