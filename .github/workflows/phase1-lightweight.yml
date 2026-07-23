@@ -1,0 +1,77 @@
+name: Phase 1 lightweight refactor
+
+on:
+  push:
+    branches:
+      - agent/phase1-lightweight
+  pull_request:
+    paths:
+      - 'assets/js/**'
+      - 'index.html'
+      - 'google-apps-script-reference/**'
+      - 'scripts/sync-gas.mjs'
+      - 'scripts/apply-phase1-lightweight-patch.mjs'
+      - 'scripts/apply-archive-cursor-safety-patch.mjs'
+      - 'tests/phase1-lightweight.test.mjs'
+      - '.github/workflows/phase1-lightweight.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Apply frontend and GAS lightweight patch
+        run: node scripts/apply-phase1-lightweight-patch.mjs
+
+      - name: Apply archive cursor safety patch
+        run: node scripts/apply-archive-cursor-safety-patch.mjs
+
+      - name: Syntax checks
+        run: |
+          node --check assets/js/app.js
+          node --check scripts/sync-gas.mjs
+          node --check scripts/apply-phase1-lightweight-patch.mjs
+          node --check scripts/apply-archive-cursor-safety-patch.mjs
+          cp google-apps-script-reference/code.gs /tmp/code.js
+          cp google-apps-script-reference/merge-songs-gags-archive.gs /tmp/merge.js
+          node --check /tmp/code.js
+          node --check /tmp/merge.js
+
+      - name: Run regression tests
+        run: |
+          node --test tests/gas-maintenance.test.mjs
+          node --test tests/phase1-lightweight.test.mjs
+
+      - name: Run project checks
+        run: |
+          npm test --if-present
+          npm run lint --if-present
+          npm run build --if-present
+
+      - name: Commit generated changes
+        if: github.event_name == 'push'
+        run: |
+          if git diff --quiet; then
+            echo 'No generated changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/js/app.js assets/js/featured-artist.js index.html \
+            google-apps-script-reference/code.gs \
+            google-apps-script-reference/merge-songs-gags-archive.gs \
+            scripts/sync-gas.mjs
+          git commit -m 'Apply phase 1 lightweight refactor'
+          git push
