@@ -1084,12 +1084,31 @@ function isCoarsePointer(){
       const title = $('desktop-history-title');
       const sub = $('desktop-history-sub');
       const close = $('desktop-history-close');
+      const media = $('desktop-history-media');
       if (title) title.textContent = '楽曲を選択';
       if (sub) sub.textContent = '一覧の行を選ぶと、ここに履歴を表示します。';
       if (close) close.hidden = true;
+      if (media) {
+        media.hidden = true;
+        media.replaceChildren();
+      }
       if ($('desktop-history-list')) $('desktop-history-list').replaceChildren();
       selectDesktopResultRow(Math.max(state.desktopActiveIndex, 0));
       if (clearRoute) updateHistoryRouteParams({ rowId: '', historyRef: '' });
+    }
+
+    function renderDesktopHistoryMedia({ dUrl, dText, title }){
+      const media = $('desktop-history-media');
+      if (!media) return;
+      media.replaceChildren();
+      const thumb = createThumbElement({ dUrl, dText, title });
+      thumb.classList.add('desktop-history-thumb');
+      if (thumb instanceof HTMLAnchorElement) {
+        thumb.target = '_blank';
+        thumb.rel = 'noopener';
+      }
+      media.appendChild(thumb);
+      media.hidden = false;
     }
 
     function renderDesktopHistoryEntries(entries){
@@ -1118,13 +1137,14 @@ function isCoarsePointer(){
       wrap.appendChild(fragment);
     }
 
-    async function openDesktopHistory({ artist, title, rowId, historyRef }){
+    async function openDesktopHistory({ artist, title, rowId, historyRef, dUrl, dText }){
       if (!historyRef) return;
       if (state.desktopHistoryController) state.desktopHistoryController.abort();
       const key = String(rowId || historyRef).trim();
       markDesktopHistorySelection(key);
       document.querySelector('.result-card')?.classList.add('desktop-history-open');
       updateHistoryRouteParams({ rowId, historyRef });
+      renderDesktopHistoryMedia({ dUrl, dText, title });
       $('desktop-history-title').textContent = `${artist || '不明'} / ${title || '不明'}`;
       $('desktop-history-sub').textContent = '歌唱日の新しい順に表示しています。';
       $('desktop-history-close').hidden = false;
@@ -1245,16 +1265,13 @@ function isCoarsePointer(){
         const actions = document.createElement('td');
         const actionsWrap = document.createElement('div');
         actionsWrap.className = 'row-actions';
-        actionsWrap.appendChild(createDesktopRowAction({
+        const copyAction = createDesktopRowAction({
           label: '曲名とアーティストをコピー',
-          text: '複',
+          text: 'コピー',
           onClick: ()=>copyPair(row.title, row.artist)
-        }));
-        actionsWrap.appendChild(createDesktopRowAction({
-          label: '歌唱履歴を表示',
-          text: '履',
-          onClick: ()=>openHistory(row)
-        }));
+        });
+        copyAction.classList.add('row-action-copy');
+        actionsWrap.appendChild(copyAction);
         const videoUrl = row.dUrl || urlFromText(row.dText);
         if (videoUrl) {
           actionsWrap.appendChild(createDesktopRowAction({
@@ -1406,7 +1423,7 @@ function isCoarsePointer(){
       const actions = document.createElement('div');
       actions.className = 'mobile-actions';
       const copyBtn = document.createElement('button');
-      copyBtn.className = 'btn';
+      copyBtn.className = 'btn mobile-copy-action';
       copyBtn.textContent = 'コピー';
       copyBtn.addEventListener('click', ()=>copyPair(title, artist));
       actions.appendChild(copyBtn);
@@ -1416,13 +1433,14 @@ function isCoarsePointer(){
       historyBtn.disabled = !historyRef;
       historyBtn.addEventListener('click', ()=>openHistory({ artist, title, rowId, historyRef }));
       actions.appendChild(historyBtn);
-      actions.appendChild(createTagInfo(kind));
 
       const dateEl = document.createElement('div');
       dateEl.className = 'mobile-date';
       dateEl.textContent = formatDate8(date8);
-      l2.appendChild(actions);
-      l2.appendChild(dateEl);
+      const details = document.createElement('div');
+      details.className = 'mobile-card-details';
+      details.append(dateEl, createTagInfo(kind));
+      l2.append(details, actions);
 
       item.appendChild(l1);
       item.appendChild(thumb);

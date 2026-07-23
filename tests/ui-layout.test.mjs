@@ -46,11 +46,17 @@ test('mobile layout prevents horizontal scrolling and keeps one result scroller'
 
 test('desktop layout uses a wide two-pane table and history workspace', () => {
   assert.match(appCss, /@media \(min-width:769px\) and \(hover:hover\) and \(pointer:fine\)/);
-  assert.match(appCss, /max-width:1280px/);
-  assert.match(appCss, /grid-template-columns:minmax\(0,1fr\) minmax\(260px,34%\)/);
+  assert.match(appCss, /max-width:1440px/);
+  assert.match(appCss, /grid-template-columns:minmax\(0,1fr\) minmax\(280px,30%\)/);
+  assert.match(appCss, /#filter-panel\.auto-compact-final \.quick-filter-row\{/);
+  assert.match(appCss, /\.row-action-copy\{[\s\S]*?min-width:70px;/);
   assert.match(appCss, /\.desktop-history-panel\{/);
+  assert.match(appCss, /\.desktop-history-thumb\{/);
   assert.match(appJs, /function renderDesktopTable\(rows\)/);
   assert.match(appJs, /function openDesktopHistory\(/);
+  assert.match(appJs, /renderDesktopHistoryMedia\(/);
+  assert.match(appJs, /text: 'コピー'/);
+  assert.doesNotMatch(appJs, /text: '履'/);
   assert.match(appJs, /function handleAppKeydown\(event\)/);
 });
 
@@ -59,5 +65,13 @@ test('mobile cards open inline history without a small history button', () => {
   assert.match(historyJs, /item\.addEventListener\('click'/);
   assert.match(historyJs, /trigger\.setAttribute\('role', 'button'\)/);
   assert.match(historyCss, /\.inline-history-trigger\{/);
-  assert.match(historyCss, /min-height:48px/);
+  assert.match(historyCss, /min-height:44px/);
+});
+
+test('mobile cards keep media and copy actions in a compact right rail', () => {
+  assert.match(appCss, /\.l2\{[\s\S]*?grid-template-columns:minmax\(0,1fr\) 92px;/);
+  assert.match(appCss, /\.mobile-card-details\{/);
+  assert.match(appCss, /\.mobile-actions\{[\s\S]*?width:92px;/);
+  assert.match(appJs, /copyBtn\.className = 'btn mobile-copy-action'/);
+  assert.match(appJs, /details\.append\(dateEl, createTagInfo\(kind\)\)/);
 });
