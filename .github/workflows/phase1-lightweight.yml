@@ -59,8 +59,12 @@ jobs:
           node --test tests/gas-maintenance.test.mjs
           node --test tests/phase1-lightweight.test.mjs
 
-      - name: Run project checks
+      - name: Run project checks when package.json exists
         run: |
+          if [ ! -f package.json ]; then
+            echo 'package.json is not present; npm checks are not applicable.'
+            exit 0
+          fi
           npm test --if-present
           npm run lint --if-present
           npm run build --if-present
