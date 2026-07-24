@@ -66,6 +66,8 @@ test('mobile cards open inline history without a small history button', () => {
   assert.match(historyJs, /trigger\.setAttribute\('role', 'button'\)/);
   assert.match(historyCss, /\.inline-history-trigger\{/);
   assert.match(historyCss, /min-height:44px/);
+  assert.doesNotMatch(historyJs, /inline-history-affordance|履歴を見る|履歴を閉じる|履歴なし/);
+  assert.doesNotMatch(historyCss, /\.inline-history-affordance/);
 });
 
 test('mobile cards keep media and copy actions in a compact right rail', () => {

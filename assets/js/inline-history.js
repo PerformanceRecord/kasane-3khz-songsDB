@@ -23,13 +23,11 @@
     }
     const region = expandedCard.querySelector('.inline-history');
     const control = expandedCard.querySelector('.inline-history-trigger');
-    const affordance = expandedCard.querySelector('.inline-history-affordance');
     if (region) {
       region.hidden = true;
       region.replaceChildren();
     }
     if (control) control.setAttribute('aria-expanded', 'false');
-    if (affordance) affordance.textContent = '履歴を見る ↓';
     expandedCard.classList.remove('item-history-open');
     expandedCard = null;
     expandedKey = '';
@@ -120,8 +118,6 @@
     if (!region) return;
     region.hidden = false;
     control.setAttribute('aria-expanded', 'true');
-    const affordance = card.querySelector('.inline-history-affordance');
-    if (affordance) affordance.textContent = '履歴を閉じる ↑';
     renderLoading(region);
     scheduleMobileLayoutSync();
 
@@ -168,11 +164,6 @@
     trigger.setAttribute('aria-controls', regionId);
     trigger.setAttribute('aria-expanded', 'false');
     region.id = regionId;
-
-    const affordance = document.createElement('span');
-    affordance.className = 'inline-history-affordance';
-    affordance.textContent = row.historyRef ? '履歴を見る ↓' : '履歴なし';
-    trigger.appendChild(affordance);
 
     if (!row.historyRef) {
       trigger.setAttribute('aria-disabled', 'true');
