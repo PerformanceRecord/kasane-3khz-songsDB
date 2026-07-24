@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-07-23T07:55:45.319Z",
+  "fetchedAt": "2026-07-24T01:29:35.701Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -4007,6 +4007,16 @@
       "artist": "LOVE PSYCHEDELICO",
       "title": "Your Song",
       "kind": "歌枠",
+      "dText": "20250922【歌枠】ロックな曲多め🎸⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=EcwEK-0Tuqo&t=426s",
+      "date8": 20250922,
+      "rowId": "love psychedelico|your song|歌枠|https://www.youtube.com/watch?v=EcwEK-0Tuqo&t=426s",
+      "historyKey": "love psychedelico|your song"
+    },
+    {
+      "artist": "LOVE PSYCHEDELICO",
+      "title": "Your Song",
+      "kind": "歌枠",
       "dText": "20250922 【歌枠】ロックな曲多め🎸⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=f8c9_q2autc&t=426s",
       "date8": 20250922,
@@ -4027,11 +4037,41 @@
       "artist": "ヨルシカ",
       "title": "夕凪、某、花惑い",
       "kind": "歌枠",
+      "dText": "20250922【歌枠】ロックな曲多め🎸⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=EcwEK-0Tuqo&t=2578s",
+      "date8": 20250922,
+      "rowId": "ヨルシカ|夕凪、某、花惑い|歌枠|https://www.youtube.com/watch?v=EcwEK-0Tuqo&t=2578s",
+      "historyKey": "ヨルシカ|夕凪、某、花惑い"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "夕凪、某、花惑い",
+      "kind": "歌枠",
       "dText": "20250922 【歌枠】ロックな曲多め🎸⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=f8c9_q2autc&t=2578s",
       "date8": 20250922,
       "rowId": "ヨルシカ|夕凪、某、花惑い|歌枠|https://www.youtube.com/watch?v=f8c9_q2autc&t=2578s",
       "historyKey": "ヨルシカ|夕凪、某、花惑い"
+    },
+    {
+      "artist": "山口百恵",
+      "title": "プレイバックpart2",
+      "kind": "歌枠",
+      "dText": "20250922【歌枠】ロックな曲多め🎸⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=EcwEK-0Tuqo&t=3527s",
+      "date8": 20250922,
+      "rowId": "山口百恵|プレイバックpart2|歌枠|https://www.youtube.com/watch?v=EcwEK-0Tuqo&t=3527s",
+      "historyKey": "山口百恵|プレイバックpart2"
+    },
+    {
+      "artist": "日食なつこ",
+      "title": "水流のロック",
+      "kind": "歌枠",
+      "dText": "20250922【歌枠】ロックな曲多め🎸⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=EcwEK-0Tuqo&t=1199s",
+      "date8": 20250922,
+      "rowId": "日食なつこ|水流のロック|歌枠|https://www.youtube.com/watch?v=EcwEK-0Tuqo&t=1199s",
+      "historyKey": "日食なつこ|水流のロック"
     },
     {
       "artist": "日食なつこ",
@@ -4042,6 +4082,16 @@
       "date8": 20250922,
       "rowId": "日食なつこ|水流のロック|歌枠|https://www.youtube.com/watch?v=f8c9_q2autc&t=1199s",
       "historyKey": "日食なつこ|水流のロック"
+    },
+    {
+      "artist": "東京事変",
+      "title": "能動的三分間",
+      "kind": "歌枠",
+      "dText": "20250922【歌枠】ロックな曲多め🎸⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=EcwEK-0Tuqo&t=831s",
+      "date8": 20250922,
+      "rowId": "東京事変|能動的三分間|歌枠|https://www.youtube.com/watch?v=EcwEK-0Tuqo&t=831s",
+      "historyKey": "東京事変|能動的三分間"
     },
     {
       "artist": "東京事変",
@@ -4067,11 +4117,31 @@
       "artist": "Ado",
       "title": "唱",
       "kind": "歌枠",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=3465s",
+      "date8": 20250924,
+      "rowId": "ado|唱|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=3465s",
+      "historyKey": "ado|唱"
+    },
+    {
+      "artist": "Ado",
+      "title": "唱",
+      "kind": "歌枠",
       "dText": "20250924 【歌枠・昼の部】初見歓迎🌟⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=X5B1S8cvrxI&t=3465s",
       "date8": 20250924,
       "rowId": "ado|唱|歌枠|https://www.youtube.com/watch?v=X5B1S8cvrxI&t=3465s",
       "historyKey": "ado|唱"
+    },
+    {
+      "artist": "Superfly",
+      "title": "Last Love Song",
+      "kind": "歌枠",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=1774s",
+      "date8": 20250924,
+      "rowId": "superfly|last love song|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=1774s",
+      "historyKey": "superfly|last love song"
     },
     {
       "artist": "Superfly",
@@ -4087,6 +4157,16 @@
       "artist": "Yukopi",
       "title": "強風オールバック",
       "kind": "歌枠",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=3875s",
+      "date8": 20250924,
+      "rowId": "yukopi|強風オールバック|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=3875s",
+      "historyKey": "yukopi|強風オールバック"
+    },
+    {
+      "artist": "Yukopi",
+      "title": "強風オールバック",
+      "kind": "歌枠",
       "dText": "20250924 【歌枠・昼の部】初見歓迎🌟⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=X5B1S8cvrxI&t=3875s",
       "date8": 20250924,
@@ -4097,11 +4177,31 @@
       "artist": "かいりきベア",
       "title": "ダーリンダンス",
       "kind": "歌枠",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=2548s",
+      "date8": 20250924,
+      "rowId": "かいりきベア|ダーリンダンス|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=2548s",
+      "historyKey": "かいりきベア|ダーリンダンス"
+    },
+    {
+      "artist": "かいりきベア",
+      "title": "ダーリンダンス",
+      "kind": "歌枠",
       "dText": "20250924 【歌枠・昼の部】初見歓迎🌟⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=X5B1S8cvrxI&t=2548s",
       "date8": 20250924,
       "rowId": "かいりきベア|ダーリンダンス|歌枠|https://www.youtube.com/watch?v=X5B1S8cvrxI&t=2548s",
       "historyKey": "かいりきベア|ダーリンダンス"
+    },
+    {
+      "artist": "可不と香椎モイミ",
+      "title": "キャットラビング",
+      "kind": "歌枠",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=2897s",
+      "date8": 20250924,
+      "rowId": "可不と香椎モイミ|キャットラビング|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=2897s",
+      "historyKey": "可不と香椎モイミ|キャットラビング"
     },
     {
       "artist": "斎藤ネコx椎名林檎",
@@ -4117,11 +4217,41 @@
       "artist": "日向電工",
       "title": "ブリキノダンス",
       "kind": "歌枠",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=2158s",
+      "date8": 20250924,
+      "rowId": "日向電工|ブリキノダンス|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=2158s",
+      "historyKey": "日向電工|ブリキノダンス"
+    },
+    {
+      "artist": "日向電工",
+      "title": "ブリキノダンス",
+      "kind": "歌枠",
       "dText": "20250924 【歌枠・昼の部】初見歓迎🌟⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=X5B1S8cvrxI&t=2158s",
       "date8": 20250924,
       "rowId": "日向電工|ブリキノダンス|歌枠|https://www.youtube.com/watch?v=X5B1S8cvrxI&t=2158s",
       "historyKey": "日向電工|ブリキノダンス"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "やっつけ仕事",
+      "kind": "歌枠",
+      "dText": "20250924 【歌枠・昼の部】初見歓迎🌟⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=X5B1S8cvrxI&t=5597s",
+      "date8": 20250924,
+      "rowId": "椎名林檎|やっつけ仕事|歌枠|https://www.youtube.com/watch?v=X5B1S8cvrxI&t=5597s",
+      "historyKey": "椎名林檎|やっつけ仕事"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "丸ノ内サディスティック",
+      "kind": "歌枠",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=4196s",
+      "date8": 20250924,
+      "rowId": "椎名林檎|丸ノ内サディスティック|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=4196s",
+      "historyKey": "椎名林檎|丸ノ内サディスティック"
     },
     {
       "artist": "椎名林檎",
@@ -4152,6 +4282,16 @@
       "date8": 20250924,
       "rowId": "椎名林檎|歌舞伎町の女王|歌枠|https://www.youtube.com/watch?v=X5B1S8cvrxI&t=5947s",
       "historyKey": "椎名林檎|歌舞伎町の女王"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "浴室",
+      "kind": "歌枠",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=4778s",
+      "date8": 20250924,
+      "rowId": "椎名林檎|浴室|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=4778s",
+      "historyKey": "椎名林檎|浴室"
     },
     {
       "artist": "Ado",
@@ -4254,6 +4394,16 @@
       "historyKey": "相対性理論|気になるあの娘"
     },
     {
+      "artist": "結束バンド",
+      "title": "星座になれたら",
+      "kind": "歌枠",
+      "dText": "20250926 【歌枠・昼の部】ゆるゆる歌枠🌟どうしてイベント前日夜勤なんだ⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=0rKgirIv-eQ&t=455s",
+      "date8": 20250926,
+      "rowId": "結束バンド|星座になれたら|歌枠|https://www.youtube.com/watch?v=0rKgirIv-eQ&t=455s",
+      "historyKey": "結束バンド|星座になれたら"
+    },
+    {
       "artist": "Ado",
       "title": "唱",
       "kind": "歌枠",
@@ -4267,7 +4417,7 @@
       "artist": "Orangestar",
       "title": "Alice in 冷凍庫",
       "kind": "ショート",
-      "dText": "20250927 【眠くなる歌声】Alicein冷凍庫/Orangestar #歌ってみた #orangestar ",
+      "dText": "20250927 【眠くなる歌声】Alicein冷凍庫/Orangestar #歌ってみた #orangestar",
       "dUrl": "https://www.youtube.com/shorts/svVgUWxTJkU",
       "date8": 20250927,
       "rowId": "orangestar|alice in 冷凍庫|ショート|https://www.youtube.com/shorts/svVgUWxTJkU",
@@ -4665,6 +4815,16 @@
     },
     {
       "artist": "JUDY AND MARY",
+      "title": "Over Drive",
+      "kind": "歌枠",
+      "dText": "20251006 【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=GhixRAwY_YI&t=417s",
+      "date8": 20251006,
+      "rowId": "judy and mary|over drive|歌枠|https://www.youtube.com/watch?v=GhixRAwY_YI&t=417s",
+      "historyKey": "judy and mary|over drive"
+    },
+    {
+      "artist": "JUDY AND MARY",
       "title": "クラシック",
       "kind": "歌枠",
       "dText": "20251006 【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
@@ -4702,6 +4862,16 @@
       "date8": 20251006,
       "rowId": "yoasobi|undead|歌枠|https://www.youtube.com/watch?v=GhixRAwY_YI&t=6484s",
       "historyKey": "yoasobi|undead"
+    },
+    {
+      "artist": "ピノキオピー",
+      "title": "神っぽいな",
+      "kind": "歌枠",
+      "dText": "20251006 【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=GhixRAwY_YI&t=1935s",
+      "date8": 20251006,
+      "rowId": "ピノキオピー|神っぽいな|歌枠|https://www.youtube.com/watch?v=GhixRAwY_YI&t=1935s",
+      "historyKey": "ピノキオピー|神っぽいな"
     },
     {
       "artist": "れるりり",
@@ -4984,6 +5154,16 @@
       "historyKey": "ゆうゆ|天樂"
     },
     {
+      "artist": "友成空",
+      "title": "鬼ノ宴",
+      "kind": "歌枠",
+      "dText": "20251013 【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=Vfh57r3n6CA&t=4061s",
+      "date8": 20251013,
+      "rowId": "友成空|鬼ノ宴|歌枠|https://www.youtube.com/watch?v=Vfh57r3n6CA&t=4061s",
+      "historyKey": "友成空|鬼ノ宴"
+    },
+    {
       "artist": "宇多田ヒカル",
       "title": "first love",
       "kind": "歌枠",
@@ -5252,6 +5432,16 @@
       "date8": 20251020,
       "rowId": "東京事変|群青日和|歌枠|https://www.youtube.com/watch?v=JvfiHHdQ3ck&t=4053s",
       "historyKey": "東京事変|群青日和"
+    },
+    {
+      "artist": "東京事変",
+      "title": "金魚の箱",
+      "kind": "歌枠",
+      "dText": "20251020 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=JvfiHHdQ3ck&t=4366s",
+      "date8": 20251020,
+      "rowId": "東京事変|金魚の箱|歌枠|https://www.youtube.com/watch?v=JvfiHHdQ3ck&t=4366s",
+      "historyKey": "東京事変|金魚の箱"
     },
     {
       "artist": "相対性理論",
@@ -9844,6 +10034,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 984,
-  "matched": 984
+  "total": 1003,
+  "matched": 1003
 }
