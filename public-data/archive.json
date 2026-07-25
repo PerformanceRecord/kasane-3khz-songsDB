@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-07-24T01:29:35.701Z",
+  "fetchedAt": "2026-07-25T01:29:38.131Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -5564,6 +5564,16 @@
       "historyKey": "すりぃ|ラヴィ"
     },
     {
+      "artist": "なとり",
+      "title": "Overdose",
+      "kind": "歌枠",
+      "dText": "20251023 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=ZdtlFfboxRY&t=2481s",
+      "date8": 20251023,
+      "rowId": "なとり|overdose|歌枠|https://www.youtube.com/watch?v=ZdtlFfboxRY&t=2481s",
+      "historyKey": "なとり|overdose"
+    },
+    {
       "artist": "ナナホシ管弦楽団",
       "title": "抜錨",
       "kind": "歌枠",
@@ -5765,6 +5775,16 @@
     },
     {
       "artist": "東京事変",
+      "title": "林檎の唄",
+      "kind": "歌枠",
+      "dText": "20251026 【縦型】縦型初配信・歌枠🌟元気が出る歌を歌います！花彩音_3kHz【#新人vtuber #shorts 】",
+      "dUrl": "https://www.youtube.com/watch?v=7ODhAjDQ_mU&t=8437s",
+      "date8": 20251026,
+      "rowId": "東京事変|林檎の唄|歌枠|https://www.youtube.com/watch?v=7ODhAjDQ_mU&t=8437s",
+      "historyKey": "東京事変|林檎の唄"
+    },
+    {
+      "artist": "東京事変",
       "title": "能動的三分間",
       "kind": "歌枠",
       "dText": "20251026 【縦型】縦型初配信・歌枠🌟元気が出る歌を歌います！花彩音_3kHz【#新人vtuber #shorts 】",
@@ -5772,6 +5792,16 @@
       "date8": 20251026,
       "rowId": "東京事変|能動的三分間|歌枠|https://www.youtube.com/watch?v=7ODhAjDQ_mU&t=8038s",
       "historyKey": "東京事変|能動的三分間"
+    },
+    {
+      "artist": "松田聖子",
+      "title": "瑠璃色の地球",
+      "kind": "歌枠",
+      "dText": "20251026 【縦型】縦型初配信・歌枠🌟元気が出る歌を歌います！花彩音_3kHz【#新人vtuber #shorts 】",
+      "dUrl": "https://www.youtube.com/watch?v=7ODhAjDQ_mU&t=740s",
+      "date8": 20251026,
+      "rowId": "松田聖子|瑠璃色の地球|歌枠|https://www.youtube.com/watch?v=7ODhAjDQ_mU&t=740s",
+      "historyKey": "松田聖子|瑠璃色の地球"
     },
     {
       "artist": "椎名林檎",
@@ -5802,6 +5832,26 @@
       "date8": 20251027,
       "rowId": "ado|新時代|歌枠|https://www.youtube.com/watch?v=Ntt_iAnqpdQ&t=5359s",
       "historyKey": "ado|新時代"
+    },
+    {
+      "artist": "aiko",
+      "title": "愛の病",
+      "kind": "歌枠",
+      "dText": "20251027 【歌枠・昼の部】ハロウィン歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=Ntt_iAnqpdQ&t=1681s",
+      "date8": 20251027,
+      "rowId": "aiko|愛の病|歌枠|https://www.youtube.com/watch?v=Ntt_iAnqpdQ&t=1681s",
+      "historyKey": "aiko|愛の病"
+    },
+    {
+      "artist": "HoneyWorks/藤田ことね(飯田ヒカル)",
+      "title": "世界一可愛い私",
+      "kind": "歌枠",
+      "dText": "20251027 【歌枠・昼の部】ハロウィン歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=Ntt_iAnqpdQ&t=2176s",
+      "date8": 20251027,
+      "rowId": "honeyworks/藤田ことね(飯田ヒカル)|世界一可愛い私|歌枠|https://www.youtube.com/watch?v=Ntt_iAnqpdQ&t=2176s",
+      "historyKey": "honeyworks/藤田ことね(飯田ヒカル)|世界一可愛い私"
     },
     {
       "artist": "MAISONdes",
@@ -5852,6 +5902,16 @@
       "date8": 20251027,
       "rowId": "すりぃ|ジブラ|歌枠|https://www.youtube.com/watch?v=Ntt_iAnqpdQ&t=2561s",
       "historyKey": "すりぃ|ジブラ"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "サカナ",
+      "kind": "歌枠",
+      "dText": "20251027 【歌枠・昼の部】ハロウィン歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=Ntt_iAnqpdQ&t=2915s",
+      "date8": 20251027,
+      "rowId": "椎名林檎|サカナ|歌枠|https://www.youtube.com/watch?v=Ntt_iAnqpdQ&t=2915s",
+      "historyKey": "椎名林檎|サカナ"
     },
     {
       "artist": "椎名林檎",
@@ -5962,6 +6022,16 @@
       "date8": 20251029,
       "rowId": "みきとp|少女レイ|歌枠|https://www.youtube.com/watch?v=ge1juO_XRG4&t=5013s",
       "historyKey": "みきとp|少女レイ"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "メロウ",
+      "kind": "歌枠",
+      "dText": "20251029 【縦型】お昼の歌枠🌟元気が出る歌を歌います！花彩音_3kHz【#新人vtuber #shorts 】",
+      "dUrl": "https://www.youtube.com/watch?v=ge1juO_XRG4&t=1569s",
+      "date8": 20251029,
+      "rowId": "椎名林檎|メロウ|歌枠|https://www.youtube.com/watch?v=ge1juO_XRG4&t=1569s",
+      "historyKey": "椎名林檎|メロウ"
     },
     {
       "artist": "椎名林檎",
@@ -6152,6 +6222,16 @@
       "date8": 20251106,
       "rowId": "aqu3ra|チョコレートミルク|歌枠|https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=7024s",
       "historyKey": "aqu3ra|チョコレートミルク"
+    },
+    {
+      "artist": "Avril Lavigne",
+      "title": "Complicated",
+      "kind": "歌枠",
+      "dText": "20251106 【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=5000s",
+      "date8": 20251106,
+      "rowId": "avril lavigne|complicated|歌枠|https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=5000s",
+      "historyKey": "avril lavigne|complicated"
     },
     {
       "artist": "DECO*27",
@@ -6472,6 +6552,16 @@
       "date8": 20251117,
       "rowId": "星街すいせい|stellar stellar|歌枠|https://www.youtube.com/watch?v=jbyUbgDXk1M&t=4417s",
       "historyKey": "星街すいせい|stellar stellar"
+    },
+    {
+      "artist": "相対性理論",
+      "title": "ミス・パラレルワールド",
+      "kind": "歌枠",
+      "dText": "20251117 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=jbyUbgDXk1M&t=3174s",
+      "date8": 20251117,
+      "rowId": "相対性理論|ミス・パラレルワールド|歌枠|https://www.youtube.com/watch?v=jbyUbgDXk1M&t=3174s",
+      "historyKey": "相対性理論|ミス・パラレルワールド"
     },
     {
       "artist": "相対性理論",
@@ -6852,6 +6942,16 @@
       "date8": 20251201,
       "rowId": "宇多田ヒカル|distance|歌枠|https://www.youtube.com/watch?v=L4sZszyY5d0&t=5884s",
       "historyKey": "宇多田ヒカル|distance"
+    },
+    {
+      "artist": "矢井田瞳",
+      "title": "Life's Like A Love Song",
+      "kind": "歌枠",
+      "dText": "20251201 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=L4sZszyY5d0&t=5078s",
+      "date8": 20251201,
+      "rowId": "矢井田瞳|life's like a love song|歌枠|https://www.youtube.com/watch?v=L4sZszyY5d0&t=5078s",
+      "historyKey": "矢井田瞳|life's like a love song"
     },
     {
       "artist": "矢井田瞳",
@@ -10034,6 +10134,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1003,
-  "matched": 1003
+  "total": 1013,
+  "matched": 1013
 }

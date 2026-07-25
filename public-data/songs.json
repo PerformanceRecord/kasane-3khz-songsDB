@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-07-24T01:29:27.119Z",
+  "fetchedAt": "2026-07-25T01:29:30.172Z",
   "rows": [
     {
       "artist": "CUTIE STREET",
@@ -228,8 +228,8 @@
       "date8": 20260716,
       "rowId": "松田聖子|瑠璃色の地球|歌枠|https://www.youtube.com/watch?v=ko-7BdZ98NQ&t=4979s",
       "historyRef": "history/99cf900f9832.json",
-      "historyCount": 9,
-      "lastSungAt": 20250917
+      "historyCount": 10,
+      "lastSungAt": 20251026
     },
     {
       "artist": "星街すいせい",
@@ -948,8 +948,8 @@
       "date8": 20260616,
       "rowId": "矢井田瞳|life's like a love song|歌枠|https://www.youtube.com/watch?v=domKgZ9vAj8&t=2959s",
       "historyRef": "history/ae680682244f.json",
-      "historyCount": 2,
-      "lastSungAt": 20250910
+      "historyCount": 3,
+      "lastSungAt": 20251201
     },
     {
       "artist": "Aqu3ra",
@@ -973,7 +973,7 @@
       "rowId": "avril lavigne|complicated|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=4354s",
       "historyRef": "history/a0828e352f3e.json",
       "historyCount": 1,
-      "lastSungAt": 20260615
+      "lastSungAt": 20251106
     },
     {
       "artist": "Azari",
@@ -1021,7 +1021,7 @@
       "rowId": "honeyworks/藤田ことね(飯田ヒカル)|世界一可愛い私|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=3701s",
       "historyRef": "history/05f62b427766.json",
       "historyCount": 1,
-      "lastSungAt": 20260615
+      "lastSungAt": 20251027
     },
     {
       "artist": "Kai",
@@ -1488,8 +1488,8 @@
       "date8": 20260527,
       "rowId": "椎名林檎|サカナ|歌枠|https://www.youtube.com/watch?v=E02b7QxYr8w&t=1935s",
       "historyRef": "history/1506564deb91.json",
-      "historyCount": 1,
-      "lastSungAt": 20251002
+      "historyCount": 2,
+      "lastSungAt": 20251027
     },
     {
       "artist": "椎名林檎",
@@ -1501,7 +1501,7 @@
       "rowId": "椎名林檎|メロウ|歌枠|https://www.youtube.com/watch?v=E02b7QxYr8w&t=4312s",
       "historyRef": "history/8b570e785071.json",
       "historyCount": 1,
-      "lastSungAt": 20260527
+      "lastSungAt": 20251029
     },
     {
       "artist": "椎名林檎",
@@ -1657,7 +1657,7 @@
       "rowId": "東京事変|林檎の唄|歌枠|https://www.youtube.com/watch?v=E02b7QxYr8w&t=328s",
       "historyRef": "history/c3009c4124d4.json",
       "historyCount": 1,
-      "lastSungAt": 20260527
+      "lastSungAt": 20251026
     },
     {
       "artist": "暴飲暴食P",
@@ -2880,7 +2880,7 @@
       "date8": 20260429,
       "rowId": "相対性理論|ミス・パラレルワールド|歌枠|https://www.youtube.com/watch?v=4tO8JAr_qJM&t=4026s",
       "historyRef": "history/066f98fc92a3.json",
-      "historyCount": 1,
+      "historyCount": 2,
       "lastSungAt": 20251118
     },
     {
@@ -3012,8 +3012,8 @@
       "date8": 20260424,
       "rowId": "なとり|overdose|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=945s",
       "historyRef": "history/1dc67dbc2599.json",
-      "historyCount": 1,
-      "lastSungAt": 20250802
+      "historyCount": 2,
+      "lastSungAt": 20251023
     },
     {
       "artist": "ヨルシカ",
@@ -3132,8 +3132,8 @@
       "date8": 20260413,
       "rowId": "aiko|愛の病|歌枠|https://www.youtube.com/watch?v=Z_A-rtYrA6c&t=2931s",
       "historyRef": "history/d0223d8646f7.json",
-      "historyCount": 2,
-      "lastSungAt": 20250919
+      "historyCount": 3,
+      "lastSungAt": 20251027
     },
     {
       "artist": "aiko",
