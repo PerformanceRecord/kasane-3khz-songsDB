@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-07-25T01:29:38.131Z",
+  "fetchedAt": "2026-07-26T01:43:38.359Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -6984,6 +6984,16 @@
       "historyKey": "ado|ウタカタララバイ"
     },
     {
+      "artist": "Giga",
+      "title": "G4L",
+      "kind": "歌枠",
+      "dText": "20251203 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=APjKwFwQJ0I&t=2440s",
+      "date8": 20251203,
+      "rowId": "giga|g4l|歌枠|https://www.youtube.com/watch?v=APjKwFwQJ0I&t=2440s",
+      "historyKey": "giga|g4l"
+    },
+    {
       "artist": "HANA",
       "title": "Drop",
       "kind": "歌枠",
@@ -7074,6 +7084,16 @@
       "historyKey": "米津玄師|iris out"
     },
     {
+      "artist": "絢香",
+      "title": "三日月",
+      "kind": "歌枠",
+      "dText": "20251203 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=APjKwFwQJ0I&t=4519s",
+      "date8": 20251203,
+      "rowId": "絢香|三日月|歌枠|https://www.youtube.com/watch?v=APjKwFwQJ0I&t=4519s",
+      "historyKey": "絢香|三日月"
+    },
+    {
       "artist": "kanaria",
       "title": "酔いどれ知らず",
       "kind": "歌枠",
@@ -7124,6 +7144,16 @@
       "historyKey": "nomelon nolemon|ハイド・アンド・シーク"
     },
     {
+      "artist": "Tommy february6",
+      "title": "EVERYDAY AT THE BUS STOP",
+      "kind": "歌枠",
+      "dText": "20251206 【#歌枠 #朝活】おはよう歌枠🌟元気になれる歌を歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=DoWEJ7pYDWE&t=9378s",
+      "date8": 20251206,
+      "rowId": "tommy february6|everyday at the bus stop|歌枠|https://www.youtube.com/watch?v=DoWEJ7pYDWE&t=9378s",
+      "historyKey": "tommy february6|everyday at the bus stop"
+    },
+    {
       "artist": "YOASOBI",
       "title": "UNDEAD",
       "kind": "歌枠",
@@ -7172,6 +7202,16 @@
       "date8": 20251206,
       "rowId": "伊藤由奈|precious|歌枠|https://www.youtube.com/watch?v=DoWEJ7pYDWE&t=10382s",
       "historyKey": "伊藤由奈|precious"
+    },
+    {
+      "artist": "宇多田ヒカル",
+      "title": "Beautiful World",
+      "kind": "歌枠",
+      "dText": "20251206 【#歌枠 #朝活】おはよう歌枠🌟元気になれる歌を歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=DoWEJ7pYDWE&t=3172s",
+      "date8": 20251206,
+      "rowId": "宇多田ヒカル|beautiful world|歌枠|https://www.youtube.com/watch?v=DoWEJ7pYDWE&t=3172s",
+      "historyKey": "宇多田ヒカル|beautiful world"
     },
     {
       "artist": "宇多田ヒカル",
@@ -7485,6 +7525,16 @@
     },
     {
       "artist": "椎名林檎",
+      "title": "主演の女",
+      "kind": "歌枠",
+      "dText": "20251210 【歌枠・昼の部】4時間歌枠🌟明日でデビュー4ヶ月ありがとう！午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=LabFMXqb2AE&t=10474s",
+      "date8": 20251210,
+      "rowId": "椎名林檎|主演の女|歌枠|https://www.youtube.com/watch?v=LabFMXqb2AE&t=10474s",
+      "historyKey": "椎名林檎|主演の女"
+    },
+    {
+      "artist": "椎名林檎",
       "title": "罪と罰",
       "kind": "歌枠",
       "dText": "20251210 【歌枠・昼の部】4時間歌枠🌟明日でデビュー4ヶ月ありがとう！午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
@@ -7682,6 +7732,16 @@
       "date8": 20251215,
       "rowId": "ado|私は最強|歌枠|https://www.youtube.com/watch?v=dwp1GLq8X50&t=10670s",
       "historyKey": "ado|私は最強"
+    },
+    {
+      "artist": "Ado",
+      "title": "逆光",
+      "kind": "歌枠",
+      "dText": "20251215 【#歌枠 昼の部】お昼のゆるーい歌枠🌟歌枠リレーに向けて午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=dwp1GLq8X50&t=3886s",
+      "date8": 20251215,
+      "rowId": "ado|逆光|歌枠|https://www.youtube.com/watch?v=dwp1GLq8X50&t=3886s",
+      "historyKey": "ado|逆光"
     },
     {
       "artist": "DECO*27",
@@ -7965,6 +8025,16 @@
     },
     {
       "artist": "ヨルシカ",
+      "title": "八月、某、月明かり",
+      "kind": "歌枠",
+      "dText": "20251218 【#歌枠 昼の部】歌練習🌟歌枠リレーに向けて午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=Lm7BJxovoI8&t=3813s",
+      "date8": 20251218,
+      "rowId": "ヨルシカ|八月、某、月明かり|歌枠|https://www.youtube.com/watch?v=Lm7BJxovoI8&t=3813s",
+      "historyKey": "ヨルシカ|八月、某、月明かり"
+    },
+    {
+      "artist": "ヨルシカ",
       "title": "強盗と花束",
       "kind": "ショート",
       "dText": "20251218 強盗と花束/ヨルシカ #歌ってみた #ヨルシカ #vtuber #karaoke",
@@ -7994,6 +8064,26 @@
       "historyKey": "椎名林檎|同じ夜"
     },
     {
+      "artist": "椎名林檎",
+      "title": "虚言症",
+      "kind": "歌枠",
+      "dText": "20251218 【#歌枠 昼の部】歌練習🌟歌枠リレーに向けて午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=Lm7BJxovoI8&t=2383s",
+      "date8": 20251218,
+      "rowId": "椎名林檎|虚言症|歌枠|https://www.youtube.com/watch?v=Lm7BJxovoI8&t=2383s",
+      "historyKey": "椎名林檎|虚言症"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "闇に降る雨",
+      "kind": "歌枠",
+      "dText": "20251218 【#歌枠 昼の部】歌練習🌟歌枠リレーに向けて午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=Lm7BJxovoI8&t=2080s",
+      "date8": 20251218,
+      "rowId": "椎名林檎|闇に降る雨|歌枠|https://www.youtube.com/watch?v=Lm7BJxovoI8&t=2080s",
+      "historyKey": "椎名林檎|闇に降る雨"
+    },
+    {
       "artist": "水曜日のカンパネラ",
       "title": "ウォーアイニー",
       "kind": "歌枠",
@@ -8002,6 +8092,16 @@
       "date8": 20251218,
       "rowId": "水曜日のカンパネラ|ウォーアイニー|歌枠|https://www.youtube.com/watch?v=Lm7BJxovoI8&t=1329s",
       "historyKey": "水曜日のカンパネラ|ウォーアイニー"
+    },
+    {
+      "artist": "水曜日のカンパネラ",
+      "title": "エジソン",
+      "kind": "歌枠",
+      "dText": "20251218 【#歌枠 昼の部】歌練習🌟歌枠リレーに向けて午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=Lm7BJxovoI8&t=1052s",
+      "date8": 20251218,
+      "rowId": "水曜日のカンパネラ|エジソン|歌枠|https://www.youtube.com/watch?v=Lm7BJxovoI8&t=1052s",
+      "historyKey": "水曜日のカンパネラ|エジソン"
     },
     {
       "artist": "相対性理論",
@@ -8062,6 +8162,16 @@
       "date8": 20251219,
       "rowId": "tuki.|晩餐歌|歌枠|https://www.youtube.com/watch?v=j0UtOEI-3e4&t=3245s",
       "historyKey": "tuki.|晩餐歌"
+    },
+    {
+      "artist": "Yui",
+      "title": "CHE.R.RY",
+      "kind": "歌枠",
+      "dText": "20251219 【#歌枠 昼の部】歌練習🌟歌枠リレーに向けて午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=j0UtOEI-3e4&t=1920s",
+      "date8": 20251219,
+      "rowId": "yui|che.r.ry|歌枠|https://www.youtube.com/watch?v=j0UtOEI-3e4&t=1920s",
+      "historyKey": "yui|che.r.ry"
     },
     {
       "artist": "すりぃ",
@@ -8162,6 +8272,26 @@
       "date8": 20251222,
       "rowId": "hana|blue jeans|歌枠|https://www.youtube.com/watch?v=GDn01RpX_6E&t=1385s",
       "historyKey": "hana|blue jeans"
+    },
+    {
+      "artist": "MAISONdes",
+      "title": "トウキョウ・シャンディ・ランデヴ",
+      "kind": "歌枠",
+      "dText": "20251222 【#歌枠 昼の部】初見歓迎 1曲だけでも聴いていって🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=GDn01RpX_6E&t=5718s",
+      "date8": 20251222,
+      "rowId": "maisondes|トウキョウ・シャンディ・ランデヴ|歌枠|https://www.youtube.com/watch?v=GDn01RpX_6E&t=5718s",
+      "historyKey": "maisondes|トウキョウ・シャンディ・ランデヴ"
+    },
+    {
+      "artist": "しぐれうい",
+      "title": "粛聖!! ロリ神レクイエム☆",
+      "kind": "歌枠",
+      "dText": "20251222 【#歌枠 昼の部】初見歓迎 1曲だけでも聴いていって🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=GDn01RpX_6E&t=3467s",
+      "date8": 20251222,
+      "rowId": "しぐれうい|粛聖!! ロリ神レクイエム☆|歌枠|https://www.youtube.com/watch?v=GDn01RpX_6E&t=3467s",
+      "historyKey": "しぐれうい|粛聖!! ロリ神レクイエム☆"
     },
     {
       "artist": "ヨルシカ",
@@ -10134,6 +10264,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1013,
-  "matched": 1013
+  "total": 1026,
+  "matched": 1026
 }

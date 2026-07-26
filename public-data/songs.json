@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-07-25T01:29:30.172Z",
+  "fetchedAt": "2026-07-26T01:43:28.108Z",
   "rows": [
     {
       "artist": "CUTIE STREET",
@@ -108,8 +108,8 @@
       "date8": 20260716,
       "rowId": "maisondes|トウキョウ・シャンディ・ランデヴ|歌枠|https://www.youtube.com/watch?v=ko-7BdZ98NQ&t=7336s",
       "historyRef": "history/6c91a391de0a.json",
-      "historyCount": 3,
-      "lastSungAt": 20251206
+      "historyCount": 4,
+      "lastSungAt": 20251222
     },
     {
       "artist": "MAISONdes",
@@ -672,8 +672,8 @@
       "date8": 20260622,
       "rowId": "絢香|三日月|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=5413s",
       "historyRef": "history/20158ba85e2c.json",
-      "historyCount": 1,
-      "lastSungAt": 20250815
+      "historyCount": 2,
+      "lastSungAt": 20251203
     },
     {
       "artist": "音田雅則",
@@ -1009,7 +1009,7 @@
       "rowId": "giga|g4l|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=4748s",
       "historyRef": "history/daca8c74e197.json",
       "historyCount": 1,
-      "lastSungAt": 20260615
+      "lastSungAt": 20251203
     },
     {
       "artist": "HoneyWorks/藤田ことね(飯田ヒカル)",
@@ -1057,7 +1057,7 @@
       "rowId": "tommy february6|everyday at the bus stop|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=3098s",
       "historyRef": "history/990d199aa4f3.json",
       "historyCount": 1,
-      "lastSungAt": 20260615
+      "lastSungAt": 20251206
     },
     {
       "artist": "こっちのけんと",
@@ -1104,8 +1104,8 @@
       "date8": 20260615,
       "rowId": "宇多田ヒカル|beautiful world|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=6685s",
       "historyRef": "history/e553b0ab5c74.json",
-      "historyCount": 4,
-      "lastSungAt": 20250908
+      "historyCount": 5,
+      "lastSungAt": 20251206
     },
     {
       "artist": "花彩音_3kHz",
@@ -1332,8 +1332,8 @@
       "date8": 20260610,
       "rowId": "ヨルシカ|八月、某、月明かり|歌枠|https://www.youtube.com/watch?v=QXZMPywkYG8&t=1092s",
       "historyRef": "history/08c0d53f94b9.json",
-      "historyCount": 2,
-      "lastSungAt": 20251217
+      "historyCount": 3,
+      "lastSungAt": 20251218
     },
     {
       "artist": "井上陽水",
@@ -1789,7 +1789,7 @@
       "rowId": "椎名林檎|主演の女|歌枠|https://www.youtube.com/watch?v=NtixH-Xwvw4&t=6887s",
       "historyRef": "history/808b5a3bb8ff.json",
       "historyCount": 1,
-      "lastSungAt": 20260522
+      "lastSungAt": 20251210
     },
     {
       "artist": "東京事変",
@@ -1873,7 +1873,7 @@
       "rowId": "水曜日のカンパネラ|エジソン|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=471s",
       "historyRef": "history/354fe2038f24.json",
       "historyCount": 1,
-      "lastSungAt": 20260521
+      "lastSungAt": 20251218
     },
     {
       "artist": "椎名林檎",
@@ -1884,8 +1884,8 @@
       "date8": 20260521,
       "rowId": "椎名林檎|闇に降る雨|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=4565s",
       "historyRef": "history/d8447c5fcfc8.json",
-      "historyCount": 2,
-      "lastSungAt": 20250910
+      "historyCount": 3,
+      "lastSungAt": 20251218
     },
     {
       "artist": "椎名林檎",
@@ -2124,8 +2124,8 @@
       "date8": 20260516,
       "rowId": "ado|逆光|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=3206s",
       "historyRef": "history/cfeff1bbc56c.json",
-      "historyCount": 3,
-      "lastSungAt": 20251016
+      "historyCount": 4,
+      "lastSungAt": 20251215
     },
     {
       "artist": "DECO*27",
@@ -2592,8 +2592,8 @@
       "date8": 20260511,
       "rowId": "椎名林檎|虚言症|歌枠|https://www.youtube.com/watch?v=EKYW8P4H3J8&t=1406s",
       "historyRef": "history/16482c897784.json",
-      "historyCount": 1,
-      "lastSungAt": 20251023
+      "historyCount": 2,
+      "lastSungAt": 20251218
     },
     {
       "artist": "椎名林檎",
@@ -2844,8 +2844,8 @@
       "date8": 20260429,
       "rowId": "しぐれうい|粛聖!! ロリ神レクイエム☆|歌枠|https://www.youtube.com/watch?v=4tO8JAr_qJM&t=4754s",
       "historyRef": "history/12abb4227acd.json",
-      "historyCount": 3,
-      "lastSungAt": 20251122
+      "historyCount": 4,
+      "lastSungAt": 20251222
     },
     {
       "artist": "ピノキオピー",
@@ -3228,8 +3228,8 @@
       "date8": 20260413,
       "rowId": "yui|che.r.ry|歌枠|https://www.youtube.com/watch?v=Z_A-rtYrA6c&t=5402s",
       "historyRef": "history/a832336b12f4.json",
-      "historyCount": 2,
-      "lastSungAt": 20250919
+      "historyCount": 3,
+      "lastSungAt": 20251219
     },
     {
       "artist": "クリープハイプ",
