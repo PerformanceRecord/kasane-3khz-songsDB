@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-07-28T01:25:41.192Z",
+  "fetchedAt": "2026-07-29T01:25:23.313Z",
   "rows": [
     {
       "artist": "CUTIE STREET",
@@ -24,8 +24,8 @@
       "date8": 20260720,
       "rowId": "deco*27|ダミーロマンス|歌ってみた|https://www.youtube.com/watch?v=rxXScWE6TZU",
       "historyRef": "history/023622e707ca.json",
-      "historyCount": 1,
-      "lastSungAt": 20260720
+      "historyCount": 2,
+      "lastSungAt": 20260721
     },
     {
       "artist": "Ado",
@@ -228,8 +228,8 @@
       "date8": 20260716,
       "rowId": "松田聖子|瑠璃色の地球|歌枠|https://www.youtube.com/watch?v=ko-7BdZ98NQ&t=4979s",
       "historyRef": "history/99cf900f9832.json",
-      "historyCount": 10,
-      "lastSungAt": 20251026
+      "historyCount": 11,
+      "lastSungAt": 20260516
     },
     {
       "artist": "星街すいせい",
@@ -240,8 +240,8 @@
       "date8": 20260716,
       "rowId": "星街すいせい|ビビデバ|歌枠|https://www.youtube.com/watch?v=ko-7BdZ98NQ&t=582s",
       "historyRef": "history/daced6c26dcb.json",
-      "historyCount": 14,
-      "lastSungAt": 20260316
+      "historyCount": 15,
+      "lastSungAt": 20260513
     },
     {
       "artist": "東京事変",
@@ -253,7 +253,7 @@
       "rowId": "東京事変|喧嘩上等|歌枠|https://www.youtube.com/watch?v=ko-7BdZ98NQ&t=3435s",
       "historyRef": "history/ccd18eaa61ad.json",
       "historyCount": 1,
-      "lastSungAt": 20260716
+      "lastSungAt": 20260507
     },
     {
       "artist": "花彩音_3kHz",
@@ -325,7 +325,7 @@
       "rowId": "b-dash|ちょ|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=1817s",
       "historyRef": "history/fca2c68b7bf3.json",
       "historyCount": 1,
-      "lastSungAt": 20260713
+      "lastSungAt": 20260711
     },
     {
       "artist": "kiki vivi lily",
@@ -349,7 +349,7 @@
       "rowId": "millennium parade × belle|u|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=2735s",
       "historyRef": "history/e9e6eac207af.json",
       "historyCount": 1,
-      "lastSungAt": 20260713
+      "lastSungAt": 20260709
     },
     {
       "artist": "THE NEUTRAL",
@@ -397,7 +397,7 @@
       "rowId": "ザ・ハイロウズ|日曜日よりの使者|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=1378s",
       "historyRef": "history/f687174dc7f7.json",
       "historyCount": 1,
-      "lastSungAt": 20260713
+      "lastSungAt": 20260615
     },
     {
       "artist": "ジャパハリネット",
@@ -421,7 +421,7 @@
       "rowId": "みきとp|ロキ|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=3850s",
       "historyRef": "history/f50d9a313e42.json",
       "historyCount": 1,
-      "lastSungAt": 20260713
+      "lastSungAt": 20260708
     },
     {
       "artist": "ヨルシカ",
@@ -432,8 +432,8 @@
       "date8": 20260713,
       "rowId": "ヨルシカ|雨晴るる|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=5401s",
       "historyRef": "history/f6c4bfc337eb.json",
-      "historyCount": 1,
-      "lastSungAt": 20260409
+      "historyCount": 2,
+      "lastSungAt": 20260521
     },
     {
       "artist": "ヨルシカ",
@@ -444,8 +444,8 @@
       "date8": 20260713,
       "rowId": "ヨルシカ|心に穴が空いた|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=6601s",
       "historyRef": "history/f9bf75b8d4a7.json",
-      "historyCount": 6,
-      "lastSungAt": 20260323
+      "historyCount": 8,
+      "lastSungAt": 20260517
     },
     {
       "artist": "宇多田ヒカル",
@@ -481,7 +481,7 @@
       "rowId": "椎名林檎|あおぞら|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=350s",
       "historyRef": "history/f3289bbd53a9.json",
       "historyCount": 1,
-      "lastSungAt": 20260713
+      "lastSungAt": 20260523
     },
     {
       "artist": "日向電工",
@@ -517,7 +517,7 @@
       "rowId": "ヨルシカ|櫂|ショート|https://www.youtube.com/watch?v=ZymdxVrYv-k",
       "historyRef": "history/c5638a5c1133.json",
       "historyCount": 1,
-      "lastSungAt": 20260707
+      "lastSungAt": 20260706
     },
     {
       "artist": "なとり",
@@ -529,7 +529,7 @@
       "rowId": "なとり|puppet|ショート|https://www.youtube.com/watch?v=5Q_HMQxetNw",
       "historyRef": "history/d2aaff054003.json",
       "historyCount": 1,
-      "lastSungAt": 20260705
+      "lastSungAt": 20260702
     },
     {
       "artist": "PSYQUI",
@@ -588,8 +588,8 @@
       "date8": 20260622,
       "rowId": "hakubi|twilight|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=2417s",
       "historyRef": "history/4d1581d8dc85.json",
-      "historyCount": 4,
-      "lastSungAt": 20260409
+      "historyCount": 5,
+      "lastSungAt": 20260511
     },
     {
       "artist": "imase",
@@ -636,8 +636,8 @@
       "date8": 20260622,
       "rowId": "サカナクション|『バッハの旋律を夜に聴いたせいです。』|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=3772s",
       "historyRef": "history/f2cb15749e45.json",
-      "historyCount": 1,
-      "lastSungAt": 20260622
+      "historyCount": 3,
+      "lastSungAt": 20260517
     },
     {
       "artist": "ポリスピカデリー",
@@ -661,7 +661,7 @@
       "rowId": "ヨルシカ|六月は雨上がりの街を書く|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=1026s",
       "historyRef": "history/b4d507331198.json",
       "historyCount": 1,
-      "lastSungAt": 20260622
+      "lastSungAt": 20260619
     },
     {
       "artist": "絢香",
@@ -721,7 +721,7 @@
       "rowId": "斉藤和義|歩いて帰ろう|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=3487s",
       "historyRef": "history/3efa03f73077.json",
       "historyCount": 1,
-      "lastSungAt": 20260622
+      "lastSungAt": 20260615
     },
     {
       "artist": "相対性理論",
@@ -792,8 +792,8 @@
       "date8": 20260616,
       "rowId": "beat crusaders|moon on the water|歌枠|https://www.youtube.com/watch?v=domKgZ9vAj8&t=5006s",
       "historyRef": "history/ca0a1c665c7d.json",
-      "historyCount": 3,
-      "lastSungAt": 20260401
+      "historyCount": 4,
+      "lastSungAt": 20260429
     },
     {
       "artist": "n-buna",
@@ -900,8 +900,8 @@
       "date8": 20260616,
       "rowId": "手嶌葵|明日への手紙|歌枠|https://www.youtube.com/watch?v=domKgZ9vAj8&t=5788s",
       "historyRef": "history/9181eebb8502.json",
-      "historyCount": 1,
-      "lastSungAt": 20260616
+      "historyCount": 2,
+      "lastSungAt": 20260521
     },
     {
       "artist": "中島美嘉",
@@ -1080,8 +1080,8 @@
       "date8": 20260615,
       "rowId": "ヨルシカ|雨とカプチーノ|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=2142s",
       "historyRef": "history/bb9cc73babab.json",
-      "historyCount": 8,
-      "lastSungAt": 20260401
+      "historyCount": 9,
+      "lastSungAt": 20260521
     },
     {
       "artist": "れるりり",
@@ -1117,7 +1117,7 @@
       "rowId": "花彩音_3khz|マンデーモーニングブルー|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=7892s",
       "historyRef": "history/03e6e56e4c26.json",
       "historyCount": 1,
-      "lastSungAt": 20260615
+      "lastSungAt": 20260526
     },
     {
       "artist": "高橋洋子",
@@ -1152,8 +1152,8 @@
       "date8": 20260615,
       "rowId": "椎名林檎|おだいじに|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=2778s",
       "historyRef": "history/b5f7cef015f6.json",
-      "historyCount": 3,
-      "lastSungAt": 20260326
+      "historyCount": 4,
+      "lastSungAt": 20260424
     },
     {
       "artist": "東京事変",
@@ -1200,8 +1200,8 @@
       "date8": 20260611,
       "rowId": "happy?|天使電影|歌ってみた|https://www.youtube.com/watch?v=S5DL6CQxpTU",
       "historyRef": "history/48c7799ca26d.json",
-      "historyCount": 1,
-      "lastSungAt": 20260611
+      "historyCount": 2,
+      "lastSungAt": 20260612
     },
     {
       "artist": "Ain't It Fun",
@@ -1380,8 +1380,8 @@
       "date8": 20260610,
       "rowId": "米津玄師|iris out|歌枠|https://www.youtube.com/watch?v=QXZMPywkYG8&t=3541s",
       "historyRef": "history/6fa2da9927c1.json",
-      "historyCount": 10,
-      "lastSungAt": 20260323
+      "historyCount": 11,
+      "lastSungAt": 20260424
     },
     {
       "artist": "緑黄色社会",
@@ -1404,8 +1404,8 @@
       "date8": 20260609,
       "rowId": "花彩音_3khz|あめのうた|歌ってみた|https://www.youtube.com/watch?v=ttteSuAGL9Q",
       "historyRef": "history/82c50acede14.json",
-      "historyCount": 1,
-      "lastSungAt": 20260609
+      "historyCount": 2,
+      "lastSungAt": 20260622
     },
     {
       "artist": "Vaundy",
@@ -1464,8 +1464,8 @@
       "date8": 20260527,
       "rowId": "椎名林檎|17|歌枠|https://www.youtube.com/watch?v=E02b7QxYr8w&t=4942s",
       "historyRef": "history/85aa241ff10a.json",
-      "historyCount": 1,
-      "lastSungAt": 20260527
+      "historyCount": 2,
+      "lastSungAt": 20260524
     },
     {
       "artist": "椎名林檎",
@@ -1500,8 +1500,8 @@
       "date8": 20260527,
       "rowId": "椎名林檎|メロウ|歌枠|https://www.youtube.com/watch?v=E02b7QxYr8w&t=4312s",
       "historyRef": "history/8b570e785071.json",
-      "historyCount": 1,
-      "lastSungAt": 20251029
+      "historyCount": 2,
+      "lastSungAt": 20260523
     },
     {
       "artist": "椎名林檎",
@@ -1644,8 +1644,8 @@
       "date8": 20260527,
       "rowId": "東京事変|閃光少女|歌枠|https://www.youtube.com/watch?v=E02b7QxYr8w&t=3647s",
       "historyRef": "history/c2e19b4eecb7.json",
-      "historyCount": 3,
-      "lastSungAt": 20260114
+      "historyCount": 4,
+      "lastSungAt": 20260522
     },
     {
       "artist": "東京事変",
@@ -1704,8 +1704,8 @@
       "date8": 20260522,
       "rowId": "ヨルシカ|ブレーメン|歌枠|https://www.youtube.com/watch?v=NtixH-Xwvw4&t=1148s",
       "historyRef": "history/d9ec9551e4bd.json",
-      "historyCount": 1,
-      "lastSungAt": 20260522
+      "historyCount": 2,
+      "lastSungAt": 20260507
     },
     {
       "artist": "結束バンド",
@@ -1848,8 +1848,8 @@
       "date8": 20260521,
       "rowId": "yen town band|swallowtail butterfly 〜あいのうた〜|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=777s",
       "historyRef": "history/0863b99309e0.json",
-      "historyCount": 1,
-      "lastSungAt": 20260411
+      "historyCount": 2,
+      "lastSungAt": 20260413
     },
     {
       "artist": "ヨルシカ",
@@ -1908,8 +1908,8 @@
       "date8": 20260521,
       "rowId": "椎名林檎|幸福論|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=3956s",
       "historyRef": "history/1e43090f07f6.json",
-      "historyCount": 3,
-      "lastSungAt": 20251230
+      "historyCount": 4,
+      "lastSungAt": 20260527
     },
     {
       "artist": "椎名林檎",
@@ -1992,8 +1992,8 @@
       "date8": 20260517,
       "rowId": "ado|唱|歌枠|https://www.youtube.com/watch?v=dy6svkoXg8I&t=2407s",
       "historyRef": "history/3840fde9ee63.json",
-      "historyCount": 15,
-      "lastSungAt": 20260316
+      "historyCount": 16,
+      "lastSungAt": 20260516
     },
     {
       "artist": "GO!GO!7188",
@@ -2028,8 +2028,8 @@
       "date8": 20260517,
       "rowId": "ちゃんみな|ハレンチ|歌枠|https://www.youtube.com/watch?v=dy6svkoXg8I&t=5244s",
       "historyRef": "history/9fe257a8f25f.json",
-      "historyCount": 8,
-      "lastSungAt": 20260309
+      "historyCount": 9,
+      "lastSungAt": 20260516
     },
     {
       "artist": "バルーン (須田景凪)",
@@ -2088,8 +2088,8 @@
       "date8": 20260517,
       "rowId": "東京事変|能動的三分間|歌枠|https://www.youtube.com/watch?v=dy6svkoXg8I&t=737s",
       "historyRef": "history/e49e41bd6abb.json",
-      "historyCount": 8,
-      "lastSungAt": 20260401
+      "historyCount": 9,
+      "lastSungAt": 20260516
     },
     {
       "artist": "和楽器バンド",
@@ -2184,8 +2184,8 @@
       "date8": 20260516,
       "rowId": "椎名林檎|ギブス|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=2039s",
       "historyRef": "history/0a70d88d2188.json",
-      "historyCount": 4,
-      "lastSungAt": 20260309
+      "historyCount": 5,
+      "lastSungAt": 20260520
     },
     {
       "artist": "椎名林檎",
@@ -2196,8 +2196,8 @@
       "date8": 20260516,
       "rowId": "椎名林檎|はいはい|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=6969s",
       "historyRef": "history/bdcef317a60d.json",
-      "historyCount": 1,
-      "lastSungAt": 20260516
+      "historyCount": 2,
+      "lastSungAt": 20260511
     },
     {
       "artist": "椎名林檎",
@@ -2245,7 +2245,7 @@
       "rowId": "電ポルp|心象カスケード|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=1285s",
       "historyRef": "history/b23c9752b260.json",
       "historyCount": 1,
-      "lastSungAt": 20260516
+      "lastSungAt": 20260422
     },
     {
       "artist": "東京事変",
@@ -2413,7 +2413,7 @@
       "rowId": "椎名林檎|積木遊び|歌枠|https://www.youtube.com/watch?v=bbp9IOVsTjY&t=1184s",
       "historyRef": "history/e1453dca75a5.json",
       "historyCount": 1,
-      "lastSungAt": 20260513
+      "lastSungAt": 20260516
     },
     {
       "artist": "椎名林檎",
@@ -2713,7 +2713,7 @@
       "rowId": "ぐにょ|福寿草|歌枠|https://www.youtube.com/watch?v=qHfhR2_Rc6c&t=1952s",
       "historyRef": "history/73ca3db19244.json",
       "historyCount": 1,
-      "lastSungAt": 20260507
+      "lastSungAt": 20260424
     },
     {
       "artist": "ジミーサムP",
@@ -2796,8 +2796,8 @@
       "date8": 20260429,
       "rowId": "b9☆|赤点教室|歌ってみた|https://www.youtube.com/watch?v=esq21pEqqwE",
       "historyRef": "history/bc118a6fee29.json",
-      "historyCount": 1,
-      "lastSungAt": 20260326
+      "historyCount": 3,
+      "lastSungAt": 20260501
     },
     {
       "artist": "LOVE PSYCHEDELICO",
@@ -2965,7 +2965,7 @@
       "rowId": "carpenters|close to you|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=5525s",
       "historyRef": "history/47d87e85e4c3.json",
       "historyCount": 1,
-      "lastSungAt": 20260424
+      "lastSungAt": 20260418
     },
     {
       "artist": "MAISONdes feat.asmi すりぃ",
@@ -3205,7 +3205,7 @@
       "rowId": "love psychedelico|last smile|歌枠|https://www.youtube.com/watch?v=Z_A-rtYrA6c&t=6221s",
       "historyRef": "history/8e27efa981a1.json",
       "historyCount": 1,
-      "lastSungAt": 20260413
+      "lastSungAt": 20260430
     },
     {
       "artist": "LOVE PSYCHEDELICO",
@@ -3888,8 +3888,8 @@
       "date8": 20260330,
       "rowId": "ツミキ|フォニイ|歌枠|https://www.youtube.com/watch?v=nPw6pSbRVMg&t=3055s",
       "historyRef": "history/470d3b562add.json",
-      "historyCount": 13,
-      "lastSungAt": 20260225
+      "historyCount": 14,
+      "lastSungAt": 20260630
     },
     {
       "artist": "東京事変",
@@ -4080,8 +4080,8 @@
       "date8": 20260323,
       "rowId": "かいりきベア|ダーリンダンス|歌枠|https://www.youtube.com/watch?v=1FHmyXt_fec&t=4983s",
       "historyRef": "history/c629bc5857de.json",
-      "historyCount": 2,
-      "lastSungAt": 20250924
+      "historyCount": 3,
+      "lastSungAt": 20260504
     },
     {
       "artist": "かいりきベア",
@@ -4104,8 +4104,8 @@
       "date8": 20260323,
       "rowId": "秦基博|ひまわりの約束|歌枠|https://www.youtube.com/watch?v=1FHmyXt_fec&t=7596s",
       "historyRef": "history/6ce19043915f.json",
-      "historyCount": 6,
-      "lastSungAt": 20260220
+      "historyCount": 7,
+      "lastSungAt": 20260723
     },
     {
       "artist": "相対性理論",
@@ -7392,8 +7392,8 @@
       "date8": 20250725,
       "rowId": "rinri×kyiku|白絵にもならない|歌ってみた|https://www.youtube.com/watch?v=v9TLVdXZ5kY",
       "historyRef": "history/e7fa81acfb1e.json",
-      "historyCount": 7,
-      "lastSungAt": 20260220
+      "historyCount": 8,
+      "lastSungAt": 20260622
     }
   ],
   "total": 616,

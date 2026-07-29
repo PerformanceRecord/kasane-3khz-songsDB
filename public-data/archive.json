@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-07-28T01:25:50.207Z",
+  "fetchedAt": "2026-07-29T01:25:32.247Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -11422,8 +11422,578 @@
       "date8": 20260411,
       "rowId": "yen town band|swallowtail butterfly 〜あいのうた〜|ショート|https://www.youtube.com/watch?v=Jdc8QSkWGiw",
       "historyKey": "yen town band|swallowtail butterfly 〜あいのうた〜"
+    },
+    {
+      "artist": "YEN TOWN BAND",
+      "title": "Swallowtail Butterfly 〜あいのうた〜",
+      "kind": "歌枠",
+      "dText": "20260413 【#歌枠 】月曜の歌枠🌟今週もがんばるよー⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=Z_A-rtYrA6c&t=6968s",
+      "date8": 20260413,
+      "rowId": "yen town band|swallowtail butterfly 〜あいのうた〜|歌枠|https://www.youtube.com/watch?v=Z_A-rtYrA6c&t=6968s",
+      "historyKey": "yen town band|swallowtail butterfly 〜あいのうた〜"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "心に穴が空いた",
+      "kind": "歌枠",
+      "dText": "20260413 【#歌枠 】月曜の歌枠🌟今週もがんばるよー⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=Z_A-rtYrA6c&t=7523s",
+      "date8": 20260413,
+      "rowId": "ヨルシカ|心に穴が空いた|歌枠|https://www.youtube.com/watch?v=Z_A-rtYrA6c&t=7523s",
+      "historyKey": "ヨルシカ|心に穴が空いた"
+    },
+    {
+      "artist": "Carpenters",
+      "title": "Close to you",
+      "kind": "ショート",
+      "dText": "20260418 Close to you/Carpenters #cover #歌ってみた #karaoke #carpenters #vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=cD4NL4bpyZM",
+      "date8": 20260418,
+      "rowId": "carpenters|close to you|ショート|https://www.youtube.com/watch?v=cD4NL4bpyZM",
+      "historyKey": "carpenters|close to you"
+    },
+    {
+      "artist": "電ポルP",
+      "title": "心象カスケード",
+      "kind": "ショート",
+      "dText": "20260422 心象カスケード/koyori(電ポルP) #cover #心象カスケード #歌ってみた #ボカロ #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=9uYZTvmBqrM",
+      "date8": 20260422,
+      "rowId": "電ポルp|心象カスケード|ショート|https://www.youtube.com/watch?v=9uYZTvmBqrM",
+      "historyKey": "電ポルp|心象カスケード"
+    },
+    {
+      "artist": "ぐにょ",
+      "title": "福寿草",
+      "kind": "歌枠",
+      "dText": "20260424 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸木曜日だと思ってたら金曜日だった、一日得した【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=6SJQQcplk2M&t=565s",
+      "date8": 20260424,
+      "rowId": "ぐにょ|福寿草|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=565s",
+      "historyKey": "ぐにょ|福寿草"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "おだいじに",
+      "kind": "歌枠",
+      "dText": "20260424 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸木曜日だと思ってたら金曜日だった、一日得した【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=6SJQQcplk2M&t=2270s",
+      "date8": 20260424,
+      "rowId": "椎名林檎|おだいじに|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=2270s",
+      "historyKey": "椎名林檎|おだいじに"
+    },
+    {
+      "artist": "米津玄師",
+      "title": "IRIS OUT",
+      "kind": "歌枠",
+      "dText": "20260424 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸木曜日だと思ってたら金曜日だった、一日得した【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=6SJQQcplk2M&t=1869s",
+      "date8": 20260424,
+      "rowId": "米津玄師|iris out|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=1869s",
+      "historyKey": "米津玄師|iris out"
+    },
+    {
+      "artist": "B9☆",
+      "title": "赤点教室",
+      "kind": "ショート",
+      "dText": "20260429 赤点教室/B9☆ #歌ってみた #赤点教室 #rap #B9 #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=bTf-Nx-4HBk",
+      "date8": 20260429,
+      "rowId": "b9☆|赤点教室|ショート|https://www.youtube.com/watch?v=bTf-Nx-4HBk",
+      "historyKey": "b9☆|赤点教室"
+    },
+    {
+      "artist": "BEAT CRUSADERS",
+      "title": "Moon On The Water",
+      "kind": "歌枠",
+      "dText": "20260429 【#歌枠 】歌枠🌟のんびり歌うよ 初見さんも大歓迎🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=4tO8JAr_qJM&t=1933s",
+      "date8": 20260429,
+      "rowId": "beat crusaders|moon on the water|歌枠|https://www.youtube.com/watch?v=4tO8JAr_qJM&t=1933s",
+      "historyKey": "beat crusaders|moon on the water"
+    },
+    {
+      "artist": "サカナクション",
+      "title": "『バッハの旋律を夜に聴いたせいです。』",
+      "kind": "歌枠",
+      "dText": "20260429 【#歌枠 】歌枠🌟のんびり歌うよ 初見さんも大歓迎🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=4tO8JAr_qJM&t=1305s",
+      "date8": 20260429,
+      "rowId": "サカナクション|『バッハの旋律を夜に聴いたせいです。』|歌枠|https://www.youtube.com/watch?v=4tO8JAr_qJM&t=1305s",
+      "historyKey": "サカナクション|『バッハの旋律を夜に聴いたせいです。』"
+    },
+    {
+      "artist": "LOVE PSYCHEDELICO",
+      "title": "last smile",
+      "kind": "ショート",
+      "dText": "20260430 【ギター練習はじめました】 #lastsmile #LOVEPSYCHEDELICO #ギター初心者 #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=Bvvn38-iAP4",
+      "date8": 20260430,
+      "rowId": "love psychedelico|last smile|ショート|https://www.youtube.com/watch?v=Bvvn38-iAP4",
+      "historyKey": "love psychedelico|last smile"
+    },
+    {
+      "artist": "B9☆",
+      "title": "赤点教室",
+      "kind": "ショート",
+      "dText": "20260501 赤点教室/B9☆ #歌ってみた #rap #赤点教室 #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=eT-e3PMsV90",
+      "date8": 20260501,
+      "rowId": "b9☆|赤点教室|ショート|https://www.youtube.com/watch?v=eT-e3PMsV90",
+      "historyKey": "b9☆|赤点教室"
+    },
+    {
+      "artist": "かいりきベア",
+      "title": "ダーリンダンス",
+      "kind": "ショート",
+      "dText": "20260504 ダーリンダンス/かいりきベア #歌ってみた #cover #かいりきベア #ダーリンダンス #vocaloid",
+      "dUrl": "https://www.youtube.com/watch?v=_zAdwDo_c9U",
+      "date8": 20260504,
+      "rowId": "かいりきベア|ダーリンダンス|ショート|https://www.youtube.com/watch?v=_zAdwDo_c9U",
+      "historyKey": "かいりきベア|ダーリンダンス"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "ブレーメン",
+      "kind": "ショート",
+      "dText": "20260505 ブレーメン/ヨルシカ #歌ってみた #karaoke #生歌 #ヨルシカ",
+      "dUrl": "https://www.youtube.com/watch?v=nApkeCotmUc",
+      "date8": 20260505,
+      "rowId": "ヨルシカ|ブレーメン|ショート|https://www.youtube.com/watch?v=nApkeCotmUc",
+      "historyKey": "ヨルシカ|ブレーメン"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "ブレーメン",
+      "kind": "歌枠",
+      "dText": "20260507 【#歌枠 】深夜歌枠🌙ピアノ曲多め🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=qHfhR2_Rc6c&t=2345s",
+      "date8": 20260507,
+      "rowId": "ヨルシカ|ブレーメン|歌枠|https://www.youtube.com/watch?v=qHfhR2_Rc6c&t=2345s",
+      "historyKey": "ヨルシカ|ブレーメン"
+    },
+    {
+      "artist": "東京事変",
+      "title": "喧嘩上等",
+      "kind": "歌枠",
+      "dText": "20260507 【#歌枠 】深夜歌枠🌙ピアノ曲多め🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=qHfhR2_Rc6c&t=1255s",
+      "date8": 20260507,
+      "rowId": "東京事変|喧嘩上等|歌枠|https://www.youtube.com/watch?v=qHfhR2_Rc6c&t=1255s",
+      "historyKey": "東京事変|喧嘩上等"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "はいはい",
+      "kind": "ショート",
+      "dText": "20260509 はいはい/椎名林檎 #歌ってみた #椎名林檎 #ギター初心者 #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=PhPCGJtr1_M",
+      "date8": 20260509,
+      "rowId": "椎名林檎|はいはい|ショート|https://www.youtube.com/watch?v=PhPCGJtr1_M",
+      "historyKey": "椎名林檎|はいはい"
+    },
+    {
+      "artist": "Hakubi",
+      "title": "Twilight",
+      "kind": "歌枠",
+      "dText": "20260511 【#歌枠 】デビュー9カ月！のんびり歌枠🌙初見歓迎🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=EKYW8P4H3J8&t=5962s",
+      "date8": 20260511,
+      "rowId": "hakubi|twilight|歌枠|https://www.youtube.com/watch?v=EKYW8P4H3J8&t=5962s",
+      "historyKey": "hakubi|twilight"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "はいはい",
+      "kind": "歌枠",
+      "dText": "20260511 【#歌枠 】デビュー9カ月！のんびり歌枠🌙初見歓迎🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=EKYW8P4H3J8&t=680s",
+      "date8": 20260511,
+      "rowId": "椎名林檎|はいはい|歌枠|https://www.youtube.com/watch?v=EKYW8P4H3J8&t=680s",
+      "historyKey": "椎名林檎|はいはい"
+    },
+    {
+      "artist": "手嶌葵",
+      "title": "明日への手紙",
+      "kind": "ショート",
+      "dText": "20260513 明日への手紙/手嶌葵 #歌ってみた #手嶌葵 #バラード #karaoke #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=_5L_Pd-0MjY",
+      "date8": 20260513,
+      "rowId": "手嶌葵|明日への手紙|ショート|https://www.youtube.com/watch?v=_5L_Pd-0MjY",
+      "historyKey": "手嶌葵|明日への手紙"
+    },
+    {
+      "artist": "星街すいせい",
+      "title": "ビビデバ",
+      "kind": "歌枠",
+      "dText": "20260513 【#歌枠 】のんびり歌枠🌙初見歓迎🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=bbp9IOVsTjY&t=2912s",
+      "date8": 20260513,
+      "rowId": "星街すいせい|ビビデバ|歌枠|https://www.youtube.com/watch?v=bbp9IOVsTjY&t=2912s",
+      "historyKey": "星街すいせい|ビビデバ"
+    },
+    {
+      "artist": "Ado",
+      "title": "唱",
+      "kind": "歌枠",
+      "dText": "20260516 【#歌枠 】機材トラブルによる遅延がすごい歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=3794s",
+      "date8": 20260516,
+      "rowId": "ado|唱|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=3794s",
+      "historyKey": "ado|唱"
+    },
+    {
+      "artist": "サカナクション",
+      "title": "『バッハの旋律を夜に聴いたせいです。』",
+      "kind": "歌枠",
+      "dText": "20260516 【#歌枠 】機材トラブルによる遅延がすごい歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=818s",
+      "date8": 20260516,
+      "rowId": "サカナクション|『バッハの旋律を夜に聴いたせいです。』|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=818s",
+      "historyKey": "サカナクション|『バッハの旋律を夜に聴いたせいです。』"
+    },
+    {
+      "artist": "ちゃんみな",
+      "title": "ハレンチ",
+      "kind": "歌枠",
+      "dText": "20260516 【#歌枠 】機材トラブルによる遅延がすごい歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=4071s",
+      "date8": 20260516,
+      "rowId": "ちゃんみな|ハレンチ|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=4071s",
+      "historyKey": "ちゃんみな|ハレンチ"
+    },
+    {
+      "artist": "東京事変",
+      "title": "能動的三分間",
+      "kind": "歌枠",
+      "dText": "20260516 【#歌枠 】機材トラブルによる遅延がすごい歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=7239s",
+      "date8": 20260516,
+      "rowId": "東京事変|能動的三分間|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=7239s",
+      "historyKey": "東京事変|能動的三分間"
+    },
+    {
+      "artist": "松田聖子",
+      "title": "瑠璃色の地球",
+      "kind": "歌枠",
+      "dText": "20260516 【#歌枠 】機材トラブルによる遅延がすごい歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=5387s",
+      "date8": 20260516,
+      "rowId": "松田聖子|瑠璃色の地球|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=5387s",
+      "historyKey": "松田聖子|瑠璃色の地球"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "積木遊び",
+      "kind": "ショート",
+      "dText": "20260516 【歌枠切り抜き】積木遊び/椎名林檎 #歌ってみた #歌枠 #椎名林檎 #karaoke",
+      "dUrl": "https://www.youtube.com/watch?v=b4eAaQK9FWU",
+      "date8": 20260516,
+      "rowId": "椎名林檎|積木遊び|ショート|https://www.youtube.com/watch?v=b4eAaQK9FWU",
+      "historyKey": "椎名林檎|積木遊び"
+    },
+    {
+      "artist": "サカナクション",
+      "title": "『バッハの旋律を夜に聴いたせいです。』",
+      "kind": "歌枠",
+      "dText": "20260517 【#歌枠 】ちょっとだけお昼の歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=dy6svkoXg8I&t=491s",
+      "date8": 20260517,
+      "rowId": "サカナクション|『バッハの旋律を夜に聴いたせいです。』|歌枠|https://www.youtube.com/watch?v=dy6svkoXg8I&t=491s",
+      "historyKey": "サカナクション|『バッハの旋律を夜に聴いたせいです。』"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "心に穴が空いた",
+      "kind": "歌枠",
+      "dText": "20260517 【#歌枠 】ちょっとだけお昼の歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=dy6svkoXg8I&t=3893s",
+      "date8": 20260517,
+      "rowId": "ヨルシカ|心に穴が空いた|歌枠|https://www.youtube.com/watch?v=dy6svkoXg8I&t=3893s",
+      "historyKey": "ヨルシカ|心に穴が空いた"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "ギブス",
+      "kind": "ショート",
+      "dText": "20260520 【Aメロが好き】ギブス/椎名林檎 #歌ってみた #ギブス #椎名林檎 #歌枠 #歌枠切り抜き",
+      "dUrl": "https://www.youtube.com/watch?v=7W-erkXOJSM",
+      "date8": 20260520,
+      "rowId": "椎名林檎|ギブス|ショート|https://www.youtube.com/watch?v=7W-erkXOJSM",
+      "historyKey": "椎名林檎|ギブス"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "雨とカプチーノ",
+      "kind": "歌枠",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=1747s",
+      "date8": 20260521,
+      "rowId": "ヨルシカ|雨とカプチーノ|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=1747s",
+      "historyKey": "ヨルシカ|雨とカプチーノ"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "雨晴るる",
+      "kind": "歌枠",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=1517s",
+      "date8": 20260521,
+      "rowId": "ヨルシカ|雨晴るる|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=1517s",
+      "historyKey": "ヨルシカ|雨晴るる"
+    },
+    {
+      "artist": "手嶌葵",
+      "title": "明日への手紙",
+      "kind": "歌枠",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=6574s",
+      "date8": 20260521,
+      "rowId": "手嶌葵|明日への手紙|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=6574s",
+      "historyKey": "手嶌葵|明日への手紙"
+    },
+    {
+      "artist": "東京事変",
+      "title": "閃光少女",
+      "kind": "歌枠",
+      "dText": "20260522 【#歌枠 】明日は歌枠リレー！練習歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=NtixH-Xwvw4&t=3236s",
+      "date8": 20260522,
+      "rowId": "東京事変|閃光少女|歌枠|https://www.youtube.com/watch?v=NtixH-Xwvw4&t=3236s",
+      "historyKey": "東京事変|閃光少女"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "17",
+      "kind": "歌枠",
+      "dText": "20260523 【#班徒宴 】圧倒的林檎狂徒が歌う『私と放電』🍎⚡#さんきろへるつ 【#新人vtuber #歌枠リレー 】",
+      "dUrl": "https://www.youtube.com/watch?v=HOyX4LPRiWA&t=1110s",
+      "date8": 20260523,
+      "rowId": "椎名林檎|17|歌枠|https://www.youtube.com/watch?v=HOyX4LPRiWA&t=1110s",
+      "historyKey": "椎名林檎|17"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "あおぞら",
+      "kind": "歌枠",
+      "dText": "20260523 【#班徒宴 】圧倒的林檎狂徒が歌う『私と放電』🍎⚡#さんきろへるつ 【#新人vtuber #歌枠リレー 】",
+      "dUrl": "https://www.youtube.com/watch?v=HOyX4LPRiWA&t=1560s",
+      "date8": 20260523,
+      "rowId": "椎名林檎|あおぞら|歌枠|https://www.youtube.com/watch?v=HOyX4LPRiWA&t=1560s",
+      "historyKey": "椎名林檎|あおぞら"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "メロウ",
+      "kind": "歌枠",
+      "dText": "20260523 【#班徒宴 】圧倒的林檎狂徒が歌う『私と放電』🍎⚡#さんきろへるつ 【#新人vtuber #歌枠リレー 】",
+      "dUrl": "https://www.youtube.com/watch?v=HOyX4LPRiWA&t=775s",
+      "date8": 20260523,
+      "rowId": "椎名林檎|メロウ|歌枠|https://www.youtube.com/watch?v=HOyX4LPRiWA&t=775s",
+      "historyKey": "椎名林檎|メロウ"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "17",
+      "kind": "ショート",
+      "dText": "20260524 17/椎名林檎 #歌ってみた #歌枠リレー #歌枠 #椎名林檎 #班徒宴 #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=6EdGtCVSgMA",
+      "date8": 20260524,
+      "rowId": "椎名林檎|17|ショート|https://www.youtube.com/watch?v=6EdGtCVSgMA",
+      "historyKey": "椎名林檎|17"
+    },
+    {
+      "artist": "花彩音_3kHz",
+      "title": "マンデーモーニングブルー",
+      "kind": "ショート",
+      "dText": "20260526 【オリジナル曲】マンデーモーニングブルー/花彩音_3kHz #オリジナル曲 #chill #morningsongs #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=0YyIIDnxIIw",
+      "date8": 20260526,
+      "rowId": "花彩音_3khz|マンデーモーニングブルー|ショート|https://www.youtube.com/watch?v=0YyIIDnxIIw",
+      "historyKey": "花彩音_3khz|マンデーモーニングブルー"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "幸福論",
+      "kind": "ショート",
+      "dText": "20260527 【㊗️28周年】幸福論/椎名林檎 #歌ってみた #椎名林檎 #幸福論 #karaoke #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=GE5d2Hm4QJ4",
+      "date8": 20260527,
+      "rowId": "椎名林檎|幸福論|ショート|https://www.youtube.com/watch?v=GE5d2Hm4QJ4",
+      "historyKey": "椎名林檎|幸福論"
+    },
+    {
+      "artist": "HAPPY？",
+      "title": "天使電影",
+      "kind": "ショート",
+      "dText": "20260611 HAPPY？/天使電影 #歌ってみた #天使電影 #さんきろへるつ #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=BQEcCizxY38",
+      "date8": 20260611,
+      "rowId": "happy?|天使電影|ショート|https://www.youtube.com/watch?v=BQEcCizxY38",
+      "historyKey": "happy？|天使電影"
+    },
+    {
+      "artist": "HAPPY？",
+      "title": "天使電影",
+      "kind": "ショート",
+      "dText": "20260612 HAPPY？/天使電影 #歌ってみた #天使電影 #happy #新人vtuber #ボカロ",
+      "dUrl": "https://www.youtube.com/watch?v=pjD67fryyFc",
+      "date8": 20260612,
+      "rowId": "happy?|天使電影|ショート|https://www.youtube.com/watch?v=pjD67fryyFc",
+      "historyKey": "happy？|天使電影"
+    },
+    {
+      "artist": "ザ・ハイロウズ",
+      "title": "日曜日よりの使者",
+      "kind": "歌枠",
+      "dText": "20260615 【#歌枠 】月曜日に元気な歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=iZSxpJFOGS0&t=372s",
+      "date8": 20260615,
+      "rowId": "ザ・ハイロウズ|日曜日よりの使者|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=372s",
+      "historyKey": "ザ・ハイロウズ|日曜日よりの使者"
+    },
+    {
+      "artist": "斉藤和義",
+      "title": "歩いて帰ろう",
+      "kind": "歌枠",
+      "dText": "20260615 【#歌枠 】月曜日に元気な歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=iZSxpJFOGS0&t=894s",
+      "date8": 20260615,
+      "rowId": "斉藤和義|歩いて帰ろう|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=894s",
+      "historyKey": "斉藤和義|歩いて帰ろう"
+    },
+    {
+      "artist": "花彩音_3kHz",
+      "title": "あめのうた",
+      "kind": "歌枠",
+      "dText": "20260616 【#歌枠 】深夜にチルな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=domKgZ9vAj8&t=402s",
+      "date8": 20260616,
+      "rowId": "花彩音_3khz|あめのうた|歌枠|https://www.youtube.com/watch?v=domKgZ9vAj8&t=402s",
+      "historyKey": "花彩音_3khz|あめのうた"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "六月は雨上がりの街を書く",
+      "kind": "ショート",
+      "dText": "20260619 六月は雨上がりの街を書く/ヨルシカ #歌ってみた #karaoke #ヨルシカ #生歌",
+      "dUrl": "https://www.youtube.com/watch?v=1V1OLfuIVHs",
+      "date8": 20260619,
+      "rowId": "ヨルシカ|六月は雨上がりの街を書く|ショート|https://www.youtube.com/watch?v=1V1OLfuIVHs",
+      "historyKey": "ヨルシカ|六月は雨上がりの街を書く"
+    },
+    {
+      "artist": "rinri×Kyiku",
+      "title": "白絵にもならない",
+      "kind": "歌枠",
+      "dText": "20260622 【#歌枠 】月曜にチルな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=B3ICS3xhgB4&t=6839s",
+      "date8": 20260622,
+      "rowId": "rinri×kyiku|白絵にもならない|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=6839s",
+      "historyKey": "rinri×kyiku|白絵にもならない"
+    },
+    {
+      "artist": "花彩音_3kHz",
+      "title": "あめのうた",
+      "kind": "歌枠",
+      "dText": "20260622 【#歌枠 】月曜にチルな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=B3ICS3xhgB4&t=7485s",
+      "date8": 20260622,
+      "rowId": "花彩音_3khz|あめのうた|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=7485s",
+      "historyKey": "花彩音_3khz|あめのうた"
+    },
+    {
+      "artist": "ツミキ",
+      "title": "フォニイ",
+      "kind": "ショート",
+      "dText": "20260630 【キラキラMIX】フォニイ/ツミキ #歌ってみた #フォニイ #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=rFJYsFNAj-o",
+      "date8": 20260630,
+      "rowId": "ツミキ|フォニイ|ショート|https://www.youtube.com/watch?v=rFJYsFNAj-o",
+      "historyKey": "ツミキ|フォニイ"
+    },
+    {
+      "artist": "なとり",
+      "title": "puppet",
+      "kind": "ショート",
+      "dText": "20260702 Puppet/なとり #歌ってみた #パペット #なとり #karaoke #vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=-b6uR34I-Us",
+      "date8": 20260702,
+      "rowId": "なとり|puppet|ショート|https://www.youtube.com/watch?v=-b6uR34I-Us",
+      "historyKey": "なとり|puppet"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "櫂",
+      "kind": "ショート",
+      "dText": "20260706 【生歌ピアノver.】櫂/ヨルシカ #歌ってみた #ヨルシカ #櫂 #ピアノ #生歌",
+      "dUrl": "https://www.youtube.com/watch?v=RSuuZvmMMhI",
+      "date8": 20260706,
+      "rowId": "ヨルシカ|櫂|ショート|https://www.youtube.com/watch?v=RSuuZvmMMhI",
+      "historyKey": "ヨルシカ|櫂"
+    },
+    {
+      "artist": "みきとP",
+      "title": "ロキ",
+      "kind": "ショート",
+      "dText": "20260708 【生歌】ロキ/みきとP #歌ってみた #ロキ #ボカロ #みきとp #vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=GTPMsp69A74",
+      "date8": 20260708,
+      "rowId": "みきとp|ロキ|ショート|https://www.youtube.com/watch?v=GTPMsp69A74",
+      "historyKey": "みきとp|ロキ"
+    },
+    {
+      "artist": "millennium parade × Belle",
+      "title": "U",
+      "kind": "ショート",
+      "dText": "20260709 【竜とそばかすの姫】 U /millennium parade × Belle #歌ってみた #アニメ #細田守 #生歌 #中村佳穂",
+      "dUrl": "https://www.youtube.com/watch?v=kX3i14KWXMw",
+      "date8": 20260709,
+      "rowId": "millennium parade × belle|u|ショート|https://www.youtube.com/watch?v=kX3i14KWXMw",
+      "historyKey": "millennium parade × belle|u"
+    },
+    {
+      "artist": "B-DASH",
+      "title": "ちょ",
+      "kind": "ショート",
+      "dText": "20260711 ちょ/B-DASH #歌ってみた #bdash #パンク #バンド #生歌",
+      "dUrl": "https://www.youtube.com/watch?v=8OMWiJqsiJE",
+      "date8": 20260711,
+      "rowId": "b-dash|ちょ|ショート|https://www.youtube.com/watch?v=8OMWiJqsiJE",
+      "historyKey": "b-dash|ちょ"
+    },
+    {
+      "artist": "DECO*27",
+      "title": "ダミーロマンス",
+      "kind": "ショート",
+      "dText": "20260718 【#歌ってみた】ダミーロマンス/DECO*27 #deco27 #ダミーロマンス #cover #vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=jGeYcIsUYJw",
+      "date8": 20260718,
+      "rowId": "deco*27|ダミーロマンス|ショート|https://www.youtube.com/watch?v=jGeYcIsUYJw",
+      "historyKey": "deco*27|ダミーロマンス"
+    },
+    {
+      "artist": "DECO*27",
+      "title": "ダミーロマンス",
+      "kind": "ショート",
+      "dText": "20260721 ダミーロマンス/DECO*27 #歌ってみた #cover #ダミーロマンス #live2d #vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=KoRbog1MYss",
+      "date8": 20260721,
+      "rowId": "deco*27|ダミーロマンス|ショート|https://www.youtube.com/watch?v=KoRbog1MYss",
+      "historyKey": "deco*27|ダミーロマンス"
+    },
+    {
+      "artist": "秦基博",
+      "title": "ひまわりの約束",
+      "kind": "ショート",
+      "dText": "20260723 【歌枠切り抜き】ひまわりの約束/秦基博 #歌ってみた #歌枠 #切り抜き #karaoke #アニソン",
+      "dUrl": "https://www.youtube.com/watch?v=brXEBy7HGSs",
+      "date8": 20260723,
+      "rowId": "秦基博|ひまわりの約束|ショート|https://www.youtube.com/watch?v=brXEBy7HGSs",
+      "historyKey": "秦基博|ひまわりの約束"
     }
   ],
-  "total": 1142,
-  "matched": 1142
+  "total": 1199,
+  "matched": 1199
 }
