@@ -1,6 +1,18 @@
 (function(){
   'use strict';
-  var STATIC_BASE='https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/';
+  var PROD_R2_STATIC_BASE='https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/';
+  function resolveStaticBase(){
+    try{
+      var queryValue=new URLSearchParams(window.location.search).get('static_base');
+      if(queryValue)return new URL(queryValue,window.location.href).toString();
+    }catch(_queryError){}
+    try{
+      var storedValue=localStorage.getItem('staticDataBase');
+      if(storedValue)return new URL(storedValue,window.location.href).toString();
+    }catch(_storageError){}
+    return PROD_R2_STATIC_BASE;
+  }
+  var STATIC_BASE=resolveStaticBase();
   var state={selectedKinds:new Set(['ショート','歌ってみた','歌枠']),showGags:false,songs:[],gags:[],visible:[],playerVisible:false,playing:null,historySelected:null,repeatMode:'off',serverStatus:'loading',serverError:''};
   var desktopHistoryRequest=0;
 
