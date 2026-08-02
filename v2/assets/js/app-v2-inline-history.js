@@ -457,7 +457,8 @@
       control.classList.toggle('is-playing',isPlaying);
       control.title=isPlaying?'一時停止':'再生';
       control.setAttribute('aria-label',control.title);
-      if(detail.state===1)setStatus('再生中');
+      if(!state.playerVisible)setStatus(serverStatusText());
+      else if(detail.state===1)setStatus('再生中');
       else if(detail.state===2)setStatus('一時停止中');
     }else if(type==='queueend'){
       setStatus('キューの最後まで再生しました');
