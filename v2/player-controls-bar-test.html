@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>一体型プレイヤー操作バー テスト</title>
+  <style>
+    :root{--teal:#5b9c98;--strong:#008f83;--bright:#12b7a7;--soft:#e3f5f2;--line:#d4e6e3;--ink:#274b48}
+    *{box-sizing:border-box}
+    body{min-height:100vh;margin:0;display:grid;place-items:center;padding:20px;background:#edf6f5;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
+    .test-shell{width:min(920px,100%);display:grid;gap:14px}
+    .notice,.mode-description{margin:0;color:#5d7d79;font-size:13px;text-align:center}
+    .player-card{overflow:hidden;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:0 18px 42px rgba(30,87,82,.12)}
+    .mock-screen{display:grid;place-items:center;min-height:220px;padding:24px;background:linear-gradient(145deg,#eaf8f6,#d7eeeb)}
+    .track{display:grid;gap:5px;text-align:center}
+    .track small{color:#668681}
+    .track strong{font-size:clamp(18px,3vw,28px)}
+    .time{font-variant-numeric:tabular-nums;color:#47706c}
+    .operation-bar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;padding:22px;background:#fff}
+    .transport-core{justify-self:center;width:min(540px,100%);height:74px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;border:1px solid var(--line);border-radius:999px;background:#f9fcfc;box-shadow:inset 0 1px 0 #fff,0 9px 22px rgba(40,94,88,.1)}
+    .control{position:relative;display:grid;place-items:center;width:100%;height:100%;padding:12px;border:0;background:transparent;color:var(--teal);cursor:pointer;transition:background .16s,color .16s,transform .12s}
+    .transport-core .control:not(:first-child)::before{content:"";position:absolute;left:0;top:22%;bottom:22%;width:1px;background:#deebe9}
+    .control:hover{background:#edf8f6;color:var(--strong)}
+    .control:active{transform:scale(.92)}
+    .control:focus-visible{z-index:2;outline:3px solid rgba(0,143,131,.3);outline-offset:2px}
+    .control svg{width:29px;height:29px;overflow:visible;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .control svg text{fill:currentColor;stroke:none;font-size:7px;font-weight:800;text-anchor:middle}
+    .play{align-self:center;justify-self:center;width:64px;height:64px;border-radius:50%;color:#fff;background:linear-gradient(135deg,var(--bright),#007f76);box-shadow:0 11px 23px rgba(0,111,102,.26)}
+    .play:hover{color:#fff;background:linear-gradient(135deg,#18c6b5,#00736b)}
+    .play::before{display:none!important}
+    .play svg{width:35px;height:35px}
+    .play .pause-icon{display:none}
+    .play.is-playing .play-icon{display:none}
+    .play.is-playing .pause-icon{display:block}
+    .mode-controls{display:inline-flex;align-items:stretch;overflow:hidden;border:1px solid var(--line);border-radius:999px;background:#f9fcfc;box-shadow:0 7px 18px rgba(40,94,88,.08)}
+    .mode-controls .control{width:58px;height:58px;padding:14px}
+    .mode-controls .control+ .control{border-left:1px solid #deebe9}
+    .mode-controls .control[aria-pressed="true"],.mode-controls .control.mode-on{background:var(--soft);color:var(--strong);box-shadow:inset 0 0 0 2px rgba(0,143,131,.1)}
+    .repeat-icon,.repeat-one-icon{display:none}
+    #repeat[data-mode="off"] .repeat-off-icon,
+    #repeat[data-mode="one"] .repeat-one-icon,
+    #repeat[data-mode="all"] .repeat-icon{display:block}
+    .state-line{min-height:24px;margin:0;padding:0 22px 18px;color:#587976;font-size:13px;text-align:center}
+    @media(max-width:760px){
+      body{padding:8px}
+      .mock-screen{min-height:170px}
+      .operation-bar{grid-template-columns:1fr;gap:12px;padding:15px 8px}
+      .transport-core{width:100%;height:66px}
+      .control{min-width:0;padding:9px}
+      .control svg{width:26px;height:26px}
+      .play{width:56px;height:56px;padding:13px}
+      .mode-controls{justify-self:center}
+      .mode-controls .control{width:54px;height:48px;padding:11px}
+    }
+  </style>
+</head>
+<body>
+  <main class="test-shell">
+    <p class="notice">テストモデル第2案：現行ver2には未適用です</p>
+    <section class="player-card" aria-label="一体型プレイヤー操作バー試作">
+      <div class="mock-screen">
+        <div class="track">
+          <small>UIプレビュー</small>
+          <strong id="track-title">テスト楽曲 1</strong>
+          <span id="time" class="time">0:00</span>
+        </div>
+      </div>
+      <div class="operation-bar">
+        <div class="transport-core" aria-label="基本再生操作">
+          <button id="previous" class="control" type="button" title="前の曲" aria-label="前の曲"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6l-9 6 9 6z"/></svg></button>
+          <button id="back10" class="control" type="button" title="10秒戻る" aria-label="10秒戻る"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7V3m0 4h4M5.5 16a8 8 0 1 0-.7-7"/><text x="12" y="15">10</text></svg></button>
+          <button id="play" class="control play" type="button" title="再生" aria-label="再生"><svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg><svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg></button>
+          <button id="forward10" class="control" type="button" title="10秒進む" aria-label="10秒進む"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7V3m0 4h-4M18.5 16a8 8 0 1 1 .7-7"/><text x="12" y="15">10</text></svg></button>
+          <button id="next" class="control" type="button" title="次の曲" aria-label="次の曲"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l9 6-9 6z"/></svg></button>
+        </div>
+        <div class="mode-controls" aria-label="再生モード">
+          <button id="shuffle" class="control" type="button" title="ランダム再生 オフ" aria-label="ランダム再生 オフ" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3c5 0 5 10 10 10h3M17 4l3 3-3 3M4 17h3c2.2 0 3.4-1.7 4.5-3.7M16 7.2c.4-.1.7-.2 1-.2h3M17 14l3 3-3 3"/></svg></button>
+          <button id="repeat" class="control" type="button" data-mode="off" title="ループ オフ" aria-label="ループ オフ" aria-pressed="false">
+            <svg class="repeat-off-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3l3 3-3 3M20 6H8a5 5 0 0 0-4.2 2.3M7 21l-3-3 3-3M4 18h12a5 5 0 0 0 4.2-2.3M4 4l16 16"/></svg>
+            <svg class="repeat-one-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3l3 3-3 3M20 6H8a5 5 0 0 0-5 5M7 21l-3-3 3-3M4 18h12a5 5 0 0 0 5-5"/><text x="12" y="15">1</text></svg>
+            <svg class="repeat-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3l3 3-3 3M20 6H8a5 5 0 0 0-5 5M7 21l-3-3 3-3M4 18h12a5 5 0 0 0 5-5"/></svg>
+          </button>
+        </div>
+      </div>
+      <p id="state" class="state-line" role="status" aria-live="polite">停止中 ・ ランダム OFF ・ ループ OFF</p>
+    </section>
+  </main>
+  <script>
+    const state={playing:false,shuffle:false,repeatMode:'off',seconds:0,track:1,timer:null};
+    const repeatModes={off:{next:'one',label:'ループ オフ'},one:{next:'all',label:'1曲リピート'},all:{next:'off',label:'全体ループ'}};
+    const byId=id=>document.getElementById(id);
+    const formatTime=seconds=>Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
+    function render(){
+      byId('track-title').textContent='テスト楽曲 '+state.track;
+      byId('time').textContent=formatTime(state.seconds);
+      byId('play').classList.toggle('is-playing',state.playing);
+      byId('play').title=state.playing?'一時停止':'再生';
+      byId('play').setAttribute('aria-label',byId('play').title);
+      byId('shuffle').setAttribute('aria-pressed',String(state.shuffle));
+      byId('shuffle').title='ランダム再生 '+(state.shuffle?'オン':'オフ');
+      byId('shuffle').setAttribute('aria-label',byId('shuffle').title);
+      const repeat=byId('repeat');
+      repeat.dataset.mode=state.repeatMode;
+      repeat.classList.toggle('mode-on',state.repeatMode!=='off');
+      repeat.setAttribute('aria-pressed',String(state.repeatMode!=='off'));
+      repeat.title=repeatModes[state.repeatMode].label;
+      repeat.setAttribute('aria-label',repeat.title);
+      byId('state').textContent=(state.playing?'再生中':'停止中')+' ・ ランダム '+(state.shuffle?'ON':'OFF')+' ・ '+repeatModes[state.repeatMode].label;
+    }
+    function setPlaying(value){
+      state.playing=value;
+      clearInterval(state.timer);
+      if(value) state.timer=setInterval(()=>{state.seconds+=1;render();},1000);
+      render();
+    }
+    byId('play').addEventListener('click',()=>setPlaying(!state.playing));
+    byId('shuffle').addEventListener('click',()=>{state.shuffle=!state.shuffle;render();});
+    byId('repeat').addEventListener('click',()=>{state.repeatMode=repeatModes[state.repeatMode].next;render();});
+    byId('back10').addEventListener('click',()=>{state.seconds=Math.max(0,state.seconds-10);render();});
+    byId('forward10').addEventListener('click',()=>{state.seconds+=10;render();});
+    byId('previous').addEventListener('click',()=>{state.track=Math.max(1,state.track-1);state.seconds=0;render();});
+    byId('next').addEventListener('click',()=>{state.track+=1;state.seconds=0;render();});
+    render();
+  </script>
+</body>
+</html>
