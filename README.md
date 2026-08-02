@@ -10,6 +10,7 @@
 - 本番ランタイム（`index.html`）は **`songs/gags/meta/history` をR2から読む**。
 - GAS `archive` API は **build/sync 時だけ**使う（画面表示時は使わない）。
 - GitHub は **コード・ドキュメント・ワークフロー管理**が中心。データ実体の配信先はR2。
+- 本番ルート `index.html` は承認済み v2 UI を使用し、実装アセットは `v2/assets/` を参照する。`/v2/` は確認用として維持する。
 
 ## 2. データの読み方（画面側）
 
@@ -62,6 +63,7 @@ node scripts/sync-gas.mjs
 3. `sync-r2.yml` の最新実行ログを確認
 4. R2障害時は一時的に `?static_base=./public-data/` で same-origin を利用
 5. 必要なら直近バックアップの `songs/gags/meta` を `main` に戻して暫定復旧
+6. 本番UI切替に問題がある場合は、ルート `index.html` を切替直前のblob SHA `beb30f47b549cd152dd7f8ee7a32d87001573f4a` へ戻す（旧 `assets/` とR2データは変更していないため追加復旧は不要）
 
 ## 7. 削除ゲート（重要）
 
