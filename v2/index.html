@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#87ceeb">
   <meta name="description" content="彩興DB ver2 試験版">
   <title>彩興DB ver2</title>
-  <link rel="stylesheet" href="./assets/css/app-v2-inline-history.css?v=20260802-status-bar">
+  <link rel="stylesheet" href="./assets/css/app-v2-inline-history.css?v=20260802-toolbar-layout">
 </head>
 <body>
   <main class="app">
@@ -18,11 +18,13 @@
           <button class="tab active" data-kind="ショート" aria-pressed="true">ショート</button>
           <button class="tab" data-kind="gags" aria-pressed="false">ネタ</button>
         </nav>
-        <button id="player-toggle" class="button secondary" type="button" aria-pressed="false">プレイヤー 表示</button>
       </div>
       <div class="search-row">
         <input id="search" type="search" placeholder="曲名／アーティスト名で検索" autocomplete="off">
-        <span id="status" class="server-status-bar loading" role="status" aria-live="polite">サーバー状態：＼ﾅｧﾝ／</span>
+        <div class="status-controls">
+          <span id="status" class="server-status-bar loading" role="status" aria-live="polite">サーバー状態：＼ﾅｧﾝ／</span>
+          <button id="player-toggle" class="button secondary" type="button" aria-pressed="false">プレイヤー 表示</button>
+        </div>
       </div>
     </header>
 
