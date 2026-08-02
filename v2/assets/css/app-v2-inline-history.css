@@ -107,7 +107,7 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
 .mode-controls .icon-button{width:54px;height:54px;padding:13px}
 .mode-controls .icon-button+.icon-button{border-left:1px solid #dceae8}
 .mode-controls .icon-button[aria-pressed="true"],.mode-controls .icon-button.mode-on{background:#dff4f1;color:#007f76;box-shadow:inset 0 0 0 2px rgba(0,143,131,.1)}
-.repeat-all-icon,.repeat-one-icon{display:none}
+.repeat-off-icon,.repeat-one-icon,.repeat-all-icon{display:none}
 #repeat[data-mode="off"] .repeat-off-icon,
 #repeat[data-mode="one"] .repeat-one-icon,
 #repeat[data-mode="all"] .repeat-all-icon{display:block}
