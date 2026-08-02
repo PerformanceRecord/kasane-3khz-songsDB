@@ -7,9 +7,10 @@ button{cursor:pointer}
 .card{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 28px rgba(20,70,55,.14)}
 .toolbar{position:sticky;top:8px;z-index:10;padding:12px}
 .toolbar-row,.search-row,.transport,.now-playing{display:flex;align-items:center;gap:10px}
-.toolbar-row{justify-content:space-between}
-.tabs{display:flex;gap:7px;flex-wrap:wrap}
+.toolbar-row{width:100%}
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;gap:7px}
 .tab,.button,.transport button{border:1px solid #8fbda7;background:#eef9f2;color:var(--ink);border-radius:999px;padding:9px 13px}
+.tab{min-width:0;white-space:nowrap}
 .tab.active{background:#71c7f2;border-color:transparent;font-weight:700}
 .button.secondary{white-space:nowrap}
 #player-toggle{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-width:138px;transition:color .2s ease,background-color .2s ease,border-color .2s ease,box-shadow .2s ease}
@@ -18,6 +19,7 @@ button{cursor:pointer}
 #player-toggle.is-open{border-color:#62aa9b;background:#dff4f1;color:#007f76;box-shadow:inset 0 0 0 1px rgba(0,127,118,.08)}
 #player-toggle.is-open::after{margin-top:4px;transform:rotate(225deg)}
 .search-row{margin-top:10px}
+.status-controls{display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0}
 #search{flex:1;min-width:0;border:1px solid #8fbda7;border-radius:12px;padding:11px 13px;font-size:16px}
 #status,.count{color:var(--muted);font-size:13px}
 #status.server-status-bar{display:inline-flex;align-items:center;width:fit-content;max-width:100%;padding:5px 10px;border:1px solid var(--line);border-radius:10px;background:#eef8f1;color:#33584b;font-size:12px;font-weight:650}
@@ -75,9 +77,12 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
   .toolbar{top:4px;padding:9px}
   .toolbar-row{align-items:flex-start}
   .tabs{gap:5px}
-  .tab{padding:8px 10px;font-size:13px}
-  .button.secondary{padding:8px 10px;font-size:13px}
+  .tab{padding:8px clamp(5px,2vw,10px);font-size:clamp(11px,3.3vw,13px)}
+  .button.secondary{padding:8px 9px;font-size:12px}
   .search-row{align-items:stretch;flex-direction:column;gap:4px}
+  .status-controls{width:100%;gap:6px}
+  #status.server-status-bar{flex:1 1 auto;min-width:0;width:auto;line-height:1.25}
+  #player-toggle{flex:0 0 auto;min-width:122px}
   .player-shell{padding:6px}
   .video-wrap{max-height:none}
   .now-playing{align-items:stretch;flex-direction:column}
