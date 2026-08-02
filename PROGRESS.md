@@ -53,6 +53,8 @@
 - 2026-04-18: archive 同期のタイムアウト緩和として、offset 方式を廃止し cursor 方式のローリング取得へ変更。`public-data/archive-crawl-state.json` で巡回状態を保持し、upsert は URL 非依存キー（`artist|title|kind|date8`）で実施。衝突件数は state に `lastCollisionCount` として保存。
 - 2026-05-28: `songs` 同期の 500 件頭打ち解消として、`scripts/sync-gas.mjs` に offset ページング全件取得を追加。無制限化は避け、`SONGS_MAX_PAGES`（既定20）で安全上限を導入。
 - 2026-05-28: `SONGS_MAX_PAGES` 到達時に欠損した `songs.json` を正常成果物として出さないよう、songs ページング取得の上限到達判定・env正規化・空ページ異常検知を補強。
+- 2026-08-02: 承認済みの v2 UI を本番ルート `index.html` へ反映する方針を確定。ルートは `v2/assets/` のCSS/JSを参照し、既存 `assets/` と R2 データは変更・削除しない。`/v2/` は確認用として維持する。
+- 2026-08-02: 本番UI切替のロールバックは、ルート `index.html` を切替直前のblob SHA `beb30f47b549cd152dd7f8ee7a32d87001573f4a` へ戻す。旧本番 assets は保持されるため、データ復元やR2変更は不要。
 
 ## Roadmap
 1. Phase 1: 現状と差分の棚卸し（完了）
