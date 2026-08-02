@@ -20,6 +20,11 @@
     return payload.rows.filter(function(row){return row && (row.title||row.artist);});
   }
   function setStatus(message){el('status').textContent=message;}
+  function setPlaybackStateLabel(label){
+    var display=el('playback-state');
+    display.textContent=label||'';
+    display.hidden=!label;
+  }
   function isDesktopLayout(){return Boolean(window.matchMedia&&window.matchMedia('(min-width: 1100px)').matches);}
 
   function filteredRows(){
@@ -415,6 +420,7 @@
       var title=text(detail.row.title).trim()||'（無題）';
       var artist=text(detail.row.artist).trim();
       var artistControl=el('now-playing-artist');
+      setPlaybackStateLabel('');
       el('now-playing').textContent=title;
       el('now-playing-artist-name').textContent=artist;
       el('now-playing-separator').hidden=!artist;
@@ -430,11 +436,15 @@
       control.classList.toggle('is-playing',isPlaying);
       control.title=isPlaying?'一時停止':'再生';
       control.setAttribute('aria-label',control.title);
+      var playbackLabels={0:'再生終了',1:'再生中',2:'一時停止中',3:'読み込み中',5:'再生待機中'};
+      setPlaybackStateLabel(playbackLabels[detail.state]||'');
       if(detail.state===1)setStatus('再生中');
       else if(detail.state===2)setStatus('一時停止中');
     }else if(type==='queueend'){
+      setPlaybackStateLabel('再生終了');
       setStatus('キューの最後まで再生しました');
     }else if(type==='error'){
+      setPlaybackStateLabel('');
       var errors={
         2:'動画URLまたは開始位置が無効です',
         5:'この動画をHTML5プレイヤーで再生できません',
