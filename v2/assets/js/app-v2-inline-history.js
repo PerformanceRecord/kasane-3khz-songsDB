@@ -214,11 +214,56 @@
     });
   }
 
+  var playerAnimationToken=0;
+  function animatePlayerShell(show){
+    var shell=el('player-shell');
+    var token=++playerAnimationToken;
+    var wasHidden=shell.hidden;
+    var currentHeight=wasHidden?0:shell.getBoundingClientRect().height;
+    var currentOpacity=wasHidden?0:Number(getComputedStyle(shell).opacity);
+    if(!Number.isFinite(currentOpacity))currentOpacity=show?0:1;
+    if(shell.getAnimations)shell.getAnimations().forEach(function(animation){animation.cancel();});
+    if(show)shell.hidden=false;
+    shell.classList.toggle('is-open',show);
+    var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced||typeof shell.animate!=='function'){
+      shell.hidden=!show;
+      shell.classList.remove('is-animating');
+      return;
+    }
+    var targetHeight=show?shell.scrollHeight:0;
+    shell.classList.add('is-animating');
+    var animation=shell.animate([
+      {
+        height:currentHeight+'px',
+        opacity:currentOpacity,
+        transform:show?'translateY(-10px) scale(.988)':'translateY(0) scale(1)'
+      },
+      {
+        height:targetHeight+'px',
+        opacity:show?1:0,
+        transform:show?'translateY(0) scale(1)':'translateY(-8px) scale(.988)'
+      }
+    ],{
+      duration:show?380:260,
+      easing:show?'cubic-bezier(.2,.8,.2,1)':'cubic-bezier(.4,0,1,1)',
+      fill:'both'
+    });
+    animation.onfinish=function(){
+      if(token!==playerAnimationToken)return;
+      shell.hidden=!show;
+      shell.classList.remove('is-animating');
+      animation.onfinish=null;
+      animation.cancel();
+    };
+  }
   function setPlayerVisible(value){
     state.playerVisible=Boolean(value);
-    el('player-shell').hidden=!state.playerVisible;
-    el('player-toggle').textContent='プレイヤー '+(state.playerVisible?'非表示':'表示');
-    el('player-toggle').setAttribute('aria-pressed',String(state.playerVisible));
+    var toggle=el('player-toggle');
+    animatePlayerShell(state.playerVisible);
+    toggle.textContent='プレイヤー '+(state.playerVisible?'非表示':'表示');
+    toggle.classList.toggle('is-open',state.playerVisible);
+    toggle.setAttribute('aria-pressed',String(state.playerVisible));
     if(state.playerVisible){
       window.V2Player.prepare();
       setStatus('曲カードまたは中央の再生ボタンを押してください');
