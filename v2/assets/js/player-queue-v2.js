@@ -7,6 +7,8 @@
   var queue=[];
   var currentIndex=-1;
   var shuffle=false;
+  var shuffleOrder=[];
+  var shufflePosition=-1;
   var repeatMode='off';
   var listeners=new Set();
 
@@ -45,7 +47,7 @@
           ready=true;
           player.setVolume(Number(document.getElementById('volume').value)||80);
           emit('ready',{});
-          if(pending){var value=pending;pending=null;load(value.index,value.autoplay);}
+          if(pending){var value=pending;pending=null;load(value.index,value.autoplay,true);}
         },
         onStateChange:function(event){
           emit('state',{state:event.data});
@@ -67,22 +69,56 @@
   }
   window.onYouTubeIframeAPIReady=function(){apiLoading=false;ensurePlayer();};
 
+  function queueKey(row){
+    return String(row&&(row.rowId||row.dUrl||''));
+  }
+  function makeShuffleOrder(avoidFirst){
+    var order=queue.map(function(_row,index){return index;});
+    for(var i=order.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1));
+      var value=order[i];order[i]=order[j];order[j]=value;
+    }
+    if(order.length>1&&order[0]===avoidFirst){
+      var swapWith=1+Math.floor(Math.random()*(order.length-1));
+      var first=order[0];order[0]=order[swapWith];order[swapWith]=first;
+    }
+    return order;
+  }
+  function resetShuffleOrder(startIndex){
+    if(!shuffle||!queue.length){
+      shuffleOrder=[];
+      shufflePosition=-1;
+      return;
+    }
+    if(startIndex>=0&&startIndex<queue.length){
+      shuffleOrder=[startIndex].concat(makeShuffleOrder(-1).filter(function(index){return index!==startIndex;}));
+      shufflePosition=0;
+      return;
+    }
+    shuffleOrder=makeShuffleOrder(currentIndex);
+    shufflePosition=-1;
+  }
   function setQueue(rows){
+    var nextQueue=Array.isArray(rows)?rows.slice():[];
+    var sameQueue=nextQueue.length===queue.length&&nextQueue.every(function(row,index){
+      return queueKey(row)===queueKey(queue[index]);
+    });
     var current=queue[currentIndex];
-    queue=Array.isArray(rows)?rows.slice():[];
+    queue=nextQueue;
     if(current){
-      var key=String(current.rowId||current.dUrl||'');
-      var nextIndex=queue.findIndex(function(row){return String(row.rowId||row.dUrl||'')===key;});
-      currentIndex=nextIndex;
+      var key=queueKey(current);
+      currentIndex=queue.findIndex(function(row){return queueKey(row)===key;});
     }else if(currentIndex>=queue.length){
       currentIndex=-1;
     }
+    if(shuffle&&!sameQueue)resetShuffleOrder(currentIndex);
   }
-  function load(index,autoplay){
+  function load(index,autoplay,fromShuffle){
     if(!queue.length){emit('error',{code:'empty-queue'});return;}
     index=((index%queue.length)+queue.length)%queue.length;
     var parsed=parseYouTubeUrl(queue[index].dUrl);
     if(!parsed){emit('error',{code:'invalid-url',row:queue[index]});return;}
+    if(shuffle&&!fromShuffle)resetShuffleOrder(index);
     currentIndex=index;
     emit('track',{row:queue[index],index:index});
     if(!ready){
@@ -98,10 +134,21 @@
   function next(options){
     if(!queue.length)return;
     var fromEnded=Boolean(options&&options.fromEnded);
-    if(shuffle&&queue.length>1){
-      var randomIndex;
-      do{randomIndex=Math.floor(Math.random()*queue.length);}while(randomIndex===currentIndex);
-      load(randomIndex,true);
+    if(shuffle){
+      if(!shuffleOrder.length)resetShuffleOrder(currentIndex);
+      if(shufflePosition+1<shuffleOrder.length){
+        shufflePosition++;
+        load(shuffleOrder[shufflePosition],true,true);
+        return;
+      }
+      if(fromEnded&&repeatMode!=='all'){
+        emit('queueend',{});
+        return;
+      }
+      resetShuffleOrder(-1);
+      if(!shuffleOrder.length)return;
+      shufflePosition=0;
+      load(shuffleOrder[shufflePosition],true,true);
       return;
     }
     var target=currentIndex<0?0:currentIndex+1;
@@ -113,10 +160,16 @@
   }
   function previous(){
     if(!queue.length)return;
+    if(shuffle){
+      if(shufflePosition<=0)return;
+      shufflePosition--;
+      load(shuffleOrder[shufflePosition],true,true);
+      return;
+    }
     load(currentIndex<=0?queue.length-1:currentIndex-1,true);
   }
   function handleEnded(){
-    if(repeatMode==='one')load(currentIndex,true);
+    if(repeatMode==='one')load(currentIndex,true,true);
     else next({fromEnded:true});
   }
   function seek(delta){
@@ -126,7 +179,7 @@
   function setVolume(value){if(ready&&player)player.setVolume(Number(value));}
   function togglePlayback(){
     if(!queue.length){emit('error',{code:'empty-queue'});return;}
-    if(currentIndex<0){load(0,true);return;}
+    if(currentIndex<0){if(shuffle)next();else load(0,true);return;}
     if(!ready||!player){
       pending={index:currentIndex,autoplay:true};
       loadApi();
@@ -137,6 +190,12 @@
     if(playerState===YT.PlayerState.PLAYING)player.pauseVideo();
     else player.playVideo();
   }
+  function setShuffle(value){
+    var active=Boolean(value);
+    if(active===shuffle)return;
+    shuffle=active;
+    resetShuffleOrder(shuffle?currentIndex:-1);
+  }
   function setRepeatMode(value){
     repeatMode=['off','one','all'].includes(value)?value:'off';
     emit('repeatmode',{mode:repeatMode});
@@ -144,7 +203,7 @@
 
   window.V2Player={
     setQueue:setQueue,load:load,next:next,previous:previous,seek:seek,setVolume:setVolume,
-    togglePlayback:togglePlayback,prepare:loadApi,setShuffle:function(value){shuffle=Boolean(value);},
+    togglePlayback:togglePlayback,prepare:loadApi,setShuffle:setShuffle,
     setRepeatMode:setRepeatMode,getCurrentRow:function(){return queue[currentIndex]||null;},
     on:function(fn){listeners.add(fn);return function(){listeners.delete(fn);};},
     parseYouTubeUrl:parseYouTubeUrl
