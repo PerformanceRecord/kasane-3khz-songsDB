@@ -22,7 +22,8 @@ button{cursor:pointer}
 .now-playing>div:first-child{min-width:0;display:grid}
 #now-playing{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .transport{flex-wrap:wrap;justify-content:flex-end}
-.transport button{padding:7px 10px}
+.transport button{display:inline-flex;align-items:center;gap:4px;padding:7px 10px;white-space:nowrap;font-size:13px}
+.transport .play-pause{min-width:92px;justify-content:center;background:linear-gradient(135deg,#4cc9f0,#4895ef);border-color:transparent;color:#05223d;font-weight:800}
 .transport button[aria-pressed="true"]{background:#cfe9ff;box-shadow:inset 0 0 0 2px #4895ef}
 .volume{display:flex;align-items:center;gap:5px;font-size:12px}
 .volume input{width:100px}
@@ -55,7 +56,9 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
   .player-shell{padding:6px}
   .video-wrap{max-height:none}
   .now-playing{align-items:stretch;flex-direction:column}
-  .transport{justify-content:flex-start}
-  .volume{margin-left:auto}
+  .transport{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));justify-content:stretch}
+  .transport button{justify-content:center;padding-inline:6px}
+  .transport .play-pause{min-width:0}
+  .volume{grid-column:1/-1;margin-left:0;justify-content:flex-end}
   .song{padding:9px}
 }
