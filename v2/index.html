@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#87ceeb">
   <meta name="description" content="彩興DB ver2 試験版">
   <title>彩興DB ver2</title>
-  <link rel="stylesheet" href="./assets/css/app-v2-integrated.css">
+  <link rel="stylesheet" href="./assets/css/app-v2-inline-history.css">
 </head>
 <body>
   <main class="app">
@@ -57,14 +57,8 @@
     </section>
   </main>
 
-  <dialog id="history-dialog">
-    <button id="history-close" class="dialog-close" aria-label="閉じる">×</button>
-    <h2 id="history-title">歌唱履歴</h2>
-    <p id="history-status">読み込み中…</p>
-    <div id="history-list"></div>
-  </dialog>
 
   <script src="./assets/js/player-queue-v2.js" defer></script>
-  <script src="./assets/js/app-v2-multifilter.js" defer></script>
+  <script src="./assets/js/app-v2-inline-history.js" defer></script>
 </body>
 </html>
