@@ -177,6 +177,13 @@
     player.seekTo(Math.max(0,player.getCurrentTime()+delta),true);
   }
   function setVolume(value){if(ready&&player)player.setVolume(Number(value));}
+  function pause(){
+    if(currentIndex>=0&&(!ready||!player)){
+      pending={index:currentIndex,autoplay:false};
+      return;
+    }
+    if(ready&&player&&typeof player.pauseVideo==='function')player.pauseVideo();
+  }
   function togglePlayback(){
     if(!queue.length){emit('error',{code:'empty-queue'});return;}
     if(currentIndex<0){if(shuffle)next();else load(0,true);return;}
@@ -203,7 +210,7 @@
 
   window.V2Player={
     setQueue:setQueue,load:load,next:next,previous:previous,seek:seek,setVolume:setVolume,
-    togglePlayback:togglePlayback,prepare:loadApi,setShuffle:setShuffle,
+    pause:pause,togglePlayback:togglePlayback,prepare:loadApi,setShuffle:setShuffle,
     setRepeatMode:setRepeatMode,getCurrentRow:function(){return queue[currentIndex]||null;},
     on:function(fn){listeners.add(fn);return function(){listeners.delete(fn);};},
     parseYouTubeUrl:parseYouTubeUrl
