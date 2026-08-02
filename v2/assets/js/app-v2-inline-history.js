@@ -324,6 +324,7 @@
       var artistControl=el('now-playing-artist');
       el('now-playing').textContent=title;
       el('now-playing-artist-name').textContent=artist;
+      el('now-playing-separator').hidden=!artist;
       artistControl.hidden=!artist;
       if(artist){
         artistControl.title='「'+artist+'」で検索';
