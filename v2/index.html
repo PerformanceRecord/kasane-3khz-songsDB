@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#87ceeb">
   <meta name="description" content="彩興DB ver2 試験版">
   <title>彩興DB ver2</title>
-  <link rel="stylesheet" href="./assets/css/app-v2-inline-history.css?v=20260802-repeat-icons-v3">
+  <link rel="stylesheet" href="./assets/css/app-v2-inline-history.css?v=20260802-status-bar">
 </head>
 <body>
   <main class="app">
@@ -22,7 +22,7 @@
       </div>
       <div class="search-row">
         <input id="search" type="search" placeholder="曲名／アーティスト名で検索" autocomplete="off">
-        <span id="status" role="status" aria-live="polite">読み込み中…</span>
+        <span id="status" class="server-status-bar loading" role="status" aria-live="polite">サーバー状態：＼ﾅｧﾝ／</span>
       </div>
     </header>
 
@@ -80,6 +80,6 @@
 
 
   <script src="./assets/js/player-queue-v2.js?v=20260802-shuffle-cycle" defer></script>
-  <script src="./assets/js/app-v2-inline-history.js?v=20260802-playback-state" defer></script>
+  <script src="./assets/js/app-v2-inline-history.js?v=20260802-status-bar" defer></script>
 </body>
 </html>
