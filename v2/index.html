@@ -12,11 +12,11 @@
   <main class="app">
     <header class="toolbar card">
       <div class="toolbar-row">
-        <nav id="category-tabs" class="tabs" aria-label="区分">
-          <button class="tab active" data-kind="ショート">ショート</button>
-          <button class="tab" data-kind="歌ってみた">歌ってみた</button>
-          <button class="tab" data-kind="歌枠">歌枠</button>
-          <button class="tab" data-kind="gags">ネタ</button>
+        <nav id="category-tabs" class="tabs" aria-label="表示区分（複数選択可）">
+          <button class="tab active" data-kind="ショート" aria-pressed="true">ショート</button>
+          <button class="tab active" data-kind="歌ってみた" aria-pressed="true">歌ってみた</button>
+          <button class="tab active" data-kind="歌枠" aria-pressed="true">歌枠</button>
+          <button class="tab" data-kind="gags" aria-pressed="false">ネタ</button>
         </nav>
         <button id="player-toggle" class="button secondary" type="button" aria-pressed="false">プレイヤー 表示</button>
       </div>
@@ -65,6 +65,6 @@
   </dialog>
 
   <script src="./assets/js/player-queue-v2.js" defer></script>
-  <script src="./assets/js/app-v2-integrated-2.js" defer></script>
+  <script src="./assets/js/app-v2-multifilter.js" defer></script>
 </body>
 </html>
