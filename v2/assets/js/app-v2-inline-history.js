@@ -289,6 +289,13 @@
   });
   syncCategoryControls();
   el('search').addEventListener('input',render);
+  el('now-playing-artist').addEventListener('click',function(){
+    var artist=text(state.playing&&state.playing.artist).trim();
+    if(!artist)return;
+    el('search').value=artist;
+    render();
+    setStatus('「'+artist+'」の楽曲を表示中（再生は継続します）');
+  });
   el('player-toggle').addEventListener('click',function(){setPlayerVisible(!state.playerVisible);});
   el('previous').addEventListener('click',window.V2Player.previous);
   el('next').addEventListener('click',window.V2Player.next);
@@ -312,7 +319,16 @@
   window.V2Player.on(function(type,detail){
     if(type==='track'){
       state.playing=detail.row;
-      el('now-playing').textContent=text(detail.row.title)+' / '+text(detail.row.artist);
+      var title=text(detail.row.title).trim()||'（無題）';
+      var artist=text(detail.row.artist).trim();
+      var artistControl=el('now-playing-artist');
+      el('now-playing').textContent=title;
+      el('now-playing-artist-name').textContent=artist;
+      artistControl.hidden=!artist;
+      if(artist){
+        artistControl.title='「'+artist+'」で検索';
+        artistControl.setAttribute('aria-label','アーティスト「'+artist+'」で検索');
+      }
       render();
     }else if(type==='state'){
       var isPlaying=detail.state===1;
