@@ -106,5 +106,12 @@
     on:function(fn){listeners.add(fn);return function(){listeners.delete(fn);};},
     parseYouTubeUrl:parseYouTubeUrl
   };
-  if(window.YT && window.YT.Player) ensurePlayer();
+  if(window.YT && window.YT.Player) {
+    ensurePlayer();
+  } else {
+    var apiScript=document.createElement('script');
+    apiScript.src='https://www.youtube.com/iframe_api';
+    apiScript.async=true;
+    document.head.appendChild(apiScript);
+  }
 })();
