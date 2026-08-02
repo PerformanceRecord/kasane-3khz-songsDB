@@ -24,7 +24,7 @@
   <link rel="apple-touch-icon-precomposed" href="https://performancerecord.github.io/kasane-3khz-songsDB/assets/icons/app/apple-touch-icon.png" sizes="180x180">
   <link rel="manifest" href="./site.webmanifest">
   <title>彩興DB</title>
-  <link rel="stylesheet" href="./v2/assets/css/app-v2-inline-history.css?v=20260802-toolbar-layout">
+  <link rel="stylesheet" href="./v2/assets/css/app-v2-inline-history.css?v=20260802-danmaku-console">
 </head>
 <body>
   <main class="app">
@@ -96,10 +96,31 @@
       <p id="count" class="count"></p>
       <div id="list" class="song-list" aria-live="polite"></div>
     </section>
+
+    <section class="danmaku-dock" aria-label="弾幕コピー">
+      <div class="danmaku-console card">
+        <div class="dm-wrap">
+          <div class="dm-select-wrap">
+            <select id="dm-select" title="弾幕の種類を選択">
+            <option value="⚛️🌐ꕤ.‎˖٭*⚛️🌐ꕤ.‎˖٭*⚛️🌐ꕤ.‎˖٭*⚛️🌐ꕤ.‎˖٭*">⚛️🌐ꕤ.‎˖٭（花）</option>
+            <option value="⚛️🌐♬*.+⚛️🌐♬*.+⚛️🌐♬*.+⚛️🌐♬*.+">⚛️🌐♬*.+（音符）</option>
+            <option value="✨⚛️🌐🎵✨⚛️🌐🎵✨⚛️🌐🎵✨⚛️🌐🎵">✨⚛️🌐🎵（キラ音符）</option>
+            <option value="＼ﾅｧﾝ／">＼ﾅｧﾝ／</option>
+            </select>
+          </div>
+          <div class="dm-btn-wrap">
+            <button id="dm-copy" type="button" title="選択した弾幕をコピー">コピー</button>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">コピーしました</div>
 
 
   <script src="./v2/assets/js/player-queue-v2.js?v=20260802-production" defer></script>
   <script src="./v2/assets/js/app-v2-inline-history.js?v=20260802-production-static-base" defer></script>
+  <script src="./v2/assets/js/danmaku-copy.js?v=20260802-production" defer></script>
 </body>
 </html>
