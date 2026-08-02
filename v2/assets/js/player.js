@@ -46,6 +46,7 @@
           emit('ready',{});
         },
         onStateChange:function(event){
+          emit('state',{state:event.data});
           if(event.data===YT.PlayerState.ENDED){
             if(repeat) load(currentIndex,true);
             else next();
@@ -88,9 +89,17 @@
   function setVolume(value){
     if(ready && player) player.setVolume(Number(value));
   }
+  function togglePlayback(){
+    if(!queue.length) return;
+    if(currentIndex < 0){ load(0,true); return; }
+    if(!ready || !player){ pending={index:currentIndex,autoplay:true}; ensurePlayer(); return; }
+    var state=player.getPlayerState();
+    if(state===YT.PlayerState.PLAYING) player.pauseVideo();
+    else player.playVideo();
+  }
 
   window.V2Player={
-    setQueue:setQueue,load:load,next:next,previous:previous,seek:seek,setVolume:setVolume,
+    setQueue:setQueue,load:load,next:next,previous:previous,seek:seek,setVolume:setVolume,togglePlayback:togglePlayback,
     setShuffle:function(value){shuffle=Boolean(value);},
     setRepeat:function(value){repeat=Boolean(value);},
     getCurrentRow:function(){return queue[currentIndex]||null;},
