@@ -61,10 +61,17 @@
         area.value=value;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';
         document.body.appendChild(area);area.select();document.execCommand('copy');area.remove();
       }
-      var original=button.textContent;
-      button.textContent='コピー済み';
+      var originalTitle=button.title;
+      var originalLabel=button.getAttribute('aria-label');
+      button.classList.add('copied');
+      button.title='コピーしました';
+      button.setAttribute('aria-label','コピーしました');
       setStatus('コピーしました：'+value);
-      setTimeout(function(){button.textContent=original;},1200);
+      setTimeout(function(){
+        button.classList.remove('copied');
+        button.title=originalTitle;
+        button.setAttribute('aria-label',originalLabel);
+      },1200);
     }catch(_error){setStatus('コピーに失敗しました');}
   }
   function closeInlineHistories(except){
@@ -135,6 +142,13 @@
     button.addEventListener('click',handler);
     return button;
   }
+  function setCardActionIcon(button,type){
+    button.classList.add('card-icon-button');
+    button.innerHTML=type==='history'
+      ? '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg>'
+      : '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>';
+    return button;
+  }
   function render(){
     state.visible=filteredRows();
     window.V2Player.setQueue(state.visible);
@@ -184,10 +198,16 @@
       }
       var sideActions=document.createElement('div');
       sideActions.className='song-side-actions';
-      historyButton=createButton('履歴','history',function(event){event.stopPropagation();toggleInlineHistory(article,row,region,historyButton);});
+      historyButton=createButton('','history',function(event){event.stopPropagation();toggleInlineHistory(article,row,region,historyButton);});
+      setCardActionIcon(historyButton,'history');
+      historyButton.title='歌唱履歴を表示・閉じる';
+      historyButton.setAttribute('aria-label','歌唱履歴を表示・閉じる');
       historyButton.setAttribute('aria-expanded','false');
       historyButton.setAttribute('aria-controls',region.id);
-      var copyButton=createButton('コピー','copy',function(event){event.stopPropagation();copySong(row,copyButton);});
+      var copyButton=createButton('','copy',function(event){event.stopPropagation();copySong(row,copyButton);});
+      setCardActionIcon(copyButton,'copy');
+      copyButton.title='曲名とアーティスト名をコピー';
+      copyButton.setAttribute('aria-label','曲名とアーティスト名をコピー');
       sideActions.append(historyButton,copyButton);
       side.appendChild(sideActions);
       article.append(main,side,region); list.appendChild(article);
