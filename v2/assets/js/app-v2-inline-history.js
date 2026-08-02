@@ -20,7 +20,7 @@
     return payload.rows.filter(function(row){return row && (row.title||row.artist);});
   }
   function serverStatusText(){
-    if(state.serverStatus==='loading')return 'サーバー状態：＼uFF3Cﾅｧﾝ／';
+    if(state.serverStatus==='loading')return 'サーバー状態：＼ﾅｧﾝ／';
     if(state.serverStatus==='error')return 'サーバー状態：非稼働 ｜ '+(state.serverError||'データを取得できません');
     return 'サーバー状態：稼働中 ｜ '+state.visible.length+'件表示中';
   }
