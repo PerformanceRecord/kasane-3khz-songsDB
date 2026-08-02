@@ -24,7 +24,7 @@
   <link rel="apple-touch-icon-precomposed" href="https://performancerecord.github.io/kasane-3khz-songsDB/assets/icons/app/apple-touch-icon.png" sizes="180x180">
   <link rel="manifest" href="./site.webmanifest">
   <title>彩興DB</title>
-  <link rel="stylesheet" href="./v2/assets/css/app-v2-inline-history.css?v=20260802-production">
+  <link rel="stylesheet" href="./v2/assets/css/app-v2-inline-history.css?v=20260802-toolbar-layout">
 </head>
 <body>
   <main class="app">
@@ -36,11 +36,13 @@
           <button class="tab active" data-kind="ショート" aria-pressed="true">ショート</button>
           <button class="tab" data-kind="gags" aria-pressed="false">ネタ</button>
         </nav>
-        <button id="player-toggle" class="button secondary" type="button" aria-pressed="false">プレイヤー 表示</button>
       </div>
       <div class="search-row">
         <input id="search" type="search" placeholder="曲名／アーティスト名で検索" autocomplete="off">
-        <span id="status" class="server-status-bar loading" role="status" aria-live="polite">サーバー状態：＼ﾅｧﾝ／</span>
+        <div class="status-controls">
+          <span id="status" class="server-status-bar loading" role="status" aria-live="polite">サーバー状態：＼ﾅｧﾝ／</span>
+          <button id="player-toggle" class="button secondary" type="button" aria-pressed="false">プレイヤー 表示</button>
+        </div>
       </div>
     </header>
 
