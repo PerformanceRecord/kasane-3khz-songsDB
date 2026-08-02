@@ -1,7 +1,8 @@
 (function(){
   'use strict';
   var STATIC_BASE='https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/';
-  var state={selectedKinds:new Set(['ショート','歌ってみた','歌枠']),showGags:false,songs:[],gags:[],visible:[],playerVisible:false,playing:null,repeatMode:'off'};
+  var state={selectedKinds:new Set(['ショート','歌ってみた','歌枠']),showGags:false,songs:[],gags:[],visible:[],playerVisible:false,playing:null,historySelected:null,repeatMode:'off'};
+  var desktopHistoryRequest=0;
 
   function el(id){return document.getElementById(id);}
   function text(value){return String(value==null?'':value);}
@@ -19,6 +20,7 @@
     return payload.rows.filter(function(row){return row && (row.title||row.artist);});
   }
   function setStatus(message){el('status').textContent=message;}
+  function isDesktopLayout(){return Boolean(window.matchMedia&&window.matchMedia('(min-width: 1100px)').matches);}
 
   function filteredRows(){
     var source=state.showGags ? state.gags : state.songs.filter(function(row){
@@ -84,6 +86,79 @@
       if(trigger)trigger.setAttribute('aria-expanded','false');
     });
   }
+  function setDesktopHistoryStatus(message,isError){
+    var list=el('desktop-history-list');
+    list.replaceChildren();
+    var status=document.createElement('div');
+    status.className='desktop-history-status'+(isError?' error':'');
+    status.textContent=message;
+    list.appendChild(status);
+  }
+  function resetDesktopHistory(){
+    desktopHistoryRequest++;
+    state.historySelected=null;
+    document.querySelectorAll('.song.desktop-history-selected').forEach(function(card){
+      card.classList.remove('desktop-history-selected');
+      var trigger=card.querySelector('.history');
+      if(trigger)trigger.setAttribute('aria-expanded','false');
+    });
+    el('desktop-history-title').textContent='楽曲を選択';
+    el('desktop-history-sub').textContent='左側の楽曲または履歴アイコンを選ぶと、ここに履歴を表示します。';
+    el('desktop-history-close').hidden=true;
+    setDesktopHistoryStatus('履歴はまだ選択されていません。',false);
+  }
+  async function showDesktopHistory(card,row,trigger){
+    var selectedKey=state.historySelected&&rowKey(state.historySelected);
+    if(selectedKey&&selectedKey===rowKey(row)){
+      resetDesktopHistory();
+      return;
+    }
+    resetDesktopHistory();
+    closeInlineHistories();
+    state.historySelected=row;
+    var request=++desktopHistoryRequest;
+    card.classList.add('desktop-history-selected');
+    trigger.setAttribute('aria-expanded','true');
+    el('desktop-history-title').textContent=[text(row.title).trim(),text(row.artist).trim()].filter(Boolean).join(' / ');
+    el('desktop-history-sub').textContent='歌唱履歴を新しい順に表示します。';
+    el('desktop-history-close').hidden=false;
+    setDesktopHistoryStatus('履歴を読み込み中…',false);
+    if(!row.historyRef){
+      setDesktopHistoryStatus('履歴参照がありません。',false);
+      return;
+    }
+    try{
+      var response=await fetch(new URL(row.historyRef,STATIC_BASE),{cache:'no-store'});
+      if(!response.ok)throw new Error('HTTP '+response.status);
+      var payload=await response.json();
+      var rows=Array.isArray(payload)?payload:(payload.rows||payload.items||payload.history||payload.histories||[]);
+      if(request!==desktopHistoryRequest)return;
+      if(!Array.isArray(rows)||!rows.length){
+        setDesktopHistoryStatus('該当する履歴がありません。',false);
+        return;
+      }
+      rows=rows.slice().sort(function(a,b){return Number(b.date8||b.date||0)-Number(a.date8||a.date||0);});
+      el('desktop-history-sub').textContent=rows.length+'件の履歴';
+      var list=el('desktop-history-list');
+      list.replaceChildren();
+      rows.forEach(function(item){
+        var url=item.dUrl||item.url||item.link||'';
+        var entry=document.createElement(url?'a':'div');
+        entry.className='desktop-history-row';
+        if(url){entry.href=url;entry.target='_blank';entry.rel='noopener noreferrer';}
+        var date=document.createElement('time');
+        date.textContent=displayDate(item.date8||item.date)||'日付不明';
+        var action=document.createElement('span');
+        action.className=url?'desktop-history-link':'desktop-history-no-link';
+        action.textContent=url?'▶ 開く':'リンクなし';
+        entry.append(date,action);
+        list.appendChild(entry);
+      });
+    }catch(error){
+      if(request!==desktopHistoryRequest)return;
+      setDesktopHistoryStatus('履歴を取得できませんでした：'+error.message,true);
+    }
+  }
   async function toggleInlineHistory(card,row,region,trigger){
     if(card.classList.contains('history-open')){
       card.classList.remove('history-open');
@@ -136,6 +211,12 @@
     }
   }
 
+  function openHistory(card,row,region,trigger){
+    if(isDesktopLayout())return showDesktopHistory(card,row,trigger);
+    resetDesktopHistory();
+    return toggleInlineHistory(card,row,region,trigger);
+  }
+
   function createButton(label,className,handler){
     var button=document.createElement('button');
     button.type='button'; button.textContent=label; button.className=className||'';
@@ -158,9 +239,11 @@
     if(!state.visible.length){
       var empty=document.createElement('div'); empty.className='empty'; empty.textContent='該当する項目がありません。'; list.appendChild(empty); return;
     }
+    var desktopMode=isDesktopLayout();
     state.visible.forEach(function(row,index){
       var article=document.createElement('article');
-      article.className='song'+(state.playing && rowKey(state.playing)===rowKey(row)?' playing':'');
+      var selectedForHistory=Boolean(desktopMode&&state.historySelected&&rowKey(state.historySelected)===rowKey(row));
+      article.className='song'+(state.playing && rowKey(state.playing)===rowKey(row)?' playing':'')+(selectedForHistory?' desktop-history-selected':'');
       var main=document.createElement('div'); main.className='song-main'; main.tabIndex=0; main.role='button';
       main.setAttribute('aria-label',text(row.title)+' / '+text(row.artist));
       var title=document.createElement('span'); title.className='song-title'; title.textContent=text(row.title)||'（無題）';
@@ -175,7 +258,7 @@
       var historyButton;
       function activate(){
         if(state.playerVisible) window.V2Player.load(index,true);
-        else toggleInlineHistory(article,row,region,historyButton);
+        else openHistory(article,row,region,historyButton);
       }
       main.addEventListener('click',activate);
       main.addEventListener('keydown',function(event){if(event.key==='Enter'||event.key===' '){event.preventDefault();activate();}});
@@ -198,12 +281,12 @@
       }
       var sideActions=document.createElement('div');
       sideActions.className='song-side-actions';
-      historyButton=createButton('','history',function(event){event.stopPropagation();toggleInlineHistory(article,row,region,historyButton);});
+      historyButton=createButton('','history',function(event){event.stopPropagation();openHistory(article,row,region,historyButton);});
       setCardActionIcon(historyButton,'history');
       historyButton.title='歌唱履歴を表示・閉じる';
       historyButton.setAttribute('aria-label','歌唱履歴を表示・閉じる');
-      historyButton.setAttribute('aria-expanded','false');
-      historyButton.setAttribute('aria-controls',region.id);
+      historyButton.setAttribute('aria-expanded',String(selectedForHistory));
+      historyButton.setAttribute('aria-controls',region.id+' desktop-history');
       var copyButton=createButton('','copy',function(event){event.stopPropagation();copySong(row,copyButton);});
       setCardActionIcon(copyButton,'copy');
       copyButton.title='曲名とアーティスト名をコピー';
@@ -289,6 +372,16 @@
   });
   syncCategoryControls();
   el('search').addEventListener('input',render);
+  el('desktop-history-close').addEventListener('click',resetDesktopHistory);
+  if(window.matchMedia){
+    var desktopLayoutMedia=window.matchMedia('(min-width: 1100px)');
+    var handleDesktopLayoutChange=function(event){
+      if(event.matches)closeInlineHistories();
+      else resetDesktopHistory();
+    };
+    if(desktopLayoutMedia.addEventListener)desktopLayoutMedia.addEventListener('change',handleDesktopLayoutChange);
+    else if(desktopLayoutMedia.addListener)desktopLayoutMedia.addListener(handleDesktopLayoutChange);
+  }
   el('now-playing-artist').addEventListener('click',function(){
     var artist=text(state.playing&&state.playing.artist).trim();
     if(!artist)return;
