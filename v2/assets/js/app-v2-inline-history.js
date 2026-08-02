@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   var STATIC_BASE='https://pub-34d8fa96953d472aa7cb424b9daf2d60.r2.dev/public-data/';
-  var state={selectedKinds:new Set(['ショート','歌ってみた','歌枠']),showGags:false,songs:[],gags:[],visible:[],playerVisible:false,playing:null,historySelected:null,repeatMode:'off'};
+  var state={selectedKinds:new Set(['ショート','歌ってみた','歌枠']),showGags:false,songs:[],gags:[],visible:[],playerVisible:false,playing:null,historySelected:null,repeatMode:'off',serverStatus:'loading',serverError:''};
   var desktopHistoryRequest=0;
 
   function el(id){return document.getElementById(id);}
@@ -19,7 +19,17 @@
     if(payload.ok===false || !Array.isArray(payload.rows)) throw new Error(name+' の形式が不正です');
     return payload.rows.filter(function(row){return row && (row.title||row.artist);});
   }
-  function setStatus(message){el('status').textContent=message;}
+  function serverStatusText(){
+    if(state.serverStatus==='loading')return 'サーバー状態：＼uFF3Cﾅｧﾝ／';
+    if(state.serverStatus==='error')return 'サーバー状態：非稼働 ｜ '+(state.serverError||'データを取得できません');
+    return 'サーバー状態：稼働中 ｜ '+state.visible.length+'件表示中';
+  }
+  function setStatus(message){
+    var status=el('status');
+    status.textContent=message;
+    status.className='';
+    if(!state.playerVisible)status.classList.add('server-status-bar',state.serverStatus);
+  }
   function setPlaybackStateLabel(label){
     var display=el('playback-state');
     display.textContent=label||'';
@@ -240,6 +250,7 @@
     window.V2Player.setQueue(state.visible);
     var selectionLabel=state.showGags?'ネタ':Array.from(state.selectedKinds).join('・');
     el('count').textContent=state.visible.length+'件'+(selectionLabel?'（'+selectionLabel+'）':'');
+    if(!state.playerVisible&&state.serverStatus==='ok')setStatus(serverStatusText());
     var list=el('list'); list.replaceChildren();
     if(!state.visible.length){
       var empty=document.createElement('div'); empty.className='empty'; empty.textContent='該当する項目がありません。'; list.appendChild(empty); return;
@@ -356,7 +367,7 @@
       window.V2Player.prepare();
       setStatus('曲カードまたは中央の再生ボタンを押してください');
     }else{
-      setStatus('R2データ読込済み');
+      setStatus(serverStatusText());
     }
     render();
   }
@@ -460,6 +471,14 @@
   });
 
   Promise.all([fetchRows('songs'),fetchRows('gags')]).then(function(values){
-    state.songs=values[0];state.gags=values[1];setStatus('R2データ読込済み');render();
-  }).catch(function(error){setStatus('データ読込失敗: '+error.message);});
+    state.songs=values[0];
+    state.gags=values[1];
+    state.serverStatus='ok';
+    state.serverError='';
+    render();
+  }).catch(function(error){
+    state.serverStatus='error';
+    state.serverError=error.message;
+    setStatus(serverStatusText());
+  });
 })();
