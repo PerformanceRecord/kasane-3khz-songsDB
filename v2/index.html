@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#87ceeb">
   <meta name="description" content="彩興DB ver2 試験版">
   <title>彩興DB ver2</title>
-  <link rel="stylesheet" href="./assets/css/app-v2-inline-history.css?v=20260802-player-fold">
+  <link rel="stylesheet" href="./assets/css/app-v2-inline-history.css?v=20260802-artist-search">
 </head>
 <body>
   <main class="app">
@@ -29,7 +29,14 @@
     <section id="player-shell" class="player-shell card" hidden aria-label="YouTube プレイヤー">
       <div class="video-wrap"><div id="youtube-player"></div></div>
       <div class="now-playing">
-        <div><small>再生中</small><strong id="now-playing">曲カードまたは再生ボタンを押してください</strong></div>
+        <div class="now-playing-details">
+          <small>再生中</small>
+          <strong id="now-playing">曲カードまたは再生ボタンを押してください</strong>
+          <button id="now-playing-artist" class="now-playing-artist" type="button" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M15 15l5 5"/></svg>
+            <span id="now-playing-artist-name"></span>
+          </button>
+        </div>
       </div>
       <div class="operation-bar" aria-label="再生操作">
         <div class="transport-core" aria-label="基本再生操作">
@@ -59,6 +66,6 @@
 
 
   <script src="./assets/js/player-queue-v2.js" defer></script>
-  <script src="./assets/js/app-v2-inline-history.js?v=20260802-player-fold" defer></script>
+  <script src="./assets/js/app-v2-inline-history.js?v=20260802-artist-search" defer></script>
 </body>
 </html>
