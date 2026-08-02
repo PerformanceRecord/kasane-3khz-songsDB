@@ -24,117 +24,80 @@
   <link rel="apple-touch-icon-precomposed" href="https://performancerecord.github.io/kasane-3khz-songsDB/assets/icons/app/apple-touch-icon.png" sizes="180x180">
   <link rel="manifest" href="./site.webmanifest">
   <title>彩興DB</title>
-  <link rel="stylesheet" href="./assets/css/app.css">
-  <link rel="stylesheet" href="./assets/css/featured-artist.css">
-  <link rel="stylesheet" href="./assets/css/inline-history.css">
+  <link rel="stylesheet" href="./v2/assets/css/app-v2-inline-history.css?v=20260802-production">
 </head>
 <body>
-  <div class="app-shell">
-  <!-- 一覧ページ -->
-  <div id="page-list" class="page active">
-    <div class="list-layout" id="list-layout">
-      <div class="card" id="filter-panel">
-        <div class="topbar">
-          <div class="tabs" role="tablist" aria-label="検索対象">
-            <button id="tab-songs" class="tab" role="tab" aria-selected="true"  data-tab="songs">歌唱曲</button>
-            <button id="tab-gags"  class="tab" role="tab" aria-selected="false" data-tab="gags">一発ネタ</button>
+  <main class="app">
+    <header class="toolbar card">
+      <div class="toolbar-row">
+        <nav id="category-tabs" class="tabs" aria-label="表示区分（複数選択可）">
+          <button class="tab active" data-kind="歌枠" aria-pressed="true">歌枠</button>
+          <button class="tab active" data-kind="歌ってみた" aria-pressed="true">歌ってみた</button>
+          <button class="tab active" data-kind="ショート" aria-pressed="true">ショート</button>
+          <button class="tab" data-kind="gags" aria-pressed="false">ネタ</button>
+        </nav>
+        <button id="player-toggle" class="button secondary" type="button" aria-pressed="false">プレイヤー 表示</button>
+      </div>
+      <div class="search-row">
+        <input id="search" type="search" placeholder="曲名／アーティスト名で検索" autocomplete="off">
+        <span id="status" class="server-status-bar loading" role="status" aria-live="polite">サーバー状態：＼ﾅｧﾝ／</span>
+      </div>
+    </header>
+
+    <section id="player-shell" class="player-shell card" hidden aria-label="YouTube プレイヤー">
+      <div class="video-wrap"><div id="youtube-player"></div></div>
+      <div class="now-playing">
+        <div class="now-playing-details">
+          <small>Now Playing</small>
+          <div class="now-playing-line">
+            <strong id="now-playing">- / -</strong>
+            <span id="now-playing-separator" class="now-playing-separator" hidden aria-hidden="true"> / </span>
+            <button id="now-playing-artist" class="now-playing-artist" type="button" hidden><span id="now-playing-artist-name"></span></button>
           </div>
-          <button id="filter-toggle" class="filter-toggle" type="button" aria-expanded="true">表示切替</button>
-        </div>
-
-        <div class="server-response" id="server-response" aria-live="polite">サーバー状態：＼ﾅｧﾝ／</div>
-        <div class="quick-filter-row filter-collapse-target">
-          <div class="filter-summary" id="active-filter-summary" aria-live="polite">区分：すべて</div>
-          <div class="quick-filters" id="quick-filters" aria-label="区分で絞り込み"></div>
         </div>
       </div>
-
-      <div class="result-card">
-        <div class="muted" id="hint">検索結果がここに表示されます。</div>
-        <div id="results-scroll" class="result-scroll" aria-label="楽曲情報カード一覧">
-          <div id="table" style="display:none;"></div>
-          <div id="mblist" class="mobile-list" style="display:none;"></div>
+      <div class="operation-bar" aria-label="再生操作">
+        <div class="transport-core" aria-label="基本再生操作">
+          <button id="previous" class="icon-button" title="前の曲" aria-label="前の曲"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6l-9 6 9 6z"/></svg></button>
+          <button id="seek-back" class="icon-button" title="10秒戻る" aria-label="10秒戻る"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7V3m0 4h4M5.5 16a8 8 0 1 0-.7-7"/><text x="12" y="15">10</text></svg></button>
+          <button id="play-pause" class="icon-button play-pause" title="再生" aria-label="再生"><svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg><svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg></button>
+          <button id="seek-forward" class="icon-button" title="10秒進む" aria-label="10秒進む"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7V3m0 4h-4M18.5 16a8 8 0 1 1 .7-7"/><text x="12" y="15">10</text></svg></button>
+          <button id="next" class="icon-button" title="次の曲" aria-label="次の曲"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l9 6-9 6z"/></svg></button>
         </div>
-        <aside id="desktop-history-panel" class="desktop-history-panel" aria-label="選択した楽曲の歌唱履歴">
-          <div id="desktop-history-media" class="desktop-history-media" hidden></div>
-          <div class="desktop-history-header">
-            <div>
-              <div class="desktop-history-eyebrow">歌唱履歴</div>
-              <h2 id="desktop-history-title" class="desktop-history-title">楽曲を選択</h2>
-            </div>
-            <button id="desktop-history-close" class="desktop-history-close" type="button" aria-label="履歴を閉じる" hidden>×</button>
-          </div>
-          <p id="desktop-history-sub" class="desktop-history-sub">一覧の行を選ぶと、ここに履歴を表示します。</p>
-          <div id="desktop-history-list" class="desktop-history-list" aria-live="polite"></div>
-        </aside>
-      </div>
-    </div>
-  </div>
-
-  <!-- 履歴ページ -->
-  <div id="page-history" class="page">
-    <div class="card">
-      <div class="history-header">
-        <button id="btn-back" class="back">← 戻る</button>
-        <div class="history-title" id="hist-title">/</div>
-      </div>
-      <div class="muted" id="hist-sub">歌唱履歴を新しい順に表示します。</div>
-    </div>
-    <div class="card" style="margin-top:12px;">
-      <div id="hist-list" class="history-list"></div>
-      <div id="hist-empty" class="muted" style="display:none;">該当する履歴が見つかりませんでした。</div>
-    </div>
-  </div>
-
-  <div id="toast" class="toast" role="status" aria-live="polite">コピーしました</div>
-  <button id="to-top" class="to-top" type="button" aria-label="ページ上部へ戻る">↑ 上へ</button>
-  <div class="input-dock" aria-label="入力コンソール">
-    <div class="input-console">
-      <div class="row">
-        <input id="q" type="search" placeholder="曲名／アーティスト名で検索" autocomplete="off">
-        <button id="clear-search" class="btn btn-subtle" type="button" title="検索条件をクリア">クリア</button>
-      </div>
-      <div class="dm-wrap" aria-label="弾幕コピー">
-        <div class="dm-select-wrap">
-          <select id="dm-select" title="弾幕の種類を選択">
-            <option value="⚛️🌐ꕤ.‎˖٭*⚛️🌐ꕤ.‎˖٭*⚛️🌐ꕤ.‎˖٭*⚛️🌐ꕤ.‎˖٭*">⚛️🌐ꕤ.‎˖٭（花）</option>
-            <option value="⚛️🌐♬*.+⚛️🌐♬*.+⚛️🌐♬*.+⚛️🌐♬*.+">⚛️🌐♬*.+（音符）</option>
-            <option value="✨⚛️🌐🎵✨⚛️🌐🎵✨⚛️🌐🎵✨⚛️🌐🎵">✨⚛️🌐🎵（キラ音符）</option>
-            <option value="＼ﾅｧﾝ／">＼ﾅｧﾝ／</option>
-
-          </select>
+        <div class="mode-controls" aria-label="再生モード">
+          <button id="shuffle" class="icon-button" title="ランダム再生 オフ" aria-label="ランダム再生 オフ" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3c5 0 5 10 10 10h3M17 4l3 3-3 3M4 17h3c2.2 0 3.4-1.7 4.5-3.7M16 7.2c.4-.1.7-.2 1-.2h3M17 14l3 3-3 3"/></svg></button>
+          <button id="repeat" class="icon-button" data-mode="off" title="ループ オフ" aria-label="ループ オフ" aria-pressed="false">
+            <svg class="repeat-off-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3l3 3-3 3M20 6H8a5 5 0 0 0-4.2 2.3M7 21l-3-3 3-3M4 18h12a5 5 0 0 0 4.2-2.3M4 4l16 16"/></svg>
+            <svg class="repeat-one-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3l3 3-3 3M20 6H8a5 5 0 0 0-5 5M7 21l-3-3 3-3M4 18h12a5 5 0 0 0 5-5"/><path class="repeat-one-number" d="M9.6 11.2l2.7-2.1v7M9.7 16.1h5.2"/></svg>
+            <svg class="repeat-all-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3l3 3-3 3M20 6H8a5 5 0 0 0-5 5M7 21l-3-3 3-3M4 18h12a5 5 0 0 0 5-5"/></svg>
+          </button>
         </div>
-        <div class="dm-btn-wrap">
-          <button id="dm-copy" class="btn btn-full" type="button" title="選択した弾幕をコピー">コピー</button>
-        </div>
+        <label class="volume">音量 <input id="volume" type="range" min="0" max="100" value="80"></label>
       </div>
-    </div>
-  </div>
-  <div id="mobile-filter-backdrop" class="mobile-filter-backdrop" hidden></div>
-  <section
-    id="mobile-filter-sheet"
-    class="mobile-filter-sheet"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="mobile-filter-title"
-    tabindex="-1"
-    hidden
-  >
-    <div class="mobile-filter-handle" aria-hidden="true"></div>
-    <div class="mobile-filter-heading">
-      <h2 id="mobile-filter-title">区分で絞り込み</h2>
-      <button id="mobile-filter-close" class="mobile-filter-close" type="button" aria-label="絞り込みを閉じる">×</button>
-    </div>
-    <div id="mobile-filter-options" class="mobile-filter-options"></div>
-    <div class="mobile-filter-actions">
-      <button id="mobile-filter-reset" class="btn btn-subtle" type="button">すべて選択</button>
-      <button id="mobile-filter-apply" class="btn" type="button">適用</button>
-    </div>
-  </section>
-  </div>
+    </section>
 
-  <script src="./assets/js/app.js" defer></script>
-  <script src="./assets/js/inline-history.js" defer></script>
+    <section id="desktop-history" class="desktop-history card" aria-label="選択した楽曲の歌唱履歴">
+      <div class="desktop-history-header">
+        <div>
+          <small class="desktop-history-eyebrow">歌唱履歴</small>
+          <h2 id="desktop-history-title" class="desktop-history-title">楽曲を選択</h2>
+        </div>
+        <button id="desktop-history-close" class="desktop-history-close" type="button" aria-label="履歴を閉じる" hidden>×</button>
+      </div>
+      <p id="desktop-history-sub" class="desktop-history-sub">左側の楽曲または履歴アイコンを選ぶと、ここに履歴を表示します。</p>
+      <div id="desktop-history-list" class="desktop-history-list" aria-live="polite">
+        <div class="desktop-history-status">履歴はまだ選択されていません。</div>
+      </div>
+    </section>
 
+    <section class="card results">
+      <p id="count" class="count"></p>
+      <div id="list" class="song-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+
+  <script src="./v2/assets/js/player-queue-v2.js?v=20260802-production" defer></script>
+  <script src="./v2/assets/js/app-v2-inline-history.js?v=20260802-production" defer></script>
 </body>
 </html>
