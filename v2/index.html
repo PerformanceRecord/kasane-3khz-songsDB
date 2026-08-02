@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#87ceeb">
   <meta name="description" content="彩興DB ver2 試験版">
   <title>彩興DB ver2</title>
-  <link rel="stylesheet" href="./assets/css/app-v2-inline-history.css?v=20260802-artist-inline">
+  <link rel="stylesheet" href="./assets/css/app-v2-inline-history.css?v=20260802-desktop-layout">
 </head>
 <body>
   <main class="app">
@@ -58,6 +58,20 @@
       </div>
     </section>
 
+    <section id="desktop-history" class="desktop-history card" aria-label="選択した楽曲の歌唱履歴">
+      <div class="desktop-history-header">
+        <div>
+          <small class="desktop-history-eyebrow">歌唱履歴</small>
+          <h2 id="desktop-history-title" class="desktop-history-title">楽曲を選択</h2>
+        </div>
+        <button id="desktop-history-close" class="desktop-history-close" type="button" aria-label="履歴を閉じる" hidden>×</button>
+      </div>
+      <p id="desktop-history-sub" class="desktop-history-sub">左側の楽曲または履歴アイコンを選ぶと、ここに履歴を表示します。</p>
+      <div id="desktop-history-list" class="desktop-history-list" aria-live="polite">
+        <div class="desktop-history-status">履歴はまだ選択されていません。</div>
+      </div>
+    </section>
+
     <section class="card results">
       <p id="count" class="count"></p>
       <div id="list" class="song-list" aria-live="polite"></div>
@@ -66,6 +80,6 @@
 
 
   <script src="./assets/js/player-queue-v2.js" defer></script>
-  <script src="./assets/js/app-v2-inline-history.js?v=20260802-artist-inline" defer></script>
+  <script src="./assets/js/app-v2-inline-history.js?v=20260802-desktop-layout" defer></script>
 </body>
 </html>
