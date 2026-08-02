@@ -31,12 +31,13 @@
       <div class="now-playing">
         <div><small>再生中</small><strong id="now-playing">曲を選択してください</strong></div>
         <div class="transport" aria-label="再生操作">
-          <button id="previous" title="前へ">⏮</button>
-          <button id="seek-back" title="10秒戻る">−10</button>
-          <button id="seek-forward" title="10秒進む">+10</button>
-          <button id="next" title="次へ">⏭</button>
-          <button id="shuffle" title="シャッフル" aria-pressed="false">🔀</button>
-          <button id="repeat" title="リピート" aria-pressed="false">🔁</button>
+          <button id="previous" title="前の曲" aria-label="前の曲">⏮ <span>前へ</span></button>
+          <button id="seek-back" title="10秒戻る" aria-label="10秒戻る">↶ <span>−10秒</span></button>
+          <button id="play-pause" class="play-pause" title="再生" aria-label="再生">▶ <span>再生</span></button>
+          <button id="seek-forward" title="10秒進む" aria-label="10秒進む">↷ <span>＋10秒</span></button>
+          <button id="next" title="次の曲" aria-label="次の曲">⏭ <span>次へ</span></button>
+          <button id="shuffle" title="ランダム再生" aria-label="ランダム再生" aria-pressed="false">🔀 <span>ランダム</span></button>
+          <button id="repeat" title="1曲リピート" aria-label="1曲リピート" aria-pressed="false">🔁 <span>1曲リピート</span></button>
           <label class="volume">音量 <input id="volume" type="range" min="0" max="100" value="80"></label>
         </div>
       </div>
