@@ -280,8 +280,11 @@
       region.id='inline-history-'+index;
       var historyButton;
       function activate(){
-        if(state.playerVisible) window.V2Player.load(index,true);
-        else openHistory(article,row,region,historyButton);
+        if(!state.playerVisible){
+          openHistory(article,row,region,historyButton);
+          return;
+        }
+        window.V2Player.load(index,true);
       }
       main.addEventListener('click',activate);
       main.addEventListener('keydown',function(event){if(event.key==='Enter'||event.key===' '){event.preventDefault();activate();}});
@@ -374,6 +377,7 @@
       window.V2Player.prepare();
       setStatus('曲カードまたは中央の再生ボタンを押してください');
     }else{
+      window.V2Player.pause();
       setStatus(serverStatusText());
     }
     render();
