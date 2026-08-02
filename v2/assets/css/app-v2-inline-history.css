@@ -100,7 +100,6 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
 .song-thumbnail img{display:block;width:100%;height:100%;object-fit:cover}
 .song-thumbnail::after{content:"▶";position:absolute;left:50%;top:50%;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:14px;transform:translate(-50%,-50%);opacity:.9}
 .song-thumbnail:hover::after{background:#008f83;transform:translate(-50%,-50%) scale(1.08)}
-.song-side .history{width:100%;border:1px solid #9fc7b5;background:white;color:var(--ink);border-radius:9px;padding:7px}
 @media(max-width:760px){
   .operation-bar{grid-template-columns:1fr;gap:9px}
   .transport-core{width:100%;height:64px}
@@ -121,9 +120,15 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
 }
 
 /* Inline history and restored copy action */
-.song-side-actions{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.song-side .history,.song-side .copy{width:100%;min-width:0;border:1px solid #9fc7b5;background:white;color:var(--ink);border-radius:9px;padding:7px 4px;font-size:12px;font-weight:700}
+.song-side-actions{display:flex;align-items:center;justify-content:flex-end;gap:6px}
+.song-side .history,.song-side .copy{display:grid;place-items:center;flex:0 0 38px;width:38px;height:36px;min-width:0;border:1px solid #9fc7b5;background:#fff;color:#2f7770;border-radius:10px;padding:7px}
 .song-side .copy{background:#eef8f4}
+.song-side .history svg,.song-side .copy svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.song-side .history:hover,.song-side .copy:hover{border-color:#4f9691;background:#e3f5ef;color:#006f67}
+.song-side .history[aria-expanded="true"]{border-color:#4895ef;background:#dff2ff;color:#176ba0}
+.song-side .copy.copied{border-color:#4f9691;background:#dff4f1;color:#007f76}
+.song-side .copy.copied svg{display:none}
+.song-side .copy.copied::after{content:"✓";font-size:19px;font-weight:900;line-height:1}
 .inline-history[hidden]{display:none!important}
 .inline-history{grid-column:1/-1;width:100%;min-width:0;margin-top:4px;padding-top:8px;border-top:1px solid var(--line)}
 .song.history-open{border-color:#78b89a;box-shadow:0 11px 20px rgba(29,77,60,.15)}
