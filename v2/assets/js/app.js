@@ -118,6 +118,7 @@
   el('previous').addEventListener('click',window.V2Player.previous);
   el('next').addEventListener('click',window.V2Player.next);
   el('seek-back').addEventListener('click',function(){window.V2Player.seek(-10);});
+  el('play-pause').addEventListener('click',window.V2Player.togglePlayback);
   el('seek-forward').addEventListener('click',function(){window.V2Player.seek(10);});
   el('volume').addEventListener('input',function(event){window.V2Player.setVolume(event.target.value);});
   el('shuffle').addEventListener('click',function(){
@@ -131,8 +132,22 @@
       state.playing=detail.row;
       el('now-playing').textContent=text(detail.row.title)+' / '+text(detail.row.artist);
       render();
+    }else if(type==='state'){
+      var isPlaying=detail.state===1;
+      var control=el('play-pause');
+      control.textContent=isPlaying?'⏸ 一時停止':'▶ 再生';
+      control.title=isPlaying?'一時停止':'再生';
+      control.setAttribute('aria-label',control.title);
     }else if(type==='error'){
-      setStatus('動画を再生できません（コード: '+detail.code+'）');
+      var errors={
+        2:'動画URLまたは開始位置が無効です',
+        5:'この動画をHTML5プレイヤーで再生できません',
+        100:'動画が削除済みまたは非公開です',
+        101:'動画の所有者が埋め込み再生を許可していません',
+        150:'動画の所有者が埋め込み再生を許可していません',
+        'invalid-url':'YouTube動画URLを認識できません'
+      };
+      setStatus(errors[detail.code]||('動画を再生できません（YouTubeエラー '+detail.code+'）'));
     }
   });
 
