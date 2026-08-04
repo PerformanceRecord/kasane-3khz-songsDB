@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-03T01:45:24.157Z",
+  "fetchedAt": "2026-08-04T01:22:02.454Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -10794,6 +10794,16 @@
       "historyKey": "hana|all in"
     },
     {
+      "artist": "HANA",
+      "title": "Drop",
+      "kind": "歌枠",
+      "dText": "20260316 【#歌枠 】昼の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=x5BV86bUdvo&t=2249s",
+      "date8": 20260316,
+      "rowId": "hana|drop|歌枠|https://www.youtube.com/watch?v=x5BV86bUdvo&t=2249s",
+      "historyKey": "hana|drop"
+    },
+    {
       "artist": "ヨルシカ",
       "title": "パレード",
       "kind": "歌枠",
@@ -11474,6 +11484,16 @@
       "historyKey": "ぐにょ|福寿草"
     },
     {
+      "artist": "天使電影",
+      "title": "HAPPY?",
+      "kind": "ショート",
+      "dText": "20260424 HAPPY？/天使電影 feat.可不 #歌ってみた #cover #天使電影 #ボカロ #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=A0m5uiJMmbc",
+      "date8": 20260424,
+      "rowId": "天使電影|happy?|ショート|https://www.youtube.com/watch?v=A0m5uiJMmbc",
+      "historyKey": "天使電影|happy?"
+    },
+    {
       "artist": "椎名林檎",
       "title": "おだいじに",
       "kind": "歌枠",
@@ -11604,6 +11624,16 @@
       "historyKey": "hakubi|twilight"
     },
     {
+      "artist": "みきとP",
+      "title": "少女レイ",
+      "kind": "歌枠",
+      "dText": "20260511 【#歌枠 】デビュー9カ月！のんびり歌枠🌙初見歓迎🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=EKYW8P4H3J8&t=3225s",
+      "date8": 20260511,
+      "rowId": "みきとp|少女レイ|歌枠|https://www.youtube.com/watch?v=EKYW8P4H3J8&t=3225s",
+      "historyKey": "みきとp|少女レイ"
+    },
+    {
       "artist": "椎名林檎",
       "title": "はいはい",
       "kind": "歌枠",
@@ -11694,6 +11724,16 @@
       "historyKey": "椎名林檎|積木遊び"
     },
     {
+      "artist": "Ado",
+      "title": "唱",
+      "kind": "歌枠",
+      "dText": "20260517 【#歌枠 】ちょっとだけお昼の歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=dy6svkoXg8I&t=2407s",
+      "date8": 20260517,
+      "rowId": "ado|唱|歌枠|https://www.youtube.com/watch?v=dy6svkoXg8I&t=2407s",
+      "historyKey": "ado|唱"
+    },
+    {
       "artist": "サカナクション",
       "title": "『バッハの旋律を夜に聴いたせいです。』",
       "kind": "歌枠",
@@ -11702,6 +11742,16 @@
       "date8": 20260517,
       "rowId": "サカナクション|『バッハの旋律を夜に聴いたせいです。』|歌枠|https://www.youtube.com/watch?v=dy6svkoXg8I&t=491s",
       "historyKey": "サカナクション|『バッハの旋律を夜に聴いたせいです。』"
+    },
+    {
+      "artist": "サカナクション",
+      "title": "夜の踊り子",
+      "kind": "歌枠",
+      "dText": "20260517 【#歌枠 】ちょっとだけお昼の歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=dy6svkoXg8I&t=48s",
+      "date8": 20260517,
+      "rowId": "サカナクション|夜の踊り子|歌枠|https://www.youtube.com/watch?v=dy6svkoXg8I&t=48s",
+      "historyKey": "サカナクション|夜の踊り子"
     },
     {
       "artist": "ヨルシカ",
@@ -11722,6 +11772,26 @@
       "date8": 20260520,
       "rowId": "椎名林檎|ギブス|ショート|https://www.youtube.com/watch?v=7W-erkXOJSM",
       "historyKey": "椎名林檎|ギブス"
+    },
+    {
+      "artist": "YEN TOWN BAND",
+      "title": "Swallowtail Butterfly 〜あいのうた〜",
+      "kind": "歌枠",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=777s",
+      "date8": 20260521,
+      "rowId": "yen town band|swallowtail butterfly 〜あいのうた〜|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=777s",
+      "historyKey": "yen town band|swallowtail butterfly 〜あいのうた〜"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "晴る",
+      "kind": "歌枠",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=5642s",
+      "date8": 20260521,
+      "rowId": "ヨルシカ|晴る|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=5642s",
+      "historyKey": "ヨルシカ|晴る"
     },
     {
       "artist": "ヨルシカ",
@@ -11752,6 +11822,76 @@
       "date8": 20260521,
       "rowId": "手嶌葵|明日への手紙|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=6574s",
       "historyKey": "手嶌葵|明日への手紙"
+    },
+    {
+      "artist": "東京事変",
+      "title": "酒と下戸",
+      "kind": "歌枠",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=2724s",
+      "date8": 20260521,
+      "rowId": "東京事変|酒と下戸|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=2724s",
+      "historyKey": "東京事変|酒と下戸"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "依存症",
+      "kind": "歌枠",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=3267s",
+      "date8": 20260521,
+      "rowId": "椎名林檎|依存症|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=3267s",
+      "historyKey": "椎名林檎|依存症"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "幸福論",
+      "kind": "歌枠",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=3956s",
+      "date8": 20260521,
+      "rowId": "椎名林檎|幸福論|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=3956s",
+      "historyKey": "椎名林檎|幸福論"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "浴室",
+      "kind": "歌枠",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=4296s",
+      "date8": 20260521,
+      "rowId": "椎名林檎|浴室|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=4296s",
+      "historyKey": "椎名林檎|浴室"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "闇に降る雨",
+      "kind": "歌枠",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=4565s",
+      "date8": 20260521,
+      "rowId": "椎名林檎|闇に降る雨|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=4565s",
+      "historyKey": "椎名林檎|闇に降る雨"
+    },
+    {
+      "artist": "水曜日のカンパネラ",
+      "title": "エジソン",
+      "kind": "歌枠",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=471s",
+      "date8": 20260521,
+      "rowId": "水曜日のカンパネラ|エジソン|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=471s",
+      "historyKey": "水曜日のカンパネラ|エジソン"
+    },
+    {
+      "artist": "藤原さくら",
+      "title": "「かわいい」",
+      "kind": "歌枠",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=1154s",
+      "date8": 20260521,
+      "rowId": "藤原さくら|「かわいい」|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=1154s",
+      "historyKey": "藤原さくら|「かわいい」"
     },
     {
       "artist": "東京事変",
@@ -11994,6 +12134,6 @@
       "historyKey": "秦基博|ひまわりの約束"
     }
   ],
-  "total": 1199,
-  "matched": 1199
+  "total": 1213,
+  "matched": 1213
 }
