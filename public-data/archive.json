@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-04T01:22:02.454Z",
+  "fetchedAt": "2026-08-05T01:27:14.454Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -12104,6 +12104,26 @@
       "historyKey": "b-dash|ちょ"
     },
     {
+      "artist": "millennium parade × Belle",
+      "title": "U",
+      "kind": "歌枠",
+      "dText": "20260713 【#歌枠 】月曜の青春パンクな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=vpLO3OcLw7g&t=2735s",
+      "date8": 20260713,
+      "rowId": "millennium parade × belle|u|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=2735s",
+      "historyKey": "millennium parade × belle|u"
+    },
+    {
+      "artist": "Ado",
+      "title": "阿修羅ちゃん",
+      "kind": "ショート",
+      "dText": "20260717 【生歌】阿修羅ちゃん/Ado #歌ってみた #阿修羅ちゃん #Ado #karaoke #singing",
+      "dUrl": "https://www.youtube.com/watch?v=k7YJxuSdajs",
+      "date8": 20260717,
+      "rowId": "ado|阿修羅ちゃん|ショート|https://www.youtube.com/watch?v=k7YJxuSdajs",
+      "historyKey": "ado|阿修羅ちゃん"
+    },
+    {
       "artist": "DECO*27",
       "title": "ダミーロマンス",
       "kind": "ショート",
@@ -12132,8 +12152,58 @@
       "date8": 20260723,
       "rowId": "秦基博|ひまわりの約束|ショート|https://www.youtube.com/watch?v=brXEBy7HGSs",
       "historyKey": "秦基博|ひまわりの約束"
+    },
+    {
+      "artist": "B9☆",
+      "title": "赤点教室",
+      "kind": "歌枠",
+      "dText": "20260727 【#歌枠 】暑さに負けない！月曜の癒し歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=1932s",
+      "date8": 20260727,
+      "rowId": "b9☆|赤点教室|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=1932s",
+      "historyKey": "b9☆|赤点教室"
+    },
+    {
+      "artist": "DECO*27",
+      "title": "マシュマロ",
+      "kind": "歌枠",
+      "dText": "20260727 【#歌枠 】暑さに負けない！月曜の癒し歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=3653s",
+      "date8": 20260727,
+      "rowId": "deco*27|マシュマロ|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=3653s",
+      "historyKey": "deco*27|マシュマロ"
+    },
+    {
+      "artist": "おぱみな feat.羽累(HARU)",
+      "title": "SMASH",
+      "kind": "歌枠",
+      "dText": "20260727 【#歌枠 】暑さに負けない！月曜の癒し歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=4705s",
+      "date8": 20260727,
+      "rowId": "おぱみな feat.羽累(haru)|smash|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=4705s",
+      "historyKey": "おぱみな feat.羽累(haru)|smash"
+    },
+    {
+      "artist": "内緒のピアス",
+      "title": "ハナビラ",
+      "kind": "歌枠",
+      "dText": "20260727 【#歌枠 】暑さに負けない！月曜の癒し歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=5063s",
+      "date8": 20260727,
+      "rowId": "内緒のピアス|ハナビラ|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=5063s",
+      "historyKey": "内緒のピアス|ハナビラ"
+    },
+    {
+      "artist": "柊マグネタイト",
+      "title": "テトリス",
+      "kind": "歌枠",
+      "dText": "20260727 【#歌枠 】暑さに負けない！月曜の癒し歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=3983s",
+      "date8": 20260727,
+      "rowId": "柊マグネタイト|テトリス|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=3983s",
+      "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1213,
-  "matched": 1213
+  "total": 1220,
+  "matched": 1220
 }

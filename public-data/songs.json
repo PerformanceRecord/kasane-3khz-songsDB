@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-04T01:21:48.647Z",
+  "fetchedAt": "2026-08-05T01:26:46.057Z",
   "rows": [
     {
       "artist": "T.M.Revolution",
@@ -61,7 +61,7 @@
       "rowId": "ado|阿修羅ちゃん|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=5415s",
       "historyRef": "history/e07d48c97bb5.json",
       "historyCount": 1,
-      "lastSungAt": 20260727
+      "lastSungAt": 20260717
     },
     {
       "artist": "Ado",
@@ -168,8 +168,8 @@
       "date8": 20260727,
       "rowId": "millennium parade × belle|u|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=8122s",
       "historyRef": "history/e9e6eac207af.json",
-      "historyCount": 1,
-      "lastSungAt": 20260709
+      "historyCount": 2,
+      "lastSungAt": 20260713
     },
     {
       "artist": "サカナクション",
@@ -2964,8 +2964,8 @@
       "date8": 20260429,
       "rowId": "b9☆|赤点教室|歌ってみた|https://www.youtube.com/watch?v=esq21pEqqwE",
       "historyRef": "history/bc118a6fee29.json",
-      "historyCount": 3,
-      "lastSungAt": 20260501
+      "historyCount": 4,
+      "lastSungAt": 20260727
     },
     {
       "artist": "LOVE PSYCHEDELICO",
@@ -4680,8 +4680,8 @@
       "date8": 20260303,
       "rowId": "内緒のピアス|ハナビラ|歌ってみた|https://www.youtube.com/watch?v=-p8qwhze5Mg",
       "historyRef": "history/abda350d7740.json",
-      "historyCount": 3,
-      "lastSungAt": 20260316
+      "historyCount": 4,
+      "lastSungAt": 20260727
     },
     {
       "artist": "9mm Parabellum Bullet",
@@ -5052,8 +5052,8 @@
       "date8": 20260211,
       "rowId": "おぱみな feat.羽累(haru)|smash|歌ってみた|https://www.youtube.com/watch?v=zoiuRy4O_68&t=0s",
       "historyRef": "history/3a4d5b839a95.json",
-      "historyCount": 6,
-      "lastSungAt": 20260326
+      "historyCount": 7,
+      "lastSungAt": 20260727
     },
     {
       "artist": "DAYBREAK FRONTLINE",
@@ -6036,8 +6036,8 @@
       "date8": 20251213,
       "rowId": "柊マグネタイト|テトリス|歌ってみた|https://www.youtube.com/watch?v=oJK6Dpvk29c",
       "historyRef": "history/27282d0d86a3.json",
-      "historyCount": 2,
-      "lastSungAt": 20260401
+      "historyCount": 3,
+      "lastSungAt": 20260727
     },
     {
       "artist": "Tommy february6",
@@ -6936,8 +6936,8 @@
       "date8": 20251013,
       "rowId": "deco*27|マシュマロ|歌ってみた|https://www.youtube.com/watch?v=tTb_AP1NpNU",
       "historyRef": "history/bb8f4d3a1f84.json",
-      "historyCount": 8,
-      "lastSungAt": 20260401
+      "historyCount": 9,
+      "lastSungAt": 20260727
     },
     {
       "artist": "マシュマロ/DECO*27 covered",

@@ -1,10 +1,10 @@
 {
-  "cursorDate8": 20260622,
-  "cursorKey": "rinri×kyiku|白絵にもならない|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=6839s",
-  "batchSize": 172,
-  "wrapped": false,
-  "cycle": 1,
-  "lastCycleCompletedAt": "2026-07-29T01:25:32.247Z",
-  "lastCollisionCount": 158,
-  "updatedAt": "2026-08-04T01:22:02.454Z"
+  "cursorDate8": 0,
+  "cursorKey": "",
+  "batchSize": 174,
+  "wrapped": true,
+  "cycle": 2,
+  "lastCycleCompletedAt": "2026-08-05T01:27:14.454Z",
+  "lastCollisionCount": 10,
+  "updatedAt": "2026-08-05T01:27:14.454Z"
 }
