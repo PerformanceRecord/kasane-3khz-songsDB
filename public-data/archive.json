@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-06T01:24:04.991Z",
+  "fetchedAt": "2026-08-07T02:02:40.083Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -4825,6 +4825,16 @@
     },
     {
       "artist": "JUDY AND MARY",
+      "title": "RADIO",
+      "kind": "歌枠",
+      "dText": "20251006 【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=GhixRAwY_YI&t=1297s",
+      "date8": 20251006,
+      "rowId": "judy and mary|radio|歌枠|https://www.youtube.com/watch?v=GhixRAwY_YI&t=1297s",
+      "historyKey": "judy and mary|radio"
+    },
+    {
+      "artist": "JUDY AND MARY",
       "title": "クラシック",
       "kind": "歌枠",
       "dText": "20251006 【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
@@ -4935,6 +4945,26 @@
     },
     {
       "artist": "JUDY AND MARY",
+      "title": "LOVER SOUL",
+      "kind": "歌枠",
+      "dText": "20251009【歌枠・昼の部】お仕事前にゆるゆる歌枠🌟⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=He4N43SKBs8&t=2503s",
+      "date8": 20251009,
+      "rowId": "judy and mary|lover soul|歌枠|https://www.youtube.com/watch?v=He4N43SKBs8&t=2503s",
+      "historyKey": "judy and mary|lover soul"
+    },
+    {
+      "artist": "JUDY AND MARY",
+      "title": "小さな頃から",
+      "kind": "歌枠",
+      "dText": "20251009【歌枠・昼の部】お仕事前にゆるゆる歌枠🌟⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=He4N43SKBs8&t=1892s",
+      "date8": 20251009,
+      "rowId": "judy and mary|小さな頃から|歌枠|https://www.youtube.com/watch?v=He4N43SKBs8&t=1892s",
+      "historyKey": "judy and mary|小さな頃から"
+    },
+    {
+      "artist": "JUDY AND MARY",
       "title": "小さな頃から",
       "kind": "歌枠",
       "dText": "20251009 【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
@@ -4942,6 +4972,16 @@
       "date8": 20251009,
       "rowId": "judy and mary|小さな頃から|歌枠|https://www.youtube.com/watch?v=rk32iVqVzJw&t=1892s",
       "historyKey": "judy and mary|小さな頃から"
+    },
+    {
+      "artist": "Orangestar",
+      "title": "回る空うさぎ",
+      "kind": "歌枠",
+      "dText": "20251009【歌枠・昼の部】お仕事前にゆるゆる歌枠🌟⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=He4N43SKBs8&t=1603s",
+      "date8": 20251009,
+      "rowId": "orangestar|回る空うさぎ|歌枠|https://www.youtube.com/watch?v=He4N43SKBs8&t=1603s",
+      "historyKey": "orangestar|回る空うさぎ"
     },
     {
       "artist": "Orangestar",
@@ -4957,11 +4997,31 @@
       "artist": "ジミーサムP",
       "title": "Calc.",
       "kind": "歌枠",
+      "dText": "20251009【歌枠・昼の部】お仕事前にゆるゆる歌枠🌟⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=He4N43SKBs8&t=2970s",
+      "date8": 20251009,
+      "rowId": "ジミーサムp|calc.|歌枠|https://www.youtube.com/watch?v=He4N43SKBs8&t=2970s",
+      "historyKey": "ジミーサムp|calc."
+    },
+    {
+      "artist": "ジミーサムP",
+      "title": "Calc.",
+      "kind": "歌枠",
       "dText": "20251009 【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=rk32iVqVzJw&t=2970s",
       "date8": 20251009,
       "rowId": "ジミーサムp|calc.|歌枠|https://www.youtube.com/watch?v=rk32iVqVzJw&t=2970s",
       "historyKey": "ジミーサムp|calc."
+    },
+    {
+      "artist": "ちゃんみな",
+      "title": "ハレンチ",
+      "kind": "歌枠",
+      "dText": "20251009【歌枠・昼の部】お仕事前にゆるゆる歌枠🌟⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=He4N43SKBs8&t=5705s",
+      "date8": 20251009,
+      "rowId": "ちゃんみな|ハレンチ|歌枠|https://www.youtube.com/watch?v=He4N43SKBs8&t=5705s",
+      "historyKey": "ちゃんみな|ハレンチ"
     },
     {
       "artist": "ちゃんみな",
@@ -4977,11 +5037,31 @@
       "artist": "みきとP",
       "title": "少女レイ",
       "kind": "歌枠",
+      "dText": "20251009【歌枠・昼の部】お仕事前にゆるゆる歌枠🌟⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=He4N43SKBs8&t=3348s",
+      "date8": 20251009,
+      "rowId": "みきとp|少女レイ|歌枠|https://www.youtube.com/watch?v=He4N43SKBs8&t=3348s",
+      "historyKey": "みきとp|少女レイ"
+    },
+    {
+      "artist": "みきとP",
+      "title": "少女レイ",
+      "kind": "歌枠",
       "dText": "20251009 【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=rk32iVqVzJw&t=3348s",
       "date8": 20251009,
       "rowId": "みきとp|少女レイ|歌枠|https://www.youtube.com/watch?v=rk32iVqVzJw&t=3348s",
       "historyKey": "みきとp|少女レイ"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "パレード",
+      "kind": "歌枠",
+      "dText": "20251009【歌枠・昼の部】お仕事前にゆるゆる歌枠🌟⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=He4N43SKBs8&t=4159s",
+      "date8": 20251009,
+      "rowId": "ヨルシカ|パレード|歌枠|https://www.youtube.com/watch?v=He4N43SKBs8&t=4159s",
+      "historyKey": "ヨルシカ|パレード"
     },
     {
       "artist": "ヨルシカ",
@@ -4997,11 +5077,31 @@
       "artist": "ヨルシカ",
       "title": "準透明少年",
       "kind": "歌枠",
+      "dText": "20251009【歌枠・昼の部】お仕事前にゆるゆる歌枠🌟⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=He4N43SKBs8&t=3736s",
+      "date8": 20251009,
+      "rowId": "ヨルシカ|準透明少年|歌枠|https://www.youtube.com/watch?v=He4N43SKBs8&t=3736s",
+      "historyKey": "ヨルシカ|準透明少年"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "準透明少年",
+      "kind": "歌枠",
       "dText": "20251009 【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=rk32iVqVzJw&t=3736s",
       "date8": 20251009,
       "rowId": "ヨルシカ|準透明少年|歌枠|https://www.youtube.com/watch?v=rk32iVqVzJw&t=3736s",
       "historyKey": "ヨルシカ|準透明少年"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "風を食む",
+      "kind": "歌枠",
+      "dText": "20251009【歌枠・昼の部】お仕事前にゆるゆる歌枠🌟⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=He4N43SKBs8&t=4665s",
+      "date8": 20251009,
+      "rowId": "ヨルシカ|風を食む|歌枠|https://www.youtube.com/watch?v=He4N43SKBs8&t=4665s",
+      "historyKey": "ヨルシカ|風を食む"
     },
     {
       "artist": "ヨルシカ",
@@ -5027,6 +5127,16 @@
       "artist": "手嶌葵",
       "title": "テルーの唄",
       "kind": "歌枠",
+      "dText": "20251009【歌枠・昼の部】お仕事前にゆるゆる歌枠🌟⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=He4N43SKBs8&t=1196s",
+      "date8": 20251009,
+      "rowId": "手嶌葵|テルーの唄|歌枠|https://www.youtube.com/watch?v=He4N43SKBs8&t=1196s",
+      "historyKey": "手嶌葵|テルーの唄"
+    },
+    {
+      "artist": "手嶌葵",
+      "title": "テルーの唄",
+      "kind": "歌枠",
       "dText": "20251009 【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=rk32iVqVzJw&t=1196s",
       "date8": 20251009,
@@ -5037,11 +5147,31 @@
       "artist": "相対性理論",
       "title": "バーモント・キッス",
       "kind": "歌枠",
+      "dText": "20251009【歌枠・昼の部】お仕事前にゆるゆる歌枠🌟⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=He4N43SKBs8&t=694s",
+      "date8": 20251009,
+      "rowId": "相対性理論|バーモント・キッス|歌枠|https://www.youtube.com/watch?v=He4N43SKBs8&t=694s",
+      "historyKey": "相対性理論|バーモント・キッス"
+    },
+    {
+      "artist": "相対性理論",
+      "title": "バーモント・キッス",
+      "kind": "歌枠",
       "dText": "20251009 【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=rk32iVqVzJw&t=694s",
       "date8": 20251009,
       "rowId": "相対性理論|バーモント・キッス|歌枠|https://www.youtube.com/watch?v=rk32iVqVzJw&t=694s",
       "historyKey": "相対性理論|バーモント・キッス"
+    },
+    {
+      "artist": "相対性理論",
+      "title": "四角革命",
+      "kind": "歌枠",
+      "dText": "20251009【歌枠・昼の部】お仕事前にゆるゆる歌枠🌟⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=He4N43SKBs8&t=303s",
+      "date8": 20251009,
+      "rowId": "相対性理論|四角革命|歌枠|https://www.youtube.com/watch?v=He4N43SKBs8&t=303s",
+      "historyKey": "相対性理論|四角革命"
     },
     {
       "artist": "相対性理論",
@@ -12204,6 +12334,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1220,
-  "matched": 1220
+  "total": 1233,
+  "matched": 1233
 }
