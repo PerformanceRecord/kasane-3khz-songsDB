@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-07T02:02:40.083Z",
+  "fetchedAt": "2026-08-08T00:46:35.338Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -6114,6 +6114,16 @@
       "historyKey": "deco*27|マシュマロ"
     },
     {
+      "artist": "HALCALI",
+      "title": "おつかれSUMMER",
+      "kind": "歌枠",
+      "dText": "20251029 【縦型】お昼の歌枠🌟元気が出る歌を歌います！花彩音_3kHz【#新人vtuber #shorts 】",
+      "dUrl": "https://www.youtube.com/watch?v=ge1juO_XRG4&t=2376s",
+      "date8": 20251029,
+      "rowId": "halcali|おつかれsummer|歌枠|https://www.youtube.com/watch?v=ge1juO_XRG4&t=2376s",
+      "historyKey": "halcali|おつかれsummer"
+    },
+    {
       "artist": "NOMELON NOLEMON",
       "title": "ハイド・アンド・シーク",
       "kind": "歌枠",
@@ -6574,6 +6584,16 @@
       "historyKey": "hana|rose"
     },
     {
+      "artist": "HANA",
+      "title": "ROSE",
+      "kind": "ショート",
+      "dText": "20251113 ROSE/HANA #歌ってみた #hana #rose #nonogirls #ちゃんみな #vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=LQ2T8w1cn44",
+      "date8": 20251113,
+      "rowId": "hana|rose|ショート|https://www.youtube.com/watch?v=LQ2T8w1cn44",
+      "historyKey": "hana|rose"
+    },
+    {
       "artist": "DECO*27",
       "title": "モニタリング",
       "kind": "歌枠",
@@ -6872,6 +6892,16 @@
       "date8": 20251124,
       "rowId": "milet|anytime anywhere|歌枠|https://www.youtube.com/watch?v=QqrI5UQ9fcg&t=6828s",
       "historyKey": "milet|anytime anywhere"
+    },
+    {
+      "artist": "Ado",
+      "title": "踊",
+      "kind": "歌枠",
+      "dText": "20251126 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=vWXOXMNjwnM&t=3807s",
+      "date8": 20251126,
+      "rowId": "ado|踊|歌枠|https://www.youtube.com/watch?v=vWXOXMNjwnM&t=3807s",
+      "historyKey": "ado|踊"
     },
     {
       "artist": "EasyPop",
@@ -12334,6 +12364,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1233,
-  "matched": 1233
+  "total": 1236,
+  "matched": 1236
 }

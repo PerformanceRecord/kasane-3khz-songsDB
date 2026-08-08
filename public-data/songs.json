@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-07T02:02:27.980Z",
+  "fetchedAt": "2026-08-08T00:46:27.642Z",
   "rows": [
     {
       "artist": "T.M.Revolution",
@@ -84,8 +84,8 @@
       "date8": 20260727,
       "rowId": "ado|踊|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=5742s",
       "historyRef": "history/83b07cd459f0.json",
-      "historyCount": 1,
-      "lastSungAt": 20251121
+      "historyCount": 2,
+      "lastSungAt": 20251126
     },
     {
       "artist": "Creepy Nuts",
@@ -108,8 +108,8 @@
       "date8": 20260727,
       "rowId": "halcali|おつかれsummer|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=1250s",
       "historyRef": "history/a78abb637e6b.json",
-      "historyCount": 1,
-      "lastSungAt": 20251023
+      "historyCount": 2,
+      "lastSungAt": 20251029
     },
     {
       "artist": "HANA",
@@ -6336,7 +6336,7 @@
       "date8": 20251126,
       "rowId": "hana|rose|歌枠|https://www.youtube.com/watch?v=vWXOXMNjwnM&t=4862s",
       "historyRef": "history/eb4fad47de55.json",
-      "historyCount": 2,
+      "historyCount": 3,
       "lastSungAt": 20251117
     },
     {
