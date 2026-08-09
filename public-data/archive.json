@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-08T00:46:35.338Z",
+  "fetchedAt": "2026-08-09T00:50:08.898Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -7964,6 +7964,16 @@
       "historyKey": "くじら|金木犀"
     },
     {
+      "artist": "サツキ",
+      "title": "メズマライザー",
+      "kind": "歌枠",
+      "dText": "20251215 【#歌枠 昼の部】お昼のゆるーい歌枠🌟歌枠リレーに向けて午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=dwp1GLq8X50&t=2991s",
+      "date8": 20251215,
+      "rowId": "サツキ|メズマライザー|歌枠|https://www.youtube.com/watch?v=dwp1GLq8X50&t=2991s",
+      "historyKey": "サツキ|メズマライザー"
+    },
+    {
       "artist": "ちゃんみな",
       "title": "SAD SONG",
       "kind": "歌枠",
@@ -12364,6 +12374,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1236,
-  "matched": 1236
+  "total": 1237,
+  "matched": 1237
 }

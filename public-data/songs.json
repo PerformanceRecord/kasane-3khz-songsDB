@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-08T00:46:27.642Z",
+  "fetchedAt": "2026-08-09T00:50:01.253Z",
   "rows": [
     {
       "artist": "T.M.Revolution",
@@ -193,7 +193,7 @@
       "rowId": "サツキ|メズマライザー|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=4288s",
       "historyRef": "history/f79068c36988.json",
       "historyCount": 1,
-      "lastSungAt": 20260727
+      "lastSungAt": 20251215
     },
     {
       "artist": "みきとP",
