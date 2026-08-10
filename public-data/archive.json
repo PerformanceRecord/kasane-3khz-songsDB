@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-09T00:50:08.898Z",
+  "fetchedAt": "2026-08-10T00:52:42.755Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -8894,6 +8894,16 @@
       "historyKey": "ado|私は最強"
     },
     {
+      "artist": "Creepy Nuts",
+      "title": "Bling-Bang-Bang-Born",
+      "kind": "歌枠",
+      "dText": "20260109 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=7tU4tGzXLlc&t=2329s",
+      "date8": 20260109,
+      "rowId": "creepy nuts|bling-bang-bang-born|歌枠|https://www.youtube.com/watch?v=7tU4tGzXLlc&t=2329s",
+      "historyKey": "creepy nuts|bling-bang-bang-born"
+    },
+    {
       "artist": "水曜日のカンパネラ",
       "title": "ウォーアイニー",
       "kind": "歌枠",
@@ -10402,6 +10412,16 @@
       "date8": 20260220,
       "rowId": "deco*27|ラビットホール|歌枠|https://www.youtube.com/watch?v=_JHUCrunBnw&t=1467s",
       "historyKey": "deco*27|ラビットホール"
+    },
+    {
+      "artist": "JUDY AND MARY",
+      "title": "散歩道",
+      "kind": "歌枠",
+      "dText": "20260220 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=_JHUCrunBnw&t=3247s",
+      "date8": 20260220,
+      "rowId": "judy and mary|散歩道|歌枠|https://www.youtube.com/watch?v=_JHUCrunBnw&t=3247s",
+      "historyKey": "judy and mary|散歩道"
     },
     {
       "artist": "milet",
@@ -12374,6 +12394,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1237,
-  "matched": 1237
+  "total": 1239,
+  "matched": 1239
 }

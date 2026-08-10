@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-09T00:50:01.253Z",
+  "fetchedAt": "2026-08-10T00:52:35.849Z",
   "rows": [
     {
       "artist": "T.M.Revolution",
@@ -96,7 +96,7 @@
       "date8": 20260727,
       "rowId": "creepy nuts|bling-bang-bang-born|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=2420s",
       "historyRef": "history/276f0713157a.json",
-      "historyCount": 6,
+      "historyCount": 7,
       "lastSungAt": 20260206
     },
     {
@@ -156,8 +156,8 @@
       "date8": 20260727,
       "rowId": "judy and mary|散歩道|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=6832s",
       "historyRef": "history/ab9d14c95408.json",
-      "historyCount": 3,
-      "lastSungAt": 20251106
+      "historyCount": 4,
+      "lastSungAt": 20260220
     },
     {
       "artist": "millennium parade × Belle",
