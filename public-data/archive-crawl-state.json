@@ -1,10 +1,10 @@
 {
-  "cursorDate8": 20260228,
-  "cursorKey": "carpenters|yesterday once more|歌枠|https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=5326s",
+  "cursorDate8": 0,
+  "cursorKey": "",
   "batchSize": 177,
-  "wrapped": false,
-  "cycle": 2,
-  "lastCycleCompletedAt": "2026-08-05T01:27:14.454Z",
+  "wrapped": true,
+  "cycle": 3,
+  "lastCycleCompletedAt": "2026-08-11T00:51:56.252Z",
   "lastCollisionCount": 175,
-  "updatedAt": "2026-08-10T00:52:42.755Z"
+  "updatedAt": "2026-08-11T00:51:56.252Z"
 }
