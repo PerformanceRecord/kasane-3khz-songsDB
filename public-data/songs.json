@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-13T13:57:24.555Z",
+  "fetchedAt": "2026-08-13T14:08:06.163Z",
   "rows": [
     {
       "artist": "ゆうゆ",
@@ -28,26 +28,26 @@
       "lastSungAt": 20260812
     },
     {
-      "artist": "花彩音_3kHz",
-      "title": "マンデーモーニングブルー",
+      "artist": "マンデーモーニングブルー",
+      "title": "花彩音_3kHz",
       "kind": "歌ってみた",
       "dText": "20260812 【オリジナル曲】マンデーモーニングブルー/花彩音_3kHz【1st Anniversary】",
       "dUrl": "https://www.youtube.com/watch?v=RtZL4FG2vW4",
       "date8": 20260812,
-      "rowId": "花彩音_3khz|マンデーモーニングブルー|歌ってみた|https://www.youtube.com/watch?v=RtZL4FG2vW4",
-      "historyRef": "history/03e6e56e4c26.json",
+      "rowId": "マンデーモーニングブルー|花彩音_3khz|歌ってみた|https://www.youtube.com/watch?v=RtZL4FG2vW4",
+      "historyRef": "history/16e3f2b4adcd.json",
       "historyCount": 1,
-      "lastSungAt": 20260526
+      "lastSungAt": 20260812
     },
     {
-      "artist": "80denier/kiki vivi lily covered",
-      "title": "花彩音_3kHz",
+      "artist": "kiki vivi lily",
+      "title": "80denier",
       "kind": "歌ってみた",
       "dText": "20260811 【歌ってみた】80denier/kiki vivi lily covered by 花彩音_3kHz",
       "dUrl": "https://www.youtube.com/watch?v=zUwMx2wZEbo",
       "date8": 20260811,
-      "rowId": "80denier/kiki vivi lily covered|花彩音_3khz|歌ってみた|https://www.youtube.com/watch?v=zUwMx2wZEbo",
-      "historyRef": "history/a7d4795d7562.json",
+      "rowId": "kiki vivi lily|80denier|歌ってみた|https://www.youtube.com/watch?v=zUwMx2wZEbo",
+      "historyRef": "history/5c9500e111fb.json",
       "historyCount": 1,
       "lastSungAt": 20260811
     },
