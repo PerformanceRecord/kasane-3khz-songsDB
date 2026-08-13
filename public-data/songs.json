@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-13T14:08:06.163Z",
+  "fetchedAt": "2026-08-13T14:14:33.796Z",
   "rows": [
     {
       "artist": "ゆうゆ",
@@ -28,16 +28,16 @@
       "lastSungAt": 20260812
     },
     {
-      "artist": "マンデーモーニングブルー",
-      "title": "花彩音_3kHz",
+      "artist": "花彩音_3kHz",
+      "title": "マンデーモーニングブルー",
       "kind": "歌ってみた",
       "dText": "20260812 【オリジナル曲】マンデーモーニングブルー/花彩音_3kHz【1st Anniversary】",
       "dUrl": "https://www.youtube.com/watch?v=RtZL4FG2vW4",
       "date8": 20260812,
-      "rowId": "マンデーモーニングブルー|花彩音_3khz|歌ってみた|https://www.youtube.com/watch?v=RtZL4FG2vW4",
-      "historyRef": "history/16e3f2b4adcd.json",
+      "rowId": "花彩音_3khz|マンデーモーニングブルー|歌ってみた|https://www.youtube.com/watch?v=RtZL4FG2vW4",
+      "historyRef": "history/03e6e56e4c26.json",
       "historyCount": 1,
-      "lastSungAt": 20260812
+      "lastSungAt": 20260526
     },
     {
       "artist": "kiki vivi lily",
