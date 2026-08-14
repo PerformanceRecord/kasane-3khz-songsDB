@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "gas-sync",
-  "generatedAt": "2026-08-13T14:14:37.252Z",
-  "startedAt": "2026-08-13T14:14:15.121Z",
+  "generatedAt": "2026-08-14T00:59:12.142Z",
+  "startedAt": "2026-08-14T00:58:55.573Z",
   "tabs": [
     "songs",
     "gags"
@@ -13,9 +13,9 @@
   },
   "history": {
     "version": 1,
-    "generatedAt": "2026-08-13T14:14:37.252Z",
-    "sourceMode": "disk-archive",
-    "sourceRows": 1239,
+    "generatedAt": "2026-08-14T00:59:12.142Z",
+    "sourceMode": "live-archive",
+    "sourceRows": 1240,
     "files": 680,
     "multiEntryFiles": 263,
     "skipped": false

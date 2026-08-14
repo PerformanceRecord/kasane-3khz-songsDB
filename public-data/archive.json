@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-13T01:00:19.245Z",
+  "fetchedAt": "2026-08-14T00:59:12.060Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -4922,6 +4922,16 @@
       "date8": 20251006,
       "rowId": "東京事変|透明人間|歌枠|https://www.youtube.com/watch?v=GhixRAwY_YI&t=7883s",
       "historyKey": "東京事変|透明人間"
+    },
+    {
+      "artist": "松任谷由実",
+      "title": "ルージュの伝言",
+      "kind": "歌枠",
+      "dText": "20251006 【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=GhixRAwY_YI&t=6926s",
+      "date8": 20251006,
+      "rowId": "松任谷由実|ルージュの伝言|歌枠|https://www.youtube.com/watch?v=GhixRAwY_YI&t=6926s",
+      "historyKey": "松任谷由実|ルージュの伝言"
     },
     {
       "artist": "緑黄色社会",
@@ -12394,6 +12404,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1239,
-  "matched": 1239
+  "total": 1240,
+  "matched": 1240
 }

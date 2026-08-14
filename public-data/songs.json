@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-13T14:14:33.796Z",
+  "fetchedAt": "2026-08-14T00:59:03.359Z",
   "rows": [
     {
       "artist": "ゆうゆ",
@@ -193,7 +193,7 @@
       "rowId": "松任谷由実|ルージュの伝言|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=5163s",
       "historyRef": "history/5d29b737407b.json",
       "historyCount": 1,
-      "lastSungAt": 20260810
+      "lastSungAt": 20251006
     },
     {
       "artist": "大漠波新",
