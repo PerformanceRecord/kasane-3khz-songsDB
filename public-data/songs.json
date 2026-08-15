@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-14T00:59:03.359Z",
+  "fetchedAt": "2026-08-15T00:34:43.681Z",
   "rows": [
     {
       "artist": "ゆうゆ",
@@ -157,7 +157,7 @@
       "rowId": "すりぃ|ジャンキーナイトタウンオーケストラ|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=7410s",
       "historyRef": "history/2e219ac68327.json",
       "historyCount": 1,
-      "lastSungAt": 20260810
+      "lastSungAt": 20251023
     },
     {
       "artist": "みきとP",
@@ -768,7 +768,7 @@
       "date8": 20260713,
       "rowId": "aiko|カブトムシ|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=4259s",
       "historyRef": "history/8ca883f29b05.json",
-      "historyCount": 10,
+      "historyCount": 11,
       "lastSungAt": 20260128
     },
     {
@@ -828,7 +828,7 @@
       "date8": 20260713,
       "rowId": "tuki.|晩餐歌|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=5694s",
       "historyRef": "history/79e52cd634aa.json",
-      "historyCount": 6,
+      "historyCount": 7,
       "lastSungAt": 20260213
     },
     {
@@ -2388,7 +2388,7 @@
       "date8": 20260517,
       "rowId": "9lana|balalaika|歌枠|https://www.youtube.com/watch?v=dy6svkoXg8I&t=4664s",
       "historyRef": "history/deedd3fe0f6c.json",
-      "historyCount": 4,
+      "historyCount": 5,
       "lastSungAt": 20260128
     },
     {
@@ -2496,7 +2496,7 @@
       "date8": 20260516,
       "rowId": "ado|ウタカタララバイ|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=3551s",
       "historyRef": "history/08d3acf9a99a.json",
-      "historyCount": 10,
+      "historyCount": 11,
       "lastSungAt": 20260206
     },
     {
@@ -2532,7 +2532,7 @@
       "date8": 20260516,
       "rowId": "ナナホシ管弦楽団|抜錨|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=4668s",
       "historyRef": "history/5fefbaf551f4.json",
-      "historyCount": 9,
+      "historyCount": 10,
       "lastSungAt": 20251230
     },
     {
@@ -2700,7 +2700,7 @@
       "date8": 20260513,
       "rowId": "星街すいせい|caramel pain|歌枠|https://www.youtube.com/watch?v=bbp9IOVsTjY&t=4862s",
       "historyRef": "history/8a21b22105e7.json",
-      "historyCount": 7,
+      "historyCount": 8,
       "lastSungAt": 20260323
     },
     {
@@ -2952,7 +2952,7 @@
       "date8": 20260511,
       "rowId": "椎名林檎|虚言症|歌枠|https://www.youtube.com/watch?v=EKYW8P4H3J8&t=1406s",
       "historyRef": "history/16482c897784.json",
-      "historyCount": 2,
+      "historyCount": 3,
       "lastSungAt": 20251218
     },
     {
@@ -3348,7 +3348,7 @@
       "date8": 20260424,
       "rowId": "なとり|overdose|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=945s",
       "historyRef": "history/1dc67dbc2599.json",
-      "historyCount": 2,
+      "historyCount": 3,
       "lastSungAt": 20251023
     },
     {
@@ -4884,7 +4884,7 @@
       "date8": 20260228,
       "rowId": "すりぃ|ラヴィ|歌枠|https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=6153s",
       "historyRef": "history/3a92867b0ee3.json",
-      "historyCount": 6,
+      "historyCount": 7,
       "lastSungAt": 20251219
     },
     {
@@ -5232,7 +5232,7 @@
       "date8": 20260206,
       "rowId": "椎名林檎|茎|歌枠|https://www.youtube.com/watch?v=qLRKq6xO3qk&t=1026s",
       "historyRef": "history/4892566e9d23.json",
-      "historyCount": 1,
+      "historyCount": 2,
       "lastSungAt": 20251023
     },
     {
@@ -5964,7 +5964,7 @@
       "date8": 20251222,
       "rowId": "ずっと真夜中でいいのに。|残機|歌枠|https://www.youtube.com/watch?v=GDn01RpX_6E&t=6028s",
       "historyRef": "history/030a4c213c8c.json",
-      "historyCount": 3,
+      "historyCount": 4,
       "lastSungAt": 20251212
     },
     {
