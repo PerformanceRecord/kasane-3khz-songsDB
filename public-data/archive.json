@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-15T00:34:50.953Z",
+  "fetchedAt": "2026-08-16T00:36:18.743Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -9034,6 +9034,16 @@
       "historyKey": "creepy nuts|bling-bang-bang-born"
     },
     {
+      "artist": "supercell",
+      "title": "拍手喝采歌合",
+      "kind": "歌枠",
+      "dText": "20260109 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=7tU4tGzXLlc&t=1482s",
+      "date8": 20260109,
+      "rowId": "supercell|拍手喝采歌合|歌枠|https://www.youtube.com/watch?v=7tU4tGzXLlc&t=1482s",
+      "historyKey": "supercell|拍手喝采歌合"
+    },
+    {
       "artist": "水曜日のカンパネラ",
       "title": "ウォーアイニー",
       "kind": "歌枠",
@@ -12524,6 +12534,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1252,
-  "matched": 1252
+  "total": 1253,
+  "matched": 1253
 }

@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-15T00:34:43.681Z",
+  "fetchedAt": "2026-08-16T00:36:10.507Z",
   "rows": [
     {
       "artist": "ゆうゆ",
@@ -144,8 +144,8 @@
       "date8": 20260810,
       "rowId": "supercell|拍手喝采歌合|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=3746s",
       "historyRef": "history/83dbf6c864b2.json",
-      "historyCount": 2,
-      "lastSungAt": 20251210
+      "historyCount": 3,
+      "lastSungAt": 20260109
     },
     {
       "artist": "すりぃ",
