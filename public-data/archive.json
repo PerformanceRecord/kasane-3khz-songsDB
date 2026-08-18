@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-17T00:34:35.913Z",
+  "fetchedAt": "2026-08-18T00:34:17.905Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -10845,6 +10845,16 @@
     },
     {
       "artist": "東京事変",
+      "title": "修羅場",
+      "kind": "歌枠",
+      "dText": "20260228 【#歌枠 昼の部 #耐久 】高評価100耐久🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=4271s",
+      "date8": 20260228,
+      "rowId": "東京事変|修羅場|歌枠|https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=4271s",
+      "historyKey": "東京事変|修羅場"
+    },
+    {
+      "artist": "東京事変",
       "title": "群青日和",
       "kind": "歌枠",
       "dText": "20260228 【#歌枠 昼の部 #耐久 】高評価100耐久🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
@@ -11207,17 +11217,27 @@
       "artist": "Aimer",
       "title": "茜さす",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=1922s",
       "date8": 20260319,
       "rowId": "aimer|茜さす|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=1922s",
       "historyKey": "aimer|茜さす"
     },
     {
+      "artist": "Ariana Grande",
+      "title": "One Last Time",
+      "kind": "歌枠",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=7505s",
+      "date8": 20260319,
+      "rowId": "ariana grande|one last time|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=7505s",
+      "historyKey": "ariana grande|one last time"
+    },
+    {
       "artist": "Avril Lavigne",
       "title": "Girlfriend",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=6982s",
       "date8": 20260319,
       "rowId": "avril lavigne|girlfriend|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=6982s",
@@ -11227,17 +11247,57 @@
       "artist": "DECO*27",
       "title": "シンデレラ",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=4502s",
       "date8": 20260319,
       "rowId": "deco*27|シンデレラ|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=4502s",
       "historyKey": "deco*27|シンデレラ"
     },
     {
+      "artist": "DECO*27",
+      "title": "妄想感傷代償連盟",
+      "kind": "歌枠",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=4093s",
+      "date8": 20260319,
+      "rowId": "deco*27|妄想感傷代償連盟|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=4093s",
+      "historyKey": "deco*27|妄想感傷代償連盟"
+    },
+    {
+      "artist": "EGOIST",
+      "title": "咲かせや咲かせ",
+      "kind": "歌枠",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=637s",
+      "date8": 20260319,
+      "rowId": "egoist|咲かせや咲かせ|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=637s",
+      "historyKey": "egoist|咲かせや咲かせ"
+    },
+    {
+      "artist": "JUDY AND MARY",
+      "title": "BATHROOM",
+      "kind": "歌枠",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=4871s",
+      "date8": 20260319,
+      "rowId": "judy and mary|bathroom|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=4871s",
+      "historyKey": "judy and mary|bathroom"
+    },
+    {
+      "artist": "supercell",
+      "title": "メルト",
+      "kind": "歌枠",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=341s",
+      "date8": 20260319,
+      "rowId": "supercell|メルト|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=341s",
+      "historyKey": "supercell|メルト"
+    },
+    {
       "artist": "ヨルシカ",
       "title": "雨とカプチーノ",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=5806s",
       "date8": 20260319,
       "rowId": "ヨルシカ|雨とカプチーノ|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=5806s",
@@ -11247,17 +11307,27 @@
       "artist": "内緒のピアス",
       "title": "プロポーズ",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=3212s",
       "date8": 20260319,
       "rowId": "内緒のピアス|プロポーズ|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=3212s",
       "historyKey": "内緒のピアス|プロポーズ"
     },
     {
+      "artist": "天野月子",
+      "title": "箱庭",
+      "kind": "歌枠",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=936s",
+      "date8": 20260319,
+      "rowId": "天野月子|箱庭|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=936s",
+      "historyKey": "天野月子|箱庭"
+    },
+    {
       "artist": "椎名林檎",
       "title": "おこのみで",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=2807s",
       "date8": 20260319,
       "rowId": "椎名林檎|おこのみで|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=2807s",
@@ -11267,7 +11337,7 @@
       "artist": "椎名林檎",
       "title": "月に負け犬",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=2292s",
       "date8": 20260319,
       "rowId": "椎名林檎|月に負け犬|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=2292s",
@@ -11275,9 +11345,19 @@
     },
     {
       "artist": "椎名林檎",
-      "title": "薄ら氷心中",
+      "title": "茜さす帰路照らされど",
       "kind": "歌枠",
       "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=1643s",
+      "date8": 20260319,
+      "rowId": "椎名林檎|茜さす帰路照らされど|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=1643s",
+      "historyKey": "椎名林檎|茜さす帰路照らされど"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "薄ら氷心中",
+      "kind": "歌枠",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=1258s",
       "date8": 20260319,
       "rowId": "椎名林檎|薄ら氷心中|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=1258s",
@@ -11287,11 +11367,21 @@
       "artist": "水野あつ",
       "title": "生きる",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=3546s",
       "date8": 20260319,
       "rowId": "水野あつ|生きる|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=3546s",
       "historyKey": "水野あつ|生きる"
+    },
+    {
+      "artist": "相対性理論",
+      "title": "バーモント・キッス",
+      "kind": "歌枠",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=6245s",
+      "date8": 20260319,
+      "rowId": "相対性理論|バーモント・キッス|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=6245s",
+      "historyKey": "相対性理論|バーモント・キッス"
     },
     {
       "artist": "Hakubi",
@@ -11524,6 +11614,16 @@
       "historyKey": "井上陽水|少年時代"
     },
     {
+      "artist": "東京事変",
+      "title": "秘密",
+      "kind": "歌枠",
+      "dText": "20260330 【#歌枠 】癒し歌枠🌟月曜日おつかれさま⚛️🌐さんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=nPw6pSbRVMg&t=2138s",
+      "date8": 20260330,
+      "rowId": "東京事変|秘密|歌枠|https://www.youtube.com/watch?v=nPw6pSbRVMg&t=2138s",
+      "historyKey": "東京事変|秘密"
+    },
+    {
       "artist": "椎名林檎",
       "title": "すべりだい",
       "kind": "歌枠",
@@ -11704,6 +11804,16 @@
       "historyKey": "椎名林檎|罪と罰"
     },
     {
+      "artist": "40mP",
+      "title": "からくりピエロ",
+      "kind": "歌枠",
+      "dText": "20260409 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸木曜日もがんばろう 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=XwAQ408a3Vc&t=2026s",
+      "date8": 20260409,
+      "rowId": "40mp|からくりピエロ|歌枠|https://www.youtube.com/watch?v=XwAQ408a3Vc&t=2026s",
+      "historyKey": "40mp|からくりピエロ"
+    },
+    {
       "artist": "Carpenters",
       "title": "Yesterday Once More",
       "kind": "歌枠",
@@ -11804,6 +11914,16 @@
       "historyKey": "電ポルp|心象カスケード"
     },
     {
+      "artist": "MAISONdes feat.asmi すりぃ",
+      "title": "アイワナムチュー",
+      "kind": "歌枠",
+      "dText": "20260424 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸木曜日だと思ってたら金曜日だった、一日得した【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=6SJQQcplk2M&t=1531s",
+      "date8": 20260424,
+      "rowId": "maisondes feat.asmi すりぃ|アイワナムチュー|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=1531s",
+      "historyKey": "maisondes feat.asmi すりぃ|アイワナムチュー"
+    },
+    {
       "artist": "ぐにょ",
       "title": "福寿草",
       "kind": "歌枠",
@@ -11842,6 +11962,16 @@
       "date8": 20260424,
       "rowId": "米津玄師|iris out|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=1869s",
       "historyKey": "米津玄師|iris out"
+    },
+    {
+      "artist": "biz×ZARA",
+      "title": "Loveit？",
+      "kind": "ショート",
+      "dText": "20260428 Loveit？/biz×ZARA #歌ってみた #cover #biz #zara #loveit",
+      "dUrl": "https://www.youtube.com/watch?v=x8SITTcF5N0",
+      "date8": 20260428,
+      "rowId": "biz×zara|loveit?|ショート|https://www.youtube.com/watch?v=x8SITTcF5N0",
+      "historyKey": "biz×zara|loveit？"
     },
     {
       "artist": "B9☆",
@@ -12004,6 +12134,16 @@
       "historyKey": "ado|唱"
     },
     {
+      "artist": "DECO*27",
+      "title": "チェリーポップ",
+      "kind": "歌枠",
+      "dText": "20260516 【#歌枠 】機材トラブルによる遅延がすごい歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=5100s",
+      "date8": 20260516,
+      "rowId": "deco*27|チェリーポップ|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=5100s",
+      "historyKey": "deco*27|チェリーポップ"
+    },
+    {
       "artist": "サカナクション",
       "title": "『バッハの旋律を夜に聴いたせいです。』",
       "kind": "歌枠",
@@ -12127,7 +12267,7 @@
       "artist": "ヨルシカ",
       "title": "雨とカプチーノ",
       "kind": "歌枠",
-      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠・落ち着いた曲/椎名林檎の曲🌸【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=1747s",
       "date8": 20260521,
       "rowId": "ヨルシカ|雨とカプチーノ|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=1747s",
@@ -12137,7 +12277,7 @@
       "artist": "ヨルシカ",
       "title": "雨晴るる",
       "kind": "歌枠",
-      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠・落ち着いた曲/椎名林檎の曲🌸【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=1517s",
       "date8": 20260521,
       "rowId": "ヨルシカ|雨晴るる|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=1517s",
@@ -12147,7 +12287,7 @@
       "artist": "手嶌葵",
       "title": "明日への手紙",
       "kind": "歌枠",
-      "dText": "20260521 【#歌枠 】深夜に静かな歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dText": "20260521 【#歌枠 】深夜に静かな歌枠・落ち着いた曲/椎名林檎の曲🌸【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=5UeDjTz3-08&t=6574s",
       "date8": 20260521,
       "rowId": "手嶌葵|明日への手紙|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=6574s",
@@ -12294,6 +12434,16 @@
       "historyKey": "椎名林檎|幸福論"
     },
     {
+      "artist": "椎名林檎",
+      "title": "旬",
+      "kind": "歌枠",
+      "dText": "20260527 【#歌枠 】椎名林檎縛り🍎歌枠🍎【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=E02b7QxYr8w&t=2274s",
+      "date8": 20260527,
+      "rowId": "椎名林檎|旬|歌枠|https://www.youtube.com/watch?v=E02b7QxYr8w&t=2274s",
+      "historyKey": "椎名林檎|旬"
+    },
+    {
       "artist": "HAPPY？",
       "title": "天使電影",
       "kind": "ショート",
@@ -12335,6 +12485,26 @@
     },
     {
       "artist": "花彩音_3kHz",
+      "title": "マンデーモーニングブルー",
+      "kind": "歌枠",
+      "dText": "20260615 【#歌枠 】月曜日に元気な歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=iZSxpJFOGS0&t=7892s",
+      "date8": 20260615,
+      "rowId": "花彩音_3khz|マンデーモーニングブルー|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=7892s",
+      "historyKey": "花彩音_3khz|マンデーモーニングブルー"
+    },
+    {
+      "artist": "n-buna",
+      "title": "夜明けと蛍",
+      "kind": "歌枠",
+      "dText": "20260616 【#歌枠 】深夜にチルな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=domKgZ9vAj8&t=6190s",
+      "date8": 20260616,
+      "rowId": "n-buna|夜明けと蛍|歌枠|https://www.youtube.com/watch?v=domKgZ9vAj8&t=6190s",
+      "historyKey": "n-buna|夜明けと蛍"
+    },
+    {
+      "artist": "花彩音_3kHz",
       "title": "あめのうた",
       "kind": "歌枠",
       "dText": "20260616 【#歌枠 】深夜にチルな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
@@ -12362,6 +12532,16 @@
       "date8": 20260622,
       "rowId": "rinri×kyiku|白絵にもならない|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=6839s",
       "historyKey": "rinri×kyiku|白絵にもならない"
+    },
+    {
+      "artist": "夏川りみ",
+      "title": "涙そうそう",
+      "kind": "歌枠",
+      "dText": "20260622 【#歌枠 】月曜にチルな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=B3ICS3xhgB4&t=5057s",
+      "date8": 20260622,
+      "rowId": "夏川りみ|涙そうそう|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=5057s",
+      "historyKey": "夏川りみ|涙そうそう"
     },
     {
       "artist": "花彩音_3kHz",
@@ -12534,6 +12714,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1253,
-  "matched": 1253
+  "total": 1271,
+  "matched": 1271
 }

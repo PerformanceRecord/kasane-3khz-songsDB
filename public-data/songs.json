@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-17T00:34:29.334Z",
+  "fetchedAt": "2026-08-18T00:34:08.096Z",
   "rows": [
     {
       "artist": "ゆうゆ",
@@ -36,8 +36,8 @@
       "date8": 20260812,
       "rowId": "花彩音_3khz|マンデーモーニングブルー|歌ってみた|https://www.youtube.com/watch?v=RtZL4FG2vW4",
       "historyRef": "history/03e6e56e4c26.json",
-      "historyCount": 1,
-      "lastSungAt": 20260526
+      "historyCount": 2,
+      "lastSungAt": 20260615
     },
     {
       "artist": "kiki vivi lily",
@@ -60,8 +60,8 @@
       "date8": 20260810,
       "rowId": "40mp|からくりピエロ|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=6654s",
       "historyRef": "history/3593ef2fa88a.json",
-      "historyCount": 1,
-      "lastSungAt": 20260401
+      "historyCount": 2,
+      "lastSungAt": 20260409
     },
     {
       "artist": "DECO*27",
@@ -72,8 +72,8 @@
       "date8": 20260810,
       "rowId": "deco*27|チェリーポップ|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=6382s",
       "historyRef": "history/ce388e1b521e.json",
-      "historyCount": 5,
-      "lastSungAt": 20260220
+      "historyCount": 6,
+      "lastSungAt": 20260516
     },
     {
       "artist": "EGOIST",
@@ -84,8 +84,8 @@
       "date8": 20260810,
       "rowId": "egoist|咲かせや咲かせ|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=4066s",
       "historyRef": "history/1155392730f7.json",
-      "historyCount": 3,
-      "lastSungAt": 20260204
+      "historyCount": 4,
+      "lastSungAt": 20260319
     },
     {
       "artist": "MAISONdes feat.asmi すりぃ",
@@ -97,7 +97,7 @@
       "rowId": "maisondes feat.asmi すりぃ|アイワナムチュー|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=6098s",
       "historyRef": "history/8af4f23c5e43.json",
       "historyCount": 1,
-      "lastSungAt": 20260810
+      "lastSungAt": 20260424
     },
     {
       "artist": "milet",
@@ -132,8 +132,8 @@
       "date8": 20260810,
       "rowId": "n-buna|夜明けと蛍|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=2202s",
       "historyRef": "history/92c78a91d78a.json",
-      "historyCount": 12,
-      "lastSungAt": 20260323
+      "historyCount": 13,
+      "lastSungAt": 20260616
     },
     {
       "artist": "supercell",
@@ -180,8 +180,8 @@
       "date8": 20260810,
       "rowId": "夏川りみ|涙そうそう|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=1257s",
       "historyRef": "history/b70639f37bfc.json",
-      "historyCount": 4,
-      "lastSungAt": 20260406
+      "historyCount": 5,
+      "lastSungAt": 20260622
     },
     {
       "artist": "松任谷由実",
@@ -216,8 +216,8 @@
       "date8": 20260810,
       "rowId": "椎名林檎|旬|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=2646s",
       "historyRef": "history/86c48824decc.json",
-      "historyCount": 2,
-      "lastSungAt": 20260128
+      "historyCount": 3,
+      "lastSungAt": 20260527
     },
     {
       "artist": "東京事変",
@@ -228,8 +228,8 @@
       "date8": 20260810,
       "rowId": "東京事変|修羅場|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=4649s",
       "historyRef": "history/60f918fb1068.json",
-      "historyCount": 3,
-      "lastSungAt": 20251212
+      "historyCount": 4,
+      "lastSungAt": 20260228
     },
     {
       "artist": "東京事変",
@@ -240,8 +240,8 @@
       "date8": 20260810,
       "rowId": "東京事変|秘密|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=4388s",
       "historyRef": "history/b76d277c146e.json",
-      "historyCount": 4,
-      "lastSungAt": 20260128
+      "historyCount": 5,
+      "lastSungAt": 20260330
     },
     {
       "artist": "冨岡愛",
@@ -4500,8 +4500,8 @@
       "date8": 20260319,
       "rowId": "deco*27|妄想感傷代償連盟|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=4093s",
       "historyRef": "history/20a88d265378.json",
-      "historyCount": 4,
-      "lastSungAt": 20260124
+      "historyCount": 5,
+      "lastSungAt": 20260319
     },
     {
       "artist": "JUDY AND MARY",
@@ -4512,8 +4512,8 @@
       "date8": 20260319,
       "rowId": "judy and mary|bathroom|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=4871s",
       "historyRef": "history/14e6e3ccbb93.json",
-      "historyCount": 1,
-      "lastSungAt": 20251006
+      "historyCount": 2,
+      "lastSungAt": 20260319
     },
     {
       "artist": "supercell",
@@ -4524,8 +4524,8 @@
       "date8": 20260319,
       "rowId": "supercell|メルト|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=341s",
       "historyRef": "history/608de07f9d7f.json",
-      "historyCount": 1,
-      "lastSungAt": 20260308
+      "historyCount": 2,
+      "lastSungAt": 20260319
     },
     {
       "artist": "相対性理論",
@@ -4536,8 +4536,8 @@
       "date8": 20260319,
       "rowId": "相対性理論|バーモント・キッス|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=6245s",
       "historyRef": "history/1cf87125ad20.json",
-      "historyCount": 2,
-      "lastSungAt": 20251009
+      "historyCount": 3,
+      "lastSungAt": 20260319
     },
     {
       "artist": "椎名林檎",
@@ -4548,8 +4548,8 @@
       "date8": 20260319,
       "rowId": "椎名林檎|茜さす帰路照らされど|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=1643s",
       "historyRef": "history/eda70e3d9c3c.json",
-      "historyCount": 2,
-      "lastSungAt": 20260107
+      "historyCount": 3,
+      "lastSungAt": 20260319
     },
     {
       "artist": "天野月子",
@@ -4560,8 +4560,8 @@
       "date8": 20260319,
       "rowId": "天野月子|箱庭|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=936s",
       "historyRef": "history/6a1f6f2f5a91.json",
-      "historyCount": 1,
-      "lastSungAt": 20260225
+      "historyCount": 2,
+      "lastSungAt": 20260319
     },
     {
       "artist": "19 ─iku─",
@@ -6913,7 +6913,7 @@
       "rowId": "biz×zara|loveit?|歌枠|https://www.youtube.com/watch?v=xuJGGiJzBmw&t=4096s",
       "historyRef": "history/2e4e141a1286.json",
       "historyCount": 1,
-      "lastSungAt": 20251023
+      "lastSungAt": 20260428
     },
     {
       "artist": "N/A",
