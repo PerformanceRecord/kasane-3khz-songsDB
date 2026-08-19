@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-18T00:34:08.096Z",
+  "fetchedAt": "2026-08-19T00:34:31.712Z",
   "rows": [
     {
       "artist": "ゆうゆ",
@@ -168,8 +168,8 @@
       "date8": 20260810,
       "rowId": "みきとp|少女レイ|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=1632s",
       "historyRef": "history/f4f727fad38d.json",
-      "historyCount": 10,
-      "lastSungAt": 20260511
+      "historyCount": 11,
+      "lastSungAt": 20260727
     },
     {
       "artist": "夏川りみ",

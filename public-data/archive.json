@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-18T00:34:17.905Z",
+  "fetchedAt": "2026-08-19T00:34:39.054Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -12694,6 +12694,16 @@
       "historyKey": "おぱみな feat.羽累(haru)|smash"
     },
     {
+      "artist": "みきとP",
+      "title": "少女レイ",
+      "kind": "歌枠",
+      "dText": "20260727 【#歌枠 】暑さに負けない！月曜の癒し歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=370s",
+      "date8": 20260727,
+      "rowId": "みきとp|少女レイ|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=370s",
+      "historyKey": "みきとp|少女レイ"
+    },
+    {
       "artist": "内緒のピアス",
       "title": "ハナビラ",
       "kind": "歌枠",
@@ -12714,6 +12724,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1271,
-  "matched": 1271
+  "total": 1272,
+  "matched": 1272
 }

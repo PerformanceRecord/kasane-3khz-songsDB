@@ -1,10 +1,10 @@
 {
-  "cursorDate8": 20260717,
-  "cursorKey": "ado|阿修羅ちゃん|ショート|https://www.youtube.com/watch?v=k7YJxuSdajs",
-  "batchSize": 179,
-  "wrapped": false,
-  "cycle": 3,
-  "lastCycleCompletedAt": "2026-08-11T00:51:56.252Z",
-  "lastCollisionCount": 161,
-  "updatedAt": "2026-08-18T00:34:17.905Z"
+  "cursorDate8": 0,
+  "cursorKey": "",
+  "batchSize": 182,
+  "wrapped": true,
+  "cycle": 4,
+  "lastCycleCompletedAt": "2026-08-19T00:34:39.054Z",
+  "lastCollisionCount": 8,
+  "updatedAt": "2026-08-19T00:34:39.054Z"
 }
