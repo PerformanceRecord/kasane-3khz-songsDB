@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-19T00:34:31.712Z",
+  "fetchedAt": "2026-08-20T00:34:09.041Z",
   "rows": [
     {
       "artist": "ゆうゆ",
@@ -121,7 +121,7 @@
       "rowId": "miwa|441|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=5753s",
       "historyRef": "history/f78720a73a76.json",
       "historyCount": 1,
-      "lastSungAt": 20260810
+      "lastSungAt": 20250908
     },
     {
       "artist": "n-buna",
