@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-21T00:36:41.867Z",
+  "fetchedAt": "2026-08-21T03:37:27.730Z",
   "rows": [
     {
       "artist": "ゆうゆ",
@@ -796,18 +796,6 @@
       "lastSungAt": 20260711
     },
     {
-      "artist": "kiki vivi lily",
-      "title": "80denie",
-      "kind": "歌枠",
-      "dText": "20260713 【#歌枠 】月曜の青春パンクな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
-      "dUrl": "https://www.youtube.com/watch?v=vpLO3OcLw7g&t=682s",
-      "date8": 20260713,
-      "rowId": "kiki vivi lily|80denie|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=682s",
-      "historyRef": "history/c219d551463a.json",
-      "historyCount": 1,
-      "lastSungAt": 20260713
-    },
-    {
       "artist": "THE NEUTRAL",
       "title": "日曜日の太陽",
       "kind": "歌枠",
@@ -998,18 +986,6 @@
       "historyRef": "history/11fad5978719.json",
       "historyCount": 1,
       "lastSungAt": 20260704
-    },
-    {
-      "artist": "kiki vivi lily",
-      "title": "80デニール",
-      "kind": "ショート",
-      "dText": "20260701 【MIX前/MIXしたらフルで投稿】80デニール/kiki vivi lily #歌ってみた #タイツ #kikivivilily #chill #relaxingmusic",
-      "dUrl": "https://www.youtube.com/watch?v=XUTJ0ofljUo",
-      "date8": 20260701,
-      "rowId": "kiki vivi lily|80デニール|ショート|https://www.youtube.com/watch?v=XUTJ0ofljUo",
-      "historyRef": "history/5534b015e87b.json",
-      "historyCount": 1,
-      "lastSungAt": 20260701
     },
     {
       "artist": "ミルキィホームズ",
@@ -1577,13 +1553,13 @@
     },
     {
       "artist": "東京事変",
-      "title": "絶対絶命",
+      "title": "絶体絶命",
       "kind": "歌枠",
       "dText": "20260615 【#歌枠 】月曜日に元気な歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=iZSxpJFOGS0&t=1628s",
       "date8": 20260615,
-      "rowId": "東京事変|絶対絶命|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=1628s",
-      "historyRef": "history/bd1c362eb087.json",
+      "rowId": "東京事変|絶体絶命|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=1628s",
+      "historyRef": "history/a49c9f6f5f2e.json",
       "historyCount": 1,
       "lastSungAt": 20260615
     },
@@ -1781,13 +1757,13 @@
     },
     {
       "artist": "山口百恵",
-      "title": "絶対絶命",
+      "title": "絶体絶命",
       "kind": "歌枠",
       "dText": "20260610 【#歌枠 】お昼にのんびり歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=QXZMPywkYG8&t=4482s",
       "date8": 20260610,
-      "rowId": "山口百恵|絶対絶命|歌枠|https://www.youtube.com/watch?v=QXZMPywkYG8&t=4482s",
-      "historyRef": "history/c1b939d9cff2.json",
+      "rowId": "山口百恵|絶体絶命|歌枠|https://www.youtube.com/watch?v=QXZMPywkYG8&t=4482s",
+      "historyRef": "history/bf33fa1360ae.json",
       "historyCount": 1,
       "lastSungAt": 20260610
     },
@@ -2028,18 +2004,6 @@
       "date8": 20260527,
       "rowId": "東京事変|今夜はから騒ぎ|歌枠|https://www.youtube.com/watch?v=E02b7QxYr8w&t=874s",
       "historyRef": "history/e90466b98eff.json",
-      "historyCount": 1,
-      "lastSungAt": 20260527
-    },
-    {
-      "artist": "東京事変",
-      "title": "絶体絶命",
-      "kind": "歌枠",
-      "dText": "20260527 【#歌枠 】椎名林檎縛り🍎歌枠🍎【#新人vtuber #作業用bgm 】",
-      "dUrl": "https://www.youtube.com/watch?v=E02b7QxYr8w&t=2529s",
-      "date8": 20260527,
-      "rowId": "東京事変|絶体絶命|歌枠|https://www.youtube.com/watch?v=E02b7QxYr8w&t=2529s",
-      "historyRef": "history/a49c9f6f5f2e.json",
       "historyCount": 1,
       "lastSungAt": 20260527
     },
@@ -6148,18 +6112,6 @@
       "lastSungAt": 20260727
     },
     {
-      "artist": "Tommy february6",
-      "title": "Bloomin’!",
-      "kind": "ショート",
-      "dText": "20251212 Bloomin’!/Tommyfebruary6 #歌ってみた #tommyfebruary6 #illit #iroha #revival #y2k",
-      "dUrl": "https://www.youtube.com/shorts/rtv6cl6suLI",
-      "date8": 20251212,
-      "rowId": "tommy february6|bloomin’!|ショート|https://www.youtube.com/shorts/rtv6cl6suLI",
-      "historyRef": "history/a269ccc01ddb.json",
-      "historyCount": 1,
-      "lastSungAt": 20251212
-    },
-    {
       "artist": "RADWIMPS",
       "title": "オーダーメイド",
       "kind": "歌枠",
@@ -6374,18 +6326,6 @@
       "historyRef": "history/d546b32cd83c.json",
       "historyCount": 1,
       "lastSungAt": 20251203
-    },
-    {
-      "artist": "斎藤ネコx椎名林檎",
-      "title": "浴室",
-      "kind": "歌枠",
-      "dText": "20251203 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=APjKwFwQJ0I&t=4196s",
-      "date8": 20251203,
-      "rowId": "斎藤ネコx椎名林檎|浴室|歌枠|https://www.youtube.com/watch?v=APjKwFwQJ0I&t=4196s",
-      "historyRef": "history/256d33436334.json",
-      "historyCount": 1,
-      "lastSungAt": 20250924
     },
     {
       "artist": "浜崎あゆみ",
@@ -7060,30 +7000,6 @@
       "lastSungAt": 20260727
     },
     {
-      "artist": "マシュマロ",
-      "title": "DECO*27",
-      "kind": "歌ってみた",
-      "dText": "20251013 【歌ってみた】マシュマロ/DECO*27 covered by 花彩音_3kHz",
-      "dUrl": "https://www.youtube.com/watch?v=tTb_AP1NpNU",
-      "date8": 20251013,
-      "rowId": "マシュマロ|deco*27|歌ってみた|https://www.youtube.com/watch?v=tTb_AP1NpNU",
-      "historyRef": "history/e76927fb551c.json",
-      "historyCount": 1,
-      "lastSungAt": 20251013
-    },
-    {
-      "artist": "マシュマロ/DECO*27 covered",
-      "title": "花彩音_3kHz",
-      "kind": "歌ってみた",
-      "dText": "20251013 【歌ってみた】マシュマロ/DECO*27 covered by 花彩音_3kHz",
-      "dUrl": "https://www.youtube.com/watch?v=tTb_AP1NpNU",
-      "date8": 20251013,
-      "rowId": "マシュマロ/deco*27 covered|花彩音_3khz|歌ってみた|https://www.youtube.com/watch?v=tTb_AP1NpNU",
-      "historyRef": "history/5e7dda12bc9b.json",
-      "historyCount": 1,
-      "lastSungAt": 20251013
-    },
-    {
       "artist": "スピッツ",
       "title": "チェリー",
       "kind": "歌枠",
@@ -7468,18 +7384,6 @@
       "lastSungAt": 20250831
     },
     {
-      "artist": "山口百恵",
-      "title": "絶体絶命",
-      "kind": "歌枠",
-      "dText": "20250830【歌枠・耐久】高評価50🌟今月デビューの新人V！初耐久！耐えられる！？花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=UgeL4WO3HIo&t=6867s",
-      "date8": 20250830,
-      "rowId": "山口百恵|絶体絶命|歌枠|https://www.youtube.com/watch?v=UgeL4WO3HIo&t=6867s",
-      "historyRef": "history/bf33fa1360ae.json",
-      "historyCount": 1,
-      "lastSungAt": 20250830
-    },
-    {
       "artist": "椎名林檎",
       "title": "ポルターガイスト",
       "kind": "歌枠",
@@ -7624,6 +7528,6 @@
       "lastSungAt": 20260622
     }
   ],
-  "total": 635,
-  "matched": 635
+  "total": 627,
+  "matched": 627
 }
