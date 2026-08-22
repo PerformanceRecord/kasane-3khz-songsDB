@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-21T00:36:50.546Z",
+  "fetchedAt": "2026-08-22T00:34:36.390Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -7354,6 +7354,16 @@
       "historyKey": "椎名林檎|ここでキスして。"
     },
     {
+      "artist": "椎名林檎",
+      "title": "浴室",
+      "kind": "歌枠",
+      "dText": "20251203 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=APjKwFwQJ0I&t=4196s",
+      "date8": 20251203,
+      "rowId": "椎名林檎|浴室|歌枠|https://www.youtube.com/watch?v=APjKwFwQJ0I&t=4196s",
+      "historyKey": "椎名林檎|浴室"
+    },
+    {
       "artist": "秦基博",
       "title": "ひまわりの約束",
       "kind": "歌枠",
@@ -12734,6 +12744,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1273,
-  "matched": 1273
+  "total": 1274,
+  "matched": 1274
 }

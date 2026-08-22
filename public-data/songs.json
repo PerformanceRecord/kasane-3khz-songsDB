@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-21T03:37:27.730Z",
+  "fetchedAt": "2026-08-22T00:34:25.898Z",
   "rows": [
     {
       "artist": "ゆうゆ",
@@ -2292,7 +2292,7 @@
       "date8": 20260521,
       "rowId": "椎名林檎|浴室|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=4296s",
       "historyRef": "history/a04ea2b3465a.json",
-      "historyCount": 2,
+      "historyCount": 3,
       "lastSungAt": 20260521
     },
     {
