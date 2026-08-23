@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-22T00:34:36.390Z",
+  "fetchedAt": "2026-08-23T00:37:12.818Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -7934,6 +7934,16 @@
       "historyKey": "orangestar|アスノヨゾラ哨戒班"
     },
     {
+      "artist": "Tommy february6",
+      "title": "Bloomin'!",
+      "kind": "ショート",
+      "dText": "20251212 Bloomin’!/Tommyfebruary6 #歌ってみた #tommyfebruary6 #illit #iroha #revival #y2k",
+      "dUrl": "https://www.youtube.com/shorts/rtv6cl6suLI",
+      "date8": 20251212,
+      "rowId": "tommy february6|bloomin'!|ショート|https://www.youtube.com/shorts/rtv6cl6suLI",
+      "historyKey": "tommy february6|bloomin'!"
+    },
+    {
       "artist": "ずっと真夜中でいいのに。",
       "title": "残機",
       "kind": "歌枠",
@@ -12744,6 +12754,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1274,
-  "matched": 1274
+  "total": 1275,
+  "matched": 1275
 }

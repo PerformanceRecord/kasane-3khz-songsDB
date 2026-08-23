@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-22T00:34:25.898Z",
+  "fetchedAt": "2026-08-23T00:37:04.330Z",
   "rows": [
     {
       "artist": "ゆうゆ",
@@ -6061,7 +6061,7 @@
       "rowId": "tommy february6|bloomin'!|歌枠|https://www.youtube.com/watch?v=dwp1GLq8X50&t=2644s",
       "historyRef": "history/197c384b5f45.json",
       "historyCount": 1,
-      "lastSungAt": 20251215
+      "lastSungAt": 20251212
     },
     {
       "artist": "ヨルシカ",
