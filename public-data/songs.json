@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-24T00:36:14.159Z",
+  "fetchedAt": "2026-08-25T00:35:32.288Z",
   "rows": [
     {
       "artist": "ゆうゆ",
@@ -48,8 +48,8 @@
       "date8": 20260811,
       "rowId": "kiki vivi lily|80denier|歌ってみた|https://www.youtube.com/watch?v=zUwMx2wZEbo",
       "historyRef": "history/5c9500e111fb.json",
-      "historyCount": 1,
-      "lastSungAt": 20260811
+      "historyCount": 2,
+      "lastSungAt": 20260713
     },
     {
       "artist": "40mP",
@@ -1561,7 +1561,7 @@
       "rowId": "東京事変|絶体絶命|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=1628s",
       "historyRef": "history/a49c9f6f5f2e.json",
       "historyCount": 1,
-      "lastSungAt": 20260615
+      "lastSungAt": 20260527
     },
     {
       "artist": "米津玄師×宇多田ヒカル",
