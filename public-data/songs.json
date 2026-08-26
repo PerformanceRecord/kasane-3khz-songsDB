@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-25T14:23:55.571Z",
+  "fetchedAt": "2026-08-26T00:36:23.121Z",
   "rows": [
     {
       "artist": "米津玄師×DAOKO",
@@ -193,7 +193,7 @@
       "rowId": "大塚愛|さくらんぼ|歌枠|https://www.youtube.com/watch?v=9_y5QlSnMSs&t=5350s",
       "historyRef": "history/e6e21d81de43.json",
       "historyCount": 1,
-      "lastSungAt": 20260824
+      "lastSungAt": 20250818
     },
     {
       "artist": "美空ひばり",
@@ -2737,7 +2737,7 @@
       "rowId": "山口百恵|絶体絶命|歌枠|https://www.youtube.com/watch?v=QXZMPywkYG8&t=4482s",
       "historyRef": "history/bf33fa1360ae.json",
       "historyCount": 1,
-      "lastSungAt": 20260610
+      "lastSungAt": 20250830
     },
     {
       "artist": "緑黄色社会",

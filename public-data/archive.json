@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-25T00:35:40.269Z",
+  "fetchedAt": "2026-08-26T00:36:31.254Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -1174,6 +1174,16 @@
       "historyKey": "一青窈|ハナミズキ"
     },
     {
+      "artist": "大塚愛",
+      "title": "さくらんぼ",
+      "kind": "歌枠",
+      "dText": "20250818【歌枠】平成のヒット曲！みんなが知ってる名曲を歌う♪初見歓迎 花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=ixQPQ113VhQ&t=798s",
+      "date8": 20250818,
+      "rowId": "大塚愛|さくらんぼ|歌枠|https://www.youtube.com/watch?v=ixQPQ113VhQ&t=798s",
+      "historyKey": "大塚愛|さくらんぼ"
+    },
+    {
       "artist": "宇多田ヒカル",
       "title": "Automatic",
       "kind": "歌枠",
@@ -1842,6 +1852,16 @@
       "date8": 20250830,
       "rowId": "宇多田ヒカル|beautiful world|歌枠|https://www.youtube.com/watch?v=x71xevrwtRs&t=5068s",
       "historyKey": "宇多田ヒカル|beautiful world"
+    },
+    {
+      "artist": "山口百恵",
+      "title": "絶体絶命",
+      "kind": "歌枠",
+      "dText": "20250830【歌枠・耐久】高評価50🌟今月デビューの新人V！初耐久！耐えられる！？花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UgeL4WO3HIo&t=6867s",
+      "date8": 20250830,
+      "rowId": "山口百恵|絶体絶命|歌枠|https://www.youtube.com/watch?v=UgeL4WO3HIo&t=6867s",
+      "historyKey": "山口百恵|絶体絶命"
     },
     {
       "artist": "星街すいせい",
@@ -12784,6 +12804,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1278,
-  "matched": 1278
+  "total": 1280,
+  "matched": 1280
 }
