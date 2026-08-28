@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-26T00:36:31.254Z",
+  "fetchedAt": "2026-08-28T07:29:22.114Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -2894,6 +2894,16 @@
       "historyKey": "矢井田瞳|life's like a love song"
     },
     {
+      "artist": "美空ひばり",
+      "title": "お祭りマンボ",
+      "kind": "歌枠",
+      "dText": "20250910【歌枠・昼の部】初見歓迎🌟もうすぐデビュー1か月⚛️🌐歌うまになりたい！ 花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=BQD4-azmENo&t=4779s",
+      "date8": 20250910,
+      "rowId": "美空ひばり|お祭りマンボ|歌枠|https://www.youtube.com/watch?v=BQD4-azmENo&t=4779s",
+      "historyKey": "美空ひばり|お祭りマンボ"
+    },
+    {
       "artist": "須田景凪",
       "title": "ダーリン",
       "kind": "歌枠",
@@ -5257,6 +5267,16 @@
       "artist": "DECO*27",
       "title": "ヒバナ",
       "kind": "歌枠",
+      "dText": "20251013【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HKXuFZxsm50&t=6290s",
+      "date8": 20251013,
+      "rowId": "deco*27|ヒバナ|歌枠|https://www.youtube.com/watch?v=HKXuFZxsm50&t=6290s",
+      "historyKey": "deco*27|ヒバナ"
+    },
+    {
+      "artist": "DECO*27",
+      "title": "ヒバナ",
+      "kind": "歌枠",
       "dText": "20251013 【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=Vfh57r3n6CA&t=6290s",
       "date8": 20251013,
@@ -5267,11 +5287,41 @@
       "artist": "DECO*27",
       "title": "マシュマロ",
       "kind": "歌枠",
+      "dText": "20251013【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HKXuFZxsm50&t=848s",
+      "date8": 20251013,
+      "rowId": "deco*27|マシュマロ|歌枠|https://www.youtube.com/watch?v=HKXuFZxsm50&t=848s",
+      "historyKey": "deco*27|マシュマロ"
+    },
+    {
+      "artist": "DECO*27",
+      "title": "マシュマロ",
+      "kind": "歌枠",
       "dText": "20251013 【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=Vfh57r3n6CA&t=848s",
       "date8": 20251013,
       "rowId": "deco*27|マシュマロ|歌枠|https://www.youtube.com/watch?v=Vfh57r3n6CA&t=848s",
       "historyKey": "deco*27|マシュマロ"
+    },
+    {
+      "artist": "Mao",
+      "title": "夢をかなえてドラえもん",
+      "kind": "歌枠",
+      "dText": "20251013【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HKXuFZxsm50&t=421s",
+      "date8": 20251013,
+      "rowId": "mao|夢をかなえてドラえもん|歌枠|https://www.youtube.com/watch?v=HKXuFZxsm50&t=421s",
+      "historyKey": "mao|夢をかなえてドラえもん"
+    },
+    {
+      "artist": "milet",
+      "title": "inside you",
+      "kind": "歌枠",
+      "dText": "20251013【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HKXuFZxsm50&t=4910s",
+      "date8": 20251013,
+      "rowId": "milet|inside you|歌枠|https://www.youtube.com/watch?v=HKXuFZxsm50&t=4910s",
+      "historyKey": "milet|inside you"
     },
     {
       "artist": "milet",
@@ -5287,11 +5337,31 @@
       "artist": "NANA starring MIKA NAKASHIMA",
       "title": "GLAMOROUS SKY",
       "kind": "歌枠",
+      "dText": "20251013【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HKXuFZxsm50&t=1730s",
+      "date8": 20251013,
+      "rowId": "nana starring mika nakashima|glamorous sky|歌枠|https://www.youtube.com/watch?v=HKXuFZxsm50&t=1730s",
+      "historyKey": "nana starring mika nakashima|glamorous sky"
+    },
+    {
+      "artist": "NANA starring MIKA NAKASHIMA",
+      "title": "GLAMOROUS SKY",
+      "kind": "歌枠",
       "dText": "20251013 【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=Vfh57r3n6CA&t=1730s",
       "date8": 20251013,
       "rowId": "nana starring mika nakashima|glamorous sky|歌枠|https://www.youtube.com/watch?v=Vfh57r3n6CA&t=1730s",
       "historyKey": "nana starring mika nakashima|glamorous sky"
+    },
+    {
+      "artist": "OLIVIA inspi' REIRA(TRAPNEST)",
+      "title": "a little pain",
+      "kind": "歌枠",
+      "dText": "20251013【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HKXuFZxsm50&t=5302s",
+      "date8": 20251013,
+      "rowId": "olivia inspi' reira(trapnest)|a little pain|歌枠|https://www.youtube.com/watch?v=HKXuFZxsm50&t=5302s",
+      "historyKey": "olivia inspi' reira(trapnest)|a little pain"
     },
     {
       "artist": "OLIVIA inspi' REIRA(TRAPNEST)",
@@ -5307,11 +5377,31 @@
       "artist": "あたらよ",
       "title": "10月無口な君を忘れる",
       "kind": "歌枠",
+      "dText": "20251013【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HKXuFZxsm50&t=2604s",
+      "date8": 20251013,
+      "rowId": "あたらよ|10月無口な君を忘れる|歌枠|https://www.youtube.com/watch?v=HKXuFZxsm50&t=2604s",
+      "historyKey": "あたらよ|10月無口な君を忘れる"
+    },
+    {
+      "artist": "あたらよ",
+      "title": "10月無口な君を忘れる",
+      "kind": "歌枠",
       "dText": "20251013 【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=Vfh57r3n6CA&t=2604s",
       "date8": 20251013,
       "rowId": "あたらよ|10月無口な君を忘れる|歌枠|https://www.youtube.com/watch?v=Vfh57r3n6CA&t=2604s",
       "historyKey": "あたらよ|10月無口な君を忘れる"
+    },
+    {
+      "artist": "ゆうゆ",
+      "title": "天樂",
+      "kind": "歌枠",
+      "dText": "20251013【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HKXuFZxsm50&t=1311s",
+      "date8": 20251013,
+      "rowId": "ゆうゆ|天樂|歌枠|https://www.youtube.com/watch?v=HKXuFZxsm50&t=1311s",
+      "historyKey": "ゆうゆ|天樂"
     },
     {
       "artist": "ゆうゆ",
@@ -5327,11 +5417,31 @@
       "artist": "友成空",
       "title": "鬼ノ宴",
       "kind": "歌枠",
+      "dText": "20251013【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HKXuFZxsm50&t=4061s",
+      "date8": 20251013,
+      "rowId": "友成空|鬼ノ宴|歌枠|https://www.youtube.com/watch?v=HKXuFZxsm50&t=4061s",
+      "historyKey": "友成空|鬼ノ宴"
+    },
+    {
+      "artist": "友成空",
+      "title": "鬼ノ宴",
+      "kind": "歌枠",
       "dText": "20251013 【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=Vfh57r3n6CA&t=4061s",
       "date8": 20251013,
       "rowId": "友成空|鬼ノ宴|歌枠|https://www.youtube.com/watch?v=Vfh57r3n6CA&t=4061s",
       "historyKey": "友成空|鬼ノ宴"
+    },
+    {
+      "artist": "宇多田ヒカル",
+      "title": "first love",
+      "kind": "歌枠",
+      "dText": "20251013【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HKXuFZxsm50&t=3159s",
+      "date8": 20251013,
+      "rowId": "宇多田ヒカル|first love|歌枠|https://www.youtube.com/watch?v=HKXuFZxsm50&t=3159s",
+      "historyKey": "宇多田ヒカル|first love"
     },
     {
       "artist": "宇多田ヒカル",
@@ -5347,11 +5457,31 @@
       "artist": "手嶌葵",
       "title": "テルーの唄",
       "kind": "歌枠",
+      "dText": "20251013【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HKXuFZxsm50&t=4490s",
+      "date8": 20251013,
+      "rowId": "手嶌葵|テルーの唄|歌枠|https://www.youtube.com/watch?v=HKXuFZxsm50&t=4490s",
+      "historyKey": "手嶌葵|テルーの唄"
+    },
+    {
+      "artist": "手嶌葵",
+      "title": "テルーの唄",
+      "kind": "歌枠",
       "dText": "20251013 【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=Vfh57r3n6CA&t=4490s",
       "date8": 20251013,
       "rowId": "手嶌葵|テルーの唄|歌枠|https://www.youtube.com/watch?v=Vfh57r3n6CA&t=4490s",
       "historyKey": "手嶌葵|テルーの唄"
+    },
+    {
+      "artist": "水野あつ",
+      "title": "生きる",
+      "kind": "歌枠",
+      "dText": "20251013【歌枠】初見歓迎・楽しく歌うよー！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HKXuFZxsm50&t=3646s",
+      "date8": 20251013,
+      "rowId": "水野あつ|生きる|歌枠|https://www.youtube.com/watch?v=HKXuFZxsm50&t=3646s",
+      "historyKey": "水野あつ|生きる"
     },
     {
       "artist": "水野あつ",
@@ -5394,6 +5524,16 @@
       "historyKey": "¿?shimon|ルシファー"
     },
     {
+      "artist": "¿?shimon",
+      "title": "ルシファー",
+      "kind": "歌枠",
+      "dText": "20251016【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】 1",
+      "dUrl": "https://www.youtube.com/watch?v=cRrtSMz48tU&t=1423s",
+      "date8": 20251016,
+      "rowId": "¿?shimon|ルシファー|歌枠|https://www.youtube.com/watch?v=cRrtSMz48tU&t=1423s",
+      "historyKey": "¿?shimon|ルシファー"
+    },
+    {
       "artist": "Ado",
       "title": "唱",
       "kind": "歌枠",
@@ -5401,6 +5541,16 @@
       "dUrl": "https://www.youtube.com/watch?v=2RPprhw7Xus&t=4465s",
       "date8": 20251016,
       "rowId": "ado|唱|歌枠|https://www.youtube.com/watch?v=2RPprhw7Xus&t=4465s",
+      "historyKey": "ado|唱"
+    },
+    {
+      "artist": "Ado",
+      "title": "唱",
+      "kind": "歌枠",
+      "dText": "20251016【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】 1",
+      "dUrl": "https://www.youtube.com/watch?v=cRrtSMz48tU&t=4465s",
+      "date8": 20251016,
+      "rowId": "ado|唱|歌枠|https://www.youtube.com/watch?v=cRrtSMz48tU&t=4465s",
       "historyKey": "ado|唱"
     },
     {
@@ -5414,6 +5564,16 @@
       "historyKey": "ado|逆光"
     },
     {
+      "artist": "Ado",
+      "title": "逆光",
+      "kind": "歌枠",
+      "dText": "20251016【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】 1",
+      "dUrl": "https://www.youtube.com/watch?v=cRrtSMz48tU&t=4158s",
+      "date8": 20251016,
+      "rowId": "ado|逆光|歌枠|https://www.youtube.com/watch?v=cRrtSMz48tU&t=4158s",
+      "historyKey": "ado|逆光"
+    },
+    {
       "artist": "Azari",
       "title": "Shadow Shadow",
       "kind": "歌枠",
@@ -5421,6 +5581,16 @@
       "dUrl": "https://www.youtube.com/watch?v=2RPprhw7Xus&t=1693s",
       "date8": 20251016,
       "rowId": "azari|shadow shadow|歌枠|https://www.youtube.com/watch?v=2RPprhw7Xus&t=1693s",
+      "historyKey": "azari|shadow shadow"
+    },
+    {
+      "artist": "Azari",
+      "title": "Shadow Shadow",
+      "kind": "歌枠",
+      "dText": "20251016【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】 1",
+      "dUrl": "https://www.youtube.com/watch?v=cRrtSMz48tU&t=1693s",
+      "date8": 20251016,
+      "rowId": "azari|shadow shadow|歌枠|https://www.youtube.com/watch?v=cRrtSMz48tU&t=1693s",
       "historyKey": "azari|shadow shadow"
     },
     {
@@ -5434,6 +5604,16 @@
       "historyKey": "deco*27|マシュマロ"
     },
     {
+      "artist": "DECO*27",
+      "title": "マシュマロ",
+      "kind": "歌枠",
+      "dText": "20251016【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】 1",
+      "dUrl": "https://www.youtube.com/watch?v=cRrtSMz48tU&t=2582s",
+      "date8": 20251016,
+      "rowId": "deco*27|マシュマロ|歌枠|https://www.youtube.com/watch?v=cRrtSMz48tU&t=2582s",
+      "historyKey": "deco*27|マシュマロ"
+    },
+    {
       "artist": "Midnight Grand Orchestra",
       "title": "Midnight Mission",
       "kind": "歌枠",
@@ -5444,6 +5624,16 @@
       "historyKey": "midnight grand orchestra|midnight mission"
     },
     {
+      "artist": "Midnight Grand Orchestra",
+      "title": "Midnight Mission",
+      "kind": "歌枠",
+      "dText": "20251016【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】 1",
+      "dUrl": "https://www.youtube.com/watch?v=cRrtSMz48tU&t=2891s",
+      "date8": 20251016,
+      "rowId": "midnight grand orchestra|midnight mission|歌枠|https://www.youtube.com/watch?v=cRrtSMz48tU&t=2891s",
+      "historyKey": "midnight grand orchestra|midnight mission"
+    },
+    {
       "artist": "ツミキ",
       "title": "フォニイ",
       "kind": "歌枠",
@@ -5451,6 +5641,16 @@
       "dUrl": "https://www.youtube.com/watch?v=2RPprhw7Xus&t=2256s",
       "date8": 20251016,
       "rowId": "ツミキ|フォニイ|歌枠|https://www.youtube.com/watch?v=2RPprhw7Xus&t=2256s",
+      "historyKey": "ツミキ|フォニイ"
+    },
+    {
+      "artist": "ツミキ",
+      "title": "フォニイ",
+      "kind": "歌枠",
+      "dText": "20251016【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】 1",
+      "dUrl": "https://www.youtube.com/watch?v=cRrtSMz48tU&t=2256s",
+      "date8": 20251016,
+      "rowId": "ツミキ|フォニイ|歌枠|https://www.youtube.com/watch?v=cRrtSMz48tU&t=2256s",
       "historyKey": "ツミキ|フォニイ"
     },
     {
@@ -12804,6 +13004,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1280,
-  "matched": 1280
+  "total": 1300,
+  "matched": 1300
 }

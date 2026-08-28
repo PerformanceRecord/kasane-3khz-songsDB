@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-27T05:33:37.646Z",
+  "fetchedAt": "2026-08-28T07:29:10.920Z",
   "rows": [
     {
       "artist": "米津玄師×DAOKO",
@@ -205,7 +205,7 @@
       "rowId": "美空ひばり|お祭りマンボ|歌枠|https://www.youtube.com/watch?v=9_y5QlSnMSs&t=6778s",
       "historyRef": "history/d6241ce15cf2.json",
       "historyCount": 1,
-      "lastSungAt": 20260824
+      "lastSungAt": 20250910
     },
     {
       "artist": "放課後ティータイム",
@@ -336,7 +336,7 @@
       "date8": 20260823,
       "rowId": "宇多田ヒカル|first love|歌枠|https://www.youtube.com/watch?v=i7KnVmYviEo&t=8966s",
       "historyRef": "history/3d0bdfe54e43.json",
-      "historyCount": 7,
+      "historyCount": 8,
       "lastSungAt": 20260213
     },
     {
@@ -577,7 +577,7 @@
       "rowId": "mao|夢をかなえてドラえもん|歌枠|https://www.youtube.com/watch?v=cVzXs_wJjd8&t=1559s",
       "historyRef": "history/b00157dc8b1a.json",
       "historyCount": 1,
-      "lastSungAt": 20260817
+      "lastSungAt": 20251013
     },
     {
       "artist": "Superfly",
@@ -1224,7 +1224,7 @@
       "date8": 20260807,
       "rowId": "ツミキ|フォニイ|歌枠|https://www.youtube.com/watch?v=WRmerIci3Sw&t=2264s",
       "historyRef": "history/470d3b562add.json",
-      "historyCount": 14,
+      "historyCount": 15,
       "lastSungAt": 20260630
     },
     {
@@ -1332,7 +1332,7 @@
       "date8": 20260807,
       "rowId": "水野あつ|生きる|歌枠|https://www.youtube.com/watch?v=WRmerIci3Sw&t=6238s",
       "historyRef": "history/56a813d2296d.json",
-      "historyCount": 13,
+      "historyCount": 14,
       "lastSungAt": 20260319
     },
     {
@@ -1440,7 +1440,7 @@
       "date8": 20260727,
       "rowId": "ado|唱|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=6080s",
       "historyRef": "history/3840fde9ee63.json",
-      "historyCount": 17,
+      "historyCount": 18,
       "lastSungAt": 20260517
     },
     {
@@ -2664,7 +2664,7 @@
       "date8": 20260610,
       "rowId": "midnight grand orchestra|midnight mission|歌枠|https://www.youtube.com/watch?v=QXZMPywkYG8&t=5264s",
       "historyRef": "history/5579f7d974a8.json",
-      "historyCount": 6,
+      "historyCount": 7,
       "lastSungAt": 20260123
     },
     {
@@ -3360,7 +3360,7 @@
       "date8": 20260516,
       "rowId": "ado|逆光|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=3206s",
       "historyRef": "history/cfeff1bbc56c.json",
-      "historyCount": 4,
+      "historyCount": 5,
       "lastSungAt": 20251215
     },
     {
@@ -4044,7 +4044,7 @@
       "date8": 20260429,
       "rowId": "友成空|鬼ノ宴|歌枠|https://www.youtube.com/watch?v=4tO8JAr_qJM&t=805s",
       "historyRef": "history/b8058ddff39f.json",
-      "historyCount": 1,
+      "historyCount": 2,
       "lastSungAt": 20251013
     },
     {
@@ -4644,7 +4644,7 @@
       "date8": 20260401,
       "rowId": "azari|shadow shadow|歌枠|https://www.youtube.com/watch?v=zMpYUnXz54k&t=8040s",
       "historyRef": "history/fcc95f11c7e6.json",
-      "historyCount": 4,
+      "historyCount": 5,
       "lastSungAt": 20260114
     },
     {
@@ -4812,7 +4812,7 @@
       "date8": 20260330,
       "rowId": "milet|inside you|歌枠|https://www.youtube.com/watch?v=nPw6pSbRVMg&t=3660s",
       "historyRef": "history/61055ec546c3.json",
-      "historyCount": 4,
+      "historyCount": 5,
       "lastSungAt": 20251218
     },
     {
@@ -4932,7 +4932,7 @@
       "date8": 20260323,
       "rowId": "deco*27|ヒバナ|歌枠|https://www.youtube.com/watch?v=1FHmyXt_fec&t=2724s",
       "historyRef": "history/9dc4523b8578.json",
-      "historyCount": 8,
+      "historyCount": 9,
       "lastSungAt": 20260116
     },
     {
@@ -5136,7 +5136,7 @@
       "date8": 20260316,
       "rowId": "¿?shimon|ルシファー|歌枠|https://www.youtube.com/watch?v=x5BV86bUdvo&t=2800s",
       "historyRef": "history/692f53f5eea9.json",
-      "historyCount": 1,
+      "historyCount": 2,
       "lastSungAt": 20251016
     },
     {
@@ -5448,7 +5448,7 @@
       "date8": 20260228,
       "rowId": "手嶌葵|テルーの唄|歌枠|https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=7891s",
       "historyRef": "history/4cb9b5272072.json",
-      "historyCount": 7,
+      "historyCount": 8,
       "lastSungAt": 20260204
     },
     {
@@ -5952,7 +5952,7 @@
       "date8": 20260116,
       "rowId": "nana starring mika nakashima|glamorous sky|歌枠|https://www.youtube.com/watch?v=JxMFBZUMGcs&t=2616s",
       "historyRef": "history/0893373682a3.json",
-      "historyCount": 3,
+      "historyCount": 4,
       "lastSungAt": 20260113
     },
     {
@@ -5964,7 +5964,7 @@
       "date8": 20260116,
       "rowId": "olivia inspi' reira(trapnest)|a little pain|歌枠|https://www.youtube.com/watch?v=JxMFBZUMGcs&t=2973s",
       "historyRef": "history/6859958fe12c.json",
-      "historyCount": 2,
+      "historyCount": 3,
       "lastSungAt": 20251013
     },
     {
@@ -6312,7 +6312,7 @@
       "date8": 20251230,
       "rowId": "ゆうゆ|天樂|歌枠|https://www.youtube.com/watch?v=2Sc9fZQ4YWs&t=3090s",
       "historyRef": "history/f1f78df87721.json",
-      "historyCount": 5,
+      "historyCount": 6,
       "lastSungAt": 20251013
     },
     {
@@ -7092,7 +7092,7 @@
       "date8": 20251029,
       "rowId": "あたらよ|10月無口な君を忘れる|歌枠|https://www.youtube.com/watch?v=ge1juO_XRG4&t=394s",
       "historyRef": "history/9362c02fed34.json",
-      "historyCount": 2,
+      "historyCount": 3,
       "lastSungAt": 20251022
     },
     {
@@ -7260,7 +7260,7 @@
       "date8": 20251013,
       "rowId": "deco*27|マシュマロ|歌ってみた|https://www.youtube.com/watch?v=tTb_AP1NpNU",
       "historyRef": "history/bb8f4d3a1f84.json",
-      "historyCount": 9,
+      "historyCount": 11,
       "lastSungAt": 20260727
     },
     {
