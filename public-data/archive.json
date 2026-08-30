@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-29T04:39:23.300Z",
+  "fetchedAt": "2026-08-30T02:11:48.434Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -7975,6 +7975,26 @@
     },
     {
       "artist": "宇多田ヒカル",
+      "title": "Can You Keep A Secret?",
+      "kind": "歌枠",
+      "dText": "20251206 【#歌枠 #朝活】おはよう歌枠🌟元気になれる歌を歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=DoWEJ7pYDWE&t=3630s",
+      "date8": 20251206,
+      "rowId": "宇多田ヒカル|can you keep a secret?|歌枠|https://www.youtube.com/watch?v=DoWEJ7pYDWE&t=3630s",
+      "historyKey": "宇多田ヒカル|can you keep a secret?"
+    },
+    {
+      "artist": "宇多田ヒカル",
+      "title": "Movin'on without you",
+      "kind": "歌枠",
+      "dText": "20251206 【#歌枠 #朝活】おはよう歌枠🌟元気になれる歌を歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=DoWEJ7pYDWE&t=3994s",
+      "date8": 20251206,
+      "rowId": "宇多田ヒカル|movin'on without you|歌枠|https://www.youtube.com/watch?v=DoWEJ7pYDWE&t=3994s",
+      "historyKey": "宇多田ヒカル|movin'on without you"
+    },
+    {
+      "artist": "宇多田ヒカル",
       "title": "traveling",
       "kind": "歌枠",
       "dText": "20251206 【#歌枠 #朝活】おはよう歌枠🌟元気になれる歌を歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
@@ -8142,6 +8162,16 @@
       "date8": 20251210,
       "rowId": "n-buna|夜明けと蛍|歌枠|https://www.youtube.com/watch?v=LabFMXqb2AE&t=4741s",
       "historyKey": "n-buna|夜明けと蛍"
+    },
+    {
+      "artist": "Neru",
+      "title": "ロストワンの号哭",
+      "kind": "歌枠",
+      "dText": "20251210 【歌枠・昼の部】4時間歌枠🌟明日でデビュー4ヶ月ありがとう！午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=LabFMXqb2AE&t=1250s",
+      "date8": 20251210,
+      "rowId": "neru|ロストワンの号哭|歌枠|https://www.youtube.com/watch?v=LabFMXqb2AE&t=1250s",
+      "historyKey": "neru|ロストワンの号哭"
     },
     {
       "artist": "supercell",
@@ -8764,6 +8794,16 @@
       "historyKey": "aiko|カブトムシ"
     },
     {
+      "artist": "aiko",
+      "title": "花火",
+      "kind": "歌枠",
+      "dText": "20251218 【#歌枠 昼の部】歌練習🌟歌枠リレーに向けて午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=Lm7BJxovoI8&t=4838s",
+      "date8": 20251218,
+      "rowId": "aiko|花火|歌枠|https://www.youtube.com/watch?v=Lm7BJxovoI8&t=4838s",
+      "historyKey": "aiko|花火"
+    },
+    {
       "artist": "Midnight Grand Orchestra",
       "title": "Midnight Mission",
       "kind": "歌枠",
@@ -8905,6 +8945,16 @@
     },
     {
       "artist": "HoneyWorks",
+      "title": "可愛くてごめん",
+      "kind": "歌枠",
+      "dText": "20251219 【#歌枠 昼の部】歌練習🌟歌枠リレーに向けて午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=j0UtOEI-3e4&t=5850s",
+      "date8": 20251219,
+      "rowId": "honeyworks|可愛くてごめん|歌枠|https://www.youtube.com/watch?v=j0UtOEI-3e4&t=5850s",
+      "historyKey": "honeyworks|可愛くてごめん"
+    },
+    {
+      "artist": "HoneyWorks",
       "title": "可愛くなりたい",
       "kind": "歌枠",
       "dText": "20251219 【#歌枠 昼の部】歌練習🌟歌枠リレーに向けて午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
@@ -8912,6 +8962,16 @@
       "date8": 20251219,
       "rowId": "honeyworks|可愛くなりたい|歌枠|https://www.youtube.com/watch?v=j0UtOEI-3e4&t=4957s",
       "historyKey": "honeyworks|可愛くなりたい"
+    },
+    {
+      "artist": "Junky",
+      "title": "メランコリック",
+      "kind": "歌枠",
+      "dText": "20251219 【#歌枠 昼の部】歌練習🌟歌枠リレーに向けて午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=j0UtOEI-3e4&t=6240s",
+      "date8": 20251219,
+      "rowId": "junky|メランコリック|歌枠|https://www.youtube.com/watch?v=j0UtOEI-3e4&t=6240s",
+      "historyKey": "junky|メランコリック"
     },
     {
       "artist": "Official髭男dism",
@@ -9512,6 +9572,16 @@
       "date8": 20260109,
       "rowId": "creepy nuts|bling-bang-bang-born|歌枠|https://www.youtube.com/watch?v=7tU4tGzXLlc&t=2329s",
       "historyKey": "creepy nuts|bling-bang-bang-born"
+    },
+    {
+      "artist": "JUDY AND MARY",
+      "title": "そばかす",
+      "kind": "歌枠",
+      "dText": "20260109 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=7tU4tGzXLlc&t=5990s",
+      "date8": 20260109,
+      "rowId": "judy and mary|そばかす|歌枠|https://www.youtube.com/watch?v=7tU4tGzXLlc&t=5990s",
+      "historyKey": "judy and mary|そばかす"
     },
     {
       "artist": "supercell",
@@ -13234,6 +13304,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1323,
-  "matched": 1323
+  "total": 1330,
+  "matched": 1330
 }

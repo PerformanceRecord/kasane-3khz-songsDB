@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-29T04:39:12.659Z",
+  "fetchedAt": "2026-08-30T02:11:40.621Z",
   "rows": [
     {
       "artist": "米津玄師×DAOKO",
@@ -61,7 +61,7 @@
       "rowId": "neru|ロストワンの号哭|歌枠|https://www.youtube.com/watch?v=9_y5QlSnMSs&t=3454s",
       "historyRef": "history/01b0f6c4fb9d.json",
       "historyCount": 1,
-      "lastSungAt": 20260824
+      "lastSungAt": 20251210
     },
     {
       "artist": "supercell",
@@ -300,8 +300,8 @@
       "date8": 20260823,
       "rowId": "宇多田ヒカル|can you keep a secret?|歌枠|https://www.youtube.com/watch?v=i7KnVmYviEo&t=5867s",
       "historyRef": "history/d90d30c7ad65.json",
-      "historyCount": 2,
-      "lastSungAt": 20250912
+      "historyCount": 3,
+      "lastSungAt": 20251206
     },
     {
       "artist": "宇多田ヒカル",
@@ -373,7 +373,7 @@
       "rowId": "宇多田ヒカル|movin'on without you|歌枠|https://www.youtube.com/watch?v=i7KnVmYviEo&t=2872s",
       "historyRef": "history/77f466a7355b.json",
       "historyCount": 1,
-      "lastSungAt": 20260823
+      "lastSungAt": 20251206
     },
     {
       "artist": "宇多田ヒカル",
@@ -540,8 +540,8 @@
       "date8": 20260817,
       "rowId": "honeyworks|可愛くてごめん|歌枠|https://www.youtube.com/watch?v=cVzXs_wJjd8&t=1184s",
       "historyRef": "history/bc609455909a.json",
-      "historyCount": 3,
-      "lastSungAt": 20251105
+      "historyCount": 4,
+      "lastSungAt": 20251219
     },
     {
       "artist": "HoneyWorks",
@@ -565,7 +565,7 @@
       "rowId": "junky|メランコリック|歌枠|https://www.youtube.com/watch?v=cVzXs_wJjd8&t=4718s",
       "historyRef": "history/ab2666bc6851.json",
       "historyCount": 1,
-      "lastSungAt": 20260817
+      "lastSungAt": 20251219
     },
     {
       "artist": "Mao",
@@ -732,8 +732,8 @@
       "date8": 20260814,
       "rowId": "judy and mary|そばかす|歌枠|https://www.youtube.com/watch?v=AiTSof6Q6hg&t=1636s",
       "historyRef": "history/e2f558572dae.json",
-      "historyCount": 3,
-      "lastSungAt": 20251020
+      "historyCount": 4,
+      "lastSungAt": 20260109
     },
     {
       "artist": "JUDY AND MARY",
@@ -1140,8 +1140,8 @@
       "date8": 20260807,
       "rowId": "aiko|花火|歌枠|https://www.youtube.com/watch?v=WRmerIci3Sw&t=3681s",
       "historyRef": "history/6c3671efd44e.json",
-      "historyCount": 2,
-      "lastSungAt": 20251026
+      "historyCount": 3,
+      "lastSungAt": 20251218
     },
     {
       "artist": "imase",
