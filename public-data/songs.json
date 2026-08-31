@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-08-30T02:11:40.621Z",
+  "fetchedAt": "2026-08-31T02:06:52.158Z",
   "rows": [
     {
       "artist": "米津玄師×DAOKO",
@@ -132,8 +132,8 @@
       "date8": 20260824,
       "rowId": "ちゃんみな|b級|歌枠|https://www.youtube.com/watch?v=9_y5QlSnMSs&t=2994s",
       "historyRef": "history/37e8d00b6a46.json",
-      "historyCount": 1,
-      "lastSungAt": 20260203
+      "historyCount": 2,
+      "lastSungAt": 20260228
     },
     {
       "artist": "てにをは",
@@ -145,7 +145,7 @@
       "rowId": "てにをは|ザムザ|歌枠|https://www.youtube.com/watch?v=9_y5QlSnMSs&t=4629s",
       "historyRef": "history/cbaa87fd9b28.json",
       "historyCount": 1,
-      "lastSungAt": 20260824
+      "lastSungAt": 20260220
     },
     {
       "artist": "ポリスピカデリー",
@@ -180,8 +180,8 @@
       "date8": 20260824,
       "rowId": "須田景凪|ダーリン|歌枠|https://www.youtube.com/watch?v=9_y5QlSnMSs&t=436s",
       "historyRef": "history/dd166057ba9f.json",
-      "historyCount": 5,
-      "lastSungAt": 20251215
+      "historyCount": 6,
+      "lastSungAt": 20260206
     },
     {
       "artist": "大塚愛",
@@ -241,7 +241,7 @@
       "rowId": "宇多田ヒカル|addicted to you|歌枠|https://www.youtube.com/watch?v=i7KnVmYviEo&t=6354s",
       "historyRef": "history/57e739e704ae.json",
       "historyCount": 1,
-      "lastSungAt": 20260823
+      "lastSungAt": 20260123
     },
     {
       "artist": "宇多田ヒカル",
@@ -253,7 +253,7 @@
       "rowId": "宇多田ヒカル|another chance|歌枠|https://www.youtube.com/watch?v=i7KnVmYviEo&t=6707s",
       "historyRef": "history/78a378cc1192.json",
       "historyCount": 1,
-      "lastSungAt": 20260823
+      "lastSungAt": 20260213
     },
     {
       "artist": "宇多田ヒカル",
@@ -420,8 +420,8 @@
       "date8": 20260823,
       "rowId": "宇多田ヒカル|traveling|歌枠|https://www.youtube.com/watch?v=i7KnVmYviEo&t=5517s",
       "historyRef": "history/42731ff9f782.json",
-      "historyCount": 4,
-      "lastSungAt": 20251206
+      "historyCount": 5,
+      "lastSungAt": 20260131
     },
     {
       "artist": "宇多田ヒカル",
@@ -1129,7 +1129,7 @@
       "rowId": "aiko|スター|歌枠|https://www.youtube.com/watch?v=WRmerIci3Sw&t=5381s",
       "historyRef": "history/bea6abeb29fa.json",
       "historyCount": 1,
-      "lastSungAt": 20260807
+      "lastSungAt": 20260128
     },
     {
       "artist": "aiko",
@@ -1188,8 +1188,8 @@
       "date8": 20260807,
       "rowId": "yoasobi|undead|歌枠|https://www.youtube.com/watch?v=WRmerIci3Sw&t=4273s",
       "historyRef": "history/75223a1b793e.json",
-      "historyCount": 4,
-      "lastSungAt": 20251206
+      "historyCount": 5,
+      "lastSungAt": 20260220
     },
     {
       "artist": "かいりきベア",
@@ -1248,8 +1248,8 @@
       "date8": 20260807,
       "rowId": "ピノキオピー|ノンブレス・オブリージュ|歌枠|https://www.youtube.com/watch?v=WRmerIci3Sw&t=4641s",
       "historyRef": "history/fcc4d3f092cc.json",
-      "historyCount": 7,
-      "lastSungAt": 20251212
+      "historyCount": 8,
+      "lastSungAt": 20260225
     },
     {
       "artist": "ピノキオピー",
@@ -1321,7 +1321,7 @@
       "rowId": "宇多田ヒカル featuring 椎名林檎|二時間だけのバカンス|歌枠|https://www.youtube.com/watch?v=WRmerIci3Sw&t=7424s",
       "historyRef": "history/6cabd22396cc.json",
       "historyCount": 1,
-      "lastSungAt": 20260807
+      "lastSungAt": 20260204
     },
     {
       "artist": "水野あつ",

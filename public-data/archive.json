@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-08-30T02:11:48.434Z",
+  "fetchedAt": "2026-08-31T02:07:01.200Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -10255,6 +10255,16 @@
     },
     {
       "artist": "宇多田ヒカル",
+      "title": "Addicted To You",
+      "kind": "歌枠",
+      "dText": "20260123 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=p5KLp7BYk_o&t=3219s",
+      "date8": 20260123,
+      "rowId": "宇多田ヒカル|addicted to you|歌枠|https://www.youtube.com/watch?v=p5KLp7BYk_o&t=3219s",
+      "historyKey": "宇多田ヒカル|addicted to you"
+    },
+    {
+      "artist": "宇多田ヒカル",
       "title": "Automatic",
       "kind": "歌枠",
       "dText": "20260123 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
@@ -10322,6 +10332,16 @@
       "date8": 20260128,
       "rowId": "aiko|カブトムシ|歌枠|https://www.youtube.com/watch?v=WkFeXvBGFgk&t=7310s",
       "historyKey": "aiko|カブトムシ"
+    },
+    {
+      "artist": "aiko",
+      "title": "スター",
+      "kind": "歌枠",
+      "dText": "20260128 【#歌枠 #karaoke 】週末は歌枠リレー！練習するよ♪初見歓迎🌟⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=WkFeXvBGFgk&t=1411s",
+      "date8": 20260128,
+      "rowId": "aiko|スター|歌枠|https://www.youtube.com/watch?v=WkFeXvBGFgk&t=1411s",
+      "historyKey": "aiko|スター"
     },
     {
       "artist": "Orangestar",
@@ -10604,6 +10624,16 @@
       "historyKey": "mori calliope|go-getters"
     },
     {
+      "artist": "宇多田ヒカル",
+      "title": "traveling",
+      "kind": "歌枠",
+      "dText": "20260131 【 #ガールクラッシュ歌枠リレー 】かっこいい曲を歌う歌枠リレー🌟はじまるよ！【#さんきろへるつラジオ #新人vtuber 】",
+      "dUrl": "https://www.youtube.com/watch?v=vjg2T_HwMHs&t=1242s",
+      "date8": 20260131,
+      "rowId": "宇多田ヒカル|traveling|歌枠|https://www.youtube.com/watch?v=vjg2T_HwMHs&t=1242s",
+      "historyKey": "宇多田ヒカル|traveling"
+    },
+    {
       "artist": "椎名林檎",
       "title": "迷彩",
       "kind": "歌枠",
@@ -10682,6 +10712,16 @@
       "date8": 20260204,
       "rowId": "ヨルシカ|風を食む|歌枠|https://www.youtube.com/watch?v=839lfQ940sI&t=4726s",
       "historyKey": "ヨルシカ|風を食む"
+    },
+    {
+      "artist": "宇多田ヒカル featuring 椎名林檎",
+      "title": "二時間だけのバカンス",
+      "kind": "歌枠",
+      "dText": "20260204 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=839lfQ940sI&t=619s",
+      "date8": 20260204,
+      "rowId": "宇多田ヒカル featuring 椎名林檎|二時間だけのバカンス|歌枠|https://www.youtube.com/watch?v=839lfQ940sI&t=619s",
+      "historyKey": "宇多田ヒカル featuring 椎名林檎|二時間だけのバカンス"
     },
     {
       "artist": "手嶌葵",
@@ -10884,6 +10924,16 @@
       "historyKey": "相対性理論|気になるあの娘"
     },
     {
+      "artist": "須田景凪",
+      "title": "ダーリン",
+      "kind": "歌枠",
+      "dText": "20260206 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=qLRKq6xO3qk&t=4440s",
+      "date8": 20260206,
+      "rowId": "須田景凪|ダーリン|歌枠|https://www.youtube.com/watch?v=qLRKq6xO3qk&t=4440s",
+      "historyKey": "須田景凪|ダーリン"
+    },
+    {
       "artist": "椎名林檎",
       "title": "流行",
       "kind": "ショート",
@@ -11025,6 +11075,16 @@
     },
     {
       "artist": "宇多田ヒカル",
+      "title": "Another Chance",
+      "kind": "歌枠",
+      "dText": "20260213 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=O1XJN0l_pPc&t=2211s",
+      "date8": 20260213,
+      "rowId": "宇多田ヒカル|another chance|歌枠|https://www.youtube.com/watch?v=O1XJN0l_pPc&t=2211s",
+      "historyKey": "宇多田ヒカル|another chance"
+    },
+    {
+      "artist": "宇多田ヒカル",
       "title": "first love",
       "kind": "歌枠",
       "dText": "20260213 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
@@ -11155,6 +11215,16 @@
     },
     {
       "artist": "YOASOBI",
+      "title": "UNDEAD",
+      "kind": "歌枠",
+      "dText": "20260220 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=_JHUCrunBnw&t=2483s",
+      "date8": 20260220,
+      "rowId": "yoasobi|undead|歌枠|https://www.youtube.com/watch?v=_JHUCrunBnw&t=2483s",
+      "historyKey": "yoasobi|undead"
+    },
+    {
+      "artist": "YOASOBI",
       "title": "アイドル",
       "kind": "歌枠",
       "dText": "20260220 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
@@ -11172,6 +11242,16 @@
       "date8": 20260220,
       "rowId": "おぱみな feat.羽累(haru)|smash|歌枠|https://www.youtube.com/watch?v=_JHUCrunBnw&t=785s",
       "historyKey": "おぱみな feat.羽累(haru)|smash"
+    },
+    {
+      "artist": "てにをは",
+      "title": "ザムザ",
+      "kind": "歌枠",
+      "dText": "20260220 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=_JHUCrunBnw&t=1124s",
+      "date8": 20260220,
+      "rowId": "てにをは|ザムザ|歌枠|https://www.youtube.com/watch?v=_JHUCrunBnw&t=1124s",
+      "historyKey": "てにをは|ザムザ"
     },
     {
       "artist": "ポリスピカデリー",
@@ -11252,6 +11332,16 @@
       "date8": 20260225,
       "rowId": "バルーン (須田景凪)|シャルル|歌枠|https://www.youtube.com/watch?v=n1E4Q8GxFDo&t=1817s",
       "historyKey": "バルーン (須田景凪)|シャルル"
+    },
+    {
+      "artist": "ピノキオピー",
+      "title": "ノンブレス・オブリージュ",
+      "kind": "歌枠",
+      "dText": "20260225 【#歌枠 昼の部 #さんきろへるつラジオ 】ボカロ曲多め🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=n1E4Q8GxFDo&t=2505s",
+      "date8": 20260225,
+      "rowId": "ピノキオピー|ノンブレス・オブリージュ|歌枠|https://www.youtube.com/watch?v=n1E4Q8GxFDo&t=2505s",
+      "historyKey": "ピノキオピー|ノンブレス・オブリージュ"
     },
     {
       "artist": "みきとP",
@@ -11372,6 +11462,16 @@
       "date8": 20260228,
       "rowId": "クリープハイプ|おやすみ泣き声、さよなら歌姫|歌枠|https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=2210s",
       "historyKey": "クリープハイプ|おやすみ泣き声、さよなら歌姫"
+    },
+    {
+      "artist": "ちゃんみな",
+      "title": "B級",
+      "kind": "歌枠",
+      "dText": "20260228 【#歌枠 昼の部 #耐久 】高評価100耐久🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=7456s",
+      "date8": 20260228,
+      "rowId": "ちゃんみな|b級|歌枠|https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=7456s",
+      "historyKey": "ちゃんみな|b級"
     },
     {
       "artist": "バルーン (須田景凪)",
@@ -13304,6 +13404,6 @@
       "historyKey": "柊マグネタイト|テトリス"
     }
   ],
-  "total": 1330,
-  "matched": 1330
+  "total": 1340,
+  "matched": 1340
 }
