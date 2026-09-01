@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-09-01T02:27:32.291Z",
+  "fetchedAt": "2026-09-01T15:38:33.122Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -13534,6 +13534,16 @@
       "historyKey": "花彩音_3khz|マンデーモーニングブルー"
     },
     {
+      "artist": "BEAT CRUSADERS",
+      "title": "Moon On The Water",
+      "kind": "歌枠",
+      "dText": "20260616 【#歌枠 】深夜にチルな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=domKgZ9vAj8&t=5006s",
+      "date8": 20260616,
+      "rowId": "beat crusaders|moon on the water|歌枠|https://www.youtube.com/watch?v=domKgZ9vAj8&t=5006s",
+      "historyKey": "beat crusaders|moon on the water"
+    },
+    {
       "artist": "n-buna",
       "title": "夜明けと蛍",
       "kind": "歌枠",
@@ -13564,6 +13574,16 @@
       "historyKey": "ヨルシカ|六月は雨上がりの街を書く"
     },
     {
+      "artist": "imase",
+      "title": "NIGHT DANCER",
+      "kind": "歌枠",
+      "dText": "20260622 【#歌枠 】月曜にチルな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=B3ICS3xhgB4&t=1723s",
+      "date8": 20260622,
+      "rowId": "imase|night dancer|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=1723s",
+      "historyKey": "imase|night dancer"
+    },
+    {
       "artist": "rinri×Kyiku",
       "title": "白絵にもならない",
       "kind": "歌枠",
@@ -13592,6 +13612,16 @@
       "date8": 20260622,
       "rowId": "花彩音_3khz|あめのうた|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=7485s",
       "historyKey": "花彩音_3khz|あめのうた"
+    },
+    {
+      "artist": "ミルキィホームズ",
+      "title": "正解はひとつ!じゃない!!",
+      "kind": "ショート",
+      "dText": "20260629 【おはよー！】正解はひとつ!じゃない!!/ミルキィホームズ #歌ってみた #生歌 #アニメ #アニソン #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=qV0d0r_gTJg",
+      "date8": 20260629,
+      "rowId": "ミルキィホームズ|正解はひとつ!じゃない!!|ショート|https://www.youtube.com/watch?v=qV0d0r_gTJg",
+      "historyKey": "ミルキィホームズ|正解はひとつ!じゃない!!"
     },
     {
       "artist": "ツミキ",
@@ -13631,6 +13661,16 @@
       "dUrl": "https://www.youtube.com/watch?v=RSuuZvmMMhI",
       "date8": 20260706,
       "rowId": "ヨルシカ|櫂|ショート|https://www.youtube.com/watch?v=RSuuZvmMMhI",
+      "historyKey": "ヨルシカ|櫂"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "櫂",
+      "kind": "ショート",
+      "dText": "20260707 櫂/ヨルシカ #歌ってみた #cover #ヨルシカ #ピアノ #生歌",
+      "dUrl": "https://www.youtube.com/watch?v=ZymdxVrYv-k",
+      "date8": 20260707,
+      "rowId": "ヨルシカ|櫂|ショート|https://www.youtube.com/watch?v=ZymdxVrYv-k",
       "historyKey": "ヨルシカ|櫂"
     },
     {
@@ -13682,6 +13722,46 @@
       "date8": 20260713,
       "rowId": "millennium parade × belle|u|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=2735s",
       "historyKey": "millennium parade × belle|u"
+    },
+    {
+      "artist": "tuki.",
+      "title": "晩餐歌",
+      "kind": "歌枠",
+      "dText": "20260713 【#歌枠 】月曜の青春パンクな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=vpLO3OcLw7g&t=5694s",
+      "date8": 20260713,
+      "rowId": "tuki.|晩餐歌|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=5694s",
+      "historyKey": "tuki.|晩餐歌"
+    },
+    {
+      "artist": "かいりきベア",
+      "title": "ベノム",
+      "kind": "歌枠",
+      "dText": "20260713 【#歌枠 】月曜の青春パンクな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=vpLO3OcLw7g&t=3635s",
+      "date8": 20260713,
+      "rowId": "かいりきベア|ベノム|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=3635s",
+      "historyKey": "かいりきベア|ベノム"
+    },
+    {
+      "artist": "宇多田ヒカル",
+      "title": "For You",
+      "kind": "歌枠",
+      "dText": "20260713 【#歌枠 】月曜の青春パンクな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=vpLO3OcLw7g&t=6038s",
+      "date8": 20260713,
+      "rowId": "宇多田ヒカル|for you|歌枠|https://www.youtube.com/watch?v=vpLO3OcLw7g&t=6038s",
+      "historyKey": "宇多田ヒカル|for you"
+    },
+    {
+      "artist": "EGO-WRAPPIN'",
+      "title": "くちばしにチェリー",
+      "kind": "歌枠",
+      "dText": "20260716 【#歌枠 】作業BGMにどうぞ・のんびり歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=ko-7BdZ98NQ&t=1691s",
+      "date8": 20260716,
+      "rowId": "ego-wrappin'|くちばしにチェリー|歌枠|https://www.youtube.com/watch?v=ko-7BdZ98NQ&t=1691s",
+      "historyKey": "ego-wrappin'|くちばしにチェリー"
     },
     {
       "artist": "Ado",
@@ -13782,8 +13862,88 @@
       "date8": 20260727,
       "rowId": "柊マグネタイト|テトリス|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=3983s",
       "historyKey": "柊マグネタイト|テトリス"
+    },
+    {
+      "artist": "ジミーサムP",
+      "title": "Calc.",
+      "kind": "ショート",
+      "dText": "20260802 【歌枠切り抜き】Calc./ジミーサムP #歌ってみた #歌枠 #calc #ボカロ #カラオケ",
+      "dUrl": "https://www.youtube.com/watch?v=2t5atvhrcto",
+      "date8": 20260802,
+      "rowId": "ジミーサムp|calc.|ショート|https://www.youtube.com/watch?v=2t5atvhrcto",
+      "historyKey": "ジミーサムp|calc."
+    },
+    {
+      "artist": "宇多田ヒカル",
+      "title": "In My Room",
+      "kind": "歌枠",
+      "dText": "20260807 【#歌枠 】癒しボイスで元気に歌います⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=WRmerIci3Sw&t=5798s",
+      "date8": 20260807,
+      "rowId": "宇多田ヒカル|in my room|歌枠|https://www.youtube.com/watch?v=WRmerIci3Sw&t=5798s",
+      "historyKey": "宇多田ヒカル|in my room"
+    },
+    {
+      "artist": "冨岡愛",
+      "title": "グッドバイバイ",
+      "kind": "ショート",
+      "dText": "20260812 グッドバイバイ/冨岡愛 #歌ってみた #cover #chill #vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=eGbPQMX-f_A",
+      "date8": 20260812,
+      "rowId": "冨岡愛|グッドバイバイ|ショート|https://www.youtube.com/watch?v=eGbPQMX-f_A",
+      "historyKey": "冨岡愛|グッドバイバイ"
+    },
+    {
+      "artist": "DECO*27",
+      "title": "マシュマロ",
+      "kind": "歌枠",
+      "dText": "20260814 【#歌枠 】今週もお疲れ様です🌟元気に歌います⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=AiTSof6Q6hg&t=7331s",
+      "date8": 20260814,
+      "rowId": "deco*27|マシュマロ|歌枠|https://www.youtube.com/watch?v=AiTSof6Q6hg&t=7331s",
+      "historyKey": "deco*27|マシュマロ"
+    },
+    {
+      "artist": "kiki vivi lily",
+      "title": "80denier",
+      "kind": "歌枠",
+      "dText": "20260814 【#歌枠 】今週もお疲れ様です🌟元気に歌います⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=AiTSof6Q6hg&t=6210s",
+      "date8": 20260814,
+      "rowId": "kiki vivi lily|80denier|歌枠|https://www.youtube.com/watch?v=AiTSof6Q6hg&t=6210s",
+      "historyKey": "kiki vivi lily|80denier"
+    },
+    {
+      "artist": "花彩音_3kHz",
+      "title": "あめのうた",
+      "kind": "歌枠",
+      "dText": "20260814 【#歌枠 】今週もお疲れ様です🌟元気に歌います⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=AiTSof6Q6hg&t=6959s",
+      "date8": 20260814,
+      "rowId": "花彩音_3khz|あめのうた|歌枠|https://www.youtube.com/watch?v=AiTSof6Q6hg&t=6959s",
+      "historyKey": "花彩音_3khz|あめのうた"
+    },
+    {
+      "artist": "花彩音_3kHz",
+      "title": "天井のうた",
+      "kind": "歌枠",
+      "dText": "20260814 【#歌枠 】今週もお疲れ様です🌟元気に歌います⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=AiTSof6Q6hg&t=6766s",
+      "date8": 20260814,
+      "rowId": "花彩音_3khz|天井のうた|歌枠|https://www.youtube.com/watch?v=AiTSof6Q6hg&t=6766s",
+      "historyKey": "花彩音_3khz|天井のうた"
+    },
+    {
+      "artist": "kiki vivi lily",
+      "title": "80denier",
+      "kind": "歌枠",
+      "dText": "20260817 【#歌枠 】月用の夜に元気に歌います⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=cVzXs_wJjd8&t=6431s",
+      "date8": 20260817,
+      "rowId": "kiki vivi lily|80denier|歌枠|https://www.youtube.com/watch?v=cVzXs_wJjd8&t=6431s",
+      "historyKey": "kiki vivi lily|80denier"
     }
   ],
-  "total": 1378,
-  "matched": 1378
+  "total": 1394,
+  "matched": 1394
 }

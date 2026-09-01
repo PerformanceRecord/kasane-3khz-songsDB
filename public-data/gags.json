@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "gags",
-  "fetchedAt": "2026-09-01T02:27:25.995Z",
+  "fetchedAt": "2026-09-01T15:38:24.589Z",
   "rows": [
     {
       "artist": "花彩音_3kHz",
@@ -204,8 +204,8 @@
       "date8": 20251011,
       "rowId": "deco*27|マシュマロ|ネタ歌枠|https://www.youtube.com/watch?v=Tfm37xL_ydo&t=418s",
       "historyRef": "history/bb8f4d3a1f84.json",
-      "historyCount": 11,
-      "lastSungAt": 20260727
+      "historyCount": 12,
+      "lastSungAt": 20260814
     },
     {
       "artist": "Mao",

@@ -1,10 +1,10 @@
 {
-  "cursorDate8": 20260615,
-  "cursorKey": "斉藤和義|歩いて帰ろう|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=894s",
-  "batchSize": 192,
-  "wrapped": false,
-  "cycle": 5,
-  "lastCycleCompletedAt": "2026-08-25T00:35:40.269Z",
-  "lastCollisionCount": 154,
-  "updatedAt": "2026-09-01T02:27:32.291Z"
+  "cursorDate8": 0,
+  "cursorKey": "",
+  "batchSize": 197,
+  "wrapped": true,
+  "cycle": 6,
+  "lastCycleCompletedAt": "2026-09-01T15:38:33.122Z",
+  "lastCollisionCount": 26,
+  "updatedAt": "2026-09-01T15:38:33.122Z"
 }
