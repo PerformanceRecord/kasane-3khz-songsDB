@@ -1,10 +1,10 @@
 {
-  "cursorDate8": 0,
-  "cursorKey": "",
-  "batchSize": 197,
-  "wrapped": true,
+  "cursorDate8": 20250913,
+  "cursorKey": "azari|shadow shadow|歌枠|https://www.youtube.com/watch?v=-sMHtyy6nUw&t=2451s",
+  "batchSize": 200,
+  "wrapped": false,
   "cycle": 6,
   "lastCycleCompletedAt": "2026-09-01T15:38:33.122Z",
-  "lastCollisionCount": 26,
-  "updatedAt": "2026-09-01T15:38:33.122Z"
+  "lastCollisionCount": 200,
+  "updatedAt": "2026-09-01T15:55:59.343Z"
 }

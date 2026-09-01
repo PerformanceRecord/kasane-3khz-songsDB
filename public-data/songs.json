@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-09-01T15:38:23.186Z",
+  "fetchedAt": "2026-09-01T15:55:48.071Z",
   "rows": [
     {
       "artist": "キタニタツヤ",
@@ -7423,22 +7423,34 @@
       "artist": "DECO*27",
       "title": "ヴァンパイア",
       "kind": "歌枠",
-      "dText": "20250924 【歌枠・昼の部】初見歓迎🌟⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=X5B1S8cvrxI&t=3135s",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=3135s",
       "date8": 20250924,
-      "rowId": "deco*27|ヴァンパイア|歌枠|https://www.youtube.com/watch?v=X5B1S8cvrxI&t=3135s",
+      "rowId": "deco*27|ヴァンパイア|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=3135s",
       "historyRef": "history/18f4849db157.json",
       "historyCount": 2,
       "lastSungAt": 20250901
     },
     {
+      "artist": "Superfly",
+      "title": "Last Love Song",
+      "kind": "歌枠",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=1774s",
+      "date8": 20250924,
+      "rowId": "superfly|last love song|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=1774s",
+      "historyRef": "history/344866455477.json",
+      "historyCount": 4,
+      "lastSungAt": 20260326
+    },
+    {
       "artist": "相対性理論",
       "title": "シンデレラ",
       "kind": "歌枠",
-      "dText": "20250924 【歌枠・昼の部】初見歓迎🌟⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=X5B1S8cvrxI&t=1017s",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=1017s",
       "date8": 20250924,
-      "rowId": "相対性理論|シンデレラ|歌枠|https://www.youtube.com/watch?v=X5B1S8cvrxI&t=1017s",
+      "rowId": "相対性理論|シンデレラ|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=1017s",
       "historyRef": "history/f7af663fa770.json",
       "historyCount": 2,
       "lastSungAt": 20250912
@@ -7447,13 +7459,25 @@
       "artist": "相対性理論",
       "title": "地獄先生",
       "kind": "歌枠",
-      "dText": "20250924 【歌枠・昼の部】初見歓迎🌟⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=X5B1S8cvrxI&t=489s",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=489s",
       "date8": 20250924,
-      "rowId": "相対性理論|地獄先生|歌枠|https://www.youtube.com/watch?v=X5B1S8cvrxI&t=489s",
+      "rowId": "相対性理論|地獄先生|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=489s",
       "historyRef": "history/84ed1b5d7511.json",
       "historyCount": 1,
       "lastSungAt": 20250924
+    },
+    {
+      "artist": "日向電工",
+      "title": "ブリキノダンス",
+      "kind": "歌枠",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=2158s",
+      "date8": 20250924,
+      "rowId": "日向電工|ブリキノダンス|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=2158s",
+      "historyRef": "history/bd756edc3802.json",
+      "historyCount": 4,
+      "lastSungAt": 20251230
     },
     {
       "artist": "山口百恵",
@@ -7600,6 +7624,42 @@
       "lastSungAt": 20250905
     },
     {
+      "artist": "Midnight Grand Orchestra",
+      "title": "Midnight Mission",
+      "kind": "歌枠",
+      "dText": "20250904【歌枠】初見歓迎🌸歌が上手くなりたい 花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=JLbcMFqHr7U&t=1025s",
+      "date8": 20250904,
+      "rowId": "midnight grand orchestra|midnight mission|歌枠|https://www.youtube.com/watch?v=JLbcMFqHr7U&t=1025s",
+      "historyRef": "history/5579f7d974a8.json",
+      "historyCount": 7,
+      "lastSungAt": 20260123
+    },
+    {
+      "artist": "ツミキ",
+      "title": "フォニイ",
+      "kind": "歌枠",
+      "dText": "20250904【歌枠】初見歓迎🌸歌が上手くなりたい 花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=JLbcMFqHr7U&t=556s",
+      "date8": 20250904,
+      "rowId": "ツミキ|フォニイ|歌枠|https://www.youtube.com/watch?v=JLbcMFqHr7U&t=556s",
+      "historyRef": "history/470d3b562add.json",
+      "historyCount": 16,
+      "lastSungAt": 20260630
+    },
+    {
+      "artist": "凛として時雨",
+      "title": "JPOP Xfile",
+      "kind": "歌枠",
+      "dText": "20250904【歌枠】初見歓迎🌸歌が上手くなりたい 花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=JLbcMFqHr7U&t=2883s",
+      "date8": 20250904,
+      "rowId": "凛として時雨|jpop xfile|歌枠|https://www.youtube.com/watch?v=JLbcMFqHr7U&t=2883s",
+      "historyRef": "history/13fbd4843e68.json",
+      "historyCount": 1,
+      "lastSungAt": 20250904
+    },
+    {
       "artist": "9Lana",
       "title": "BALALAIKA(Acoustic)",
       "kind": "ショート",
@@ -7608,18 +7668,6 @@
       "date8": 20250904,
       "rowId": "9lana|balalaika(acoustic)|ショート|https://www.youtube.com/shorts/E3_s4jj9ot4",
       "historyRef": "history/55d183af4e0f.json",
-      "historyCount": 1,
-      "lastSungAt": 20250904
-    },
-    {
-      "artist": "凛として時雨",
-      "title": "JPOP Xfile",
-      "kind": "歌枠",
-      "dText": "20250904 【歌枠】初見歓迎🌸歌が上手くなりたい 花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=DkTLDiMNQpY&t=2883s",
-      "date8": 20250904,
-      "rowId": "凛として時雨|jpop xfile|歌枠|https://www.youtube.com/watch?v=DkTLDiMNQpY&t=2883s",
-      "historyRef": "history/13fbd4843e68.json",
       "historyCount": 1,
       "lastSungAt": 20250904
     },
@@ -7732,18 +7780,6 @@
       "lastSungAt": 20250810
     },
     {
-      "artist": "紫今",
-      "title": "ウワサのあの子",
-      "kind": "ショート",
-      "dText": "20250806 【#生歌 】ウワサのあの子/紫今 #歌ってみた #vtuber #邦ロック",
-      "dUrl": "https://www.youtube.com/shorts/E5bR4P3bS-s",
-      "date8": 20250806,
-      "rowId": "紫今|ウワサのあの子|ショート|https://www.youtube.com/shorts/E5bR4P3bS-s",
-      "historyRef": "history/c3c5dd119ca0.json",
-      "historyCount": 1,
-      "lastSungAt": 20250806
-    },
-    {
       "artist": "P丸様。",
       "title": "どーも、天才です！",
       "kind": "ショート",
@@ -7768,6 +7804,6 @@
       "lastSungAt": 20260622
     }
   ],
-  "total": 647,
-  "matched": 647
+  "total": 650,
+  "matched": 650
 }
