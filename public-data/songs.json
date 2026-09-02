@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-09-01T15:55:48.071Z",
+  "fetchedAt": "2026-09-02T01:48:19.085Z",
   "rows": [
     {
       "artist": "キタニタツヤ",
@@ -444,7 +444,7 @@
       "date8": 20260823,
       "rowId": "宇多田ヒカル|traveling|歌枠|https://www.youtube.com/watch?v=i7KnVmYviEo&t=5517s",
       "historyRef": "history/42731ff9f782.json",
-      "historyCount": 5,
+      "historyCount": 6,
       "lastSungAt": 20260131
     },
     {
@@ -1068,7 +1068,7 @@
       "date8": 20260810,
       "rowId": "松任谷由実|ルージュの伝言|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=5163s",
       "historyRef": "history/5d29b737407b.json",
-      "historyCount": 1,
+      "historyCount": 2,
       "lastSungAt": 20251006
     },
     {
@@ -1212,7 +1212,7 @@
       "date8": 20260807,
       "rowId": "yoasobi|undead|歌枠|https://www.youtube.com/watch?v=WRmerIci3Sw&t=4273s",
       "historyRef": "history/75223a1b793e.json",
-      "historyCount": 5,
+      "historyCount": 6,
       "lastSungAt": 20260220
     },
     {
@@ -1284,7 +1284,7 @@
       "date8": 20260807,
       "rowId": "ピノキオピー|神っぽいな|歌枠|https://www.youtube.com/watch?v=WRmerIci3Sw&t=4986s",
       "historyRef": "history/c148d9861363.json",
-      "historyCount": 4,
+      "historyCount": 5,
       "lastSungAt": 20260429
     },
     {
@@ -1356,7 +1356,7 @@
       "date8": 20260807,
       "rowId": "水野あつ|生きる|歌枠|https://www.youtube.com/watch?v=WRmerIci3Sw&t=6238s",
       "historyRef": "history/56a813d2296d.json",
-      "historyCount": 15,
+      "historyCount": 16,
       "lastSungAt": 20260424
     },
     {
@@ -1524,7 +1524,7 @@
       "date8": 20260727,
       "rowId": "judy and mary|radio|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=7153s",
       "historyRef": "history/827c3d93cb8d.json",
-      "historyCount": 1,
+      "historyCount": 2,
       "lastSungAt": 20251006
     },
     {
@@ -1536,7 +1536,7 @@
       "date8": 20260727,
       "rowId": "judy and mary|散歩道|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=6832s",
       "historyRef": "history/ab9d14c95408.json",
-      "historyCount": 4,
+      "historyCount": 6,
       "lastSungAt": 20260220
     },
     {
@@ -2196,7 +2196,7 @@
       "date8": 20260622,
       "rowId": "相対性理論|さわやか会社員|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=423s",
       "historyRef": "history/e4c447895f1d.json",
-      "historyCount": 7,
+      "historyCount": 8,
       "lastSungAt": 20260213
     },
     {
@@ -2388,7 +2388,7 @@
       "date8": 20260615,
       "rowId": "aqu3ra|チョコレートミルク|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=2558s",
       "historyRef": "history/7e8d6cbe36a1.json",
-      "historyCount": 7,
+      "historyCount": 8,
       "lastSungAt": 20260326
     },
     {
@@ -2544,7 +2544,7 @@
       "date8": 20260615,
       "rowId": "椎名林檎|おだいじに|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=2778s",
       "historyRef": "history/b5f7cef015f6.json",
-      "historyCount": 4,
+      "historyCount": 5,
       "lastSungAt": 20260424
     },
     {
@@ -2616,7 +2616,7 @@
       "date8": 20260610,
       "rowId": "ado|ギラギラ|歌枠|https://www.youtube.com/watch?v=QXZMPywkYG8&t=4134s",
       "historyRef": "history/7f4789d77490.json",
-      "historyCount": 9,
+      "historyCount": 10,
       "lastSungAt": 20260326
     },
     {
@@ -2760,7 +2760,7 @@
       "date8": 20260610,
       "rowId": "緑黄色社会|花になって|歌枠|https://www.youtube.com/watch?v=QXZMPywkYG8&t=3208s",
       "historyRef": "history/91cfc7d64443.json",
-      "historyCount": 7,
+      "historyCount": 8,
       "lastSungAt": 20260316
     },
     {
@@ -3144,7 +3144,7 @@
       "date8": 20260522,
       "rowId": "東京事変|透明人間|歌枠|https://www.youtube.com/watch?v=NtixH-Xwvw4&t=7183s",
       "historyRef": "history/6bf06768593d.json",
-      "historyCount": 8,
+      "historyCount": 9,
       "lastSungAt": 20260110
     },
     {
@@ -3696,7 +3696,7 @@
       "date8": 20260511,
       "rowId": "judy and mary|over drive|歌枠|https://www.youtube.com/watch?v=EKYW8P4H3J8&t=1800s",
       "historyRef": "history/205a6164248e.json",
-      "historyCount": 1,
+      "historyCount": 2,
       "lastSungAt": 20251006
     },
     {
@@ -4740,7 +4740,7 @@
       "date8": 20260401,
       "rowId": "ヨルシカ|言って|歌枠|https://www.youtube.com/watch?v=zMpYUnXz54k&t=1550s",
       "historyRef": "history/7f847e002d88.json",
-      "historyCount": 1,
+      "historyCount": 2,
       "lastSungAt": 20251001
     },
     {
@@ -5064,7 +5064,7 @@
       "date8": 20260319,
       "rowId": "deco*27|妄想感傷代償連盟|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=4093s",
       "historyRef": "history/20a88d265378.json",
-      "historyCount": 5,
+      "historyCount": 6,
       "lastSungAt": 20260319
     },
     {
@@ -5076,7 +5076,7 @@
       "date8": 20260319,
       "rowId": "judy and mary|bathroom|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=4871s",
       "historyRef": "history/14e6e3ccbb93.json",
-      "historyCount": 2,
+      "historyCount": 3,
       "lastSungAt": 20260319
     },
     {
@@ -5196,7 +5196,7 @@
       "date8": 20260316,
       "rowId": "れるりり|ヤミタイガール|歌枠|https://www.youtube.com/watch?v=x5BV86bUdvo&t=828s",
       "historyRef": "history/84aa0a2bda5a.json",
-      "historyCount": 2,
+      "historyCount": 3,
       "lastSungAt": 20251230
     },
     {
@@ -6168,7 +6168,7 @@
       "date8": 20260107,
       "rowId": "judy and mary|クラシック|歌枠|https://www.youtube.com/watch?v=8-1dncS5ut4&t=1860s",
       "historyRef": "history/4eab6de57dfe.json",
-      "historyCount": 3,
+      "historyCount": 5,
       "lastSungAt": 20251006
     },
     {
@@ -6396,7 +6396,7 @@
       "date8": 20251219,
       "rowId": "miwa|ヒカリへ|歌枠|https://www.youtube.com/watch?v=j0UtOEI-3e4&t=2425s",
       "historyRef": "history/04c72283add3.json",
-      "historyCount": 3,
+      "historyCount": 4,
       "lastSungAt": 20251006
     },
     {
@@ -6984,7 +6984,7 @@
       "date8": 20251106,
       "rowId": "井上あずみ|君をのせて|歌枠|https://www.youtube.com/watch?v=aXoTnmGjbWY&t=2566s",
       "historyRef": "history/3b4f5dce6703.json",
-      "historyCount": 1,
+      "historyCount": 2,
       "lastSungAt": 20251006
     },
     {

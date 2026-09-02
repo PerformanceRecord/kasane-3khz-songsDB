@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-09-01T15:55:59.343Z",
+  "fetchedAt": "2026-09-02T01:48:32.580Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -4637,11 +4637,31 @@
       "artist": "Ado",
       "title": "ギラギラ",
       "kind": "歌枠",
+      "dText": "20251001【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=eMQdEqtiOIE&t=2801s",
+      "date8": 20251001,
+      "rowId": "ado|ギラギラ|歌枠|https://www.youtube.com/watch?v=eMQdEqtiOIE&t=2801s",
+      "historyKey": "ado|ギラギラ"
+    },
+    {
+      "artist": "Ado",
+      "title": "ギラギラ",
+      "kind": "歌枠",
       "dText": "20251001 【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=jXzLOBjpCR0&t=2801s",
       "date8": 20251001,
       "rowId": "ado|ギラギラ|歌枠|https://www.youtube.com/watch?v=jXzLOBjpCR0&t=2801s",
       "historyKey": "ado|ギラギラ"
+    },
+    {
+      "artist": "Aqu3ra",
+      "title": "チョコレートミルク",
+      "kind": "歌枠",
+      "dText": "20251001【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=eMQdEqtiOIE&t=2442s",
+      "date8": 20251001,
+      "rowId": "aqu3ra|チョコレートミルク|歌枠|https://www.youtube.com/watch?v=eMQdEqtiOIE&t=2442s",
+      "historyKey": "aqu3ra|チョコレートミルク"
     },
     {
       "artist": "Aqu3ra",
@@ -4657,11 +4677,31 @@
       "artist": "DECO*27",
       "title": "妄想感傷代償連盟",
       "kind": "歌枠",
+      "dText": "20251001【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=eMQdEqtiOIE&t=2046s",
+      "date8": 20251001,
+      "rowId": "deco*27|妄想感傷代償連盟|歌枠|https://www.youtube.com/watch?v=eMQdEqtiOIE&t=2046s",
+      "historyKey": "deco*27|妄想感傷代償連盟"
+    },
+    {
+      "artist": "DECO*27",
+      "title": "妄想感傷代償連盟",
+      "kind": "歌枠",
       "dText": "20251001 【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=jXzLOBjpCR0&t=2046s",
       "date8": 20251001,
       "rowId": "deco*27|妄想感傷代償連盟|歌枠|https://www.youtube.com/watch?v=jXzLOBjpCR0&t=2046s",
       "historyKey": "deco*27|妄想感傷代償連盟"
+    },
+    {
+      "artist": "JUDY AND MARY",
+      "title": "クラシック",
+      "kind": "歌枠",
+      "dText": "20251001【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=eMQdEqtiOIE&t=1667s",
+      "date8": 20251001,
+      "rowId": "judy and mary|クラシック|歌枠|https://www.youtube.com/watch?v=eMQdEqtiOIE&t=1667s",
+      "historyKey": "judy and mary|クラシック"
     },
     {
       "artist": "JUDY AND MARY",
@@ -4677,11 +4717,31 @@
       "artist": "JUDY AND MARY",
       "title": "散歩道",
       "kind": "歌枠",
+      "dText": "20251001【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=eMQdEqtiOIE&t=1227s",
+      "date8": 20251001,
+      "rowId": "judy and mary|散歩道|歌枠|https://www.youtube.com/watch?v=eMQdEqtiOIE&t=1227s",
+      "historyKey": "judy and mary|散歩道"
+    },
+    {
+      "artist": "JUDY AND MARY",
+      "title": "散歩道",
+      "kind": "歌枠",
       "dText": "20251001 【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=jXzLOBjpCR0&t=1227s",
       "date8": 20251001,
       "rowId": "judy and mary|散歩道|歌枠|https://www.youtube.com/watch?v=jXzLOBjpCR0&t=1227s",
       "historyKey": "judy and mary|散歩道"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "言って",
+      "kind": "歌枠",
+      "dText": "20251001【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=eMQdEqtiOIE&t=426s",
+      "date8": 20251001,
+      "rowId": "ヨルシカ|言って|歌枠|https://www.youtube.com/watch?v=eMQdEqtiOIE&t=426s",
+      "historyKey": "ヨルシカ|言って"
     },
     {
       "artist": "ヨルシカ",
@@ -4697,6 +4757,16 @@
       "artist": "椎名林檎",
       "title": "おだいじに",
       "kind": "歌枠",
+      "dText": "20251001【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=eMQdEqtiOIE&t=4901s",
+      "date8": 20251001,
+      "rowId": "椎名林檎|おだいじに|歌枠|https://www.youtube.com/watch?v=eMQdEqtiOIE&t=4901s",
+      "historyKey": "椎名林檎|おだいじに"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "おだいじに",
+      "kind": "歌枠",
       "dText": "20251001 【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=jXzLOBjpCR0&t=4901s",
       "date8": 20251001,
@@ -4707,11 +4777,31 @@
       "artist": "水野あつ",
       "title": "生きる",
       "kind": "歌枠",
+      "dText": "20251001【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=eMQdEqtiOIE&t=4544s",
+      "date8": 20251001,
+      "rowId": "水野あつ|生きる|歌枠|https://www.youtube.com/watch?v=eMQdEqtiOIE&t=4544s",
+      "historyKey": "水野あつ|生きる"
+    },
+    {
+      "artist": "水野あつ",
+      "title": "生きる",
+      "kind": "歌枠",
       "dText": "20251001 【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=jXzLOBjpCR0&t=4544s",
       "date8": 20251001,
       "rowId": "水野あつ|生きる|歌枠|https://www.youtube.com/watch?v=jXzLOBjpCR0&t=4544s",
       "historyKey": "水野あつ|生きる"
+    },
+    {
+      "artist": "相対性理論",
+      "title": "さわやか会社員",
+      "kind": "歌枠",
+      "dText": "20251001【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=eMQdEqtiOIE&t=3356s",
+      "date8": 20251001,
+      "rowId": "相対性理論|さわやか会社員|歌枠|https://www.youtube.com/watch?v=eMQdEqtiOIE&t=3356s",
+      "historyKey": "相対性理論|さわやか会社員"
     },
     {
       "artist": "相対性理論",
@@ -4855,12 +4945,32 @@
     },
     {
       "artist": "JUDY AND MARY",
+      "title": "BATHROOM",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=7563s",
+      "date8": 20251006,
+      "rowId": "judy and mary|bathroom|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=7563s",
+      "historyKey": "judy and mary|bathroom"
+    },
+    {
+      "artist": "JUDY AND MARY",
       "title": "Over Drive",
       "kind": "歌枠",
       "dText": "20251006 【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=GhixRAwY_YI&t=417s",
       "date8": 20251006,
       "rowId": "judy and mary|over drive|歌枠|https://www.youtube.com/watch?v=GhixRAwY_YI&t=417s",
+      "historyKey": "judy and mary|over drive"
+    },
+    {
+      "artist": "JUDY AND MARY",
+      "title": "Over Drive",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=417s",
+      "date8": 20251006,
+      "rowId": "judy and mary|over drive|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=417s",
       "historyKey": "judy and mary|over drive"
     },
     {
@@ -4875,12 +4985,32 @@
     },
     {
       "artist": "JUDY AND MARY",
+      "title": "RADIO",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=1297s",
+      "date8": 20251006,
+      "rowId": "judy and mary|radio|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=1297s",
+      "historyKey": "judy and mary|radio"
+    },
+    {
+      "artist": "JUDY AND MARY",
       "title": "クラシック",
       "kind": "歌枠",
       "dText": "20251006 【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=GhixRAwY_YI&t=895s",
       "date8": 20251006,
       "rowId": "judy and mary|クラシック|歌枠|https://www.youtube.com/watch?v=GhixRAwY_YI&t=895s",
+      "historyKey": "judy and mary|クラシック"
+    },
+    {
+      "artist": "JUDY AND MARY",
+      "title": "クラシック",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=895s",
+      "date8": 20251006,
+      "rowId": "judy and mary|クラシック|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=895s",
       "historyKey": "judy and mary|クラシック"
     },
     {
@@ -4894,6 +5024,16 @@
       "historyKey": "judy and mary|散歩道"
     },
     {
+      "artist": "JUDY AND MARY",
+      "title": "散歩道",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=4045s",
+      "date8": 20251006,
+      "rowId": "judy and mary|散歩道|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=4045s",
+      "historyKey": "judy and mary|散歩道"
+    },
+    {
       "artist": "Miwa",
       "title": "ヒカリへ",
       "kind": "歌枠",
@@ -4901,6 +5041,16 @@
       "dUrl": "https://www.youtube.com/watch?v=GhixRAwY_YI&t=5562s",
       "date8": 20251006,
       "rowId": "miwa|ヒカリへ|歌枠|https://www.youtube.com/watch?v=GhixRAwY_YI&t=5562s",
+      "historyKey": "miwa|ヒカリへ"
+    },
+    {
+      "artist": "Miwa",
+      "title": "ヒカリへ",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=5562s",
+      "date8": 20251006,
+      "rowId": "miwa|ヒカリへ|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=5562s",
       "historyKey": "miwa|ヒカリへ"
     },
     {
@@ -4914,6 +5064,16 @@
       "historyKey": "yoasobi|undead"
     },
     {
+      "artist": "YOASOBI",
+      "title": "UNDEAD",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=6484s",
+      "date8": 20251006,
+      "rowId": "yoasobi|undead|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=6484s",
+      "historyKey": "yoasobi|undead"
+    },
+    {
       "artist": "ピノキオピー",
       "title": "神っぽいな",
       "kind": "歌枠",
@@ -4921,6 +5081,16 @@
       "dUrl": "https://www.youtube.com/watch?v=GhixRAwY_YI&t=1935s",
       "date8": 20251006,
       "rowId": "ピノキオピー|神っぽいな|歌枠|https://www.youtube.com/watch?v=GhixRAwY_YI&t=1935s",
+      "historyKey": "ピノキオピー|神っぽいな"
+    },
+    {
+      "artist": "ピノキオピー",
+      "title": "神っぽいな",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=1935s",
+      "date8": 20251006,
+      "rowId": "ピノキオピー|神っぽいな|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=1935s",
       "historyKey": "ピノキオピー|神っぽいな"
     },
     {
@@ -4934,6 +5104,16 @@
       "historyKey": "れるりり|ヤミタイガール"
     },
     {
+      "artist": "れるりり",
+      "title": "ヤミタイガール",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=3331s",
+      "date8": 20251006,
+      "rowId": "れるりり|ヤミタイガール|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=3331s",
+      "historyKey": "れるりり|ヤミタイガール"
+    },
+    {
       "artist": "井上あずみ",
       "title": "君をのせて",
       "kind": "歌枠",
@@ -4941,6 +5121,16 @@
       "dUrl": "https://www.youtube.com/watch?v=GhixRAwY_YI&t=4621s",
       "date8": 20251006,
       "rowId": "井上あずみ|君をのせて|歌枠|https://www.youtube.com/watch?v=GhixRAwY_YI&t=4621s",
+      "historyKey": "井上あずみ|君をのせて"
+    },
+    {
+      "artist": "井上あずみ",
+      "title": "君をのせて",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=4621s",
+      "date8": 20251006,
+      "rowId": "井上あずみ|君をのせて|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=4621s",
       "historyKey": "井上あずみ|君をのせて"
     },
     {
@@ -4954,6 +5144,16 @@
       "historyKey": "宇多田ヒカル|traveling"
     },
     {
+      "artist": "宇多田ヒカル",
+      "title": "traveling",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=2480s",
+      "date8": 20251006,
+      "rowId": "宇多田ヒカル|traveling|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=2480s",
+      "historyKey": "宇多田ヒカル|traveling"
+    },
+    {
       "artist": "東京事変",
       "title": "透明人間",
       "kind": "歌枠",
@@ -4961,6 +5161,16 @@
       "dUrl": "https://www.youtube.com/watch?v=GhixRAwY_YI&t=7883s",
       "date8": 20251006,
       "rowId": "東京事変|透明人間|歌枠|https://www.youtube.com/watch?v=GhixRAwY_YI&t=7883s",
+      "historyKey": "東京事変|透明人間"
+    },
+    {
+      "artist": "東京事変",
+      "title": "透明人間",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=7883s",
+      "date8": 20251006,
+      "rowId": "東京事変|透明人間|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=7883s",
       "historyKey": "東京事変|透明人間"
     },
     {
@@ -4974,6 +5184,16 @@
       "historyKey": "松任谷由実|ルージュの伝言"
     },
     {
+      "artist": "松任谷由実",
+      "title": "ルージュの伝言",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=6926s",
+      "date8": 20251006,
+      "rowId": "松任谷由実|ルージュの伝言|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=6926s",
+      "historyKey": "松任谷由実|ルージュの伝言"
+    },
+    {
       "artist": "緑黄色社会",
       "title": "花になって",
       "kind": "歌枠",
@@ -4981,6 +5201,16 @@
       "dUrl": "https://www.youtube.com/watch?v=GhixRAwY_YI&t=5936s",
       "date8": 20251006,
       "rowId": "緑黄色社会|花になって|歌枠|https://www.youtube.com/watch?v=GhixRAwY_YI&t=5936s",
+      "historyKey": "緑黄色社会|花になって"
+    },
+    {
+      "artist": "緑黄色社会",
+      "title": "花になって",
+      "kind": "歌枠",
+      "dText": "20251006【歌枠】JUDY AND MARYが好き！可愛く歌いたい！⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=UfPBCVIj_fY&t=5936s",
+      "date8": 20251006,
+      "rowId": "緑黄色社会|花になって|歌枠|https://www.youtube.com/watch?v=UfPBCVIj_fY&t=5936s",
       "historyKey": "緑黄色社会|花になって"
     },
     {
@@ -13944,6 +14174,6 @@
       "historyKey": "kiki vivi lily|80denier"
     }
   ],
-  "total": 1394,
-  "matched": 1394
+  "total": 1417,
+  "matched": 1417
 }
