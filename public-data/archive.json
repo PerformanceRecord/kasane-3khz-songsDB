@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-09-02T01:48:32.580Z",
+  "fetchedAt": "2026-09-03T01:54:51.505Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -7157,11 +7157,31 @@
       "artist": "aiko",
       "title": "カブトムシ",
       "kind": "歌枠",
+      "dText": "20251106【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aXoTnmGjbWY&t=1847s",
+      "date8": 20251106,
+      "rowId": "aiko|カブトムシ|歌枠|https://www.youtube.com/watch?v=aXoTnmGjbWY&t=1847s",
+      "historyKey": "aiko|カブトムシ"
+    },
+    {
+      "artist": "aiko",
+      "title": "カブトムシ",
+      "kind": "歌枠",
       "dText": "20251106 【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=1847s",
       "date8": 20251106,
       "rowId": "aiko|カブトムシ|歌枠|https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=1847s",
       "historyKey": "aiko|カブトムシ"
+    },
+    {
+      "artist": "Aqu3ra",
+      "title": "チョコレートミルク",
+      "kind": "歌枠",
+      "dText": "20251106【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aXoTnmGjbWY&t=6782s",
+      "date8": 20251106,
+      "rowId": "aqu3ra|チョコレートミルク|歌枠|https://www.youtube.com/watch?v=aXoTnmGjbWY&t=6782s",
+      "historyKey": "aqu3ra|チョコレートミルク"
     },
     {
       "artist": "Aqu3ra",
@@ -7187,11 +7207,31 @@
       "artist": "DECO*27",
       "title": "モニタリング",
       "kind": "歌枠",
+      "dText": "20251106【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aXoTnmGjbWY&t=1030s",
+      "date8": 20251106,
+      "rowId": "deco*27|モニタリング|歌枠|https://www.youtube.com/watch?v=aXoTnmGjbWY&t=1030s",
+      "historyKey": "deco*27|モニタリング"
+    },
+    {
+      "artist": "DECO*27",
+      "title": "モニタリング",
+      "kind": "歌枠",
       "dText": "20251106 【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=1030s",
       "date8": 20251106,
       "rowId": "deco*27|モニタリング|歌枠|https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=1030s",
       "historyKey": "deco*27|モニタリング"
+    },
+    {
+      "artist": "JUDY AND MARY",
+      "title": "散歩道",
+      "kind": "歌枠",
+      "dText": "20251106【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aXoTnmGjbWY&t=3432s",
+      "date8": 20251106,
+      "rowId": "judy and mary|散歩道|歌枠|https://www.youtube.com/watch?v=aXoTnmGjbWY&t=3432s",
+      "historyKey": "judy and mary|散歩道"
     },
     {
       "artist": "JUDY AND MARY",
@@ -7207,11 +7247,31 @@
       "artist": "ヨルシカ",
       "title": "パレード",
       "kind": "歌枠",
+      "dText": "20251106【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aXoTnmGjbWY&t=3987s",
+      "date8": 20251106,
+      "rowId": "ヨルシカ|パレード|歌枠|https://www.youtube.com/watch?v=aXoTnmGjbWY&t=3987s",
+      "historyKey": "ヨルシカ|パレード"
+    },
+    {
+      "artist": "ヨルシカ",
+      "title": "パレード",
+      "kind": "歌枠",
       "dText": "20251106 【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=3987s",
       "date8": 20251106,
       "rowId": "ヨルシカ|パレード|歌枠|https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=3987s",
       "historyKey": "ヨルシカ|パレード"
+    },
+    {
+      "artist": "乃紫",
+      "title": "全方向美少女",
+      "kind": "歌枠",
+      "dText": "20251106【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aXoTnmGjbWY&t=660s",
+      "date8": 20251106,
+      "rowId": "乃紫|全方向美少女|歌枠|https://www.youtube.com/watch?v=aXoTnmGjbWY&t=660s",
+      "historyKey": "乃紫|全方向美少女"
     },
     {
       "artist": "乃紫",
@@ -7227,11 +7287,31 @@
       "artist": "岡本真夜",
       "title": "TOMORROW",
       "kind": "歌枠",
+      "dText": "20251106【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aXoTnmGjbWY&t=6391s",
+      "date8": 20251106,
+      "rowId": "岡本真夜|tomorrow|歌枠|https://www.youtube.com/watch?v=aXoTnmGjbWY&t=6391s",
+      "historyKey": "岡本真夜|tomorrow"
+    },
+    {
+      "artist": "岡本真夜",
+      "title": "TOMORROW",
+      "kind": "歌枠",
       "dText": "20251106 【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=6638s",
       "date8": 20251106,
       "rowId": "岡本真夜|tomorrow|歌枠|https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=6638s",
       "historyKey": "岡本真夜|tomorrow"
+    },
+    {
+      "artist": "手嶌葵",
+      "title": "テルーの唄",
+      "kind": "歌枠",
+      "dText": "20251106【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aXoTnmGjbWY&t=2903s",
+      "date8": 20251106,
+      "rowId": "手嶌葵|テルーの唄|歌枠|https://www.youtube.com/watch?v=aXoTnmGjbWY&t=2903s",
+      "historyKey": "手嶌葵|テルーの唄"
     },
     {
       "artist": "手嶌葵",
@@ -7247,11 +7327,31 @@
       "artist": "東京事変",
       "title": "キラーチューン",
       "kind": "歌枠",
+      "dText": "20251106【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aXoTnmGjbWY&t=5974s",
+      "date8": 20251106,
+      "rowId": "東京事変|キラーチューン|歌枠|https://www.youtube.com/watch?v=aXoTnmGjbWY&t=5974s",
+      "historyKey": "東京事変|キラーチューン"
+    },
+    {
+      "artist": "東京事変",
+      "title": "キラーチューン",
+      "kind": "歌枠",
       "dText": "20251106 【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
       "dUrl": "https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=6228s",
       "date8": 20251106,
       "rowId": "東京事変|キラーチューン|歌枠|https://www.youtube.com/watch?v=GNHVBk1Vw-s&t=6228s",
       "historyKey": "東京事変|キラーチューン"
+    },
+    {
+      "artist": "松任谷由実",
+      "title": "やさしさに包まれたなら",
+      "kind": "歌枠",
+      "dText": "20251106【#歌枠】楽しく歌います🌟声がいい新人Vtuber⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aXoTnmGjbWY&t=2282s",
+      "date8": 20251106,
+      "rowId": "松任谷由実|やさしさに包まれたなら|歌枠|https://www.youtube.com/watch?v=aXoTnmGjbWY&t=2282s",
+      "historyKey": "松任谷由実|やさしさに包まれたなら"
     },
     {
       "artist": "松任谷由実",
@@ -14174,6 +14274,6 @@
       "historyKey": "kiki vivi lily|80denier"
     }
   ],
-  "total": 1417,
-  "matched": 1417
+  "total": 1427,
+  "matched": 1427
 }
