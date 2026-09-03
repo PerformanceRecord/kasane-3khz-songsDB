@@ -36,7 +36,7 @@
 
 ### GAS保守スクリプト
 
-実運用の統合GASは `google-apps-script-reference/merge-songs-gags-archive.gs` でバージョン管理します。GitHubからApps Scriptへの自動デプロイは行わないため、更新後はApps Scriptプロジェクトへ手動反映します。楽曲仕分けの詳細仕様は `google-apps-script-reference/README.md` を参照してください。
+実運用の統合GASは `google-apps-script-reference/merge-songs-gags-archive.gs` でバージョン管理します。日常用仕分けは新規行の有無にかかわらず毎回全件の重複を検査します。GitHubからApps Scriptへの自動デプロイは行わないため、更新後はApps Scriptプロジェクトへ手動反映します。楽曲仕分けの詳細仕様は `google-apps-script-reference/README.md` を参照してください。
 
 ## 4. 必須環境変数（最小）
 

@@ -57,7 +57,7 @@ test('dedupe creates backups immediately before rewriting sheets', () => {
 test('maintenance menu exposes separate daily and full-audit actions', () => {
   assert.match(
     dedupeSource,
-    /\.addItem\('新規追加分を仕分け（日常用）', 'classifyNewSongEntries'\)/,
+    /\.addItem\('重複を仕分け（日常用）', 'classifyNewSongEntries'\)/,
   );
   assert.match(
     dedupeSource,
@@ -605,7 +605,7 @@ test('exact duplicates are removed before same-day URL replacement on each sheet
   );
 });
 
-test('daily placement only corrects songs affected by newly appended rows', () => {
+test('scoped placement can still limit correction to explicitly selected song keys', () => {
   const ctx = loadDedupeFunctions();
   const targetStream = entry({
     songKey: 'artist-a｜song-a',
@@ -731,16 +731,53 @@ test('daily checkpoint uses compacted output row instead of an old source row nu
   assert.equal(storedValue, '4');
 });
 
-test('daily processing requires a full-audit checkpoint first', () => {
+test('daily processing scans existing duplicates even when no rows are newly appended', () => {
   const ctx = loadDedupeFunctions();
-  assert.throws(
-    () => ctx.readDailyCheckpoint_({ getProperty: () => null }),
-    /初回実行前に「全件を総点検・訂正」/,
+  const older = entry({
+    rowIndex: 10,
+    dateMs: new Date(2025, 0, 1).getTime(),
+    videoId: 'OLDERSONG01',
+    exactKey: 'older',
+    replacementKey: 'older',
+  });
+  const newer = entry({
+    rowIndex: 20,
+    dateMs: new Date(2026, 0, 1).getTime(),
+    videoId: 'NEWERSONG01',
+    exactKey: 'newer',
+    replacementKey: 'newer',
+  });
+
+  const daily = ctx.prepareDailyMaintenance_([older, newer], 20);
+  assert.equal(daily.newMainEntries.length, 0);
+  assert.equal(daily.targetSongKeys, null);
+
+  const result = ctx.buildMaintenancePlacement_([older, newer], [], daily.targetSongKeys);
+  assert.deepEqual(
+    Array.from(result.placement.mainEntries, item => item.videoId),
+    ['NEWERSONG01'],
   );
+  assert.deepEqual(
+    Array.from(result.placement.archiveEntries, item => item.videoId),
+    ['OLDERSONG01'],
+  );
+});
+
+test('daily checkpoint is optional and only marks newly appended rows', () => {
+  const ctx = loadDedupeFunctions();
+  assert.equal(ctx.readDailyCheckpoint_({ getProperty: () => null }), 3);
   assert.equal(
     ctx.readDailyCheckpoint_({ getProperty: () => '42' }),
     42,
   );
+
+  const oldRow = entry({ rowIndex: 20 });
+  const newRow = entry({ rowIndex: 21 });
+  const daily = ctx.prepareDailyMaintenance_([oldRow, newRow], 20);
+  assert.equal(daily.targetSongKeys, null);
+  assert.deepEqual(Array.from(daily.newMainEntries, item => item.rowIndex), [21]);
+  assert.equal(Boolean(oldRow.isNewlyAdded), false);
+  assert.equal(newRow.isNewlyAdded, true);
 });
 
 test('same video at different timestamps is not treated as an exact duplicate', () => {

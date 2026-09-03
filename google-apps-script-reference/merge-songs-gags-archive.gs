@@ -10,7 +10,7 @@
  * - 同一区分ならD列表示文言の文頭から抽出した投稿日が新しいものをメインへ、残りをアーカイブへ配置する
  * - アーカイブ内では完全重複と再アップロードだけを整理し、区分優先度による削減やメインへの復帰は行わない
  * - 重複しない行は所属と並び順を変更しない
- * - 日常用は前回処理後にメイン末尾へ追加された行の楽曲だけを照合する
+ * - 日常用は毎回両シート全件の重複を照合し、チェックポイントは新規URLの判定だけに使う
  * - 総点検用は両シート全件を再評価し、配置異常も含めて訂正する
  */
 
@@ -48,7 +48,7 @@ function onOpen() {
   const ui = SpreadsheetApp.getUi();
 
   ui.createMenu('仕分け')
-    .addItem('新規追加分を仕分け（日常用）', 'classifyNewSongEntries')
+    .addItem('重複を仕分け（日常用）', 'classifyNewSongEntries')
     .addItem('全件を総点検・訂正', 'auditAllSongEntries')
     .addItem('一覧シートを再構築', 'updateUnifiedListSheet')
     .addSeparator()
@@ -115,18 +115,9 @@ function runSongMaintenance_(options) {
     let newMainEntries = [];
 
     if (options.mode === 'daily') {
-      const currentLastMainRow = getLastEntryRow_(mainEntries, START_ROW - 1);
-      if (currentLastMainRow < lastMainDataRow) {
-        throw new Error('歌った曲リストの行数が前回処理時より減っています。「全件を総点検・訂正」を実行してください。');
-      }
-
-      newMainEntries = mainEntries.filter(entry => entry.rowIndex > lastMainDataRow);
-      if (newMainEntries.length === 0) {
-        ss.toast('前回処理後に追加された新規データはありません。', '日常用仕分け', 5);
-        return;
-      }
-      for (const entry of newMainEntries) entry.isNewlyAdded = true;
-      targetSongKeys = new Set(newMainEntries.map(entry => entry.songKey));
+      const dailyContext = prepareDailyMaintenance_(mainEntries, lastMainDataRow);
+      newMainEntries = dailyContext.newMainEntries;
+      targetSongKeys = dailyContext.targetSongKeys;
     }
 
     const isTarget = entry => !targetSongKeys || targetSongKeys.has(entry.songKey);
@@ -152,7 +143,7 @@ function runSongMaintenance_(options) {
       saveDailyCheckpoint_(properties, mainEntries);
       const title = options.mode === 'daily' ? '日常用仕分け' : '総点検';
       const message = options.mode === 'daily'
-        ? `新規${newMainEntries.length}行を確認しました。移動・削除対象はありません。`
+        ? `全件を確認しました（新規=${newMainEntries.length}行）。移動・削除対象はありません。`
         : '異常はありません。バックアップと書換えを省略しました。';
       ss.toast(message, title, 6);
       return;
@@ -167,7 +158,7 @@ function runSongMaintenance_(options) {
 
     ss.toast(
       [
-        options.mode === 'daily' ? `新規確認=${newMainEntries.length}行` : '全件確認',
+        options.mode === 'daily' ? `全件確認（新規=${newMainEntries.length}行）` : '全件確認',
         `再アップロード置換=${result.replacement.replacedGroups}組`,
         `旧リンク除外=${result.replacement.removedRows}行`,
         `完全重複除外=${result.exact.removedRows}行`,
@@ -225,6 +216,17 @@ function collectDuplicateSongEntries_(entries) {
   return duplicates;
 }
 
+function prepareDailyMaintenance_(mainEntries, lastMainDataRow) {
+  const newMainEntries = mainEntries.filter(entry => entry.rowIndex > lastMainDataRow);
+  for (const entry of newMainEntries) entry.isNewlyAdded = true;
+
+  return {
+    newMainEntries,
+    // null は全件対象を表す。日常用でも既存の重複を毎回確認する。
+    targetSongKeys: null,
+  };
+}
+
 function getLastEntryRow_(entries, fallback) {
   return (entries || []).reduce(
     (maxRow, entry) => Math.max(maxRow, Number(entry.rowIndex) || 0),
@@ -235,12 +237,12 @@ function getLastEntryRow_(entries, fallback) {
 function readDailyCheckpoint_(properties) {
   const checkpointText = properties.getProperty(DAILY_LAST_MAIN_ROW_KEY);
   if (checkpointText === null) {
-    throw new Error('日常用仕分けの初回実行前に「全件を総点検・訂正」を実行してください。');
+    return START_ROW - 1;
   }
 
   const lastMainDataRow = Number(checkpointText);
   if (!Number.isInteger(lastMainDataRow) || lastMainDataRow < START_ROW - 1) {
-    throw new Error('日常用仕分けの基準位置が不正です。「全件を総点検・訂正」を実行し直してください。');
+    throw new Error('日常用仕分けの基準位置が不正です。Document Propertiesを確認してください。');
   }
   return lastMainDataRow;
 }
