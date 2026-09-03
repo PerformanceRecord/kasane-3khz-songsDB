@@ -36,7 +36,7 @@ function entry(overrides = {}) {
     priority: 2,
     songKey: 'artist｜song',
     replacementKey: 'artist｜song｜歌枠｜20260101 live title',
-    exactKey: 'artist｜song｜歌枠｜youtube:AAAAAAAAAAA:t=10',
+    exactKey: 'artist｜song｜https://www.youtube.com/watch?v=AAAAAAAAAAA&t=10s',
     ...overrides,
   };
 }
@@ -69,7 +69,7 @@ test('maintenance menu exposes separate daily and full-audit actions', () => {
   );
 });
 
-test('reupload replacement removes the old video across main and archive', () => {
+test('archive cleanup prefers a row newly moved from main over an old archived URL', () => {
   const ctx = loadDedupeFunctions();
   const oldArchive = entry({
     source: 'archive',
@@ -92,7 +92,7 @@ test('reupload replacement removes the old video across main and archive', () =>
   assert.deepEqual(result.entries.map(item => item.videoId), ['NEWNEWNEW01']);
 });
 
-test('exact duplicates across sheets keep the earlier archived row', () => {
+test('archive cleanup keeps an existing archived row over an exact duplicate moved from main', () => {
   const ctx = loadDedupeFunctions();
   const main = entry({ source: 'main', rowIndex: 50 });
   const archive = entry({ source: 'archive', rowIndex: 2 });
@@ -170,17 +170,41 @@ test('stream priority wins over a newer short', () => {
   assert.equal(result.archiveEntries[0].videoId, 'SHORTVIDEO1');
 });
 
-test('exact duplicate key uses A, B, D text and URL but ignores category', () => {
+test('exact duplicate key uses only A, B and the complete D URL', () => {
   const ctx = loadDedupeFunctions();
   const shared = {
     artist: 'Artist',
     title: 'Song',
-    linkText: '20260101 Live title',
     url: 'https://www.youtube.com/watch?v=AAAAAAAAAAA&t=10s',
   };
-  const streamKey = ctx.buildExactOccurrenceKey_({ ...shared, kind: '歌枠' });
-  const shortKey = ctx.buildExactOccurrenceKey_({ ...shared, kind: 'ショート' });
-  assert.equal(streamKey, shortKey);
+  const firstKey = ctx.buildExactOccurrenceKey_({
+    ...shared,
+    kind: '歌枠',
+    linkText: '20260101 First label',
+  });
+  const secondKey = ctx.buildExactOccurrenceKey_({
+    ...shared,
+    kind: 'ショート',
+    linkText: '20270101 Different label',
+  });
+  const otherSongKey = ctx.buildExactOccurrenceKey_({
+    ...shared,
+    title: 'Other Song',
+  });
+  assert.equal(firstKey, secondKey);
+  assert.notEqual(firstKey, otherSongKey);
+});
+
+test('rows without a D URL are not removed as exact duplicates', () => {
+  const ctx = loadDedupeFunctions();
+  const first = entry({ url: '', rowIndex: 10 });
+  const second = entry({ url: '', rowIndex: 11 });
+  first.exactKey = ctx.buildExactOccurrenceKey_(first);
+  second.exactKey = ctx.buildExactOccurrenceKey_(second);
+
+  const result = ctx.removeExactDuplicates_([first, second]);
+  assert.equal(result.removedRows, 0);
+  assert.equal(result.entries.length, 2);
 });
 
 test('reupload key includes category and ignores only the D suffix within that category', () => {
@@ -212,6 +236,21 @@ test('reupload key includes category and ignores only the D suffix within that c
   });
   assert.equal(oldStreamKey, newStreamKey);
   assert.notEqual(oldStreamKey, shortKey);
+});
+
+test('maintenance date accepts only an eight-digit YYYYMMDD prefix', () => {
+  const ctx = loadDedupeFunctions();
+  assert.equal(ctx.parseMaintenanceHeadDate_('20260508 video title').getTime(), new Date(2026, 4, 8).getTime());
+  assert.equal(ctx.parseMaintenanceHeadDate_('2026-05-08 video title'), null);
+  assert.equal(ctx.parseMaintenanceHeadDate_(' 20260508 video title'), null);
+  assert.equal(ctx.parseMaintenanceHeadDate_('20260230 invalid date'), null);
+});
+
+test('rows without a valid maintenance date cannot replace each other as reuploads', () => {
+  const ctx = loadDedupeFunctions();
+  const first = entry({ source: 'archive', rowIndex: 2, date: null, dateMs: 0 });
+  const second = entry({ source: 'archive', rowIndex: 3, date: null, dateMs: 0 });
+  assert.notEqual(ctx.buildReplacementKey_(first), ctx.buildReplacementKey_(second));
 });
 
 test('same-day lower-priority uploads cannot replace or outrank a cover', () => {
@@ -435,6 +474,137 @@ test('a reuploaded lower-priority occurrence is replaced before category placeme
   assert.equal(placement.archiveEntries[0].videoId, 'NEWNEWNEW01');
 });
 
+test('daily checkpoint rows win reupload replacement even when an older row is lower in the sheet', () => {
+  const ctx = loadDedupeFunctions();
+  const oldRow = entry({
+    rowIndex: 900,
+    url: 'https://www.youtube.com/watch?v=OLDOLDOLD01',
+    videoId: 'OLDOLDOLD01',
+  });
+  const newlyAdded = entry({
+    rowIndex: 20,
+    url: 'https://www.youtube.com/watch?v=NEWNEWNEW01',
+    videoId: 'NEWNEWNEW01',
+    isNewlyAdded: true,
+  });
+
+  const result = ctx.resolveReuploadedVideos_([oldRow, newlyAdded]);
+  assert.deepEqual(result.entries.map(item => item.videoId), ['NEWNEWNEW01']);
+});
+
+test('archive-only songs are cleaned without being promoted to main', () => {
+  const ctx = loadDedupeFunctions();
+  const archivedCover = entry({
+    source: 'archive',
+    rowIndex: 2,
+    songKey: 'archive-only｜song',
+    kind: '歌ってみた',
+    priority: 3,
+    url: 'https://www.youtube.com/watch?v=ARCHIVECOV1',
+    videoId: 'ARCHIVECOV1',
+    replacementKey: 'archive cover',
+    exactKey: 'archive cover',
+  });
+  const archivedStream = entry({
+    source: 'archive',
+    rowIndex: 3,
+    songKey: 'archive-only｜song',
+    kind: '歌枠',
+    priority: 2,
+    url: 'https://www.youtube.com/watch?v=ARCHIVELIV1',
+    videoId: 'ARCHIVELIV1',
+    replacementKey: 'archive stream',
+    exactKey: 'archive stream',
+  });
+
+  const result = ctx.buildMaintenancePlacement_(
+    [],
+    [archivedCover, archivedStream],
+    null,
+  );
+  assert.equal(result.placement.mainEntries.length, 0);
+  assert.deepEqual(
+    Array.from(result.placement.archiveEntries, item => item.videoId),
+    ['ARCHIVECOV1', 'ARCHIVELIV1'],
+  );
+});
+
+test('archive same-day reuploads keep the lower existing row without category reduction', () => {
+  const ctx = loadDedupeFunctions();
+  const date = new Date(2026, 0, 2);
+  const oldStream = entry({
+    source: 'archive',
+    rowIndex: 2,
+    songKey: 'archive-only｜song',
+    url: 'https://www.youtube.com/watch?v=OLDOLDOLD01',
+    videoId: 'OLDOLDOLD01',
+    date,
+    dateMs: date.getTime(),
+    exactKey: 'old-stream',
+  });
+  const newStream = entry({
+    source: 'archive',
+    rowIndex: 8,
+    songKey: 'archive-only｜song',
+    url: 'https://www.youtube.com/watch?v=NEWNEWNEW01',
+    videoId: 'NEWNEWNEW01',
+    date,
+    dateMs: date.getTime(),
+    exactKey: 'new-stream',
+  });
+  const archivedShort = entry({
+    source: 'archive',
+    rowIndex: 9,
+    songKey: 'archive-only｜song',
+    kind: 'ショート',
+    priority: 1,
+    url: 'https://www.youtube.com/watch?v=SHORTVIDEO1',
+    videoId: 'SHORTVIDEO1',
+    date,
+    dateMs: date.getTime(),
+    exactKey: 'short',
+  });
+  for (const item of [oldStream, newStream, archivedShort]) {
+    item.replacementKey = ctx.buildReplacementKey_(item);
+  }
+
+  const result = ctx.buildMaintenancePlacement_(
+    [],
+    [oldStream, newStream, archivedShort],
+    null,
+  );
+  assert.deepEqual(
+    Array.from(result.placement.archiveEntries, item => item.videoId),
+    ['NEWNEWNEW01', 'SHORTVIDEO1'],
+  );
+  assert.equal(result.placement.mainEntries.length, 0);
+});
+
+test('exact duplicates are removed before same-day URL replacement on each sheet', () => {
+  const ctx = loadDedupeFunctions();
+  const oldUrl = 'https://www.youtube.com/watch?v=OLDOLDOLD01';
+  const newUrl = 'https://www.youtube.com/watch?v=NEWNEWNEW01';
+  const firstOld = entry({ rowIndex: 10, url: oldUrl, videoId: 'OLDOLDOLD01' });
+  const duplicateOld = entry({ rowIndex: 11, url: oldUrl, videoId: 'OLDOLDOLD01' });
+  const newest = entry({
+    rowIndex: 12,
+    url: newUrl,
+    videoId: 'NEWNEWNEW01',
+    isNewlyAdded: true,
+  });
+  for (const item of [firstOld, duplicateOld, newest]) {
+    item.exactKey = ctx.buildExactOccurrenceKey_(item);
+  }
+
+  const result = ctx.buildMaintenancePlacement_([firstOld, duplicateOld, newest], [], null);
+  assert.equal(result.exact.removedRows, 1);
+  assert.equal(result.replacement.removedRows, 1);
+  assert.deepEqual(
+    Array.from(result.placement.mainEntries, item => item.videoId),
+    ['NEWNEWNEW01'],
+  );
+});
+
 test('daily placement only corrects songs affected by newly appended rows', () => {
   const ctx = loadDedupeFunctions();
   const targetStream = entry({
@@ -481,7 +651,11 @@ test('daily placement only corrects songs affected by newly appended rows', () =
   );
   assert.deepEqual(
     Array.from(daily.placement.mainEntries, item => item.videoId).sort(),
-    ['TARGETCOVER', 'OTHERSHORT1'].sort(),
+    ['TARGETLIVE1', 'OTHERSHORT1'].sort(),
+  );
+  assert.deepEqual(
+    Array.from(daily.placement.archiveEntries, item => item.videoId).sort(),
+    ['TARGETCOVER', 'OTHERSTREAM'].sort(),
   );
 
   const audit = ctx.buildMaintenancePlacement_(
@@ -491,7 +665,53 @@ test('daily placement only corrects songs affected by newly appended rows', () =
   );
   assert.deepEqual(
     Array.from(audit.placement.mainEntries, item => item.videoId).sort(),
+    ['TARGETLIVE1', 'OTHERSHORT1'].sort(),
+  );
+  assert.deepEqual(
+    Array.from(audit.placement.archiveEntries, item => item.videoId).sort(),
     ['TARGETCOVER', 'OTHERSTREAM'].sort(),
+  );
+});
+
+test('unique rows keep their sheet and original order', () => {
+  const ctx = loadDedupeFunctions();
+  const mainA = entry({
+    songKey: 'artist-a｜song-a',
+    videoId: 'MAINSONG001',
+    exactKey: 'main-a',
+    replacementKey: 'main-a',
+  });
+  const mainB = entry({
+    songKey: 'artist-b｜song-b',
+    videoId: 'MAINSONG002',
+    exactKey: 'main-b',
+    replacementKey: 'main-b',
+  });
+  const archiveA = entry({
+    source: 'archive',
+    rowIndex: 2,
+    songKey: 'artist-c｜song-c',
+    videoId: 'ARCHSONG001',
+    exactKey: 'archive-a',
+    replacementKey: 'archive-a',
+  });
+  const archiveB = entry({
+    source: 'archive',
+    rowIndex: 3,
+    songKey: 'artist-d｜song-d',
+    videoId: 'ARCHSONG002',
+    exactKey: 'archive-b',
+    replacementKey: 'archive-b',
+  });
+
+  const result = ctx.buildMaintenancePlacement_([mainA, mainB], [archiveA, archiveB], null);
+  assert.deepEqual(
+    Array.from(result.placement.mainEntries, item => item.videoId),
+    ['MAINSONG001', 'MAINSONG002'],
+  );
+  assert.deepEqual(
+    Array.from(result.placement.archiveEntries, item => item.videoId),
+    ['ARCHSONG001', 'ARCHSONG002'],
   );
 });
 
