@@ -89,10 +89,13 @@ test('resize no longer rebuilds every card', () => {
   assert.doesNotMatch(resizeBlock[0], /\brender\(\)/);
 });
 
-test('unchanged dedupe placement skips backup and sheet rewrites', () => {
-  const checkCall = dedupeSource.indexOf('if (!hasDedupePlacementChanges_(');
-  const backupCall = dedupeSource.indexOf('createDedupeBackups_(ss, main, archive);');
-  const rewriteCall = dedupeSource.indexOf('rewriteSongSheet_(main, START_ROW');
+test('unchanged daily placement skips backup and sheet rewrites', () => {
+  const dailyStart = dedupeSource.indexOf('function runSongMaintenance_(');
+  const dailyEnd = dedupeSource.indexOf('function buildMaintenancePlacement_(', dailyStart);
+  const dailySource = dedupeSource.slice(dailyStart, dailyEnd);
+  const checkCall = dailySource.indexOf('if (!hasDedupePlacementChanges_(');
+  const backupCall = dailySource.indexOf('createDedupeBackups_(ss, main, archive);');
+  const rewriteCall = dailySource.indexOf('rewriteSongSheet_(main, START_ROW');
   assert.ok(checkCall >= 0);
   assert.ok(backupCall > checkCall);
   assert.ok(rewriteCall > backupCall);

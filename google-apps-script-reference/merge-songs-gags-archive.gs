@@ -1,6 +1,6 @@
 /**
  * 花彩音 3kHz 歌唱曲DB
- * 仕分け／統計／動画監査／統合一覧：統合版
+ * 日常仕分け／総点検／近似情報チェック／統計：統合版
  *
  * 主な仕様
  * - 「歌った曲リスト」と「アーカイブ」は、それぞれのシート内で重複を整理する
@@ -11,15 +11,14 @@
  * - アーカイブ内では完全重複と再アップロードだけを整理し、区分優先度による削減やメインへの復帰は行わない
  * - 重複しない行は所属と並び順を変更しない
  * - 日常用は毎回両シート全件の重複を照合し、チェックポイントは新規URLの判定だけに使う
- * - 総点検用は両シート全件を再評価し、配置異常も含めて訂正する
+ * - 総点検は両シートを横断し、A列＋B列＋完全URLが同じ行をアーカイブ側から優先して削除する
+ * - 近似情報チェックは、A/Bテレコ・表記ゆれ・70%以上の類似・完全URL一致を別シートへ出力する
  */
 
 const MAIN_SHEET_NAME = '歌った曲リスト';
-const GAGS_SHEET_NAME = '企画/一発ネタシリーズ';
 const ARCHIVE_SHEET_NAME = 'アーカイブ';
-const UNIFIED_LIST_SHEET_NAME = '一覧';
+const APPROX_CHECK_SHEET_NAME = '近似情報チェック';
 const STATS_SHEET_NAME = '統計';
-const VIDEO_HISTORY_SHEET_NAME = '動画履歴チェック';
 
 const START_ROW = 4;
 const ARCHIVE_START_ROW = 2;
@@ -29,6 +28,7 @@ const SOURCE_URL_COL = 4;
 const BACKUP_PREFIX = '_backup_';
 const BACKUP_KEEP_GENERATIONS = 5;
 const DAILY_LAST_MAIN_ROW_KEY = 'songMaintenance.lastMainDataRow';
+const APPROX_SIMILARITY_THRESHOLD = 0.7;
 
 const PRIORITY = {
   '歌ってみた': 3,
@@ -36,29 +36,15 @@ const PRIORITY = {
   'ショート': 1,
 };
 
-const VH_HISTORY_START_COL = 1;
-const VH_HISTORY_COLS = 3;
-const VH_GAP_COL = 4;
-const VH_LOGGED_START_COL = 5;
-const VH_LOGGED_COLS = 4;
-const VH_HISTORY_HEADER = ['upload_yyyymmdd', 'title', 'videoId'];
-const VH_LOGGED_HEADER = ['logged_upload_yyyymmdd', 'logged_title', 'logged_videoId', 'logged_url'];
-
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
 
   ui.createMenu('仕分け')
     .addItem('重複を仕分け（日常用）', 'classifyNewSongEntries')
-    .addItem('全件を総点検・訂正', 'auditAllSongEntries')
-    .addItem('一覧シートを再構築', 'updateUnifiedListSheet')
+    .addItem('完全重複を総点検', 'auditAllSongEntries')
+    .addItem('近似情報をチェック', 'checkApproximateSongInfo')
     .addSeparator()
-    .addItem('統計シートを更新', 'createSongStatistics')
-    .addToUi();
-
-  ui.createMenu('動画監査')
-    .addItem('動画履歴チェック：記帳済み動画一覧をE列に再生成', 'rebuildLoggedVideoListOnVideoHistorySheet')
-    .addItem('動画履歴チェック：既に記帳済みを削除して未記帳だけ残す', 'pruneVideoHistoryCheck')
-    .addItem('動画履歴チェック：未記帳だけを別シートに出力（安全版）', 'exportMissingToSheet')
+    .addItem('統計シートを作成・更新', 'createSongStatistics')
     .addToUi();
 }
 
@@ -69,16 +55,89 @@ function dedupeAndArchive() {
 function classifyNewSongEntries() {
   const properties = PropertiesService.getDocumentProperties();
   return runSongMaintenance_({
-    mode: 'daily',
     properties,
   });
 }
 
 function auditAllSongEntries() {
-  return runSongMaintenance_({
-    mode: 'audit',
-    properties: PropertiesService.getDocumentProperties(),
-  });
+  const lock = LockService.getDocumentLock();
+  lock.waitLock(30000);
+
+  try {
+    const ss = SpreadsheetApp.getActive();
+    const main = ss.getSheetByName(MAIN_SHEET_NAME);
+    const archive = ss.getSheetByName(ARCHIVE_SHEET_NAME);
+    if (!main) throw new Error(`シート「${MAIN_SHEET_NAME}」が見つかりません。`);
+    if (!archive) throw new Error(`シート「${ARCHIVE_SHEET_NAME}」が見つかりません。`);
+
+    ensureSheetHasRequiredColumns_(main, MAIN_SHEET_NAME, COL_COUNT);
+    ensureSheetHasRequiredColumns_(archive, ARCHIVE_SHEET_NAME, COL_COUNT);
+
+    const mainEntries = readSongEntries_(main, START_ROW, 'main', true);
+    const archiveEntries = readSongEntries_(archive, ARCHIVE_START_ROW, 'archive', false);
+    const result = buildFullAuditPlacement_(mainEntries, archiveEntries);
+
+    if (result.removedRows === 0) {
+      saveDailyCheckpoint_(PropertiesService.getDocumentProperties(), mainEntries);
+      ss.toast('完全重複はありません。バックアップと書換えを省略しました。', '総点検', 6);
+      return;
+    }
+
+    createDedupeBackups_(ss, main, archive);
+    if (result.removedMainRows > 0) {
+      rewriteSongSheet_(main, START_ROW, result.mainEntries, true);
+    }
+    if (result.removedArchiveRows > 0) {
+      rewriteSongSheet_(archive, ARCHIVE_START_ROW, result.archiveEntries, false);
+    }
+    saveDailyCheckpoint_(
+      PropertiesService.getDocumentProperties(),
+      result.mainEntries,
+      result.removedMainRows > 0
+    );
+
+    ss.toast(
+      `完全重複=${result.duplicateGroups}組、削除=${result.removedRows}行（アーカイブ=${result.removedArchiveRows}行、歌った曲リスト=${result.removedMainRows}行）`,
+      '総点検完了',
+      10
+    );
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function buildFullAuditPlacement_(mainEntries, archiveEntries) {
+  const allEntries = [...mainEntries, ...archiveEntries];
+  const withUrl = allEntries.filter(entry => normalizeUrlForCompare_(entry.url));
+  const byExactKey = groupBy_(withUrl, entry => entry.exactKey);
+  const removed = new Set();
+  let duplicateGroups = 0;
+
+  for (const group of byExactKey.values()) {
+    if (group.length <= 1) continue;
+    group.sort(compareFullAuditRepresentative_);
+    for (const duplicate of group.slice(1)) removed.add(duplicate);
+    duplicateGroups++;
+  }
+
+  const removedMainRows = mainEntries.filter(entry => removed.has(entry)).length;
+  const removedArchiveRows = archiveEntries.filter(entry => removed.has(entry)).length;
+
+  return {
+    mainEntries: mainEntries.filter(entry => !removed.has(entry)),
+    archiveEntries: archiveEntries.filter(entry => !removed.has(entry)),
+    duplicateGroups,
+    removedRows: removed.size,
+    removedMainRows,
+    removedArchiveRows,
+  };
+}
+
+function compareFullAuditRepresentative_(a, b) {
+  // 両シートにある完全重複はメインを残し、アーカイブ側を優先して削除する。
+  if (a.source !== b.source) return a.source === 'main' ? -1 : 1;
+  // 同一シート内では上の行を残す。
+  return a.rowIndex - b.rowIndex;
 }
 
 function runSongMaintenance_(options) {
@@ -101,9 +160,7 @@ function runSongMaintenance_(options) {
     const archiveEntries = readSongEntries_(archive, ARCHIVE_START_ROW, 'archive', false);
     const allEntries = [...mainEntries, ...archiveEntries];
     const properties = options.properties;
-    const lastMainDataRow = options.mode === 'daily'
-      ? readDailyCheckpoint_(properties)
-      : null;
+    const lastMainDataRow = readDailyCheckpoint_(properties);
 
     if (allEntries.length === 0) {
       saveDailyCheckpoint_(properties, mainEntries);
@@ -111,14 +168,9 @@ function runSongMaintenance_(options) {
       return;
     }
 
-    let targetSongKeys = null;
-    let newMainEntries = [];
-
-    if (options.mode === 'daily') {
-      const dailyContext = prepareDailyMaintenance_(mainEntries, lastMainDataRow);
-      newMainEntries = dailyContext.newMainEntries;
-      targetSongKeys = dailyContext.targetSongKeys;
-    }
+    const dailyContext = prepareDailyMaintenance_(mainEntries, lastMainDataRow);
+    const newMainEntries = dailyContext.newMainEntries;
+    const targetSongKeys = dailyContext.targetSongKeys;
 
     const isTarget = entry => !targetSongKeys || targetSongKeys.has(entry.songKey);
     const duplicateMainEntries = collectDuplicateSongEntries_(
@@ -141,11 +193,11 @@ function runSongMaintenance_(options) {
       placement.archiveEntries
     )) {
       saveDailyCheckpoint_(properties, mainEntries);
-      const title = options.mode === 'daily' ? '日常用仕分け' : '総点検';
-      const message = options.mode === 'daily'
-        ? `全件を確認しました（新規=${newMainEntries.length}行）。移動・削除対象はありません。`
-        : '異常はありません。バックアップと書換えを省略しました。';
-      ss.toast(message, title, 6);
+      ss.toast(
+        `全件を確認しました（新規=${newMainEntries.length}行）。移動・削除対象はありません。`,
+        '日常用仕分け',
+        6
+      );
       return;
     }
 
@@ -158,14 +210,14 @@ function runSongMaintenance_(options) {
 
     ss.toast(
       [
-        options.mode === 'daily' ? `全件確認（新規=${newMainEntries.length}行）` : '全件確認',
+        `全件確認（新規=${newMainEntries.length}行）`,
         `再アップロード置換=${result.replacement.replacedGroups}組`,
         `旧リンク除外=${result.replacement.removedRows}行`,
         `完全重複除外=${result.exact.removedRows}行`,
         `歌唱曲=${placement.mainEntries.length}行`,
         `履歴=${placement.archiveEntries.length}行`,
       ].join('、'),
-      options.mode === 'daily' ? '日常用仕分け完了' : '総点検完了',
+      '日常用仕分け完了',
       10
     );
   } finally {
@@ -589,6 +641,13 @@ function ensureSheetHasRows_(sheet, requiredLastRow) {
   }
 }
 
+function ensureSheetHasColumns_(sheet, requiredColumns) {
+  const maxColumns = sheet.getMaxColumns();
+  if (maxColumns < requiredColumns) {
+    sheet.insertColumnsAfter(maxColumns, requiredColumns - maxColumns);
+  }
+}
+
 function ensureArchiveHeader_(archiveSheet) {
   const header = ['アーティスト名', '曲名', '区分', '出典元情報(直リンク)'];
   const values = archiveSheet.getRange(1, 1, 1, header.length).getValues()[0];
@@ -731,11 +790,6 @@ function extractVideoIdFromUrl_(url) {
   return null;
 }
 
-function extractVideoIdLoose_(value) {
-  const match = String(value || '').match(/([a-zA-Z0-9_-]{11})/);
-  return match ? match[1] : '';
-}
-
 function extractTimestampSeconds_(url, linkText) {
   const fromUrl = extractTimestampSecondsFromUrl_(url);
   return fromUrl !== Number.MAX_SAFE_INTEGER ? fromUrl : extractTimestampSecondsFromText_(linkText);
@@ -759,17 +813,6 @@ function extractTimestampSecondsFromUrl_(url) {
 function extractTimestampSecondsFromText_(text) {
   const match = String(text || '').match(/(^|\s)(\d{1,2}:\d{1,2}(?::\d{1,2})?)(?=\s|$)/);
   return match ? timestampTextToSeconds_(match[2]) : Number.MAX_SAFE_INTEGER;
-}
-
-function extractTitleFromDisplayText_(value) {
-  return String(value || '').trim()
-    .replace(/^\s*(\d{4})(\d{2})(\d{2})\b\s*/, '')
-    .replace(/^\s*(\d{4})-(\d{1,2})-(\d{1,2})\b\s*/, '')
-    .replace(/^\s*(\d{4})\/(\d{1,2})\/(\d{1,2})\b\s*/, '')
-    .replace(/^\s*(\d{4})\.(\d{1,2})\.(\d{1,2})\b\s*/, '')
-    .replace(/^\s*(\d{4})年(\d{1,2})月(\d{1,2})日?\s*/, '')
-    .replace(/^[\s\-–—_:：|｜]+/, '')
-    .trim();
 }
 
 function updateReleaseYears() {
@@ -852,6 +895,242 @@ function ensureYearHeaderAndBorders_(sheet) {
   }
 }
 
+function checkApproximateSongInfo() {
+  const lock = LockService.getDocumentLock();
+  lock.waitLock(30000);
+
+  try {
+    const ss = SpreadsheetApp.getActive();
+    const main = ss.getSheetByName(MAIN_SHEET_NAME);
+    const archive = ss.getSheetByName(ARCHIVE_SHEET_NAME);
+    if (!main) throw new Error(`シート「${MAIN_SHEET_NAME}」が見つかりません。`);
+    if (!archive) throw new Error(`シート「${ARCHIVE_SHEET_NAME}」が見つかりません。`);
+
+    const entries = [
+      ...readSongEntries_(main, START_ROW, 'main', true),
+      ...readSongEntries_(archive, ARCHIVE_START_ROW, 'archive', false),
+    ];
+    const findings = findApproximateSongPairs_(entries, APPROX_SIMILARITY_THRESHOLD);
+    const header = [
+      '判定理由',
+      '最低類似度',
+      '歌手名類似度',
+      '楽曲名類似度',
+      'データ1シート',
+      'データ1行',
+      'データ1歌手名',
+      'データ1楽曲名',
+      'データ1区分',
+      'データ1表示文言',
+      'データ1URL',
+      'データ2シート',
+      'データ2行',
+      'データ2歌手名',
+      'データ2楽曲名',
+      'データ2区分',
+      'データ2表示文言',
+      'データ2URL',
+    ];
+    const rows = findings.map(finding => formatApproximateFindingRow_(finding));
+
+    let outputSheet = ss.getSheetByName(APPROX_CHECK_SHEET_NAME);
+    if (!outputSheet) outputSheet = ss.insertSheet(APPROX_CHECK_SHEET_NAME);
+    ensureSheetHasRows_(outputSheet, Math.max(rows.length + 1, 2));
+    ensureSheetHasColumns_(outputSheet, header.length);
+    outputSheet.clearContents();
+    outputSheet.clearFormats();
+    outputSheet.getRange(1, 1, 1, header.length).setValues([header]);
+    outputSheet.getRange(1, 1, 1, header.length)
+      .setFontWeight('bold')
+      .setBackground('#d9ead3');
+
+    if (rows.length > 0) {
+      outputSheet.getRange(2, 1, rows.length, header.length).setValues(rows);
+      outputSheet.getRange(2, 2, rows.length, 3).setNumberFormat('0%');
+      outputSheet.getRange(2, 1, rows.length, header.length).setVerticalAlignment('top');
+    }
+
+    outputSheet.setFrozenRows(1);
+    outputSheet.autoResizeColumns(1, 9);
+    outputSheet.setColumnWidth(10, 280);
+    outputSheet.setColumnWidth(11, 280);
+    outputSheet.setColumnWidth(17, 280);
+    outputSheet.setColumnWidth(18, 280);
+    outputSheet.getRange(1, 1, Math.max(rows.length + 1, 2), header.length).setWrap(true);
+
+    ss.toast(`近似情報チェック完了：要確認=${rows.length}組`, '近似情報チェック', 8);
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function findApproximateSongPairs_(entries, threshold) {
+  const prepared = entries.map(entry => ({
+    entry,
+    artistLoose: normalizeApproximateText_(entry.artist),
+    titleLoose: normalizeApproximateText_(entry.title),
+    url: normalizeUrlForCompare_(entry.url),
+  }));
+  const findings = [];
+  const similarityCache = new Map();
+
+  for (let i = 0; i < prepared.length; i++) {
+    for (let j = i + 1; j < prepared.length; j++) {
+      const left = prepared[i];
+      const right = prepared[j];
+      const reasons = [];
+      const sameSongKey = left.entry.songKey === right.entry.songKey;
+      const swapped = !sameSongKey
+        && left.artistLoose
+        && left.titleLoose
+        && left.artistLoose === right.titleLoose
+        && left.titleLoose === right.artistLoose;
+      const separatorOnly = !sameSongKey
+        && left.artistLoose
+        && left.titleLoose
+        && left.artistLoose === right.artistLoose
+        && left.titleLoose === right.titleLoose;
+      const sameUrl = !sameSongKey
+        && left.url
+        && left.url === right.url;
+
+      if (sameSongKey && left.entry.source === 'main' && right.entry.source === 'main') {
+        reasons.push('A+B完全一致（メイン内残存）');
+      }
+      if (swapped) reasons.push('歌手名と楽曲名のテレコ');
+      if (separatorOnly) reasons.push('空白・区切り記号を除くと一致');
+
+      let artistSimilarity = null;
+      let titleSimilarity = null;
+      const canCompareFuzzy = !sameSongKey
+        && !separatorOnly
+        && !swapped
+        && canReachSimilarityThreshold_(left.artistLoose, right.artistLoose, threshold)
+        && canReachSimilarityThreshold_(left.titleLoose, right.titleLoose, threshold);
+
+      if (canCompareFuzzy) {
+        artistSimilarity = calculateCachedSimilarity_(
+          left.artistLoose,
+          right.artistLoose,
+          similarityCache
+        );
+        if (artistSimilarity >= threshold) {
+          titleSimilarity = calculateCachedSimilarity_(
+            left.titleLoose,
+            right.titleLoose,
+            similarityCache
+          );
+          if (titleSimilarity >= threshold) reasons.push(`歌手名・楽曲名が各${Math.round(threshold * 100)}%以上一致`);
+        }
+      }
+
+      if (sameUrl) reasons.push('A+B不一致・完全URL一致');
+      if (reasons.length === 0) continue;
+
+      if (artistSimilarity === null) {
+        artistSimilarity = calculateCachedSimilarity_(
+          left.artistLoose,
+          right.artistLoose,
+          similarityCache
+        );
+      }
+      if (titleSimilarity === null) {
+        titleSimilarity = calculateCachedSimilarity_(
+          left.titleLoose,
+          right.titleLoose,
+          similarityCache
+        );
+      }
+
+      findings.push({
+        reasons,
+        artistSimilarity,
+        titleSimilarity,
+        minimumSimilarity: Math.min(artistSimilarity, titleSimilarity),
+        left: left.entry,
+        right: right.entry,
+      });
+    }
+  }
+
+  return findings;
+}
+
+function formatApproximateFindingRow_(finding) {
+  return [
+    finding.reasons.join(' / '),
+    finding.minimumSimilarity,
+    finding.artistSimilarity,
+    finding.titleSimilarity,
+    songEntrySourceLabel_(finding.left),
+    finding.left.rowIndex,
+    finding.left.artist,
+    finding.left.title,
+    finding.left.kind,
+    finding.left.linkText,
+    finding.left.url,
+    songEntrySourceLabel_(finding.right),
+    finding.right.rowIndex,
+    finding.right.artist,
+    finding.right.title,
+    finding.right.kind,
+    finding.right.linkText,
+    finding.right.url,
+  ];
+}
+
+function songEntrySourceLabel_(entry) {
+  return entry.source === 'main' ? MAIN_SHEET_NAME : ARCHIVE_SHEET_NAME;
+}
+
+function normalizeApproximateText_(value) {
+  return String(value || '')
+    .normalize('NFKC')
+    .toLowerCase()
+    .replace(/[\s\u200b-\u200d\u2060\ufeff]+/g, '')
+    .replace(/[‐‑‒–—―−-]+/g, '')
+    .replace(/[・･_＿/／]+/g, '');
+}
+
+function canReachSimilarityThreshold_(left, right, threshold) {
+  if (!left || !right) return false;
+  const longerLength = Math.max(left.length, right.length);
+  return Math.min(left.length, right.length) / longerLength >= threshold;
+}
+
+function calculateCachedSimilarity_(left, right, cache) {
+  if (!left || !right) return 0;
+  const cacheKey = left <= right ? `${left}\u0000${right}` : `${right}\u0000${left}`;
+  if (!cache.has(cacheKey)) cache.set(cacheKey, calculateStringSimilarity_(left, right));
+  return cache.get(cacheKey);
+}
+
+function calculateStringSimilarity_(left, right) {
+  if (left === right) return left ? 1 : 0;
+  if (!left || !right) return 0;
+
+  const leftChars = Array.from(left);
+  const rightChars = Array.from(right);
+  const previous = Array.from({ length: rightChars.length + 1 }, (_, index) => index);
+  const current = new Array(rightChars.length + 1);
+
+  for (let i = 1; i <= leftChars.length; i++) {
+    current[0] = i;
+    for (let j = 1; j <= rightChars.length; j++) {
+      const substitutionCost = leftChars[i - 1] === rightChars[j - 1] ? 0 : 1;
+      current[j] = Math.min(
+        current[j - 1] + 1,
+        previous[j] + 1,
+        previous[j - 1] + substitutionCost
+      );
+    }
+    for (let j = 0; j <= rightChars.length; j++) previous[j] = current[j];
+  }
+
+  const distance = previous[rightChars.length];
+  return 1 - distance / Math.max(leftChars.length, rightChars.length);
+}
+
 function createSongStatistics() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sources = [
@@ -894,194 +1173,6 @@ function createSongStatistics() {
   sheet.setFrozenRows(1);
   sheet.autoResizeColumns(1, output[0].length);
   ss.toast(`統計シート更新：${resultRows.length}曲を集計しました。`, '統計', 5);
-}
-
-function ensureVideoHistoryLayout_(sheet) {
-  const current = sheet.getRange(1, VH_HISTORY_START_COL, 1, VH_HISTORY_COLS).getValues()[0];
-  if (current.every(value => String(value || '').trim() === '')) {
-    sheet.getRange(1, VH_HISTORY_START_COL, 1, VH_HISTORY_COLS).setValues([VH_HISTORY_HEADER]);
-  }
-  sheet.getRange(1, VH_GAP_COL).setValue('');
-  sheet.getRange(1, VH_LOGGED_START_COL, 1, VH_LOGGED_COLS).setValues([VH_LOGGED_HEADER]);
-  sheet.setFrozenRows(1);
-}
-
-function rebuildLoggedVideoListOnVideoHistorySheet() {
-  const ss = SpreadsheetApp.getActive();
-  const sheet = ss.getSheetByName(VIDEO_HISTORY_SHEET_NAME);
-  if (!sheet) throw new Error(`シート「${VIDEO_HISTORY_SHEET_NAME}」が見つかりません。`);
-  ensureVideoHistoryLayout_(sheet);
-  const loggedMap = collectLoggedVideosMap_();
-  writeLoggedVideosToE_(sheet, loggedMap);
-  ss.toast(`記帳済み動画一覧を再生成しました：${loggedMap.size}件`, '動画監査', 6);
-}
-
-function pruneVideoHistoryCheck() {
-  const ss = SpreadsheetApp.getActive();
-  const sheet = ss.getSheetByName(VIDEO_HISTORY_SHEET_NAME);
-  if (!sheet) throw new Error(`シート「${VIDEO_HISTORY_SHEET_NAME}」が見つかりません。`);
-  ensureVideoHistoryLayout_(sheet);
-  const loggedMap = collectLoggedVideosMap_();
-  writeLoggedVideosToE_(sheet, loggedMap);
-  const loggedSet = new Set(loggedMap.keys());
-  const lastRow = Math.max(sheet.getLastRow(), 2);
-  const range = sheet.getRange(2, VH_HISTORY_START_COL, lastRow - 1, VH_HISTORY_COLS);
-  const values = range.getValues();
-  const kept = [];
-  let removed = 0;
-  let unknown = 0;
-  for (const row of values) {
-    if (row.every(value => String(value || '').trim() === '')) continue;
-    const videoId = extractVideoIdLoose_(row[2]) || extractVideoIdLoose_(row.join(' '));
-    if (!videoId) {
-      kept.push(row);
-      unknown++;
-    } else if (loggedSet.has(videoId)) {
-      removed++;
-    } else {
-      kept.push(row);
-    }
-  }
-  range.clearContent();
-  if (kept.length > 0) sheet.getRange(2, VH_HISTORY_START_COL, kept.length, VH_HISTORY_COLS).setValues(kept);
-  ss.toast(`完了：除外=${removed}行、未記帳候補=${kept.length}行、videoId不明=${unknown}行`, '動画監査', 8);
-}
-
-function exportMissingToSheet() {
-  const ss = SpreadsheetApp.getActive();
-  const sourceSheet = ss.getSheetByName(VIDEO_HISTORY_SHEET_NAME);
-  if (!sourceSheet) throw new Error(`シート「${VIDEO_HISTORY_SHEET_NAME}」が見つかりません。`);
-  ensureVideoHistoryLayout_(sourceSheet);
-  const loggedMap = collectLoggedVideosMap_();
-  writeLoggedVideosToE_(sourceSheet, loggedMap);
-  const loggedSet = new Set(loggedMap.keys());
-  const lastRow = Math.max(sourceSheet.getLastRow(), 2);
-  const values = sourceSheet.getRange(2, VH_HISTORY_START_COL, lastRow - 1, VH_HISTORY_COLS).getValues();
-  const output = [[...VH_HISTORY_HEADER, 'url']];
-  let unknown = 0;
-  for (const row of values) {
-    if (row.every(value => String(value || '').trim() === '')) continue;
-    const videoId = extractVideoIdLoose_(row[2]) || extractVideoIdLoose_(row.join(' '));
-    if (!videoId) {
-      output.push([...row, '']);
-      unknown++;
-    } else if (!loggedSet.has(videoId)) {
-      output.push([...row, `https://www.youtube.com/watch?v=${videoId}`]);
-    }
-  }
-  let outputSheet = ss.getSheetByName('未記帳動画');
-  if (!outputSheet) outputSheet = ss.insertSheet('未記帳動画');
-  outputSheet.clearContents();
-  outputSheet.getRange(1, 1, output.length, output[0].length).setValues(output);
-  outputSheet.setFrozenRows(1);
-  outputSheet.autoResizeColumns(1, output[0].length);
-  ss.toast(`未記帳動画：${output.length - 1}件（うちvideoId不明=${unknown}件）`, '動画監査', 6);
-}
-
-function collectLoggedVideosMap_() {
-  const ss = SpreadsheetApp.getActive();
-  const map = new Map();
-  const main = ss.getSheetByName(MAIN_SHEET_NAME);
-  if (main) collectLoggedVideosFromSheet_(main, START_ROW, map);
-  const archive = ss.getSheetByName(ARCHIVE_SHEET_NAME);
-  if (archive) collectLoggedVideosFromSheet_(archive, ARCHIVE_START_ROW, map);
-  return map;
-}
-
-function collectLoggedVideosFromSheet_(sheet, startRow, outMap) {
-  const lastRow = sheet.getLastRow();
-  if (lastRow < startRow) return;
-  const numRows = lastRow - startRow + 1;
-  const range = sheet.getRange(startRow, SOURCE_URL_COL, numRows, 1);
-  const values = range.getDisplayValues();
-  const richValues = range.getRichTextValues();
-  const formulas = range.getFormulas();
-  for (let i = 0; i < numRows; i++) {
-    const displayText = String(values[i][0] || '').trim();
-    const url = extractUrlFromCell_(richValues[i][0], formulas[i][0], displayText);
-    const videoId = extractVideoIdFromUrl_(url);
-    if (!videoId) continue;
-    const date = parseHeadDate(displayText);
-    const item = { yyyymmdd: date ? toYYYYMMDD_(date) : '', title: extractTitleFromDisplayText_(displayText), url };
-    const previous = outMap.get(videoId);
-    if (!previous || (!previous.yyyymmdd && item.yyyymmdd) || item.yyyymmdd > previous.yyyymmdd) outMap.set(videoId, item);
-  }
-}
-
-function writeLoggedVideosToE_(sheet, loggedMap) {
-  const rows = [...loggedMap.entries()]
-    .map(([videoId, item]) => [item.yyyymmdd || '', item.title || '', videoId, item.url || ''])
-    .sort((a, b) => String(b[0]).localeCompare(String(a[0])) || String(a[1]).localeCompare(String(b[1]), 'ja'));
-  const lastRow = Math.max(sheet.getLastRow(), 2);
-  sheet.getRange(2, VH_LOGGED_START_COL, lastRow - 1, VH_LOGGED_COLS).clearContent();
-  if (rows.length > 0) sheet.getRange(2, VH_LOGGED_START_COL, rows.length, VH_LOGGED_COLS).setValues(rows);
-}
-
-function updateUnifiedListSheet() {
-  const ss = SpreadsheetApp.getActive();
-  const sources = [
-    { name: MAIN_SHEET_NAME, startRow: START_ROW },
-    { name: GAGS_SHEET_NAME, startRow: START_ROW },
-    { name: ARCHIVE_SHEET_NAME, startRow: ARCHIVE_START_ROW },
-  ];
-  const header = ['アーティスト名', '曲名', '区分', '出典元情報(直リンク)', '投稿日', 'タイムスタンプ', '動画URL'];
-  const rows = [];
-  const seen = new Set();
-
-  for (const source of sources) {
-    const sheet = ss.getSheetByName(source.name);
-    if (!sheet || sheet.getLastRow() < source.startRow) continue;
-    const numRows = sheet.getLastRow() - source.startRow + 1;
-    const range = sheet.getRange(source.startRow, 1, numRows, COL_COUNT);
-    const values = range.getDisplayValues();
-    const richValues = range.getRichTextValues();
-    const formulas = range.getFormulas();
-    for (let i = 0; i < numRows; i++) {
-      const artist = String(values[i][0] || '').trim();
-      const title = String(values[i][1] || '').trim();
-      const kind = String(values[i][2] || '').trim();
-      const linkText = String(values[i][3] || '').trim();
-      if (!artist && !title && !kind && !linkText) continue;
-      const url = extractUrlFromCell_(richValues[i][3], formulas[i][3], linkText) || '';
-      const posted = parseHeadDate(linkText) || '';
-      const timestampSerial = secondsToTimeSerial_(extractTimestampSeconds_(url, linkText));
-      const uniqueKey = makeUnifiedRowUniqueKey_(artist, title, kind, url, posted, timestampSerial);
-      if (seen.has(uniqueKey)) continue;
-      rows.push([artist, title, kind, linkText, posted, timestampSerial, url]);
-      seen.add(uniqueKey);
-    }
-  }
-
-  rows.sort((a, b) => normalizeDateText_(b[4]).localeCompare(normalizeDateText_(a[4])) || timestampTextToSeconds_(a[5]) - timestampTextToSeconds_(b[5]));
-  let listSheet = ss.getSheetByName(UNIFIED_LIST_SHEET_NAME);
-  if (!listSheet) listSheet = ss.insertSheet(UNIFIED_LIST_SHEET_NAME);
-  listSheet.clearContents();
-  listSheet.getRange(1, 1, 1, header.length).setValues([header]);
-  if (rows.length > 0) {
-    listSheet.getRange(2, 1, rows.length, header.length).setValues(rows);
-    listSheet.getRange(2, 5, rows.length, 1).setNumberFormat('yyyy/mm/dd');
-    listSheet.getRange(2, 6, rows.length, 1).setNumberFormat('[h]:mm:ss');
-  }
-  listSheet.setFrozenRows(1);
-  listSheet.autoResizeColumns(1, header.length);
-  ss.toast(`一覧シート再構築完了：${rows.length}件`, '仕分け', 6);
-}
-
-function makeUnifiedRowUniqueKey_(artist, title, kind, url, posted, timestamp) {
-  return [normalizeSongText_(artist), normalizeSongText_(title), normalizeSongText_(kind), normalizeUrlForCompare_(url), normalizeDateText_(posted), normalizeTimestampText_(timestamp)].join('｜');
-}
-
-function secondsToTimeSerial_(seconds) {
-  if (!Number.isFinite(seconds) || seconds === Number.MAX_SAFE_INTEGER || seconds < 0) return '';
-  return Math.floor(seconds) / 86400;
-}
-
-function normalizeDateText_(value) {
-  if (Object.prototype.toString.call(value) === '[object Date]' && !isNaN(value.getTime())) {
-    return `${value.getFullYear()}/${String(value.getMonth() + 1).padStart(2, '0')}/${String(value.getDate()).padStart(2, '0')}`;
-  }
-  const match = String(value || '').trim().match(/^(\d{4})[\/-]?(\d{2})[\/-]?(\d{2})$/);
-  return match ? `${match[1]}/${match[2]}/${match[3]}` : '';
 }
 
 function normalizeTimestampText_(value) {

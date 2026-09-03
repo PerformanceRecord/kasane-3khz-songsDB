@@ -41,6 +41,13 @@ function entry(overrides = {}) {
   };
 }
 
+function preparedEntry(ctx, overrides = {}) {
+  const item = entry(overrides);
+  item.songKey = ctx.buildKey(item.artist, item.title);
+  item.exactKey = ctx.buildExactOccurrenceKey_(item);
+  return item;
+}
+
 test('archive API starts reading at row 2', () => {
   assert.match(apiSource, /START_ROWS:\s*\{[\s\S]*archive:\s*2,/);
 });
@@ -54,19 +61,66 @@ test('dedupe creates backups immediately before rewriting sheets', () => {
   assert.match(dedupeSource, /\.hideSheet\(\)/);
 });
 
-test('maintenance menu exposes separate daily and full-audit actions', () => {
+test('maintenance menu exposes only the four requested operations', () => {
   assert.match(
     dedupeSource,
     /\.addItem\('重複を仕分け（日常用）', 'classifyNewSongEntries'\)/,
   );
   assert.match(
     dedupeSource,
-    /\.addItem\('全件を総点検・訂正', 'auditAllSongEntries'\)/,
+    /\.addItem\('完全重複を総点検', 'auditAllSongEntries'\)/,
+  );
+  assert.match(
+    dedupeSource,
+    /\.addItem\('近似情報をチェック', 'checkApproximateSongInfo'\)/,
+  );
+  assert.match(
+    dedupeSource,
+    /\.addItem\('統計シートを作成・更新', 'createSongStatistics'\)/,
   );
   assert.match(
     dedupeSource,
     /const DAILY_LAST_MAIN_ROW_KEY = 'songMaintenance\.lastMainDataRow';/,
   );
+  assert.doesNotMatch(dedupeSource, /createMenu\('動画監査'\)/);
+  assert.doesNotMatch(dedupeSource, /function (?:rebuildLoggedVideoListOnVideoHistorySheet|pruneVideoHistoryCheck|exportMissingToSheet)\b/);
+  assert.doesNotMatch(dedupeSource, /function updateUnifiedListSheet\b/);
+});
+
+test('full audit keeps main and deletes archive first for cross-sheet exact duplicates', () => {
+  const ctx = loadDedupeFunctions();
+  const exactKey = 'artist｜song｜https://www.youtube.com/watch?v=AAAAAAAAAAA&t=10s';
+  const firstMain = entry({ source: 'main', rowIndex: 10, exactKey, videoId: 'MAIN-FIRST1' });
+  const laterMain = entry({ source: 'main', rowIndex: 20, exactKey, videoId: 'MAIN-LATER1' });
+  const archived = entry({ source: 'archive', rowIndex: 2, exactKey, videoId: 'ARCHIVED001' });
+
+  const result = ctx.buildFullAuditPlacement_([firstMain, laterMain], [archived]);
+  assert.deepEqual(Array.from(result.mainEntries, item => item.videoId), ['MAIN-FIRST1']);
+  assert.equal(result.archiveEntries.length, 0);
+  assert.equal(result.duplicateGroups, 1);
+  assert.equal(result.removedRows, 2);
+  assert.equal(result.removedArchiveRows, 1);
+  assert.equal(result.removedMainRows, 1);
+});
+
+test('full audit leaves distinct complete URLs and URL-less rows unchanged', () => {
+  const ctx = loadDedupeFunctions();
+  const first = entry({
+    rowIndex: 10,
+    url: 'https://www.youtube.com/watch?v=AAAAAAAAAAA&t=10s',
+    exactKey: 'artist｜song｜https://www.youtube.com/watch?v=AAAAAAAAAAA&t=10s',
+  });
+  const otherTimestamp = entry({
+    rowIndex: 11,
+    url: 'https://www.youtube.com/watch?v=AAAAAAAAAAA&t=20s',
+    exactKey: 'artist｜song｜https://www.youtube.com/watch?v=AAAAAAAAAAA&t=20s',
+  });
+  const blankOne = entry({ rowIndex: 12, url: '', exactKey: 'artist｜song｜' });
+  const blankTwo = entry({ rowIndex: 13, url: '', exactKey: 'artist｜song｜' });
+
+  const result = ctx.buildFullAuditPlacement_([first, otherTimestamp, blankOne, blankTwo], []);
+  assert.equal(result.removedRows, 0);
+  assert.equal(result.mainEntries.length, 4);
 });
 
 test('archive cleanup prefers a row newly moved from main over an old archived URL', () => {
@@ -205,6 +259,103 @@ test('rows without a D URL are not removed as exact duplicates', () => {
   const result = ctx.removeExactDuplicates_([first, second]);
   assert.equal(result.removedRows, 0);
   assert.equal(result.entries.length, 2);
+});
+
+test('approximate check finds swapped artist and song fields', () => {
+  const ctx = loadDedupeFunctions();
+  const left = preparedEntry(ctx, { artist: 'Singer One', title: 'Song Two' });
+  const right = preparedEntry(ctx, { artist: 'Song Two', title: 'Singer One', rowIndex: 11 });
+
+  const findings = ctx.findApproximateSongPairs_([left, right], 0.7);
+  assert.equal(findings.length, 1);
+  assert.ok(Array.from(findings[0].reasons).includes('歌手名と楽曲名のテレコ'));
+});
+
+test('approximate check ignores inserted spaces and separator hyphens', () => {
+  const ctx = loadDedupeFunctions();
+  const left = preparedEntry(ctx, { artist: 'ABC-DEF', title: 'Song Name' });
+  const right = preparedEntry(ctx, { artist: 'ABC DEF', title: 'Song-Name', rowIndex: 11 });
+
+  const findings = ctx.findApproximateSongPairs_([left, right], 0.7);
+  assert.equal(findings.length, 1);
+  assert.ok(Array.from(findings[0].reasons).includes('空白・区切り記号を除くと一致'));
+});
+
+test('approximate check requires both artist and song similarities to reach 70 percent', () => {
+  const ctx = loadDedupeFunctions();
+  const left = preparedEntry(ctx, {
+    artist: 'abcdef',
+    title: 'ghijkl',
+    url: 'https://example.com/left',
+  });
+  const similar = preparedEntry(ctx, {
+    artist: 'abcxef',
+    title: 'ghijxl',
+    rowIndex: 11,
+    url: 'https://example.com/similar',
+  });
+  const dissimilarTitle = preparedEntry(ctx, {
+    artist: 'abcxef',
+    title: 'zzzzzz',
+    rowIndex: 12,
+    url: 'https://example.com/dissimilar',
+  });
+
+  const matching = ctx.findApproximateSongPairs_([left, similar], 0.7);
+  assert.equal(matching.length, 1);
+  assert.ok(Array.from(matching[0].reasons).some(reason => reason.includes('70%以上一致')));
+  assert.ok(matching[0].artistSimilarity >= 0.7);
+  assert.ok(matching[0].titleSimilarity >= 0.7);
+
+  const rejected = ctx.findApproximateSongPairs_([left, dissimilarTitle], 0.7);
+  assert.equal(rejected.length, 0);
+});
+
+test('approximate check compares the complete URL including timestamps', () => {
+  const ctx = loadDedupeFunctions();
+  const sharedUrl = 'https://www.youtube.com/watch?v=AAAAAAAAAAA&t=10s';
+  const left = preparedEntry(ctx, { artist: 'Completely Different A', title: 'First Song', url: sharedUrl });
+  const sameUrl = preparedEntry(ctx, {
+    artist: 'Unrelated Singer Z',
+    title: 'Another Track',
+    url: sharedUrl,
+    rowIndex: 11,
+  });
+  const otherTimestamp = preparedEntry(ctx, {
+    artist: 'Unrelated Singer Z',
+    title: 'Another Track',
+    url: 'https://www.youtube.com/watch?v=AAAAAAAAAAA&t=20s',
+    rowIndex: 12,
+  });
+
+  const matching = ctx.findApproximateSongPairs_([left, sameUrl], 0.7);
+  assert.equal(matching.length, 1);
+  assert.ok(Array.from(matching[0].reasons).includes('A+B不一致・完全URL一致'));
+
+  const rejected = ctx.findApproximateSongPairs_([left, otherTimestamp], 0.7);
+  assert.equal(rejected.length, 0);
+});
+
+test('approximate check reports exact A+B remnants only when both rows remain in main', () => {
+  const ctx = loadDedupeFunctions();
+  const left = preparedEntry(ctx, { source: 'main', rowIndex: 10 });
+  const mainDuplicate = preparedEntry(ctx, {
+    source: 'main',
+    rowIndex: 11,
+    url: 'https://www.youtube.com/watch?v=BBBBBBBBBBB&t=20s',
+  });
+  const archivedHistory = preparedEntry(ctx, {
+    source: 'archive',
+    rowIndex: 2,
+    url: 'https://www.youtube.com/watch?v=CCCCCCCCCCC&t=30s',
+  });
+
+  const mainFinding = ctx.findApproximateSongPairs_([left, mainDuplicate], 0.7);
+  assert.equal(mainFinding.length, 1);
+  assert.ok(Array.from(mainFinding[0].reasons).includes('A+B完全一致（メイン内残存）'));
+
+  const expectedHistory = ctx.findApproximateSongPairs_([left, archivedHistory], 0.7);
+  assert.equal(expectedHistory.length, 0);
 });
 
 test('reupload key includes category and ignores only the D suffix within that category', () => {
