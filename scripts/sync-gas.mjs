@@ -15,6 +15,7 @@ const ARCHIVE_STATE_FILE = `${OUT_DIR}/archive-crawl-state.json`;
 // 通常フローでは archive は使わない。必要な同期バッチ時のみ有効化する。
 const ENABLE_ARCHIVE_SYNC = process.env.ENABLE_ARCHIVE_SYNC === 'true';
 const ARCHIVE_STRICT_SYNC = process.env.ARCHIVE_STRICT_SYNC === 'true';
+const FULL_REFRESH = process.env.FULL_REFRESH === 'true';
 const ARCHIVE_RESET_CURSOR = process.env.ARCHIVE_RESET_CURSOR === 'true';
 const ARCHIVE_FORCE_RESEED = process.env.ARCHIVE_FORCE_RESEED === 'true';
 const ARCHIVE_BATCH_SIZE_MIN = Number(process.env.ARCHIVE_BATCH_SIZE_MIN || 50);
@@ -34,6 +35,9 @@ function resolvePositiveIntEnv(name, fallback) {
 }
 
 const SONGS_MAX_PAGES = resolvePositiveIntEnv('SONGS_MAX_PAGES', 20);
+const FULL_REFRESH_PAGE_SIZE = resolvePositiveIntEnv('FULL_REFRESH_PAGE_SIZE', 200);
+const FULL_REFRESH_MAX_PAGES = resolvePositiveIntEnv('FULL_REFRESH_MAX_PAGES', 100);
+const FULL_REFRESH_TOTAL_CAP = resolvePositiveIntEnv('FULL_REFRESH_TOTAL_CAP', 20000);
 const TIMEOUT_MS = Number(process.env.SYNC_TIMEOUT_MS || 8000);
 const MAX_RETRY = Number(process.env.SYNC_MAX_RETRY || 3);
 
@@ -185,7 +189,7 @@ async function fetchJsonWithRetry(tab, {
         throw new Error(parsedPayload.error || 'GAS が ok=false を返しました');
       }
       const rawSheet = String(parsedPayload.sheet || '').toLowerCase();
-      if ((tab === 'songs' || tab === 'gags') && rawSheet && rawSheet !== tab) {
+      if (rawSheet && rawSheet !== tab) {
         throw new Error(`sheet mismatch: request=${tab}, response=${rawSheet}`);
       }
 
@@ -506,6 +510,20 @@ function resolveArchiveBatchSize(totalRows) {
   return Math.min(safeMax, Math.max(safeMin, Math.ceil(total / 7)));
 }
 
+function buildArchiveStateAfterFullRefresh(currentState, rowCount) {
+  const nowIso = new Date().toISOString();
+  return {
+    cursorDate8: 0,
+    cursorKey: '',
+    batchSize: resolveArchiveBatchSize(rowCount),
+    wrapped: true,
+    cycle: Number(currentState?.cycle || 0) + 1,
+    lastCycleCompletedAt: nowIso,
+    lastCollisionCount: 0,
+    updatedAt: nowIso,
+  };
+}
+
 function upsertArchiveRows({ existingRows, incomingRows }) {
   const merged = new Map();
   const collisionKeys = new Set();
@@ -644,14 +662,112 @@ async function fetchSongsRowsPaged() {
     + `取得済み=${allRows.length}件。GAS API の hasMore/limit/offset または SONGS_MAX_PAGES を確認してください。`,
   );
 }
+
+async function fetchAllRowsForFullRefresh(tab) {
+  let offset = 0;
+  let expectedTotal = null;
+  let expectedMatched = null;
+  const rows = [];
+  const seen = new Set();
+
+  for (let page = 0; page < FULL_REFRESH_MAX_PAGES; page += 1) {
+    const payload = await fetchJsonWithRetry(tab, {
+      offset,
+      limit: FULL_REFRESH_PAGE_SIZE,
+    });
+    const pageTotal = Number(payload.total);
+    const pageMatched = Number(payload.matched);
+
+    if (!Number.isSafeInteger(pageTotal) || pageTotal < 0) {
+      throw new Error(`[full-refresh:${tab}] total が不正です: ${payload.total}`);
+    }
+    if (!Number.isSafeInteger(pageMatched) || pageMatched < 0) {
+      throw new Error(`[full-refresh:${tab}] matched が不正です: ${payload.matched}`);
+    }
+    if (pageMatched > pageTotal) {
+      throw new Error(
+        `[full-refresh:${tab}] matched=${pageMatched} が total=${pageTotal} を超えています`,
+      );
+    }
+    if (pageMatched > FULL_REFRESH_TOTAL_CAP) {
+      throw new Error(
+        `[full-refresh:${tab}] matched=${pageMatched} が安全上限 ${FULL_REFRESH_TOTAL_CAP} を超えています`,
+      );
+    }
+
+    if (expectedTotal === null) expectedTotal = pageTotal;
+    if (expectedMatched === null) expectedMatched = pageMatched;
+    if (pageTotal !== expectedTotal || pageMatched !== expectedMatched) {
+      throw new Error(
+        `[full-refresh:${tab}] 取得中にシート件数が変化しました。`
+        + `開始時 total/matched=${expectedTotal}/${expectedMatched}、`
+        + `現在=${pageTotal}/${pageMatched}`,
+      );
+    }
+
+    const pageRows = Array.isArray(payload.rows) ? payload.rows : [];
+    for (const row of pageRows) {
+      const key = archiveStableRowKey(row);
+      if (!key) {
+        throw new Error(`[full-refresh:${tab}] 行識別キーが空のデータを検出しました`);
+      }
+      if (seen.has(key)) {
+        throw new Error(`[full-refresh:${tab}] ページ間で行識別キーが重複しました: ${key}`);
+      }
+      seen.add(key);
+      rows.push(row);
+    }
+
+    console.log(
+      `[full-refresh:${tab}] page=${page + 1} offset=${offset}`
+      + ` rows=${pageRows.length} accumulated=${rows.length}/${expectedMatched}`,
+    );
+
+    if (rows.length === expectedMatched) {
+      return {
+        rows,
+        total: expectedTotal,
+        matched: expectedMatched,
+      };
+    }
+    if (rows.length > expectedMatched) {
+      throw new Error(
+        `[full-refresh:${tab}] 取得件数=${rows.length} が matched=${expectedMatched} を超えました`,
+      );
+    }
+    if (pageRows.length === 0 || pageRows.length < FULL_REFRESH_PAGE_SIZE) {
+      throw new Error(
+        `[full-refresh:${tab}] 全件取得前にページが終了しました。`
+        + `取得=${rows.length}、matched=${expectedMatched}`,
+      );
+    }
+
+    offset += pageRows.length;
+  }
+
+  throw new Error(
+    `[full-refresh:${tab}] FULL_REFRESH_MAX_PAGES=${FULL_REFRESH_MAX_PAGES} に到達しました。`
+    + `取得=${rows.length}、matched=${expectedMatched}`,
+  );
+}
+
 async function main() {
   await mkdir(OUT_DIR, { recursive: true });
   const startedAt = new Date().toISOString();
 
+  if (FULL_REFRESH && !ENABLE_ARCHIVE_SYNC) {
+    throw new Error('FULL_REFRESH=true では ENABLE_ARCHIVE_SYNC=true が必要です');
+  }
+  if (FULL_REFRESH && !ARCHIVE_STRICT_SYNC) {
+    throw new Error('FULL_REFRESH=true では ARCHIVE_STRICT_SYNC=true が必要です');
+  }
+
   const outputs = {};
   const historyDir = `${OUT_DIR}/${HISTORY_DIR_NAME}`;
   for (const tab of CORE_TABS) {
-    const payload = tab === 'songs' ? await fetchSongsRowsPaged() : await fetchJsonWithRetry(tab);
+    const payload = FULL_REFRESH
+      ? await fetchAllRowsForFullRefresh(tab)
+      : (tab === 'songs' ? await fetchSongsRowsPaged() : await fetchJsonWithRetry(tab));
     outputs[tab] = {
       ok: true,
       sheet: tab,
@@ -667,8 +783,17 @@ async function main() {
     const existingArchiveRows = normalizeRowsForArchive(await loadArchiveRowsFromDisk());
     const currentState = await loadArchiveState();
     try {
-      await verifyArchiveHealthCheck();
-      const archive = await fetchArchiveRollingBatch(currentState, existingArchiveRows);
+      if (!FULL_REFRESH) await verifyArchiveHealthCheck();
+      const archive = FULL_REFRESH
+        ? {
+          ok: true,
+          ...await fetchAllRowsForFullRefresh(ARCHIVE_TAB),
+          nextState: null,
+        }
+        : await fetchArchiveRollingBatch(currentState, existingArchiveRows);
+      if (FULL_REFRESH) {
+        archive.nextState = buildArchiveStateAfterFullRefresh(currentState, archive.rows.length);
+      }
       if (!archive.ok) {
         console.warn(`[archive] 巡回取得をスキップ: ${archive.reason}`);
       }
@@ -677,8 +802,8 @@ async function main() {
         sheet: ARCHIVE_TAB,
         fetchedAt: new Date().toISOString(),
         rows: archive.ok ? archive.rows : existingArchiveRows,
-        total: archive.ok ? archive.rows.length : existingArchiveRows.length,
-        matched: archive.ok ? archive.rows.length : existingArchiveRows.length,
+        total: archive.ok ? (archive.total ?? archive.rows.length) : existingArchiveRows.length,
+        matched: archive.ok ? (archive.matched ?? archive.rows.length) : existingArchiveRows.length,
       };
       outputs.archive = archivePayload;
       await writeFile(`${OUT_DIR}/${ARCHIVE_TAB}.json`, `${JSON.stringify(archivePayload, null, 2)}\n`, 'utf8');
@@ -687,7 +812,7 @@ async function main() {
       }
     } catch (e) {
       const strictMsg = '[archive] 取得に失敗しました。前回の public-data/archive.json を維持して続行します';
-      if (ARCHIVE_STRICT_SYNC) {
+      if (ARCHIVE_STRICT_SYNC || FULL_REFRESH) {
         throw new Error(strictMsg, { cause: e });
       } else {
         console.warn(strictMsg);
@@ -710,7 +835,7 @@ async function main() {
   let archiveRows = [];
 
   if (ENABLE_ARCHIVE_SYNC) {
-    historySourceMode = 'live-archive';
+    historySourceMode = FULL_REFRESH ? 'full-refresh' : 'live-archive';
     archiveRows = normalizeRowsForArchive(outputs.archive?.rows || []);
   } else {
     const diskArchiveRows = normalizeRowsForArchive(await loadArchiveRowsFromDisk());
@@ -744,6 +869,7 @@ async function main() {
   const meta = {
     ok: true,
     source: 'gas-sync',
+    syncMode: FULL_REFRESH ? 'full-refresh' : 'regular',
     generatedAt: new Date().toISOString(),
     startedAt,
     tabs: outputTabs,

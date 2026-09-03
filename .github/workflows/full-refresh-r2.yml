@@ -1,0 +1,267 @@
+name: マニュアルでアップロードデータの整理を行う
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_refresh:
+        description: '全件再取得・R2整理を実行する'
+        required: true
+        type: boolean
+        default: false
+
+concurrency:
+  group: sync-r2
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  full-refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      AWS_EC2_METADATA_DISABLED: 'true'
+      AWS_RETRY_MODE: standard
+      AWS_MAX_ATTEMPTS: '5'
+      R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+      R2_BUCKET: ${{ secrets.R2_BUCKET }}
+      R2_BACKUP_PREFIX: backups/manual-full-refresh/${{ github.run_id }}-${{ github.run_attempt }}
+      GAS_URL: ${{ secrets.GAS_URL }}
+
+    steps:
+      - name: Confirm manual full refresh
+        run: |
+          if [ '${{ inputs.confirm_refresh }}' != 'true' ]; then
+            echo '実行確認が選択されていないため終了します。' >&2
+            exit 1
+          fi
+
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Sync local main to remote main
+        run: |
+          git fetch origin main
+          git checkout -B main origin/main
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate required secrets
+        run: |
+          for name in GAS_URL R2_ENDPOINT R2_BUCKET AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY; do
+            if [ -z "${!name}" ]; then
+              echo "${name} secret is required" >&2
+              exit 1
+            fi
+          done
+
+      - name: Rebuild all JSON from GAS
+        env:
+          ENABLE_ARCHIVE_SYNC: 'true'
+          ARCHIVE_STRICT_SYNC: 'true'
+          FULL_REFRESH: 'true'
+          FULL_REFRESH_PAGE_SIZE: '200'
+          FULL_REFRESH_MAX_PAGES: '100'
+          FULL_REFRESH_TOTAL_CAP: '20000'
+          SYNC_TIMEOUT_MS: '60000'
+          SYNC_MAX_RETRY: '5'
+        run: node scripts/sync-gas.mjs
+
+      - name: Validate rebuilt snapshot
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const fail = (message) => {
+            console.error(message);
+            process.exit(1);
+          };
+          const load = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+          const payloads = Object.fromEntries(
+            ['songs', 'gags', 'archive'].map((name) => [name, load(`public-data/${name}.json`)]),
+          );
+          const meta = load('public-data/meta.json');
+
+          if (meta.syncMode !== 'full-refresh') fail(`meta.syncMode=${meta.syncMode}`);
+          if (meta?.history?.sourceMode !== 'full-refresh') {
+            fail(`meta.history.sourceMode=${meta?.history?.sourceMode}`);
+          }
+
+          for (const [name, payload] of Object.entries(payloads)) {
+            if (!Array.isArray(payload.rows)) fail(`${name}.rows が配列ではありません`);
+            if (Number(payload.matched) !== payload.rows.length) {
+              fail(`${name}: rows=${payload.rows.length}, matched=${payload.matched}`);
+            }
+            const seen = new Set();
+            for (const row of payload.rows) {
+              const rowId = String(row?.rowId || '').trim().toLowerCase();
+              if (!rowId) fail(`${name}: rowId が空の行があります`);
+              if (seen.has(rowId)) fail(`${name}: rowId 重複 ${rowId}`);
+              seen.add(rowId);
+            }
+          }
+
+          if (Number(meta?.history?.sourceRows) !== payloads.archive.rows.length) {
+            fail(
+              `archive rows=${payloads.archive.rows.length}, history.sourceRows=${meta?.history?.sourceRows}`,
+            );
+          }
+
+          const historyDir = 'public-data/history';
+          const historyFiles = fs.readdirSync(historyDir)
+            .filter((name) => name.toLowerCase().endsWith('.json'));
+          if (historyFiles.length === 0) fail('history JSON が0件です');
+          if (historyFiles.length !== Number(meta?.history?.files)) {
+            fail(`history files=${historyFiles.length}, meta=${meta?.history?.files}`);
+          }
+
+          const historyNames = new Set(historyFiles);
+          for (const name of historyFiles) {
+            const history = load(path.join(historyDir, name));
+            if (!Array.isArray(history.rows) || history.rows.length === 0) {
+              fail(`${name}: 履歴行がありません`);
+            }
+            if (Number(history.total) !== history.rows.length) {
+              fail(`${name}: total=${history.total}, rows=${history.rows.length}`);
+            }
+          }
+
+          for (const tab of ['songs', 'gags']) {
+            for (const row of payloads[tab].rows) {
+              const ref = String(row?.historyRef || '').trim();
+              if (!/^history\/[0-9a-f]{12}\.json$/.test(ref)) {
+                fail(`${tab}: historyRef が不正です: ${ref}`);
+              }
+              if (!historyNames.has(path.basename(ref))) {
+                fail(`${tab}: historyRef の参照先がありません: ${ref}`);
+              }
+            }
+          }
+
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, [
+            '## 全件再取得の事前検証',
+            `- songs: ${payloads.songs.rows.length}`,
+            `- gags: ${payloads.gags.rows.length}`,
+            `- archive: ${payloads.archive.rows.length}`,
+            `- history JSON: ${historyFiles.length}`,
+            '',
+          ].join('\n'));
+          NODE
+
+      - name: Commit fresh snapshot to main
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add public-data/songs.json \
+            public-data/gags.json \
+            public-data/meta.json \
+            public-data/archive.json \
+            public-data/archive-crawl-state.json
+
+          if git diff --cached --quiet; then
+            echo 'No snapshot changes to commit'
+          else
+            git commit -m 'chore: manually rebuild GAS snapshot'
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort || true
+              echo 'main changed during refresh; R2 was not modified' >&2
+              exit 1
+            fi
+            git push origin HEAD:main
+          fi
+
+      - name: Install awscli
+        run: |
+          if ! command -v aws >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y awscli
+          fi
+
+      - name: Back up current R2 public data
+        run: |
+          backup_dir="$RUNNER_TEMP/r2-before-full-refresh"
+          mkdir -p "$backup_dir"
+          aws s3 sync "s3://$R2_BUCKET/public-data" "$backup_dir" \
+            --endpoint-url "$R2_ENDPOINT" \
+            --region auto \
+            --no-progress
+
+          backup_count=$(find "$backup_dir" -type f | wc -l | tr -d ' ')
+          if [ "$backup_count" -eq 0 ]; then
+            echo 'R2バックアップ対象が0件のため、更新を中止します。' >&2
+            exit 1
+          fi
+
+          aws s3 sync "$backup_dir" "s3://$R2_BUCKET/$R2_BACKUP_PREFIX/public-data" \
+            --endpoint-url "$R2_ENDPOINT" \
+            --region auto \
+            --no-progress
+
+          remote_backup_count=$(aws s3 ls "s3://$R2_BUCKET/$R2_BACKUP_PREFIX/public-data/" \
+            --endpoint-url "$R2_ENDPOINT" \
+            --region auto \
+            --recursive | wc -l | tr -d ' ')
+          if [ "$backup_count" -ne "$remote_backup_count" ]; then
+            echo "R2バックアップ件数不一致: local=$backup_count remote=$remote_backup_count" >&2
+            exit 1
+          fi
+
+          echo "R2_BACKUP_COUNT=$backup_count" >> "$GITHUB_ENV"
+
+      - name: Upload rebuilt data to R2
+        run: |
+          aws s3 sync public-data/history "s3://$R2_BUCKET/public-data/history" \
+            --endpoint-url "$R2_ENDPOINT" \
+            --region auto \
+            --no-progress
+
+          for name in songs gags meta; do
+            aws s3 cp "public-data/${name}.json" "s3://$R2_BUCKET/public-data/${name}.json" \
+              --endpoint-url "$R2_ENDPOINT" \
+              --region auto \
+              --no-progress
+          done
+
+          aws s3 sync public-data/history "s3://$R2_BUCKET/public-data/history" \
+            --endpoint-url "$R2_ENDPOINT" \
+            --region auto \
+            --no-progress \
+            --delete
+
+      - name: Verify exact R2 result
+        run: |
+          verify_history_dir="$RUNNER_TEMP/r2-after-full-refresh/history"
+          mkdir -p "$verify_history_dir"
+          aws s3 sync "s3://$R2_BUCKET/public-data/history" "$verify_history_dir" \
+            --endpoint-url "$R2_ENDPOINT" \
+            --region auto \
+            --no-progress
+          diff -qr public-data/history "$verify_history_dir"
+
+          for name in songs gags meta; do
+            aws s3 cp "s3://$R2_BUCKET/public-data/${name}.json" "$RUNNER_TEMP/${name}.json" \
+              --endpoint-url "$R2_ENDPOINT" \
+              --region auto \
+              --no-progress
+            cmp "public-data/${name}.json" "$RUNNER_TEMP/${name}.json"
+          done
+
+          history_count=$(find public-data/history -type f -name '*.json' | wc -l | tr -d ' ')
+          {
+            echo '## R2完全整理結果'
+            echo "- history JSON: ${history_count}"
+            echo "- 更新前バックアップ: s3://$R2_BUCKET/$R2_BACKUP_PREFIX/public-data/"
+            echo "- 更新前バックアップ件数: ${R2_BACKUP_COUNT}"
+            echo '- songs / gags / meta / history: ローカル生成物との完全一致を確認'
+          } >> "$GITHUB_STEP_SUMMARY"
