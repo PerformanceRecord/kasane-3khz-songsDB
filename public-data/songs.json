@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-09-03T01:54:38.639Z",
+  "fetchedAt": "2026-09-04T01:49:02.429Z",
   "rows": [
     {
       "artist": "キタニタツヤ",
@@ -5185,7 +5185,7 @@
       "rowId": "緑黄色社会|mela!|歌枠|https://www.youtube.com/watch?v=x5BV86bUdvo&t=4293s",
       "historyRef": "history/95c310ac86e1.json",
       "historyCount": 1,
-      "lastSungAt": 20260316
+      "lastSungAt": 20260121
     },
     {
       "artist": "amazarashi",

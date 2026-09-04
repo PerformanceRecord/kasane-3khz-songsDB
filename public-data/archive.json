@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-09-03T01:54:51.505Z",
+  "fetchedAt": "2026-09-04T01:49:12.419Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -10504,6 +10504,16 @@
       "historyKey": "椎名林檎|眩暈"
     },
     {
+      "artist": "緑黄色社会",
+      "title": "Mela!",
+      "kind": "ショート",
+      "dText": "20260121 Mela!/緑黄色社会 #歌ってみた #mela #緑黄色社会 #新人vtuber #karaoke #jpop",
+      "dUrl": "https://www.youtube.com/shorts/a5dy3zRue5c",
+      "date8": 20260121,
+      "rowId": "緑黄色社会|mela!|ショート|https://www.youtube.com/shorts/a5dy3zRue5c",
+      "historyKey": "緑黄色社会|mela!"
+    },
+    {
       "artist": "羊文学",
       "title": "くだらない",
       "kind": "歌枠",
@@ -14274,6 +14284,6 @@
       "historyKey": "kiki vivi lily|80denier"
     }
   ],
-  "total": 1427,
-  "matched": 1427
+  "total": 1428,
+  "matched": 1428
 }
