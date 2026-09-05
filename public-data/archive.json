@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-09-04T01:49:12.419Z",
+  "fetchedAt": "2026-09-05T01:49:56.174Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -11294,6 +11294,16 @@
       "historyKey": "orangestar|daybreak frontline"
     },
     {
+      "artist": "Orangestar",
+      "title": "DAYBREAK FRONTLINE",
+      "kind": "ショート",
+      "dText": "20260208 DAYBREAK FRONTLINE/Orangestar #歌ってみた #ボカロ #生歌 #orangestar #新人vtuber",
+      "dUrl": "https://www.youtube.com/watch?v=qKU1F8tyms0",
+      "date8": 20260208,
+      "rowId": "orangestar|daybreak frontline|ショート|https://www.youtube.com/watch?v=qKU1F8tyms0",
+      "historyKey": "orangestar|daybreak frontline"
+    },
+    {
       "artist": "おぱみな feat.羽累(HARU)",
       "title": "SMASH",
       "kind": "ショート",
@@ -12237,7 +12247,7 @@
       "artist": "Aimer",
       "title": "茜さす",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=1922s",
       "date8": 20260319,
       "rowId": "aimer|茜さす|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=1922s",
@@ -12257,7 +12267,7 @@
       "artist": "Avril Lavigne",
       "title": "Girlfriend",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=6982s",
       "date8": 20260319,
       "rowId": "avril lavigne|girlfriend|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=6982s",
@@ -12267,7 +12277,7 @@
       "artist": "DECO*27",
       "title": "シンデレラ",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=4502s",
       "date8": 20260319,
       "rowId": "deco*27|シンデレラ|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=4502s",
@@ -12287,7 +12297,7 @@
       "artist": "EGOIST",
       "title": "咲かせや咲かせ",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=637s",
       "date8": 20260319,
       "rowId": "egoist|咲かせや咲かせ|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=637s",
@@ -12317,7 +12327,7 @@
       "artist": "ヨルシカ",
       "title": "雨とカプチーノ",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=5806s",
       "date8": 20260319,
       "rowId": "ヨルシカ|雨とカプチーノ|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=5806s",
@@ -12327,7 +12337,7 @@
       "artist": "内緒のピアス",
       "title": "プロポーズ",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=3212s",
       "date8": 20260319,
       "rowId": "内緒のピアス|プロポーズ|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=3212s",
@@ -12347,7 +12357,7 @@
       "artist": "椎名林檎",
       "title": "おこのみで",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=2807s",
       "date8": 20260319,
       "rowId": "椎名林檎|おこのみで|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=2807s",
@@ -12357,7 +12367,7 @@
       "artist": "椎名林檎",
       "title": "月に負け犬",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=2292s",
       "date8": 20260319,
       "rowId": "椎名林檎|月に負け犬|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=2292s",
@@ -12377,7 +12387,7 @@
       "artist": "椎名林檎",
       "title": "薄ら氷心中",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=1258s",
       "date8": 20260319,
       "rowId": "椎名林檎|薄ら氷心中|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=1258s",
@@ -12387,7 +12397,7 @@
       "artist": "水野あつ",
       "title": "生きる",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=3546s",
       "date8": 20260319,
       "rowId": "水野あつ|生きる|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=3546s",
@@ -14284,6 +14294,6 @@
       "historyKey": "kiki vivi lily|80denier"
     }
   ],
-  "total": 1428,
-  "matched": 1428
+  "total": 1429,
+  "matched": 1429
 }

@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-09-04T01:49:02.429Z",
+  "fetchedAt": "2026-09-05T01:49:43.010Z",
   "rows": [
     {
       "artist": "キタニタツヤ",
@@ -5244,7 +5244,7 @@
       "date8": 20260309,
       "rowId": "orangestar|daybreak frontline|歌枠|https://www.youtube.com/watch?v=cDemkFbzqAM&t=3089s",
       "historyRef": "history/6b6adcbf54f7.json",
-      "historyCount": 2,
+      "historyCount": 3,
       "lastSungAt": 20260228
     },
     {
