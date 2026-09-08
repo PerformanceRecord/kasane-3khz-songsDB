@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-09-07T01:41:25.668Z",
+  "fetchedAt": "2026-09-08T01:52:42.558Z",
   "rows": [
     {
       "artist": "キタニタツヤ",
@@ -5508,7 +5508,7 @@
       "date8": 20260220,
       "rowId": "biz×zera|loveit?|歌枠|https://www.youtube.com/watch?v=_JHUCrunBnw&t=4164s",
       "historyRef": "history/9379ce1cbafb.json",
-      "historyCount": 3,
+      "historyCount": 4,
       "lastSungAt": 20260428
     },
     {

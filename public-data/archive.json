@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-09-07T01:41:36.378Z",
+  "fetchedAt": "2026-09-08T01:52:50.446Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -6202,6 +6202,16 @@
       "date8": 20251023,
       "rowId": "aiko|カブトムシ|歌枠|https://www.youtube.com/watch?v=ZdtlFfboxRY&t=380s",
       "historyKey": "aiko|カブトムシ"
+    },
+    {
+      "artist": "biz×ZERA",
+      "title": "Loveit?",
+      "kind": "歌枠",
+      "dText": "20251023【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=xuJGGiJzBmw&t=4096s",
+      "date8": 20251023,
+      "rowId": "biz×zera|loveit?|歌枠|https://www.youtube.com/watch?v=xuJGGiJzBmw&t=4096s",
+      "historyKey": "biz×zera|loveit?"
     },
     {
       "artist": "biz×ZERA",
@@ -14344,6 +14354,6 @@
       "historyKey": "kiki vivi lily|80denier"
     }
   ],
-  "total": 1434,
-  "matched": 1434
+  "total": 1435,
+  "matched": 1435
 }
