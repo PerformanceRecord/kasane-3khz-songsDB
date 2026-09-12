@@ -1,10 +1,10 @@
 {
-  "cursorDate8": 20260409,
-  "cursorKey": "muque|ブルーライト|ショート|https://www.youtube.com/watch?v=rB7P3rzg35k",
+  "cursorDate8": 0,
+  "cursorKey": "",
   "batchSize": 205,
-  "wrapped": false,
-  "cycle": 7,
-  "lastCycleCompletedAt": "2026-09-06T01:44:08.285Z",
-  "lastCollisionCount": 205,
-  "updatedAt": "2026-09-11T01:53:43.939Z"
+  "wrapped": true,
+  "cycle": 8,
+  "lastCycleCompletedAt": "2026-09-12T01:58:43.309Z",
+  "lastCollisionCount": 123,
+  "updatedAt": "2026-09-12T01:58:43.309Z"
 }
