@@ -1,8 +1,260 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-09-19T02:04:23.233Z",
+  "fetchedAt": "2026-09-19T14:34:43.429Z",
   "rows": [
+    {
+      "artist": "松原みき",
+      "title": "真夜中のドア〜Stay With Me",
+      "kind": "ショート",
+      "dText": "20260918 真夜中のドア〜Stay With Me / 松原みき #歌ってみた #citypop #真夜中のドア",
+      "dUrl": "https://www.youtube.com/watch?v=K1AX2u3yIuQ",
+      "date8": 20260918,
+      "rowId": "松原みき|真夜中のドア〜stay with me|ショート|https://www.youtube.com/watch?v=K1AX2u3yIuQ",
+      "historyRef": "history/bf47be6b1ac9.json",
+      "historyCount": 1,
+      "lastSungAt": 20260918
+    },
+    {
+      "artist": "林原めぐみ",
+      "title": "Northern lights",
+      "kind": "ショート",
+      "dText": "20260916 【生歌】Northern lights / 林原めぐみ #cover #シャーマンキング #アニソン #林原めぐみ #声優",
+      "dUrl": "https://www.youtube.com/watch?v=wmmQmGgi7H8",
+      "date8": 20260916,
+      "rowId": "林原めぐみ|northern lights|ショート|https://www.youtube.com/watch?v=wmmQmGgi7H8",
+      "historyRef": "history/00bfaf3e971e.json",
+      "historyCount": 1,
+      "lastSungAt": 20260916
+    },
+    {
+      "artist": "Ado",
+      "title": "新時代",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=4164s",
+      "date8": 20260914,
+      "rowId": "ado|新時代|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=4164s",
+      "historyRef": "history/dcb66d633728.json",
+      "historyCount": 5,
+      "lastSungAt": 20251027
+    },
+    {
+      "artist": "FLOW",
+      "title": "GO!!!",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=5072s",
+      "date8": 20260914,
+      "rowId": "flow|go!!!|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=5072s",
+      "historyRef": "history/b3b34559dfa3.json",
+      "historyCount": 1,
+      "lastSungAt": 20260914
+    },
+    {
+      "artist": "LiSA",
+      "title": "紅蓮華",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=3854s",
+      "date8": 20260914,
+      "rowId": "lisa|紅蓮華|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=3854s",
+      "historyRef": "history/1045b8eb654b.json",
+      "historyCount": 3,
+      "lastSungAt": 20251121
+    },
+    {
+      "artist": "MAHO堂",
+      "title": "おジャ魔女カーニバル",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=2958s",
+      "date8": 20260914,
+      "rowId": "maho堂|おジャ魔女カーニバル|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=2958s",
+      "historyRef": "history/39f24520232e.json",
+      "historyCount": 1,
+      "lastSungAt": 20260914
+    },
+    {
+      "artist": "spercell",
+      "title": "君の知らない物語",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=5433s",
+      "date8": 20260914,
+      "rowId": "spercell|君の知らない物語|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=5433s",
+      "historyRef": "history/4a04f57de14c.json",
+      "historyCount": 1,
+      "lastSungAt": 20260914
+    },
+    {
+      "artist": "YOASOBI",
+      "title": "アイドル",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=4474s",
+      "date8": 20260914,
+      "rowId": "yoasobi|アイドル|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=4474s",
+      "historyRef": "history/666872471378.json",
+      "historyCount": 6,
+      "lastSungAt": 20260220
+    },
+    {
+      "artist": "アイナ・ジ・エンド",
+      "title": "革命道中 - On The Way",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=5846s",
+      "date8": 20260914,
+      "rowId": "アイナ・ジ・エンド|革命道中 - on the way|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=5846s",
+      "historyRef": "history/94a9b6f0774d.json",
+      "historyCount": 1,
+      "lastSungAt": 20260206
+    },
+    {
+      "artist": "ミルキィホームズ",
+      "title": "正解はひとつ!じゃない!!",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=2681s",
+      "date8": 20260914,
+      "rowId": "ミルキィホームズ|正解はひとつ!じゃない!!|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=2681s",
+      "historyRef": "history/3df5a2178f81.json",
+      "historyCount": 1,
+      "lastSungAt": 20260629
+    },
+    {
+      "artist": "杏里",
+      "title": "CAT'S EYE",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=3526s",
+      "date8": 20260914,
+      "rowId": "杏里|cat's eye|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=3526s",
+      "historyRef": "history/873effec55fa.json",
+      "historyCount": 1,
+      "lastSungAt": 20260914
+    },
+    {
+      "artist": "奥井雅美",
+      "title": "輪舞-revolution",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=269s",
+      "date8": 20260914,
+      "rowId": "奥井雅美|輪舞-revolution|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=269s",
+      "historyRef": "history/ee76f61c3337.json",
+      "historyCount": 1,
+      "lastSungAt": 20260914
+    },
+    {
+      "artist": "岩崎良美",
+      "title": "タッチ",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=3276s",
+      "date8": 20260914,
+      "rowId": "岩崎良美|タッチ|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=3276s",
+      "historyRef": "history/d22a0afec2b7.json",
+      "historyCount": 1,
+      "lastSungAt": 20260914
+    },
+    {
+      "artist": "高橋洋子",
+      "title": "魂のルフラン",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=2284s",
+      "date8": 20260914,
+      "rowId": "高橋洋子|魂のルフラン|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=2284s",
+      "historyRef": "history/489eb67e679e.json",
+      "historyCount": 2,
+      "lastSungAt": 20260109
+    },
+    {
+      "artist": "高橋洋子",
+      "title": "残酷な天使のテーゼ",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=1748s",
+      "date8": 20260914,
+      "rowId": "高橋洋子|残酷な天使のテーゼ|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=1748s",
+      "historyRef": "history/5292c6df945c.json",
+      "historyCount": 8,
+      "lastSungAt": 20251206
+    },
+    {
+      "artist": "中川翔子",
+      "title": "空色デイズ",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=619s",
+      "date8": 20260914,
+      "rowId": "中川翔子|空色デイズ|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=619s",
+      "historyRef": "history/db96dfc934a7.json",
+      "historyCount": 1,
+      "lastSungAt": 20260115
+    },
+    {
+      "artist": "馬渡松子",
+      "title": "微笑みの爆弾",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=1385s",
+      "date8": 20260914,
+      "rowId": "馬渡松子|微笑みの爆弾|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=1385s",
+      "historyRef": "history/9b60c1235f16.json",
+      "historyCount": 3,
+      "lastSungAt": 20260110
+    },
+    {
+      "artist": "米津玄師",
+      "title": "KICK BACK",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=4832s",
+      "date8": 20260914,
+      "rowId": "米津玄師|kick back|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=4832s",
+      "historyRef": "history/e03baed14ba4.json",
+      "historyCount": 1,
+      "lastSungAt": 20260914
+    },
+    {
+      "artist": "緑黄色社会",
+      "title": "花になって",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=6424s",
+      "date8": 20260914,
+      "rowId": "緑黄色社会|花になって|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=6424s",
+      "historyRef": "history/91cfc7d64443.json",
+      "historyCount": 8,
+      "lastSungAt": 20260316
+    },
+    {
+      "artist": "林原めぐみ",
+      "title": "Over soul",
+      "kind": "歌枠",
+      "dText": "20260914 【#歌枠 】アニソン縛り歌枠⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#vtuber #アニソン 】",
+      "dUrl": "https://www.youtube.com/watch?v=SQPAYEbA_uo&t=1032s",
+      "date8": 20260914,
+      "rowId": "林原めぐみ|over soul|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=1032s",
+      "historyRef": "history/af3ff0113241.json",
+      "historyCount": 1,
+      "lastSungAt": 20260914
+    },
+    {
+      "artist": "DECO*27",
+      "title": "洗脳",
+      "kind": "歌ってみた",
+      "dText": "20260909 【歌ってみた】洗脳 feat.初音ミク / DECO*27 covered by 花彩音_3kHz",
+      "dUrl": "https://www.youtube.com/watch?v=1SNOcleRNYo",
+      "date8": 20260909,
+      "rowId": "deco*27|洗脳|歌ってみた|https://www.youtube.com/watch?v=1SNOcleRNYo",
+      "historyRef": "history/424c64d4321b.json",
+      "historyCount": 1,
+      "lastSungAt": 20260909
+    },
     {
       "artist": "キタニタツヤ",
       "title": "青のすみか",
@@ -638,18 +890,6 @@
       "historyRef": "history/175c96eca9ba.json",
       "historyCount": 1,
       "lastSungAt": 20260817
-    },
-    {
-      "artist": "ミルキィホームズ",
-      "title": "正解はひとつ!じゃない!!",
-      "kind": "歌枠",
-      "dText": "20260817 【#歌枠 】月用の夜に元気に歌います⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#作業用bgm 】",
-      "dUrl": "https://www.youtube.com/watch?v=cVzXs_wJjd8&t=458s",
-      "date8": 20260817,
-      "rowId": "ミルキィホームズ|正解はひとつ!じゃない!!|歌枠|https://www.youtube.com/watch?v=cVzXs_wJjd8&t=458s",
-      "historyRef": "history/3df5a2178f81.json",
-      "historyCount": 1,
-      "lastSungAt": 20260629
     },
     {
       "artist": "ヨルシカ",
@@ -2128,14 +2368,14 @@
       "lastSungAt": 20260128
     },
     {
-      "artist": "倖田來未",
-      "title": "D.D.D feat.SOULHEAD",
+      "artist": "倖田來未 feat.SOULHEAD",
+      "title": "D.D.D.",
       "kind": "歌枠",
       "dText": "20260622 【#歌枠 】月曜にチルな歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=B3ICS3xhgB4&t=6171s",
       "date8": 20260622,
-      "rowId": "倖田來未|d.d.d feat.soulhead|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=6171s",
-      "historyRef": "history/45dfc21b5da9.json",
+      "rowId": "倖田來未 feat.soulhead|d.d.d.|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=6171s",
+      "historyRef": "history/a69266c8867f.json",
       "historyCount": 1,
       "lastSungAt": 20260622
     },
@@ -2174,18 +2414,6 @@
       "historyRef": "history/e4c447895f1d.json",
       "historyCount": 8,
       "lastSungAt": 20260213
-    },
-    {
-      "artist": "倖田來未 feat.SOULHEAD",
-      "title": "D.D.D.",
-      "kind": "ショート",
-      "dText": "20260621 【20年前の曲今聴いてもかっこいい】D.D.D.feat.SOULHEAD/倖田來未 #歌ってみた #SOULHEAD #倖田來未 #rap #平成",
-      "dUrl": "https://www.youtube.com/watch?v=pdm5Kd4WEy0",
-      "date8": 20260621,
-      "rowId": "倖田來未 feat.soulhead|d.d.d.|ショート|https://www.youtube.com/watch?v=pdm5Kd4WEy0",
-      "historyRef": "history/a69266c8867f.json",
-      "historyCount": 1,
-      "lastSungAt": 20260621
     },
     {
       "artist": "煮ル果実",
@@ -2488,18 +2716,6 @@
       "lastSungAt": 20260615
     },
     {
-      "artist": "高橋洋子",
-      "title": "魂のルフラン",
-      "kind": "歌枠",
-      "dText": "20260615 【#歌枠 】月曜日に元気な歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
-      "dUrl": "https://www.youtube.com/watch?v=iZSxpJFOGS0&t=1195s",
-      "date8": 20260615,
-      "rowId": "高橋洋子|魂のルフラン|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=1195s",
-      "historyRef": "history/489eb67e679e.json",
-      "historyCount": 2,
-      "lastSungAt": 20260109
-    },
-    {
       "artist": "斉藤和義",
       "title": "歌うたいのバラッド",
       "kind": "歌枠",
@@ -2726,18 +2942,6 @@
       "historyRef": "history/bf33fa1360ae.json",
       "historyCount": 1,
       "lastSungAt": 20250830
-    },
-    {
-      "artist": "緑黄色社会",
-      "title": "花になって",
-      "kind": "歌枠",
-      "dText": "20260610 【#歌枠 】お昼にのんびり歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
-      "dUrl": "https://www.youtube.com/watch?v=QXZMPywkYG8&t=3208s",
-      "date8": 20260610,
-      "rowId": "緑黄色社会|花になって|歌枠|https://www.youtube.com/watch?v=QXZMPywkYG8&t=3208s",
-      "historyRef": "history/91cfc7d64443.json",
-      "historyCount": 8,
-      "lastSungAt": 20260316
     },
     {
       "artist": "花彩音_3kHz",
@@ -3844,18 +4048,6 @@
       "lastSungAt": 20260507
     },
     {
-      "artist": "アイナ・ジ・エンド",
-      "title": "革命道中 - On The Way",
-      "kind": "歌枠",
-      "dText": "20260507 【#歌枠 】深夜歌枠🌙ピアノ曲多め🌸【#新人vtuber #作業用bgm 】",
-      "dUrl": "https://www.youtube.com/watch?v=qHfhR2_Rc6c&t=443s",
-      "date8": 20260507,
-      "rowId": "アイナ・ジ・エンド|革命道中 - on the way|歌枠|https://www.youtube.com/watch?v=qHfhR2_Rc6c&t=443s",
-      "historyRef": "history/94a9b6f0774d.json",
-      "historyCount": 1,
-      "lastSungAt": 20260206
-    },
-    {
       "artist": "ぐにょ",
       "title": "福寿草",
       "kind": "歌枠",
@@ -4130,18 +4322,6 @@
       "historyRef": "history/8b39c9b93532.json",
       "historyCount": 1,
       "lastSungAt": 20260323
-    },
-    {
-      "artist": "馬渡松子",
-      "title": "微笑みの爆弾",
-      "kind": "歌枠",
-      "dText": "20260424 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸木曜日だと思ってたら金曜日だった、一日得した【#新人vtuber #作業用bgm 】",
-      "dUrl": "https://www.youtube.com/watch?v=6SJQQcplk2M&t=4563s",
-      "date8": 20260424,
-      "rowId": "馬渡松子|微笑みの爆弾|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=4563s",
-      "historyRef": "history/9b60c1235f16.json",
-      "historyCount": 3,
-      "lastSungAt": 20260110
     },
     {
       "artist": "羊文学",
@@ -4634,18 +4814,6 @@
       "historyRef": "history/d97bf7957a17.json",
       "historyCount": 1,
       "lastSungAt": 20251230
-    },
-    {
-      "artist": "YOASOBI",
-      "title": "アイドル",
-      "kind": "歌枠",
-      "dText": "20260401 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸4月ものんびり歌うよ 【#新人vtuber #作業用bgm 】",
-      "dUrl": "https://www.youtube.com/watch?v=zMpYUnXz54k&t=9095s",
-      "date8": 20260401,
-      "rowId": "yoasobi|アイドル|歌枠|https://www.youtube.com/watch?v=zMpYUnXz54k&t=9095s",
-      "historyRef": "history/666872471378.json",
-      "historyCount": 6,
-      "lastSungAt": 20260220
     },
     {
       "artist": "ジミーサムP",
@@ -5752,18 +5920,6 @@
       "lastSungAt": 20260128
     },
     {
-      "artist": "Ado",
-      "title": "新時代",
-      "kind": "歌枠",
-      "dText": "20260123 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=p5KLp7BYk_o&t=5108s",
-      "date8": 20260123,
-      "rowId": "ado|新時代|歌枠|https://www.youtube.com/watch?v=p5KLp7BYk_o&t=5108s",
-      "historyRef": "history/dcb66d633728.json",
-      "historyCount": 5,
-      "lastSungAt": 20251027
-    },
-    {
       "artist": "Aimer",
       "title": "残響散歌",
       "kind": "歌枠",
@@ -6040,42 +6196,6 @@
       "lastSungAt": 20251218
     },
     {
-      "artist": "LiSA",
-      "title": "紅蓮華",
-      "kind": "歌枠",
-      "dText": "20260109 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=7tU4tGzXLlc&t=5474s",
-      "date8": 20260109,
-      "rowId": "lisa|紅蓮華|歌枠|https://www.youtube.com/watch?v=7tU4tGzXLlc&t=5474s",
-      "historyRef": "history/1045b8eb654b.json",
-      "historyCount": 3,
-      "lastSungAt": 20251121
-    },
-    {
-      "artist": "高橋洋子",
-      "title": "残酷な天使のテーゼ",
-      "kind": "歌枠",
-      "dText": "20260109 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=7tU4tGzXLlc&t=919s",
-      "date8": 20260109,
-      "rowId": "高橋洋子|残酷な天使のテーゼ|歌枠|https://www.youtube.com/watch?v=7tU4tGzXLlc&t=919s",
-      "historyRef": "history/5292c6df945c.json",
-      "historyCount": 8,
-      "lastSungAt": 20251206
-    },
-    {
-      "artist": "中川翔子",
-      "title": "空色デイズ",
-      "kind": "歌枠",
-      "dText": "20260109 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=7tU4tGzXLlc&t=1837s",
-      "date8": 20260109,
-      "rowId": "中川翔子|空色デイズ|歌枠|https://www.youtube.com/watch?v=7tU4tGzXLlc&t=1837s",
-      "historyRef": "history/db96dfc934a7.json",
-      "historyCount": 1,
-      "lastSungAt": 20260115
-    },
-    {
       "artist": "ぬゆり",
       "title": "プロトディスコ",
       "kind": "ショート",
@@ -6230,18 +6350,6 @@
       "historyRef": "history/3f1004193ae9.json",
       "historyCount": 1,
       "lastSungAt": 20251226
-    },
-    {
-      "artist": "アイナ・ジ・エンド",
-      "title": "革命道中",
-      "kind": "歌枠",
-      "dText": "20251230 【#歌枠 昼の部】初見歓迎🌟年内最後の歌枠♪午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=2Sc9fZQ4YWs&t=6704s",
-      "date8": 20251230,
-      "rowId": "アイナ・ジ・エンド|革命道中|歌枠|https://www.youtube.com/watch?v=2Sc9fZQ4YWs&t=6704s",
-      "historyRef": "history/1d104f877180.json",
-      "historyCount": 3,
-      "lastSungAt": 20251230
     },
     {
       "artist": "ゆうゆ",
@@ -6652,13 +6760,25 @@
       "lastSungAt": 20251201
     },
     {
+      "artist": "Ado",
+      "title": "SAD SONG",
+      "kind": "歌枠",
+      "dText": "20251126【歌枠・昼の部】11月最後の歌枠🌟午後からのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HwHERYRiDnM&t=4197s",
+      "date8": 20251126,
+      "rowId": "ado|sad song|歌枠|https://www.youtube.com/watch?v=HwHERYRiDnM&t=4197s",
+      "historyRef": "history/22ad9f830e96.json",
+      "historyCount": 1,
+      "lastSungAt": 20251126
+    },
+    {
       "artist": "EasyPop",
       "title": "ハッピーシンセサイザ",
       "kind": "歌枠",
-      "dText": "20251126 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=vWXOXMNjwnM&t=769s",
+      "dText": "20251126【歌枠・昼の部】11月最後の歌枠🌟午後からのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HwHERYRiDnM&t=769s",
       "date8": 20251126,
-      "rowId": "easypop|ハッピーシンセサイザ|歌枠|https://www.youtube.com/watch?v=vWXOXMNjwnM&t=769s",
+      "rowId": "easypop|ハッピーシンセサイザ|歌枠|https://www.youtube.com/watch?v=HwHERYRiDnM&t=769s",
       "historyRef": "history/4e771b0ac2d9.json",
       "historyCount": 1,
       "lastSungAt": 20251126
@@ -6667,10 +6787,10 @@
       "artist": "HANA",
       "title": "ROSE",
       "kind": "歌枠",
-      "dText": "20251126 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=vWXOXMNjwnM&t=4862s",
+      "dText": "20251126【歌枠・昼の部】11月最後の歌枠🌟午後からのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HwHERYRiDnM&t=4862s",
       "date8": 20251126,
-      "rowId": "hana|rose|歌枠|https://www.youtube.com/watch?v=vWXOXMNjwnM&t=4862s",
+      "rowId": "hana|rose|歌枠|https://www.youtube.com/watch?v=HwHERYRiDnM&t=4862s",
       "historyRef": "history/eb4fad47de55.json",
       "historyCount": 3,
       "lastSungAt": 20251117
@@ -6679,10 +6799,10 @@
       "artist": "山口百恵",
       "title": "イミテイション・ゴールド",
       "kind": "歌枠",
-      "dText": "20251126 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=vWXOXMNjwnM&t=1926s",
+      "dText": "20251126【歌枠・昼の部】11月最後の歌枠🌟午後からのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HwHERYRiDnM&t=1926s",
       "date8": 20251126,
-      "rowId": "山口百恵|イミテイション・ゴールド|歌枠|https://www.youtube.com/watch?v=vWXOXMNjwnM&t=1926s",
+      "rowId": "山口百恵|イミテイション・ゴールド|歌枠|https://www.youtube.com/watch?v=HwHERYRiDnM&t=1926s",
       "historyRef": "history/6646defa508f.json",
       "historyCount": 1,
       "lastSungAt": 20251126
@@ -6691,10 +6811,10 @@
       "artist": "松任谷由実",
       "title": "真夏の夜の夢",
       "kind": "歌枠",
-      "dText": "20251126 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=vWXOXMNjwnM&t=1332s",
+      "dText": "20251126【歌枠・昼の部】11月最後の歌枠🌟午後からのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HwHERYRiDnM&t=1332s",
       "date8": 20251126,
-      "rowId": "松任谷由実|真夏の夜の夢|歌枠|https://www.youtube.com/watch?v=vWXOXMNjwnM&t=1332s",
+      "rowId": "松任谷由実|真夏の夜の夢|歌枠|https://www.youtube.com/watch?v=HwHERYRiDnM&t=1332s",
       "historyRef": "history/678dff60e3e4.json",
       "historyCount": 1,
       "lastSungAt": 20251126
@@ -6703,10 +6823,10 @@
       "artist": "浜崎あゆみ",
       "title": "SEASONS",
       "kind": "歌枠",
-      "dText": "20251126 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=vWXOXMNjwnM&t=2381s",
+      "dText": "20251126【歌枠・昼の部】11月最後の歌枠🌟午後からのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=HwHERYRiDnM&t=2381s",
       "date8": 20251126,
-      "rowId": "浜崎あゆみ|seasons|歌枠|https://www.youtube.com/watch?v=vWXOXMNjwnM&t=2381s",
+      "rowId": "浜崎あゆみ|seasons|歌枠|https://www.youtube.com/watch?v=HwHERYRiDnM&t=2381s",
       "historyRef": "history/6c67081583fa.json",
       "historyCount": 1,
       "lastSungAt": 20251126
@@ -6800,9 +6920,9 @@
       "title": "Hey my friend",
       "kind": "歌枠",
       "dText": "20251117 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=jbyUbgDXk1M&t=5249s",
+      "dUrl": "https://www.youtube.com/watch?v=67u99sfOYq8&t=5249s",
       "date8": 20251117,
-      "rowId": "tommy heavenly6|hey my friend|歌枠|https://www.youtube.com/watch?v=jbyUbgDXk1M&t=5249s",
+      "rowId": "tommy heavenly6|hey my friend|歌枠|https://www.youtube.com/watch?v=67u99sfOYq8&t=5249s",
       "historyRef": "history/63b776d62a03.json",
       "historyCount": 1,
       "lastSungAt": 20251117
@@ -6812,9 +6932,9 @@
       "title": "いーあるふぁんくらぶ",
       "kind": "歌枠",
       "dText": "20251117 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=jbyUbgDXk1M&t=3795s",
+      "dUrl": "https://www.youtube.com/watch?v=67u99sfOYq8&t=3795s",
       "date8": 20251117,
-      "rowId": "みきとp|いーあるふぁんくらぶ|歌枠|https://www.youtube.com/watch?v=jbyUbgDXk1M&t=3795s",
+      "rowId": "みきとp|いーあるふぁんくらぶ|歌枠|https://www.youtube.com/watch?v=67u99sfOYq8&t=3795s",
       "historyRef": "history/3d48147c23d2.json",
       "historyCount": 1,
       "lastSungAt": 20251002
@@ -6824,9 +6944,9 @@
       "title": "チャイナアドバイス",
       "kind": "歌枠",
       "dText": "20251117 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=jbyUbgDXk1M&t=3518s",
+      "dUrl": "https://www.youtube.com/watch?v=67u99sfOYq8&t=3518s",
       "date8": 20251117,
-      "rowId": "相対性理論|チャイナアドバイス|歌枠|https://www.youtube.com/watch?v=jbyUbgDXk1M&t=3518s",
+      "rowId": "相対性理論|チャイナアドバイス|歌枠|https://www.youtube.com/watch?v=67u99sfOYq8&t=3518s",
       "historyRef": "history/bdb9366f3ca7.json",
       "historyCount": 3,
       "lastSungAt": 20251002
@@ -7036,18 +7156,6 @@
       "lastSungAt": 20251022
     },
     {
-      "artist": "杏里",
-      "title": "CAT'S EYE",
-      "kind": "歌枠",
-      "dText": "20251029 【縦型】お昼の歌枠🌟元気が出る歌を歌います！花彩音_3kHz【#新人vtuber #shorts 】",
-      "dUrl": "https://www.youtube.com/watch?v=ge1juO_XRG4&t=5416s",
-      "date8": 20251029,
-      "rowId": "杏里|cat's eye|歌枠|https://www.youtube.com/watch?v=ge1juO_XRG4&t=5416s",
-      "historyRef": "history/873effec55fa.json",
-      "historyCount": 1,
-      "lastSungAt": 20251029
-    },
-    {
       "artist": "JUDY AND MARY",
       "title": "くじら12号",
       "kind": "歌枠",
@@ -7243,10 +7351,10 @@
       "artist": "JUDY AND MARY",
       "title": "motto",
       "kind": "歌枠",
-      "dText": "20251001 【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=jXzLOBjpCR0&t=748s",
+      "dText": "20251001【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=eMQdEqtiOIE&t=748s",
       "date8": 20251001,
-      "rowId": "judy and mary|motto|歌枠|https://www.youtube.com/watch?v=jXzLOBjpCR0&t=748s",
+      "rowId": "judy and mary|motto|歌枠|https://www.youtube.com/watch?v=eMQdEqtiOIE&t=748s",
       "historyRef": "history/ceafdd18a13b.json",
       "historyCount": 1,
       "lastSungAt": 20251001
@@ -7255,10 +7363,10 @@
       "artist": "Kanaria",
       "title": "EYE",
       "kind": "歌枠",
-      "dText": "20251001 【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=jXzLOBjpCR0&t=3684s",
+      "dText": "20251001【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=eMQdEqtiOIE&t=3684s",
       "date8": 20251001,
-      "rowId": "kanaria|eye|歌枠|https://www.youtube.com/watch?v=jXzLOBjpCR0&t=3684s",
+      "rowId": "kanaria|eye|歌枠|https://www.youtube.com/watch?v=eMQdEqtiOIE&t=3684s",
       "historyRef": "history/fcddd7fd3239.json",
       "historyCount": 1,
       "lastSungAt": 20251001
@@ -7267,10 +7375,10 @@
       "artist": "Kanaria",
       "title": "KING",
       "kind": "歌枠",
-      "dText": "20251001 【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=jXzLOBjpCR0&t=4139s",
+      "dText": "20251001【歌枠】風邪なのでのんびり歌います⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=eMQdEqtiOIE&t=4139s",
       "date8": 20251001,
-      "rowId": "kanaria|king|歌枠|https://www.youtube.com/watch?v=jXzLOBjpCR0&t=4139s",
+      "rowId": "kanaria|king|歌枠|https://www.youtube.com/watch?v=eMQdEqtiOIE&t=4139s",
       "historyRef": "history/bf41b88107a2.json",
       "historyCount": 1,
       "lastSungAt": 20251001
@@ -7672,6 +7780,6 @@
       "lastSungAt": 20260622
     }
   ],
-  "total": 639,
-  "matched": 639
+  "total": 648,
+  "matched": 648
 }

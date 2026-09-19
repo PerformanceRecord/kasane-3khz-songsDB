@@ -1,8 +1,20 @@
 {
   "ok": true,
   "sheet": "gags",
-  "fetchedAt": "2026-09-19T02:04:24.647Z",
+  "fetchedAt": "2026-09-19T14:34:45.564Z",
   "rows": [
+    {
+      "artist": "すりぃ",
+      "title": "テレキャスタービーボーイ(long ver.)",
+      "kind": "ネタ歌枠",
+      "dText": "20260716 【#歌枠 】作業BGMにどうぞ・のんびり歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=ko-7BdZ98NQ&t=8089s",
+      "date8": 20260716,
+      "rowId": "すりぃ|テレキャスタービーボーイ(long ver.)|ネタ歌枠|https://www.youtube.com/watch?v=ko-7BdZ98NQ&t=8089s",
+      "historyRef": "history/6ccdef70e18b.json",
+      "historyCount": 1,
+      "lastSungAt": 20260716
+    },
     {
       "artist": "花彩音_3kHz",
       "title": "お風呂キャンセルしました",
@@ -377,25 +389,25 @@
     },
     {
       "artist": "ツミキ",
-      "title": "フォニイ (クセ強:演歌)",
+      "title": "フォニイ(クセ強:演歌)",
       "kind": "ネタ歌枠",
       "dText": "20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
       "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=834s",
       "date8": 20250915,
-      "rowId": "ツミキ|フォニイ (クセ強:演歌)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=834s",
-      "historyRef": "history/d9ec98614a0c.json",
+      "rowId": "ツミキ|フォニイ(クセ強:演歌)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=834s",
+      "historyRef": "history/dafc8c6432a4.json",
       "historyCount": 1,
       "lastSungAt": 20250915
     },
     {
-      "artist": "kanaria ",
-      "title": "酔いどれ知らず(かわいい:ハムボ)",
+      "artist": "kanaria",
+      "title": "酔いどれ知らず (かわいい:ハムボ)",
       "kind": "ネタ歌枠",
       "dText": "20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
       "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=1211s",
       "date8": 20250915,
-      "rowId": "kanaria|酔いどれ知らず(かわいい:ハムボ)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=1211s",
-      "historyRef": "history/a14149962d89.json",
+      "rowId": "kanaria|酔いどれ知らず (かわいい:ハムボ)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=1211s",
+      "historyRef": "history/3391c9b66a2a.json",
       "historyCount": 1,
       "lastSungAt": 20250915
     },
@@ -412,7 +424,7 @@
       "lastSungAt": 20250915
     },
     {
-      "artist": "高橋洋子 ",
+      "artist": "高橋洋子",
       "title": "残酷な天使のテーゼ(演歌:ドラえもん)",
       "kind": "ネタ歌枠",
       "dText": "20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
@@ -424,31 +436,31 @@
       "lastSungAt": 20250915
     },
     {
-      "artist": "みきとP ",
-      "title": "少女レイ(ドラえもん:ハムボ)",
+      "artist": "みきとP",
+      "title": "少女レイ (ドラえもん:ハムボ)",
       "kind": "ネタ歌枠",
       "dText": "20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
       "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=2680s",
       "date8": 20250915,
-      "rowId": "みきとp|少女レイ(ドラえもん:ハムボ)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=2680s",
-      "historyRef": "history/6b54d0a71d86.json",
+      "rowId": "みきとp|少女レイ (ドラえもん:ハムボ)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=2680s",
+      "historyRef": "history/4f0e1469224e.json",
       "historyCount": 1,
       "lastSungAt": 20250915
     },
     {
-      "artist": "Ado ",
-      "title": "唱(ハムボ:ずんだもん)",
+      "artist": "Ado",
+      "title": "唱 (ハムボ:ずんだもん)",
       "kind": "ネタ歌枠",
       "dText": "20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
       "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=3203s",
       "date8": 20250915,
-      "rowId": "ado|唱(ハムボ:ずんだもん)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=3203s",
-      "historyRef": "history/bdcb1344573e.json",
+      "rowId": "ado|唱 (ハムボ:ずんだもん)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=3203s",
+      "historyRef": "history/32c1af67af7a.json",
       "historyCount": 1,
       "lastSungAt": 20250915
     },
     {
-      "artist": "YOASOBI ",
+      "artist": "YOASOBI",
       "title": "アイドル(セクシー:悲しみ)",
       "kind": "ネタ歌枠",
       "dText": "20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
@@ -460,7 +472,7 @@
       "lastSungAt": 20250915
     },
     {
-      "artist": "aiko ",
+      "artist": "aiko",
       "title": "カブトムシ(透明感:クセ強)",
       "kind": "ネタ歌枠",
       "dText": "20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
@@ -472,19 +484,19 @@
       "lastSungAt": 20250915
     },
     {
-      "artist": "石川さゆり ",
-      "title": "津軽海峡冬景色(クセ強:ハイテンション)",
+      "artist": "石川さゆり",
+      "title": "津軽海峡冬景色 (クセ強:ハイテンション)",
       "kind": "ネタ歌枠",
       "dText": "20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
       "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=4835s",
       "date8": 20250915,
-      "rowId": "石川さゆり|津軽海峡冬景色(クセ強:ハイテンション)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=4835s",
-      "historyRef": "history/4fbeaad4d2de.json",
+      "rowId": "石川さゆり|津軽海峡冬景色 (クセ強:ハイテンション)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=4835s",
+      "historyRef": "history/578889a32275.json",
       "historyCount": 1,
       "lastSungAt": 20250915
     },
     {
-      "artist": "ヨルシカ ",
+      "artist": "ヨルシカ",
       "title": "ただ君に晴れ(透明感:クセ強)",
       "kind": "ネタ歌枠",
       "dText": "20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
@@ -497,25 +509,25 @@
     },
     {
       "artist": "かいりきベア",
-      "title": "バグ (かっこいい:セクシー)",
+      "title": "バグ(かっこいい:セクシー)",
       "kind": "ネタ歌枠",
       "dText": "20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
       "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=5720s",
       "date8": 20250915,
-      "rowId": "かいりきベア|バグ (かっこいい:セクシー)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=5720s",
-      "historyRef": "history/30396f6fe86f.json",
+      "rowId": "かいりきベア|バグ(かっこいい:セクシー)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=5720s",
+      "historyRef": "history/b857bcddb2bb.json",
       "historyCount": 1,
       "lastSungAt": 20250915
     },
     {
-      "artist": "Superfly ",
-      "title": "愛をこめて花束を(イケボ:ハイテンション)",
+      "artist": "Superfly",
+      "title": "愛をこめて花束を (イケボ:ハイテンション)",
       "kind": "ネタ歌枠",
       "dText": "20250915【歌枠】声色ルーレット🌈🎲イケボ～ハムボまで練習中⚛️🌐花彩音 3kHz かさねさんきろへるつ【#新人vtuber #karaoke 】",
       "dUrl": "https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=6205s",
       "date8": 20250915,
-      "rowId": "superfly|愛をこめて花束を(イケボ:ハイテンション)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=6205s",
-      "historyRef": "history/c9129483e7a6.json",
+      "rowId": "superfly|愛をこめて花束を (イケボ:ハイテンション)|ネタ歌枠|https://www.youtube.com/watch?v=Vd7W-oS4gOQ&t=6205s",
+      "historyRef": "history/ad7f02ccf41b.json",
       "historyCount": 1,
       "lastSungAt": 20250915
     },
@@ -556,6 +568,6 @@
       "lastSungAt": 20250912
     }
   ],
-  "total": 46,
-  "matched": 46
+  "total": 47,
+  "matched": 47
 }
