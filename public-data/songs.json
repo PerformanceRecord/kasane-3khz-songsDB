@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-09-21T02:09:51.278Z",
+  "fetchedAt": "2026-09-22T02:15:10.948Z",
   "rows": [
     {
       "artist": "松原みき",
@@ -133,7 +133,7 @@
       "rowId": "杏里|cat's eye|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=3526s",
       "historyRef": "history/873effec55fa.json",
       "historyCount": 1,
-      "lastSungAt": 20260914
+      "lastSungAt": 20251029
     },
     {
       "artist": "奥井雅美",
@@ -432,7 +432,7 @@
       "date8": 20260824,
       "rowId": "ポリスピカデリー|beat eater|歌枠|https://www.youtube.com/watch?v=9_y5QlSnMSs&t=2732s",
       "historyRef": "history/98789700af00.json",
-      "historyCount": 3,
+      "historyCount": 4,
       "lastSungAt": 20260309
     },
     {
@@ -540,7 +540,7 @@
       "date8": 20260823,
       "rowId": "宇多田ヒカル|automatic|歌枠|https://www.youtube.com/watch?v=i7KnVmYviEo&t=418s",
       "historyRef": "history/7bacc0a7919f.json",
-      "historyCount": 7,
+      "historyCount": 8,
       "lastSungAt": 20260406
     },
     {
@@ -612,7 +612,7 @@
       "date8": 20260823,
       "rowId": "宇多田ヒカル|first love|歌枠|https://www.youtube.com/watch?v=i7KnVmYviEo&t=8966s",
       "historyRef": "history/3d0bdfe54e43.json",
-      "historyCount": 9,
+      "historyCount": 10,
       "lastSungAt": 20260406
     },
     {
@@ -624,7 +624,7 @@
       "date8": 20260823,
       "rowId": "宇多田ヒカル|for you|歌枠|https://www.youtube.com/watch?v=i7KnVmYviEo&t=8281s",
       "historyRef": "history/491a73a2222b.json",
-      "historyCount": 3,
+      "historyCount": 4,
       "lastSungAt": 20260713
     },
     {
@@ -636,7 +636,7 @@
       "date8": 20260823,
       "rowId": "宇多田ヒカル|in my room|歌枠|https://www.youtube.com/watch?v=i7KnVmYviEo&t=7555s",
       "historyRef": "history/7e1d51ad7dc3.json",
-      "historyCount": 2,
+      "historyCount": 3,
       "lastSungAt": 20260807
     },
     {
@@ -684,7 +684,7 @@
       "date8": 20260823,
       "rowId": "宇多田ヒカル|time will tell|歌枠|https://www.youtube.com/watch?v=i7KnVmYviEo&t=4316s",
       "historyRef": "history/f92083376ed8.json",
-      "historyCount": 9,
+      "historyCount": 10,
       "lastSungAt": 20260401
     },
     {
@@ -1692,7 +1692,7 @@
       "date8": 20260727,
       "rowId": "ado|踊|歌枠|https://www.youtube.com/watch?v=XNsDyqC6YtQ&t=5742s",
       "historyRef": "history/83b07cd459f0.json",
-      "historyCount": 2,
+      "historyCount": 3,
       "lastSungAt": 20251126
     },
     {
@@ -2412,7 +2412,7 @@
       "date8": 20260622,
       "rowId": "相対性理論|さわやか会社員|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=423s",
       "historyRef": "history/e4c447895f1d.json",
-      "historyCount": 8,
+      "historyCount": 9,
       "lastSungAt": 20260213
     },
     {
@@ -3300,7 +3300,7 @@
       "date8": 20260522,
       "rowId": "東京事変|スーパースター|歌枠|https://www.youtube.com/watch?v=NtixH-Xwvw4&t=2945s",
       "historyRef": "history/7db1e8cc9d88.json",
-      "historyCount": 5,
+      "historyCount": 6,
       "lastSungAt": 20260128
     },
     {
@@ -3480,7 +3480,7 @@
       "date8": 20260517,
       "rowId": "ちゃんみな|ハレンチ|歌枠|https://www.youtube.com/watch?v=dy6svkoXg8I&t=5244s",
       "historyRef": "history/9fe257a8f25f.json",
-      "historyCount": 10,
+      "historyCount": 11,
       "lastSungAt": 20260516
     },
     {
@@ -4200,7 +4200,7 @@
       "date8": 20260429,
       "rowId": "相対性理論|ミス・パラレルワールド|歌枠|https://www.youtube.com/watch?v=4tO8JAr_qJM&t=4026s",
       "historyRef": "history/066f98fc92a3.json",
-      "historyCount": 2,
+      "historyCount": 3,
       "lastSungAt": 20251118
     },
     {
@@ -4308,7 +4308,7 @@
       "date8": 20260424,
       "rowId": "椎名林檎|丸ノ内サディスティック|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=2493s",
       "historyRef": "history/58b7e105e940.json",
-      "historyCount": 10,
+      "historyCount": 11,
       "lastSungAt": 20260110
     },
     {
@@ -5052,7 +5052,7 @@
       "date8": 20260326,
       "rowId": "星街すいせい|stellar stellar|歌枠|https://www.youtube.com/watch?v=kGvlLfFiqVY&t=1780s",
       "historyRef": "history/cd97878146de.json",
-      "historyCount": 3,
+      "historyCount": 4,
       "lastSungAt": 20260130
     },
     {
@@ -5112,7 +5112,7 @@
       "date8": 20260323,
       "rowId": "nomelon nolemon|ハイド・アンド・シーク|歌枠|https://www.youtube.com/watch?v=1FHmyXt_fec&t=3028s",
       "historyRef": "history/644fcdc96d1a.json",
-      "historyCount": 6,
+      "historyCount": 7,
       "lastSungAt": 20251230
     },
     {
@@ -5292,7 +5292,7 @@
       "date8": 20260316,
       "rowId": "mori calliope|go-getters|歌枠|https://www.youtube.com/watch?v=x5BV86bUdvo&t=1494s",
       "historyRef": "history/3ad5ed9aee2f.json",
-      "historyCount": 9,
+      "historyCount": 10,
       "lastSungAt": 20260213
     },
     {
@@ -5748,7 +5748,7 @@
       "date8": 20260213,
       "rowId": "宇多田ヒカル|distance|歌枠|https://www.youtube.com/watch?v=O1XJN0l_pPc&t=2663s",
       "historyRef": "history/a25badd4b5a9.json",
-      "historyCount": 2,
+      "historyCount": 3,
       "lastSungAt": 20251201
     },
     {
@@ -6444,7 +6444,7 @@
       "date8": 20251218,
       "rowId": "giga×kira|getcha!|歌枠|https://www.youtube.com/watch?v=Lm7BJxovoI8&t=4396s",
       "historyRef": "history/aacb0fb54b9a.json",
-      "historyCount": 3,
+      "historyCount": 4,
       "lastSungAt": 20251117
     },
     {
@@ -6468,7 +6468,7 @@
       "date8": 20251215,
       "rowId": "deco*27|モニタリング|歌枠|https://www.youtube.com/watch?v=dwp1GLq8X50&t=7113s",
       "historyRef": "history/11afcafd9b20.json",
-      "historyCount": 4,
+      "historyCount": 5,
       "lastSungAt": 20251117
     },
     {
@@ -6792,7 +6792,7 @@
       "date8": 20251126,
       "rowId": "hana|rose|歌枠|https://www.youtube.com/watch?v=HwHERYRiDnM&t=4862s",
       "historyRef": "history/eb4fad47de55.json",
-      "historyCount": 3,
+      "historyCount": 4,
       "lastSungAt": 20251117
     },
     {
