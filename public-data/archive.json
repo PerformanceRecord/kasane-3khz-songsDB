@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-09-22T02:15:22.070Z",
+  "fetchedAt": "2026-09-23T02:15:10.946Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -9825,6 +9825,16 @@
     },
     {
       "artist": "アイナ・ジ・エンド",
+      "title": "革命道中 - On The Way",
+      "kind": "歌枠",
+      "dText": "20251230 【#歌枠 昼の部】初見歓迎🌟年内最後の歌枠♪午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=2Sc9fZQ4YWs&t=6704s",
+      "date8": 20251230,
+      "rowId": "アイナ・ジ・エンド|革命道中 - on the way|歌枠|https://www.youtube.com/watch?v=2Sc9fZQ4YWs&t=6704s",
+      "historyKey": "アイナ・ジ・エンド|革命道中 - on the way"
+    },
+    {
+      "artist": "アイナ・ジ・エンド",
       "title": "革命道中",
       "kind": "歌枠",
       "dText": "20251230 【#歌枠 昼の部】初見歓迎🌟年内最後の歌枠♪午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
@@ -10124,6 +10134,16 @@
       "historyKey": "judy and mary|そばかす"
     },
     {
+      "artist": "LiSA",
+      "title": "紅蓮華",
+      "kind": "歌枠",
+      "dText": "20260109 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=7tU4tGzXLlc&t=5474s",
+      "date8": 20260109,
+      "rowId": "lisa|紅蓮華|歌枠|https://www.youtube.com/watch?v=7tU4tGzXLlc&t=5474s",
+      "historyKey": "lisa|紅蓮華"
+    },
+    {
       "artist": "supercell",
       "title": "拍手喝采歌合",
       "kind": "歌枠",
@@ -10132,6 +10152,16 @@
       "date8": 20260109,
       "rowId": "supercell|拍手喝采歌合|歌枠|https://www.youtube.com/watch?v=7tU4tGzXLlc&t=1482s",
       "historyKey": "supercell|拍手喝采歌合"
+    },
+    {
+      "artist": "中川翔子",
+      "title": "空色デイズ",
+      "kind": "歌枠",
+      "dText": "20260109 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=7tU4tGzXLlc&t=1837s",
+      "date8": 20260109,
+      "rowId": "中川翔子|空色デイズ|歌枠|https://www.youtube.com/watch?v=7tU4tGzXLlc&t=1837s",
+      "historyKey": "中川翔子|空色デイズ"
     },
     {
       "artist": "水曜日のカンパネラ",
@@ -10182,6 +10212,16 @@
       "date8": 20260109,
       "rowId": "馬渡松子|微笑みの爆弾|歌枠|https://www.youtube.com/watch?v=7tU4tGzXLlc&t=3806s",
       "historyKey": "馬渡松子|微笑みの爆弾"
+    },
+    {
+      "artist": "高橋洋子",
+      "title": "残酷な天使のテーゼ",
+      "kind": "歌枠",
+      "dText": "20260109 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=7tU4tGzXLlc&t=919s",
+      "date8": 20260109,
+      "rowId": "高橋洋子|残酷な天使のテーゼ|歌枠|https://www.youtube.com/watch?v=7tU4tGzXLlc&t=919s",
+      "historyKey": "高橋洋子|残酷な天使のテーゼ"
     },
     {
       "artist": "高橋洋子",
@@ -10742,6 +10782,16 @@
       "date8": 20260122,
       "rowId": "大塚愛|プラネタリウム|ショート|https://www.youtube.com/shorts/bG3_j9_JRf0",
       "historyKey": "大塚愛|プラネタリウム"
+    },
+    {
+      "artist": "Ado",
+      "title": "新時代",
+      "kind": "歌枠",
+      "dText": "20260123 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=p5KLp7BYk_o&t=5108s",
+      "date8": 20260123,
+      "rowId": "ado|新時代|歌枠|https://www.youtube.com/watch?v=p5KLp7BYk_o&t=5108s",
+      "historyKey": "ado|新時代"
     },
     {
       "artist": "Giga",
@@ -14554,6 +14604,6 @@
       "historyKey": "kiki vivi lily|80denier"
     }
   ],
-  "total": 1455,
-  "matched": 1455
+  "total": 1460,
+  "matched": 1460
 }
