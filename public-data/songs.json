@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-09-23T02:15:00.622Z",
+  "fetchedAt": "2026-09-24T02:01:28.313Z",
   "rows": [
     {
       "artist": "松原みき",
@@ -96,8 +96,8 @@
       "date8": 20260914,
       "rowId": "yoasobi|アイドル|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=4474s",
       "historyRef": "history/666872471378.json",
-      "historyCount": 6,
-      "lastSungAt": 20260220
+      "historyCount": 7,
+      "lastSungAt": 20260401
     },
     {
       "artist": "アイナ・ジ・エンド",
