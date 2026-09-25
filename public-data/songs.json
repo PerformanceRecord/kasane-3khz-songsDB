@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-09-24T02:01:28.313Z",
+  "fetchedAt": "2026-09-25T02:18:37.787Z",
   "rows": [
     {
       "artist": "松原みき",
@@ -108,8 +108,8 @@
       "date8": 20260914,
       "rowId": "アイナ・ジ・エンド|革命道中 - on the way|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=5846s",
       "historyRef": "history/94a9b6f0774d.json",
-      "historyCount": 2,
-      "lastSungAt": 20260206
+      "historyCount": 3,
+      "lastSungAt": 20260507
     },
     {
       "artist": "ミルキィホームズ",
@@ -120,8 +120,8 @@
       "date8": 20260914,
       "rowId": "ミルキィホームズ|正解はひとつ!じゃない!!|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=2681s",
       "historyRef": "history/3df5a2178f81.json",
-      "historyCount": 1,
-      "lastSungAt": 20260629
+      "historyCount": 2,
+      "lastSungAt": 20260817
     },
     {
       "artist": "杏里",
@@ -168,8 +168,8 @@
       "date8": 20260914,
       "rowId": "高橋洋子|魂のルフラン|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=2284s",
       "historyRef": "history/489eb67e679e.json",
-      "historyCount": 2,
-      "lastSungAt": 20260109
+      "historyCount": 3,
+      "lastSungAt": 20260615
     },
     {
       "artist": "高橋洋子",
@@ -204,8 +204,8 @@
       "date8": 20260914,
       "rowId": "馬渡松子|微笑みの爆弾|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=1385s",
       "historyRef": "history/9b60c1235f16.json",
-      "historyCount": 3,
-      "lastSungAt": 20260110
+      "historyCount": 4,
+      "lastSungAt": 20260424
     },
     {
       "artist": "米津玄師",
@@ -228,8 +228,8 @@
       "date8": 20260914,
       "rowId": "緑黄色社会|花になって|歌枠|https://www.youtube.com/watch?v=SQPAYEbA_uo&t=6424s",
       "historyRef": "history/91cfc7d64443.json",
-      "historyCount": 8,
-      "lastSungAt": 20260316
+      "historyCount": 9,
+      "lastSungAt": 20260610
     },
     {
       "artist": "林原めぐみ",
@@ -2377,7 +2377,7 @@
       "rowId": "倖田來未 feat.soulhead|d.d.d.|歌枠|https://www.youtube.com/watch?v=B3ICS3xhgB4&t=6171s",
       "historyRef": "history/a69266c8867f.json",
       "historyCount": 1,
-      "lastSungAt": 20260622
+      "lastSungAt": 20260621
     },
     {
       "artist": "斉藤和義",

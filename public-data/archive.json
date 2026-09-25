@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-09-24T02:01:37.425Z",
+  "fetchedAt": "2026-09-25T02:18:46.954Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -13444,6 +13444,16 @@
       "historyKey": "米津玄師|iris out"
     },
     {
+      "artist": "馬渡松子",
+      "title": "微笑みの爆弾",
+      "kind": "歌枠",
+      "dText": "20260424 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸木曜日だと思ってたら金曜日だった、一日得した【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=6SJQQcplk2M&t=4563s",
+      "date8": 20260424,
+      "rowId": "馬渡松子|微笑みの爆弾|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=4563s",
+      "historyKey": "馬渡松子|微笑みの爆弾"
+    },
+    {
       "artist": "めいちゃん",
       "title": "小悪魔だってかまわない！",
       "kind": "ショート",
@@ -13562,6 +13572,16 @@
       "date8": 20260505,
       "rowId": "ヨルシカ|ブレーメン|ショート|https://www.youtube.com/watch?v=nApkeCotmUc",
       "historyKey": "ヨルシカ|ブレーメン"
+    },
+    {
+      "artist": "アイナ・ジ・エンド",
+      "title": "革命道中 - On The Way",
+      "kind": "歌枠",
+      "dText": "20260507 【#歌枠 】深夜歌枠🌙ピアノ曲多め🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=qHfhR2_Rc6c&t=443s",
+      "date8": 20260507,
+      "rowId": "アイナ・ジ・エンド|革命道中 - on the way|歌枠|https://www.youtube.com/watch?v=qHfhR2_Rc6c&t=443s",
+      "historyKey": "アイナ・ジ・エンド|革命道中 - on the way"
     },
     {
       "artist": "ヨルシカ",
@@ -14094,6 +14114,16 @@
       "historyKey": "米津玄師|iris out"
     },
     {
+      "artist": "緑黄色社会",
+      "title": "花になって",
+      "kind": "歌枠",
+      "dText": "20260610 【#歌枠 】お昼にのんびり歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=QXZMPywkYG8&t=3208s",
+      "date8": 20260610,
+      "rowId": "緑黄色社会|花になって|歌枠|https://www.youtube.com/watch?v=QXZMPywkYG8&t=3208s",
+      "historyKey": "緑黄色社会|花になって"
+    },
+    {
       "artist": "HAPPY？",
       "title": "天使電影",
       "kind": "ショート",
@@ -14184,6 +14214,16 @@
       "historyKey": "花彩音_3khz|マンデーモーニングブルー"
     },
     {
+      "artist": "高橋洋子",
+      "title": "魂のルフラン",
+      "kind": "歌枠",
+      "dText": "20260615 【#歌枠 】月曜日に元気な歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=iZSxpJFOGS0&t=1195s",
+      "date8": 20260615,
+      "rowId": "高橋洋子|魂のルフラン|歌枠|https://www.youtube.com/watch?v=iZSxpJFOGS0&t=1195s",
+      "historyKey": "高橋洋子|魂のルフラン"
+    },
+    {
       "artist": "BEAT CRUSADERS",
       "title": "Moon On The Water",
       "kind": "歌枠",
@@ -14222,6 +14262,16 @@
       "date8": 20260619,
       "rowId": "ヨルシカ|六月は雨上がりの街を書く|ショート|https://www.youtube.com/watch?v=1V1OLfuIVHs",
       "historyKey": "ヨルシカ|六月は雨上がりの街を書く"
+    },
+    {
+      "artist": "倖田來未 feat.SOULHEAD",
+      "title": "D.D.D.",
+      "kind": "ショート",
+      "dText": "20260621 【20年前の曲今聴いてもかっこいい】D.D.D.feat.SOULHEAD/倖田來未 #歌ってみた #SOULHEAD #倖田來未 #rap #平成",
+      "dUrl": "https://www.youtube.com/watch?v=pdm5Kd4WEy0",
+      "date8": 20260621,
+      "rowId": "倖田來未 feat.soulhead|d.d.d.|ショート|https://www.youtube.com/watch?v=pdm5Kd4WEy0",
+      "historyKey": "倖田來未 feat.soulhead|d.d.d."
     },
     {
       "artist": "imase",
@@ -14612,8 +14662,18 @@
       "date8": 20260817,
       "rowId": "kiki vivi lily|80denier|歌枠|https://www.youtube.com/watch?v=cVzXs_wJjd8&t=6431s",
       "historyKey": "kiki vivi lily|80denier"
+    },
+    {
+      "artist": "ミルキィホームズ",
+      "title": "正解はひとつ!じゃない!!",
+      "kind": "歌枠",
+      "dText": "20260817 【#歌枠 】月用の夜に元気に歌います⚛️作業BGMにどうぞ🌐🌸花彩音_3kHz【#作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=cVzXs_wJjd8&t=458s",
+      "date8": 20260817,
+      "rowId": "ミルキィホームズ|正解はひとつ!じゃない!!|歌枠|https://www.youtube.com/watch?v=cVzXs_wJjd8&t=458s",
+      "historyKey": "ミルキィホームズ|正解はひとつ!じゃない!!"
     }
   ],
-  "total": 1461,
-  "matched": 1461
+  "total": 1467,
+  "matched": 1467
 }
