@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-10-04T03:15:19.410Z",
+  "fetchedAt": "2026-10-05T02:50:55.536Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -1122,6 +1122,16 @@
       "date8": 20250818,
       "rowId": "misia|everything|歌枠|https://www.youtube.com/watch?v=ZpP_Z-AvgOw&t=2281s",
       "historyKey": "misia|everything"
+    },
+    {
+      "artist": "Whiteberry",
+      "title": "夏祭り",
+      "kind": "歌枠",
+      "dText": "20250818【歌枠】平成のヒット曲！みんなが知ってる名曲を歌う♪初見歓迎 花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=ixQPQ113VhQ&t=1548s",
+      "date8": 20250818,
+      "rowId": "whiteberry|夏祭り|歌枠|https://www.youtube.com/watch?v=ixQPQ113VhQ&t=1548s",
+      "historyKey": "whiteberry|夏祭り"
     },
     {
       "artist": "YUI for 雨音薫",
@@ -14674,6 +14684,6 @@
       "historyKey": "ミルキィホームズ|正解はひとつ!じゃない!!"
     }
   ],
-  "total": 1467,
-  "matched": 1467
+  "total": 1468,
+  "matched": 1468
 }
