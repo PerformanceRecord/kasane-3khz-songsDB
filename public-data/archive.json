@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-10-07T03:08:06.672Z",
+  "fetchedAt": "2026-10-08T03:23:58.763Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -10755,6 +10755,16 @@
     },
     {
       "artist": "Superfly",
+      "title": "マニフェスト",
+      "kind": "歌枠",
+      "dText": "20260110 【#歌枠 #耐久配信 】高評価100耐久！初見歓迎🌟楽しく歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=nQ-sjDsJrjw&t=7854s",
+      "date8": 20260110,
+      "rowId": "superfly|マニフェスト|歌枠|https://www.youtube.com/watch?v=nQ-sjDsJrjw&t=7854s",
+      "historyKey": "superfly|マニフェスト"
+    },
+    {
+      "artist": "Superfly",
       "title": "愛をこめて花束を",
       "kind": "歌枠",
       "dText": "20260110 【#歌枠 #耐久配信 】高評価100耐久！初見歓迎🌟楽しく歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
@@ -11204,6 +11214,16 @@
       "historyKey": "judy and mary|blue tears"
     },
     {
+      "artist": "kanaria",
+      "title": "酔いどれ知らず",
+      "kind": "歌枠",
+      "dText": "20260121 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=mdeFS8kgFcM&t=3058s",
+      "date8": 20260121,
+      "rowId": "kanaria|酔いどれ知らず|歌枠|https://www.youtube.com/watch?v=mdeFS8kgFcM&t=3058s",
+      "historyKey": "kanaria|酔いどれ知らず"
+    },
+    {
       "artist": "MAISONdes",
       "title": "ヨワネハキ",
       "kind": "歌枠",
@@ -11222,6 +11242,16 @@
       "date8": 20260121,
       "rowId": "ツミキ|フォニイ|歌枠|https://www.youtube.com/watch?v=mdeFS8kgFcM&t=6634s",
       "historyKey": "ツミキ|フォニイ"
+    },
+    {
+      "artist": "ロクデナシ",
+      "title": "言の刃",
+      "kind": "歌枠",
+      "dText": "20260121 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=mdeFS8kgFcM&t=886s",
+      "date8": 20260121,
+      "rowId": "ロクデナシ|言の刃|歌枠|https://www.youtube.com/watch?v=mdeFS8kgFcM&t=886s",
+      "historyKey": "ロクデナシ|言の刃"
     },
     {
       "artist": "日食なつこ",
@@ -11312,6 +11342,16 @@
       "date8": 20260123,
       "rowId": "midnight grand orchestra|midnight mission|歌枠|https://www.youtube.com/watch?v=p5KLp7BYk_o&t=833s",
       "historyKey": "midnight grand orchestra|midnight mission"
+    },
+    {
+      "artist": "Orangestar",
+      "title": "アスノヨゾラ哨戒班",
+      "kind": "歌枠",
+      "dText": "20260123 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=p5KLp7BYk_o&t=1864s",
+      "date8": 20260123,
+      "rowId": "orangestar|アスノヨゾラ哨戒班|歌枠|https://www.youtube.com/watch?v=p5KLp7BYk_o&t=1864s",
+      "historyKey": "orangestar|アスノヨゾラ哨戒班"
     },
     {
       "artist": "tuki.",
@@ -11482,6 +11522,16 @@
       "date8": 20260128,
       "rowId": "superfly|愛をこめて花束を|歌枠|https://www.youtube.com/watch?v=WkFeXvBGFgk&t=5768s",
       "historyKey": "superfly|愛をこめて花束を"
+    },
+    {
+      "artist": "サカナクション",
+      "title": "怪獣",
+      "kind": "歌枠",
+      "dText": "20260128 【#歌枠 #karaoke 】週末は歌枠リレー！練習するよ♪初見歓迎🌟⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=WkFeXvBGFgk&t=4012s",
+      "date8": 20260128,
+      "rowId": "サカナクション|怪獣|歌枠|https://www.youtube.com/watch?v=WkFeXvBGFgk&t=4012s",
+      "historyKey": "サカナクション|怪獣"
     },
     {
       "artist": "ヨルシカ",
@@ -15174,6 +15224,6 @@
       "historyKey": "ミルキィホームズ|正解はひとつ!じゃない!!"
     }
   ],
-  "total": 1517,
-  "matched": 1517
+  "total": 1522,
+  "matched": 1522
 }

@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-10-07T03:07:55.629Z",
+  "fetchedAt": "2026-10-08T03:23:47.867Z",
   "rows": [
     {
       "artist": "John Denver",
@@ -168,8 +168,8 @@
       "date8": 20260924,
       "rowId": "superfly|マニフェスト|歌枠|https://www.youtube.com/watch?v=iGm-yM4lQtU&t=5843s",
       "historyRef": "history/f3a8289edb16.json",
-      "historyCount": 5,
-      "lastSungAt": 20251103
+      "historyCount": 6,
+      "lastSungAt": 20260110
     },
     {
       "artist": "ジミーサムP",
@@ -216,8 +216,8 @@
       "date8": 20260924,
       "rowId": "ロクデナシ|言の刃|歌枠|https://www.youtube.com/watch?v=iGm-yM4lQtU&t=584s",
       "historyRef": "history/77641db90b9e.json",
-      "historyCount": 2,
-      "lastSungAt": 20260119
+      "historyCount": 3,
+      "lastSungAt": 20260121
     },
     {
       "artist": "想太",
@@ -384,8 +384,8 @@
       "date8": 20260923,
       "rowId": "orangestar|アスノヨゾラ哨戒班|歌枠|https://www.youtube.com/watch?v=74nrDbTNr9w&t=6265s",
       "historyRef": "history/34afa2c1c08f.json",
-      "historyCount": 6,
-      "lastSungAt": 20251212
+      "historyCount": 7,
+      "lastSungAt": 20260123
     },
     {
       "artist": "Orangestar",
@@ -912,8 +912,8 @@
       "date8": 20260907,
       "rowId": "kanaria|酔いどれ知らず|歌枠|https://www.youtube.com/watch?v=mSTneoDTALo&t=2307s",
       "historyRef": "history/bce19ea6d752.json",
-      "historyCount": 3,
-      "lastSungAt": 20251206
+      "historyCount": 4,
+      "lastSungAt": 20260121
     },
     {
       "artist": "milet",
@@ -1092,8 +1092,8 @@
       "date8": 20260906,
       "rowId": "サカナクション|怪獣|歌枠|https://www.youtube.com/watch?v=ZwKq7XClNyk&t=880s",
       "historyRef": "history/50bb4b5ff3a5.json",
-      "historyCount": 2,
-      "lastSungAt": 20260116
+      "historyCount": 3,
+      "lastSungAt": 20260128
     },
     {
       "artist": "サザンオールスターズ",
