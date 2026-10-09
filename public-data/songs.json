@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-10-08T03:23:47.867Z",
+  "fetchedAt": "2026-10-09T03:29:25.371Z",
   "rows": [
     {
       "artist": "John Denver",
@@ -229,7 +229,7 @@
       "rowId": "想太|いかないで|歌枠|https://www.youtube.com/watch?v=iGm-yM4lQtU&t=1285s",
       "historyRef": "history/ef17ed43a13a.json",
       "historyCount": 1,
-      "lastSungAt": 20260924
+      "lastSungAt": 20260228
     },
     {
       "artist": "大塚愛",
@@ -240,8 +240,8 @@
       "date8": 20260924,
       "rowId": "大塚愛|プラネタリウム|歌枠|https://www.youtube.com/watch?v=iGm-yM4lQtU&t=6664s",
       "historyRef": "history/baea0eca23ce.json",
-      "historyCount": 2,
-      "lastSungAt": 20260122
+      "historyCount": 3,
+      "lastSungAt": 20260323
     },
     {
       "artist": "椎名林檎",
@@ -300,8 +300,8 @@
       "date8": 20260924,
       "rowId": "日食なつこ|水流のロック|歌枠|https://www.youtube.com/watch?v=iGm-yM4lQtU&t=4972s",
       "historyRef": "history/fcafb22ad0fb.json",
-      "historyCount": 13,
-      "lastSungAt": 20260309
+      "historyCount": 14,
+      "lastSungAt": 20260401
     },
     {
       "artist": "本名陽子",
@@ -396,8 +396,8 @@
       "date8": 20260923,
       "rowId": "orangestar|回る空うさぎ|歌枠|https://www.youtube.com/watch?v=74nrDbTNr9w&t=7460s",
       "historyRef": "history/1675c84bb76b.json",
-      "historyCount": 8,
-      "lastSungAt": 20260128
+      "historyCount": 9,
+      "lastSungAt": 20260309
     },
     {
       "artist": "wowaka",
@@ -528,8 +528,8 @@
       "date8": 20260923,
       "rowId": "矢井田瞳|over the distance|歌枠|https://www.youtube.com/watch?v=74nrDbTNr9w&t=1485s",
       "historyRef": "history/ac3872bb20bd.json",
-      "historyCount": 2,
-      "lastSungAt": 20251201
+      "historyCount": 3,
+      "lastSungAt": 20260409
     },
     {
       "artist": "羊文学",
@@ -936,8 +936,8 @@
       "date8": 20260907,
       "rowId": "milet|inside you|歌枠|https://www.youtube.com/watch?v=mSTneoDTALo&t=5432s",
       "historyRef": "history/61055ec546c3.json",
-      "historyCount": 5,
-      "lastSungAt": 20251218
+      "historyCount": 6,
+      "lastSungAt": 20260330
     },
     {
       "artist": "クリープハイプ",
@@ -948,8 +948,8 @@
       "date8": 20260907,
       "rowId": "クリープハイプ|おやすみ泣き声、さよなら歌姫|歌枠|https://www.youtube.com/watch?v=mSTneoDTALo&t=1419s",
       "historyRef": "history/f7d58d4db135.json",
-      "historyCount": 1,
-      "lastSungAt": 20260228
+      "historyCount": 2,
+      "lastSungAt": 20260413
     },
     {
       "artist": "サカナクション",
@@ -972,8 +972,8 @@
       "date8": 20260907,
       "rowId": "ヨルシカ|花に亡霊|歌枠|https://www.youtube.com/watch?v=mSTneoDTALo&t=6542s",
       "historyRef": "history/c467714bfbea.json",
-      "historyCount": 2,
-      "lastSungAt": 20260215
+      "historyCount": 3,
+      "lastSungAt": 20260228
     },
     {
       "artist": "井上陽水",
@@ -1008,8 +1008,8 @@
       "date8": 20260907,
       "rowId": "相対性理論|四角革命|歌枠|https://www.youtube.com/watch?v=mSTneoDTALo&t=630s",
       "historyRef": "history/60e45466afb5.json",
-      "historyCount": 2,
-      "lastSungAt": 20251009
+      "historyCount": 3,
+      "lastSungAt": 20260206
     },
     {
       "artist": "椎名林檎",

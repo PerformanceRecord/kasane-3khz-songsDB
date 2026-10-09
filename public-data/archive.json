@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-10-08T03:23:58.763Z",
+  "fetchedAt": "2026-10-09T03:29:35.136Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -12065,6 +12065,16 @@
     },
     {
       "artist": "相対性理論",
+      "title": "四角革命",
+      "kind": "歌枠",
+      "dText": "20260206 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=qLRKq6xO3qk&t=1693s",
+      "date8": 20260206,
+      "rowId": "相対性理論|四角革命|歌枠|https://www.youtube.com/watch?v=qLRKq6xO3qk&t=1693s",
+      "historyKey": "相対性理論|四角革命"
+    },
+    {
+      "artist": "相対性理論",
       "title": "気になるあの娘",
       "kind": "歌枠",
       "dText": "20260206 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
@@ -12654,6 +12664,26 @@
       "historyKey": "バルーン (須田景凪)|シャルル"
     },
     {
+      "artist": "ヨルシカ",
+      "title": "花に亡霊",
+      "kind": "歌枠",
+      "dText": "20260228 【#歌枠 昼の部 #耐久 】高評価100耐久🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=8308s",
+      "date8": 20260228,
+      "rowId": "ヨルシカ|花に亡霊|歌枠|https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=8308s",
+      "historyKey": "ヨルシカ|花に亡霊"
+    },
+    {
+      "artist": "想太",
+      "title": "いかないで",
+      "kind": "歌枠",
+      "dText": "20260228 【#歌枠 昼の部 #耐久 】高評価100耐久🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=757s",
+      "date8": 20260228,
+      "rowId": "想太|いかないで|歌枠|https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=757s",
+      "historyKey": "想太|いかないで"
+    },
+    {
       "artist": "東京事変",
       "title": "修羅場",
       "kind": "歌枠",
@@ -12782,6 +12812,16 @@
       "date8": 20260309,
       "rowId": "judy and mary|kyoto|歌枠|https://www.youtube.com/watch?v=cDemkFbzqAM&t=7773s",
       "historyKey": "judy and mary|kyoto"
+    },
+    {
+      "artist": "Orangestar",
+      "title": "回る空うさぎ",
+      "kind": "歌枠",
+      "dText": "20260309 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=cDemkFbzqAM&t=3704s",
+      "date8": 20260309,
+      "rowId": "orangestar|回る空うさぎ|歌枠|https://www.youtube.com/watch?v=cDemkFbzqAM&t=3704s",
+      "historyKey": "orangestar|回る空うさぎ"
     },
     {
       "artist": "ちゃんみな",
@@ -13117,7 +13157,7 @@
       "artist": "JUDY AND MARY",
       "title": "BATHROOM",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=4871s",
       "date8": 20260319,
       "rowId": "judy and mary|bathroom|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=4871s",
@@ -13294,6 +13334,16 @@
       "historyKey": "ヨルシカ|心に穴が空いた"
     },
     {
+      "artist": "大塚愛",
+      "title": "プラネタリウム",
+      "kind": "歌枠",
+      "dText": "20260323 【#歌枠 】元気になる歌枠🌟月曜日おつかれさま⚛️🌐さんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=1FHmyXt_fec&t=3575s",
+      "date8": 20260323,
+      "rowId": "大塚愛|プラネタリウム|歌枠|https://www.youtube.com/watch?v=1FHmyXt_fec&t=3575s",
+      "historyKey": "大塚愛|プラネタリウム"
+    },
+    {
       "artist": "星街すいせい",
       "title": "Caramel Pain",
       "kind": "歌枠",
@@ -13462,6 +13512,16 @@
       "date8": 20260330,
       "rowId": "beat crusaders|moon on the water|歌枠|https://www.youtube.com/watch?v=nPw6pSbRVMg&t=1070s",
       "historyKey": "beat crusaders|moon on the water"
+    },
+    {
+      "artist": "milet",
+      "title": "inside you",
+      "kind": "歌枠",
+      "dText": "20260330 【#歌枠 】癒し歌枠🌟月曜日おつかれさま⚛️🌐さんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=nPw6pSbRVMg&t=3660s",
+      "date8": 20260330,
+      "rowId": "milet|inside you|歌枠|https://www.youtube.com/watch?v=nPw6pSbRVMg&t=3660s",
+      "historyKey": "milet|inside you"
     },
     {
       "artist": "ツミキ",
@@ -13664,6 +13724,16 @@
       "historyKey": "宇多田ヒカル|time will tell"
     },
     {
+      "artist": "日食なつこ",
+      "title": "水流のロック",
+      "kind": "歌枠",
+      "dText": "20260401 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸4月ものんびり歌うよ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=zMpYUnXz54k&t=5168s",
+      "date8": 20260401,
+      "rowId": "日食なつこ|水流のロック|歌枠|https://www.youtube.com/watch?v=zMpYUnXz54k&t=5168s",
+      "historyKey": "日食なつこ|水流のロック"
+    },
+    {
       "artist": "東京事変",
       "title": "心",
       "kind": "歌枠",
@@ -13844,6 +13914,16 @@
       "historyKey": "ヨルシカ|雨晴るる"
     },
     {
+      "artist": "矢井田瞳",
+      "title": "Over The Distance",
+      "kind": "歌枠",
+      "dText": "20260409 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸木曜日もがんばろう 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=XwAQ408a3Vc&t=2702s",
+      "date8": 20260409,
+      "rowId": "矢井田瞳|over the distance|歌枠|https://www.youtube.com/watch?v=XwAQ408a3Vc&t=2702s",
+      "historyKey": "矢井田瞳|over the distance"
+    },
+    {
       "artist": "羊文学",
       "title": "くだらない",
       "kind": "歌枠",
@@ -13902,6 +13982,16 @@
       "date8": 20260413,
       "rowId": "yui|che.r.ry|歌枠|https://www.youtube.com/watch?v=Z_A-rtYrA6c&t=5402s",
       "historyKey": "yui|che.r.ry"
+    },
+    {
+      "artist": "クリープハイプ",
+      "title": "おやすみ泣き声、さよなら歌姫",
+      "kind": "歌枠",
+      "dText": "20260413 【#歌枠 】月曜の歌枠🌟今週もがんばるよー⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=Z_A-rtYrA6c&t=2040s",
+      "date8": 20260413,
+      "rowId": "クリープハイプ|おやすみ泣き声、さよなら歌姫|歌枠|https://www.youtube.com/watch?v=Z_A-rtYrA6c&t=2040s",
+      "historyKey": "クリープハイプ|おやすみ泣き声、さよなら歌姫"
     },
     {
       "artist": "ヨルシカ",
@@ -15224,6 +15314,6 @@
       "historyKey": "ミルキィホームズ|正解はひとつ!じゃない!!"
     }
   ],
-  "total": 1522,
-  "matched": 1522
+  "total": 1531,
+  "matched": 1531
 }
