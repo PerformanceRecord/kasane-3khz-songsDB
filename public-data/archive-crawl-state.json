@@ -1,10 +1,10 @@
 {
-  "cursorDate8": 0,
-  "cursorKey": "",
-  "batchSize": 219,
-  "wrapped": true,
+  "cursorDate8": 20250917,
+  "cursorKey": "松田聖子|瑠璃色の地球|歌枠|https://www.youtube.com/watch?v=peyD0DpWeKY&t=1234s",
+  "batchSize": 226,
+  "wrapped": false,
   "cycle": 12,
   "lastCycleCompletedAt": "2026-10-10T03:09:37.179Z",
-  "lastCollisionCount": 118,
-  "updatedAt": "2026-10-10T03:09:37.179Z"
+  "lastCollisionCount": 226,
+  "updatedAt": "2026-10-11T02:41:58.621Z"
 }
