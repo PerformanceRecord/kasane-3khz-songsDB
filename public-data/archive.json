@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-10-20T02:28:56.049Z",
+  "fetchedAt": "2026-10-21T02:22:29.209Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -12574,6 +12574,16 @@
       "historyKey": "米津玄師|iris out"
     },
     {
+      "artist": "電ポルP",
+      "title": "独りんぼエンヴィー",
+      "kind": "歌枠",
+      "dText": "20260225 【#歌枠 昼の部 #さんきろへるつラジオ 】ボカロ曲多め🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=n1E4Q8GxFDo&t=824s",
+      "date8": 20260225,
+      "rowId": "電ポルp|独りんぼエンヴィー|歌枠|https://www.youtube.com/watch?v=n1E4Q8GxFDo&t=824s",
+      "historyKey": "電ポルp|独りんぼエンヴィー"
+    },
+    {
       "artist": "buzzG",
       "title": "しわ",
       "kind": "歌枠",
@@ -12812,6 +12822,16 @@
       "date8": 20260309,
       "rowId": "judy and mary|kyoto|歌枠|https://www.youtube.com/watch?v=cDemkFbzqAM&t=7773s",
       "historyKey": "judy and mary|kyoto"
+    },
+    {
+      "artist": "Orangestar",
+      "title": "Alice in 冷凍庫",
+      "kind": "歌枠",
+      "dText": "20260309 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=cDemkFbzqAM&t=3350s",
+      "date8": 20260309,
+      "rowId": "orangestar|alice in 冷凍庫|歌枠|https://www.youtube.com/watch?v=cDemkFbzqAM&t=3350s",
+      "historyKey": "orangestar|alice in 冷凍庫"
     },
     {
       "artist": "Orangestar",
@@ -14034,6 +14054,16 @@
       "historyKey": "maisondes feat.asmi すりぃ|アイワナムチュー"
     },
     {
+      "artist": "くじら",
+      "title": "金木犀",
+      "kind": "歌枠",
+      "dText": "20260424 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸木曜日だと思ってたら金曜日だった、一日得した【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=6SJQQcplk2M&t=1267s",
+      "date8": 20260424,
+      "rowId": "くじら|金木犀|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=1267s",
+      "historyKey": "くじら|金木犀"
+    },
+    {
       "artist": "ぐにょ",
       "title": "福寿草",
       "kind": "歌枠",
@@ -14072,6 +14102,16 @@
       "date8": 20260424,
       "rowId": "椎名林檎|おだいじに|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=2270s",
       "historyKey": "椎名林檎|おだいじに"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "丸ノ内サディスティック",
+      "kind": "歌枠",
+      "dText": "20260424 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸木曜日だと思ってたら金曜日だった、一日得した【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=6SJQQcplk2M&t=2493s",
+      "date8": 20260424,
+      "rowId": "椎名林檎|丸ノ内サディスティック|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=2493s",
+      "historyKey": "椎名林檎|丸ノ内サディスティック"
     },
     {
       "artist": "水野あつ",
@@ -14292,6 +14332,16 @@
       "date8": 20260509,
       "rowId": "椎名林檎|はいはい|ショート|https://www.youtube.com/watch?v=PhPCGJtr1_M",
       "historyKey": "椎名林檎|はいはい"
+    },
+    {
+      "artist": "Carpenters",
+      "title": "Yesterday Once More",
+      "kind": "歌枠",
+      "dText": "20260511 【#歌枠 】デビュー9カ月！のんびり歌枠🌙初見歓迎🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=EKYW8P4H3J8&t=4440s",
+      "date8": 20260511,
+      "rowId": "carpenters|yesterday once more|歌枠|https://www.youtube.com/watch?v=EKYW8P4H3J8&t=4440s",
+      "historyKey": "carpenters|yesterday once more"
     },
     {
       "artist": "Hakubi",
@@ -15774,6 +15824,6 @@
       "historyKey": "kiki vivi lily|80denier"
     }
   ],
-  "total": 1577,
-  "matched": 1577
+  "total": 1582,
+  "matched": 1582
 }
