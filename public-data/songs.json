@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-10-21T02:22:20.676Z",
+  "fetchedAt": "2026-10-22T02:17:29.891Z",
   "rows": [
     {
       "artist": "ヨルシカ",
@@ -24,8 +24,8 @@
       "date8": 20261014,
       "rowId": "ado|唱|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=4483s",
       "historyRef": "history/3840fde9ee63.json",
-      "historyCount": 21,
-      "lastSungAt": 20260727
+      "historyCount": 22,
+      "lastSungAt": 20260923
     },
     {
       "artist": "Carpenters",
@@ -48,8 +48,8 @@
       "date8": 20261014,
       "rowId": "creepy nuts|bling-bang-bang-born|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=5466s",
       "historyRef": "history/276f0713157a.json",
-      "historyCount": 7,
-      "lastSungAt": 20260206
+      "historyCount": 8,
+      "lastSungAt": 20260727
     },
     {
       "artist": "DECO*27",
@@ -84,8 +84,8 @@
       "date8": 20261014,
       "rowId": "love psychedelico|lady madonna ~憂鬱なるスパイダー~|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=5724s",
       "historyRef": "history/33fc31555001.json",
-      "historyCount": 1,
-      "lastSungAt": 20260130
+      "historyCount": 2,
+      "lastSungAt": 20260716
     },
     {
       "artist": "Midnight Grand Orchestra",
@@ -96,8 +96,8 @@
       "date8": 20261014,
       "rowId": "midnight grand orchestra|midnight mission|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=4818s",
       "historyRef": "history/5579f7d974a8.json",
-      "historyCount": 7,
-      "lastSungAt": 20260123
+      "historyCount": 8,
+      "lastSungAt": 20260610
     },
     {
       "artist": "NANA starring MIKA NAKASHIMA",
@@ -120,8 +120,8 @@
       "date8": 20261014,
       "rowId": "tommy february6|everyday at the bus stop|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=6882s",
       "historyRef": "history/990d199aa4f3.json",
-      "historyCount": 1,
-      "lastSungAt": 20251206
+      "historyCount": 2,
+      "lastSungAt": 20260615
     },
     {
       "artist": "UNISON SQUARE GARDEN",
@@ -144,8 +144,8 @@
       "date8": 20261014,
       "rowId": "yen town band|swallowtail butterfly 〜あいのうた〜|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=5109s",
       "historyRef": "history/0863b99309e0.json",
-      "historyCount": 3,
-      "lastSungAt": 20260521
+      "historyCount": 4,
+      "lastSungAt": 20260926
     },
     {
       "artist": "クリープハイプ",
@@ -157,7 +157,7 @@
       "rowId": "クリープハイプ|おやすみ泣き声、さよなら歌姫(piano)|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=9058s",
       "historyRef": "history/10c8b40c9fe5.json",
       "historyCount": 1,
-      "lastSungAt": 20261014
+      "lastSungAt": 20260926
     },
     {
       "artist": "サカナクション",
@@ -168,8 +168,8 @@
       "date8": 20261014,
       "rowId": "サカナクション|『バッハの旋律を夜に聴いたせいです。』|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=6330s",
       "historyRef": "history/f2cb15749e45.json",
-      "historyCount": 3,
-      "lastSungAt": 20260517
+      "historyCount": 4,
+      "lastSungAt": 20260622
     },
     {
       "artist": "チョーキューメイ",
@@ -192,8 +192,8 @@
       "date8": 20261014,
       "rowId": "ピノキオピー|ノンブレス・オブリージュ|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=6031s",
       "historyRef": "history/fcc4d3f092cc.json",
-      "historyCount": 8,
-      "lastSungAt": 20260225
+      "historyCount": 10,
+      "lastSungAt": 20261016
     },
     {
       "artist": "ヨルシカ",
@@ -204,8 +204,8 @@
       "date8": 20261014,
       "rowId": "ヨルシカ|雨とカプチーノ|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=610s",
       "historyRef": "history/bb9cc73babab.json",
-      "historyCount": 11,
-      "lastSungAt": 20260615
+      "historyCount": 12,
+      "lastSungAt": 20260814
     },
     {
       "artist": "ヨルシカ",
@@ -216,8 +216,8 @@
       "date8": 20261014,
       "rowId": "ヨルシカ|準透明少年|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=1046s",
       "historyRef": "history/f47f716e37cc.json",
-      "historyCount": 13,
-      "lastSungAt": 20260213
+      "historyCount": 14,
+      "lastSungAt": 20260610
     },
     {
       "artist": "ヨルシカ",
@@ -240,8 +240,8 @@
       "date8": 20261014,
       "rowId": "宇多田ヒカル featuring 椎名林檎|二時間だけのバカンス|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=7823s",
       "historyRef": "history/6cabd22396cc.json",
-      "historyCount": 1,
-      "lastSungAt": 20260204
+      "historyCount": 2,
+      "lastSungAt": 20260807
     },
     {
       "artist": "相対性理論",
@@ -288,8 +288,8 @@
       "date8": 20261014,
       "rowId": "東京事変|私生活|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=3643s",
       "historyRef": "history/5af8f8781c36.json",
-      "historyCount": 7,
-      "lastSungAt": 20260511
+      "historyCount": 8,
+      "lastSungAt": 20260814
     },
     {
       "artist": "東京事変",
@@ -300,8 +300,8 @@
       "date8": 20261014,
       "rowId": "東京事変|遭難|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=3944s",
       "historyRef": "history/6623fb000233.json",
-      "historyCount": 1,
-      "lastSungAt": 20260114
+      "historyCount": 2,
+      "lastSungAt": 20260522
     },
     {
       "artist": "LAYRA",
@@ -349,7 +349,7 @@
       "rowId": "9lana|dyna mind|歌枠|https://www.youtube.com/watch?v=XHBdDIuTiMs&t=1755s",
       "historyRef": "history/95576d011aab.json",
       "historyCount": 1,
-      "lastSungAt": 20261007
+      "lastSungAt": 20261004
     },
     {
       "artist": "9Lana",
@@ -373,7 +373,7 @@
       "rowId": "9lana|ネオラダイト|歌枠|https://www.youtube.com/watch?v=XHBdDIuTiMs&t=2104s",
       "historyRef": "history/9366c8dc6a12.json",
       "historyCount": 1,
-      "lastSungAt": 20261007
+      "lastSungAt": 20260925
     },
     {
       "artist": "Giga",
@@ -384,8 +384,8 @@
       "date8": 20261007,
       "rowId": "giga|ch4nge|歌枠|https://www.youtube.com/watch?v=XHBdDIuTiMs&t=1152s",
       "historyRef": "history/a6525163f206.json",
-      "historyCount": 5,
-      "lastSungAt": 20260123
+      "historyCount": 6,
+      "lastSungAt": 20260615
     },
     {
       "artist": "Orangestar",
@@ -408,8 +408,8 @@
       "date8": 20261007,
       "rowId": "orangestar|アスノヨゾラ哨戒班|歌枠|https://www.youtube.com/watch?v=XHBdDIuTiMs&t=4136s",
       "historyRef": "history/34afa2c1c08f.json",
-      "historyCount": 7,
-      "lastSungAt": 20260123
+      "historyCount": 8,
+      "lastSungAt": 20260923
     },
     {
       "artist": "くじら",
@@ -432,8 +432,8 @@
       "date8": 20261007,
       "rowId": "斉藤和義|歩いて帰ろう|歌枠|https://www.youtube.com/watch?v=XHBdDIuTiMs&t=5549s",
       "historyRef": "history/3efa03f73077.json",
-      "historyCount": 1,
-      "lastSungAt": 20260615
+      "historyCount": 2,
+      "lastSungAt": 20260622
     },
     {
       "artist": "椎名林檎",
@@ -444,8 +444,8 @@
       "date8": 20261007,
       "rowId": "椎名林檎|すべりだい|歌枠|https://www.youtube.com/watch?v=XHBdDIuTiMs&t=3465s",
       "historyRef": "history/dba8f255a24b.json",
-      "historyCount": 6,
-      "lastSungAt": 20260330
+      "historyCount": 7,
+      "lastSungAt": 20260523
     },
     {
       "artist": "椎名林檎",
@@ -469,7 +469,7 @@
       "rowId": "椎名林檎|自由へ道連れ|歌枠|https://www.youtube.com/watch?v=XHBdDIuTiMs&t=3780s",
       "historyRef": "history/b8468dd50b24.json",
       "historyCount": 1,
-      "lastSungAt": 20261007
+      "lastSungAt": 20260527
     },
     {
       "artist": "電ポルP",
@@ -552,8 +552,8 @@
       "date8": 20260927,
       "rowId": "millennium parade × belle|u|歌枠|https://www.youtube.com/watch?v=XFT0gM3ZcH0&t=666s",
       "historyRef": "history/e9e6eac207af.json",
-      "historyCount": 3,
-      "lastSungAt": 20260727
+      "historyCount": 4,
+      "lastSungAt": 20261009
     },
     {
       "artist": "Superfly",
@@ -1272,8 +1272,8 @@
       "date8": 20260909,
       "rowId": "deco*27|洗脳|歌ってみた|https://www.youtube.com/watch?v=1SNOcleRNYo",
       "historyRef": "history/424c64d4321b.json",
-      "historyCount": 2,
-      "lastSungAt": 20260910
+      "historyCount": 3,
+      "lastSungAt": 20261007
     },
     {
       "artist": "The Pretty Reckless",
@@ -6744,8 +6744,8 @@
       "date8": 20260105,
       "rowId": "雨良|バゥムクゥヘン・エンドロゥル|歌ってみた|https://www.youtube.com/watch?v=i1grFTOzY3A&t=0s",
       "historyRef": "history/a006227a10c8.json",
-      "historyCount": 1,
-      "lastSungAt": 20260106
+      "historyCount": 2,
+      "lastSungAt": 20261014
     },
     {
       "artist": "HANA",
@@ -7668,8 +7668,8 @@
       "date8": 20251013,
       "rowId": "deco*27|マシュマロ|歌ってみた|https://www.youtube.com/watch?v=tTb_AP1NpNU",
       "historyRef": "history/bb8f4d3a1f84.json",
-      "historyCount": 12,
-      "lastSungAt": 20260814
+      "historyCount": 13,
+      "lastSungAt": 20261007
     },
     {
       "artist": "スピッツ",

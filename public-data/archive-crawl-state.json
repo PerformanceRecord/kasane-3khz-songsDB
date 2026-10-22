@@ -1,10 +1,10 @@
 {
-  "cursorDate8": 20260521,
-  "cursorKey": "椎名林檎|浴室|歌枠|https://www.youtube.com/watch?v=5UeDjTz3-08&t=4296s",
+  "cursorDate8": 0,
+  "cursorKey": "",
   "batchSize": 226,
-  "wrapped": false,
-  "cycle": 13,
-  "lastCycleCompletedAt": "2026-10-16T02:03:37.316Z",
-  "lastCollisionCount": 221,
-  "updatedAt": "2026-10-21T02:22:29.209Z"
+  "wrapped": true,
+  "cycle": 14,
+  "lastCycleCompletedAt": "2026-10-22T02:17:58.620Z",
+  "lastCollisionCount": 104,
+  "updatedAt": "2026-10-22T02:17:58.620Z"
 }
