@@ -1,10 +1,10 @@
 {
-  "cursorDate8": 0,
-  "cursorKey": "",
-  "batchSize": 226,
-  "wrapped": true,
+  "cursorDate8": 20250917,
+  "cursorKey": "椎名林檎|モルヒネ|歌枠|https://www.youtube.com/watch?v=peyD0DpWeKY&t=2707s",
+  "batchSize": 230,
+  "wrapped": false,
   "cycle": 14,
   "lastCycleCompletedAt": "2026-10-22T02:17:58.620Z",
-  "lastCollisionCount": 104,
-  "updatedAt": "2026-10-22T02:17:58.620Z"
+  "lastCollisionCount": 229,
+  "updatedAt": "2026-10-23T02:23:10.376Z"
 }

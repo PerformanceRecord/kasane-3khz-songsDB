@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-10-22T02:17:29.891Z",
+  "fetchedAt": "2026-10-23T02:23:03.206Z",
   "rows": [
     {
       "artist": "ヨルシカ",
@@ -337,7 +337,7 @@
       "rowId": "9lana|balalaika(acoustic)|歌枠|https://www.youtube.com/watch?v=XHBdDIuTiMs&t=2438s",
       "historyRef": "history/55d183af4e0f.json",
       "historyCount": 1,
-      "lastSungAt": 20261007
+      "lastSungAt": 20250904
     },
     {
       "artist": "9Lana",

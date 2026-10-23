@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-10-22T02:17:58.620Z",
+  "fetchedAt": "2026-10-23T02:23:10.376Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -2242,6 +2242,16 @@
       "date8": 20250903,
       "rowId": "hana|blue jeans|ショート|https://www.youtube.com/shorts/VomOndmFxKk",
       "historyKey": "hana|blue jeans"
+    },
+    {
+      "artist": "9Lana",
+      "title": "BALALAIKA(Acoustic)",
+      "kind": "ショート",
+      "dText": "20250904 BALALAIKA(Acoustic)/9Lana #歌ってみた #acoustic #9lana #vtuber",
+      "dUrl": "https://www.youtube.com/shorts/E3_s4jj9ot4",
+      "date8": 20250904,
+      "rowId": "9lana|balalaika(acoustic)|ショート|https://www.youtube.com/shorts/E3_s4jj9ot4",
+      "historyKey": "9lana|balalaika(acoustic)"
     },
     {
       "artist": "9Lana",
@@ -16084,6 +16094,6 @@
       "historyKey": "ピノキオピー|ノンブレス・オブリージュ"
     }
   ],
-  "total": 1608,
-  "matched": 1608
+  "total": 1609,
+  "matched": 1609
 }
