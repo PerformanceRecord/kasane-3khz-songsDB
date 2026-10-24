@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-10-23T02:23:10.376Z",
+  "fetchedAt": "2026-10-24T02:20:50.223Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -4194,6 +4194,16 @@
       "historyKey": "ado|唱"
     },
     {
+      "artist": "DECO*27",
+      "title": "ヴァンパイア",
+      "kind": "歌枠",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=3135s",
+      "date8": 20250924,
+      "rowId": "deco*27|ヴァンパイア|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=3135s",
+      "historyKey": "deco*27|ヴァンパイア"
+    },
+    {
       "artist": "Superfly",
       "title": "Last Love Song",
       "kind": "歌枠",
@@ -4352,6 +4362,16 @@
       "date8": 20250924,
       "rowId": "椎名林檎|浴室|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=4778s",
       "historyKey": "椎名林檎|浴室"
+    },
+    {
+      "artist": "相対性理論",
+      "title": "シンデレラ",
+      "kind": "歌枠",
+      "dText": "20250924【歌枠・昼の部】幕の内サディスティックな歌枠⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=oekPlJwsGwc&t=1017s",
+      "date8": 20250924,
+      "rowId": "相対性理論|シンデレラ|歌枠|https://www.youtube.com/watch?v=oekPlJwsGwc&t=1017s",
+      "historyKey": "相対性理論|シンデレラ"
     },
     {
       "artist": "Ado",
@@ -16094,6 +16114,6 @@
       "historyKey": "ピノキオピー|ノンブレス・オブリージュ"
     }
   ],
-  "total": 1609,
-  "matched": 1609
+  "total": 1611,
+  "matched": 1611
 }

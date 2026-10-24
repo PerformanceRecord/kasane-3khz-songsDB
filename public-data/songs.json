@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-10-23T02:23:03.206Z",
+  "fetchedAt": "2026-10-24T02:20:39.523Z",
   "rows": [
     {
       "artist": "ヨルシカ",
@@ -60,8 +60,8 @@
       "date8": 20261014,
       "rowId": "deco*27|ヴァンパイア|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=3175s",
       "historyRef": "history/18f4849db157.json",
-      "historyCount": 2,
-      "lastSungAt": 20250901
+      "historyCount": 3,
+      "lastSungAt": 20250924
     },
     {
       "artist": "DECO*27",
@@ -252,8 +252,8 @@
       "date8": 20261014,
       "rowId": "相対性理論|シンデレラ|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=2235s",
       "historyRef": "history/f7af663fa770.json",
-      "historyCount": 2,
-      "lastSungAt": 20250912
+      "historyCount": 3,
+      "lastSungAt": 20250924
     },
     {
       "artist": "相対性理論",
