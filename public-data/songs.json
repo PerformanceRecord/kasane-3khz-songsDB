@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-10-24T02:20:39.523Z",
+  "fetchedAt": "2026-10-25T02:07:52.496Z",
   "rows": [
     {
       "artist": "ヨルシカ",
@@ -264,8 +264,8 @@
       "date8": 20261014,
       "rowId": "相対性理論|チャイナアドバイス|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=1883s",
       "historyRef": "history/bdb9366f3ca7.json",
-      "historyCount": 3,
-      "lastSungAt": 20251002
+      "historyCount": 4,
+      "lastSungAt": 20251117
     },
     {
       "artist": "椎名林檎",
@@ -492,8 +492,8 @@
       "date8": 20261007,
       "rowId": "八王子p×giga|gimme×gimmie|歌枠|https://www.youtube.com/watch?v=XHBdDIuTiMs&t=869s",
       "historyRef": "history/a09bcb3e1711.json",
-      "historyCount": 3,
-      "lastSungAt": 20251103
+      "historyCount": 4,
+      "lastSungAt": 20251215
     },
     {
       "artist": "CAFE",

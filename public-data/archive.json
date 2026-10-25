@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-10-24T02:20:50.223Z",
+  "fetchedAt": "2026-10-25T02:08:00.006Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -7925,6 +7925,16 @@
     },
     {
       "artist": "相対性理論",
+      "title": "チャイナアドバイス",
+      "kind": "歌枠",
+      "dText": "20251117 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=67u99sfOYq8&t=3518s",
+      "date8": 20251117,
+      "rowId": "相対性理論|チャイナアドバイス|歌枠|https://www.youtube.com/watch?v=67u99sfOYq8&t=3518s",
+      "historyKey": "相対性理論|チャイナアドバイス"
+    },
+    {
+      "artist": "相対性理論",
       "title": "ミス・パラレルワールド",
       "kind": "歌枠",
       "dText": "20251117 【歌枠・昼の部】ゆるゆる歌枠🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
@@ -9752,6 +9762,16 @@
       "date8": 20251215,
       "rowId": "ヨルシカ|準透明少年|歌枠|https://www.youtube.com/watch?v=dwp1GLq8X50&t=1827s",
       "historyKey": "ヨルシカ|準透明少年"
+    },
+    {
+      "artist": "八王子P×Giga",
+      "title": "Gimme×Gimmie",
+      "kind": "歌枠",
+      "dText": "20251215 【#歌枠 昼の部】お昼のゆるーい歌枠🌟歌枠リレーに向けて午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=dwp1GLq8X50&t=9705s",
+      "date8": 20251215,
+      "rowId": "八王子p×giga|gimme×gimmie|歌枠|https://www.youtube.com/watch?v=dwp1GLq8X50&t=9705s",
+      "historyKey": "八王子p×giga|gimme×gimmie"
     },
     {
       "artist": "星街すいせい",
@@ -16114,6 +16134,6 @@
       "historyKey": "ピノキオピー|ノンブレス・オブリージュ"
     }
   ],
-  "total": 1611,
-  "matched": 1611
+  "total": 1613,
+  "matched": 1613
 }
