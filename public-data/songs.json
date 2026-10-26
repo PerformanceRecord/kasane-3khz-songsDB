@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-10-25T02:07:52.496Z",
+  "fetchedAt": "2026-10-26T02:08:36.480Z",
   "rows": [
     {
       "artist": "ヨルシカ",
@@ -72,8 +72,8 @@
       "date8": 20261014,
       "rowId": "deco*27|ゾンビ|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=2891s",
       "historyRef": "history/12200044a85e.json",
-      "historyCount": 1,
-      "lastSungAt": 20250928
+      "historyCount": 2,
+      "lastSungAt": 20260220
     },
     {
       "artist": "LOVE PSYCHEDELICO",
@@ -108,8 +108,8 @@
       "date8": 20261014,
       "rowId": "nana starring mika nakashima|glamorous sky|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=8638s",
       "historyRef": "history/0893373682a3.json",
-      "historyCount": 4,
-      "lastSungAt": 20260113
+      "historyCount": 5,
+      "lastSungAt": 20260116
     },
     {
       "artist": "Tommy february6",
@@ -133,7 +133,7 @@
       "rowId": "unison square garden|シュガーソングとビターステップ|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=8232s",
       "historyRef": "history/0d49b8446a25.json",
       "historyCount": 1,
-      "lastSungAt": 20261014
+      "lastSungAt": 20251222
     },
     {
       "artist": "YEN TOWN BAND",
@@ -276,8 +276,8 @@
       "date8": 20261014,
       "rowId": "椎名林檎|茎|歌枠|https://www.youtube.com/watch?v=3PNbk43tC3M&t=4203s",
       "historyRef": "history/4892566e9d23.json",
-      "historyCount": 2,
-      "lastSungAt": 20251023
+      "historyCount": 3,
+      "lastSungAt": 20260206
     },
     {
       "artist": "東京事変",

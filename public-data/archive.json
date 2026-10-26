@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-10-25T02:08:00.006Z",
+  "fetchedAt": "2026-10-26T02:08:46.195Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -10214,6 +10214,16 @@
       "historyKey": "maisondes|トウキョウ・シャンディ・ランデヴ"
     },
     {
+      "artist": "UNISON SQUARE GARDEN",
+      "title": "シュガーソングとビターステップ",
+      "kind": "歌枠",
+      "dText": "20251222 【#歌枠 昼の部】初見歓迎 1曲だけでも聴いていって🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=GDn01RpX_6E&t=680s",
+      "date8": 20251222,
+      "rowId": "unison square garden|シュガーソングとビターステップ|歌枠|https://www.youtube.com/watch?v=GDn01RpX_6E&t=680s",
+      "historyKey": "unison square garden|シュガーソングとビターステップ"
+    },
+    {
       "artist": "しぐれうい",
       "title": "粛聖!! ロリ神レクイエム☆",
       "kind": "歌枠",
@@ -11152,6 +11162,16 @@
       "date8": 20260116,
       "rowId": "love psychedelico|your song|歌枠|https://www.youtube.com/watch?v=JxMFBZUMGcs&t=4855s",
       "historyKey": "love psychedelico|your song"
+    },
+    {
+      "artist": "NANA starring MIKA NAKASHIMA",
+      "title": "GLAMOROUS SKY",
+      "kind": "歌枠",
+      "dText": "20260116 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=JxMFBZUMGcs&t=2616s",
+      "date8": 20260116,
+      "rowId": "nana starring mika nakashima|glamorous sky|歌枠|https://www.youtube.com/watch?v=JxMFBZUMGcs&t=2616s",
+      "historyKey": "nana starring mika nakashima|glamorous sky"
     },
     {
       "artist": "サカナクション",
@@ -12114,6 +12134,16 @@
       "historyKey": "椎名林檎|真夜中は純潔"
     },
     {
+      "artist": "椎名林檎",
+      "title": "茎",
+      "kind": "歌枠",
+      "dText": "20260206 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=qLRKq6xO3qk&t=1026s",
+      "date8": 20260206,
+      "rowId": "椎名林檎|茎|歌枠|https://www.youtube.com/watch?v=qLRKq6xO3qk&t=1026s",
+      "historyKey": "椎名林檎|茎"
+    },
+    {
       "artist": "相対性理論",
       "title": "四角革命",
       "kind": "歌枠",
@@ -12362,6 +12392,16 @@
       "date8": 20260217,
       "rowId": "oasis|wonderwall|ショート|https://www.youtube.com/watch?v=Pk0WxzPCqgk",
       "historyKey": "oasis|wonderwall"
+    },
+    {
+      "artist": "DECO*27",
+      "title": "ゾンビ",
+      "kind": "歌枠",
+      "dText": "20260220 【#歌枠 昼の部 #さんきろへるつラジオ 】平日の昼チル歌枠🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=_JHUCrunBnw&t=2117s",
+      "date8": 20260220,
+      "rowId": "deco*27|ゾンビ|歌枠|https://www.youtube.com/watch?v=_JHUCrunBnw&t=2117s",
+      "historyKey": "deco*27|ゾンビ"
     },
     {
       "artist": "DECO*27",
@@ -16134,6 +16174,6 @@
       "historyKey": "ピノキオピー|ノンブレス・オブリージュ"
     }
   ],
-  "total": 1613,
-  "matched": 1613
+  "total": 1617,
+  "matched": 1617
 }
