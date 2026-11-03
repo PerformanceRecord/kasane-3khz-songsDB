@@ -1,10 +1,10 @@
 {
-  "cursorDate8": 20260527,
-  "cursorKey": "椎名林檎|幸福論|ショート|https://www.youtube.com/watch?v=GE5d2Hm4QJ4",
+  "cursorDate8": 0,
+  "cursorKey": "",
   "batchSize": 231,
-  "wrapped": false,
-  "cycle": 15,
-  "lastCycleCompletedAt": "2026-10-28T02:54:19.962Z",
-  "lastCollisionCount": 231,
-  "updatedAt": "2026-11-02T03:10:00.191Z"
+  "wrapped": true,
+  "cycle": 16,
+  "lastCycleCompletedAt": "2026-11-03T04:26:44.826Z",
+  "lastCollisionCount": 114,
+  "updatedAt": "2026-11-03T04:26:44.826Z"
 }
