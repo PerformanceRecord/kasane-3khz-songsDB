@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-11-04T13:03:22.640Z",
+  "fetchedAt": "2026-11-04T13:11:38.361Z",
   "rows": [
     {
       "artist": "Giga",
@@ -96,8 +96,8 @@
       "date8": 20261030,
       "rowId": "ado|ルル|歌枠|https://www.youtube.com/watch?v=udngsXCIHpQ&t=5137s",
       "historyRef": "history/e8895d14a2f1.json",
-      "historyCount": 1,
-      "lastSungAt": 20251230
+      "historyCount": 2,
+      "lastSungAt": 20260114
     },
     {
       "artist": "Ado",
@@ -7852,26 +7852,26 @@
       "lastSungAt": 20251002
     },
     {
-      "artist": "山口百恵",
-      "title": "秋桜",
+      "artist": "相対性理論",
+      "title": "ペペロンチーノ・キャンディ",
       "kind": "歌枠",
-      "dText": "20251002 【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=mq9GyEV__v0&t=5999s",
+      "dText": "20251002【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aOZbwn30gYk&t=1994s",
       "date8": 20251002,
-      "rowId": "山口百恵|秋桜|歌枠|https://www.youtube.com/watch?v=mq9GyEV__v0&t=5999s",
-      "historyRef": "history/fd3cd5197618.json",
+      "rowId": "相対性理論|ペペロンチーノ・キャンディ|歌枠|https://www.youtube.com/watch?v=aOZbwn30gYk&t=1994s",
+      "historyRef": "history/f6f208399f15.json",
       "historyCount": 1,
       "lastSungAt": 20251002
     },
     {
-      "artist": "相対性理論",
-      "title": "ペペロンチーノ・キャンディ",
+      "artist": "山口百恵",
+      "title": "秋桜",
       "kind": "歌枠",
-      "dText": "20251002 【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
-      "dUrl": "https://www.youtube.com/watch?v=mq9GyEV__v0&t=1994s",
+      "dText": "20251002【歌枠・昼の部】ゆるゆる歌枠🌟仕事にいきたくない⚛️🌐花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=aOZbwn30gYk&t=5999s",
       "date8": 20251002,
-      "rowId": "相対性理論|ペペロンチーノ・キャンディ|歌枠|https://www.youtube.com/watch?v=mq9GyEV__v0&t=1994s",
-      "historyRef": "history/f6f208399f15.json",
+      "rowId": "山口百恵|秋桜|歌枠|https://www.youtube.com/watch?v=aOZbwn30gYk&t=5999s",
+      "historyRef": "history/fd3cd5197618.json",
       "historyCount": 1,
       "lastSungAt": 20251002
     },
