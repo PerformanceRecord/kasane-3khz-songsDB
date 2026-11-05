@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-11-04T13:11:48.457Z",
+  "fetchedAt": "2026-11-05T04:02:09.169Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -13835,6 +13835,16 @@
     },
     {
       "artist": "¿?shimon",
+      "title": "ルシファー",
+      "kind": "歌枠",
+      "dText": "20260316 【#歌枠 】昼の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=x5BV86bUdvo&t=2800s",
+      "date8": 20260316,
+      "rowId": "¿?shimon|ルシファー|歌枠|https://www.youtube.com/watch?v=x5BV86bUdvo&t=2800s",
+      "historyKey": "¿?shimon|ルシファー"
+    },
+    {
+      "artist": "¿?shimon",
       "title": "偽物人間40号",
       "kind": "歌枠",
       "dText": "20260316 【#歌枠 】昼の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
@@ -14077,7 +14087,7 @@
       "artist": "椎名林檎",
       "title": "茜さす帰路照らされど",
       "kind": "歌枠",
-      "dText": "20260319 【#歌枠 】夜の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dText": "20260319 【#歌枠 】夜の歌枠🌟女性アーティスト曲⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
       "dUrl": "https://www.youtube.com/watch?v=ePi7JHosTnY&t=1643s",
       "date8": 20260319,
       "rowId": "椎名林檎|茜さす帰路照らされど|歌枠|https://www.youtube.com/watch?v=ePi7JHosTnY&t=1643s",
@@ -14244,6 +14254,16 @@
       "historyKey": "相対性理論|気になるあの娘"
     },
     {
+      "artist": "秦基博",
+      "title": "ひまわりの約束",
+      "kind": "歌枠",
+      "dText": "20260323 【#歌枠 】元気になる歌枠🌟月曜日おつかれさま⚛️🌐さんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=1FHmyXt_fec&t=7596s",
+      "date8": 20260323,
+      "rowId": "秦基博|ひまわりの約束|歌枠|https://www.youtube.com/watch?v=1FHmyXt_fec&t=7596s",
+      "historyKey": "秦基博|ひまわりの約束"
+    },
+    {
       "artist": "米津玄師",
       "title": "IRIS OUT",
       "kind": "歌枠",
@@ -14282,6 +14302,16 @@
       "date8": 20260326,
       "rowId": "b9☆|赤点教室|歌枠|https://www.youtube.com/watch?v=kGvlLfFiqVY&t=1528s",
       "historyKey": "b9☆|赤点教室"
+    },
+    {
+      "artist": "HANA",
+      "title": "Blue Jeans",
+      "kind": "歌枠",
+      "dText": "20260326 【#歌枠 】昼の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=kGvlLfFiqVY&t=891s",
+      "date8": 20260326,
+      "rowId": "hana|blue jeans|歌枠|https://www.youtube.com/watch?v=kGvlLfFiqVY&t=891s",
+      "historyKey": "hana|blue jeans"
     },
     {
       "artist": "Superfly",
@@ -14462,6 +14492,16 @@
       "date8": 20260401,
       "rowId": "aiko|桜の時|歌枠|https://www.youtube.com/watch?v=zMpYUnXz54k&t=3070s",
       "historyKey": "aiko|桜の時"
+    },
+    {
+      "artist": "Azari",
+      "title": "Shadow Shadow",
+      "kind": "歌枠",
+      "dText": "20260401 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸4月ものんびり歌うよ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=zMpYUnXz54k&t=8040s",
+      "date8": 20260401,
+      "rowId": "azari|shadow shadow|歌枠|https://www.youtube.com/watch?v=zMpYUnXz54k&t=8040s",
+      "historyKey": "azari|shadow shadow"
     },
     {
       "artist": "BEAT CRUSADERS",
@@ -14874,6 +14914,16 @@
       "historyKey": "電ポルp|心象カスケード"
     },
     {
+      "artist": "AKINO",
+      "title": "創聖のアクエリオン",
+      "kind": "歌枠",
+      "dText": "20260424 【#歌枠 】お昼の歌枠🌟初見さんも大歓迎🌸木曜日だと思ってたら金曜日だった、一日得した【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=6SJQQcplk2M&t=4225s",
+      "date8": 20260424,
+      "rowId": "akino|創聖のアクエリオン|歌枠|https://www.youtube.com/watch?v=6SJQQcplk2M&t=4225s",
+      "historyKey": "akino|創聖のアクエリオン"
+    },
+    {
       "artist": "MAISONdes feat.asmi すりぃ",
       "title": "アイワナムチュー",
       "kind": "歌枠",
@@ -15062,6 +15112,16 @@
       "date8": 20260429,
       "rowId": "ピノキオピー|神っぽいな|歌枠|https://www.youtube.com/watch?v=4tO8JAr_qJM&t=4405s",
       "historyKey": "ピノキオピー|神っぽいな"
+    },
+    {
+      "artist": "友成空",
+      "title": "鬼ノ宴",
+      "kind": "歌枠",
+      "dText": "20260429 【#歌枠 】歌枠🌟のんびり歌うよ 初見さんも大歓迎🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=4tO8JAr_qJM&t=805s",
+      "date8": 20260429,
+      "rowId": "友成空|鬼ノ宴|歌枠|https://www.youtube.com/watch?v=4tO8JAr_qJM&t=805s",
+      "historyKey": "友成空|鬼ノ宴"
     },
     {
       "artist": "LOVE PSYCHEDELICO",
@@ -15275,6 +15335,16 @@
     },
     {
       "artist": "Ado",
+      "title": "ウタカタララバイ",
+      "kind": "歌枠",
+      "dText": "20260516 【#歌枠 】機材トラブルによる遅延がすごい歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=3551s",
+      "date8": 20260516,
+      "rowId": "ado|ウタカタララバイ|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=3551s",
+      "historyKey": "ado|ウタカタララバイ"
+    },
+    {
+      "artist": "Ado",
       "title": "唱",
       "kind": "歌枠",
       "dText": "20260516 【#歌枠 】機材トラブルによる遅延がすごい歌枠🌸【#新人vtuber #作業用bgm 】",
@@ -15362,6 +15432,16 @@
       "date8": 20260516,
       "rowId": "椎名林檎|積木遊び|ショート|https://www.youtube.com/watch?v=b4eAaQK9FWU",
       "historyKey": "椎名林檎|積木遊び"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "迷彩",
+      "kind": "歌枠",
+      "dText": "20260516 【#歌枠 】機材トラブルによる遅延がすごい歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=6265s",
+      "date8": 20260516,
+      "rowId": "椎名林檎|迷彩|歌枠|https://www.youtube.com/watch?v=uqZQlbE6Xyo&t=6265s",
+      "historyKey": "椎名林檎|迷彩"
     },
     {
       "artist": "9Lana",
@@ -15642,6 +15722,16 @@
       "date8": 20260522,
       "rowId": "東京事変|閃光少女|歌枠|https://www.youtube.com/watch?v=NtixH-Xwvw4&t=3236s",
       "historyKey": "東京事変|閃光少女"
+    },
+    {
+      "artist": "椎名林檎",
+      "title": "罪と罰",
+      "kind": "歌枠",
+      "dText": "20260522 【#歌枠 】明日は歌枠リレー！練習歌枠🌸【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=NtixH-Xwvw4&t=2340s",
+      "date8": 20260522,
+      "rowId": "椎名林檎|罪と罰|歌枠|https://www.youtube.com/watch?v=NtixH-Xwvw4&t=2340s",
+      "historyKey": "椎名林檎|罪と罰"
     },
     {
       "artist": "椎名林檎",
@@ -16914,6 +17004,6 @@
       "historyKey": "ピノキオピー|ノンブレス・オブリージュ"
     }
   ],
-  "total": 1691,
-  "matched": 1691
+  "total": 1700,
+  "matched": 1700
 }

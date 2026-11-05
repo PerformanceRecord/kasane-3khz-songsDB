@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-11-04T13:11:38.361Z",
+  "fetchedAt": "2026-11-05T04:02:01.257Z",
   "rows": [
     {
       "artist": "Giga",
@@ -84,8 +84,8 @@
       "date8": 20261030,
       "rowId": "ado|ウタカタララバイ|歌枠|https://www.youtube.com/watch?v=udngsXCIHpQ&t=4874s",
       "historyRef": "history/08d3acf9a99a.json",
-      "historyCount": 12,
-      "lastSungAt": 20260206
+      "historyCount": 13,
+      "lastSungAt": 20260516
     },
     {
       "artist": "Ado",
@@ -120,8 +120,8 @@
       "date8": 20261030,
       "rowId": "azari|shadow shadow|歌枠|https://www.youtube.com/watch?v=udngsXCIHpQ&t=4223s",
       "historyRef": "history/fcc95f11c7e6.json",
-      "historyCount": 5,
-      "lastSungAt": 20260114
+      "historyCount": 6,
+      "lastSungAt": 20260401
     },
     {
       "artist": "Giga",
@@ -228,8 +228,8 @@
       "date8": 20261030,
       "rowId": "椎名林檎|罪と罰|歌枠|https://www.youtube.com/watch?v=udngsXCIHpQ&t=2695s",
       "historyRef": "history/192015a2d311.json",
-      "historyCount": 8,
-      "lastSungAt": 20260406
+      "historyCount": 9,
+      "lastSungAt": 20260522
     },
     {
       "artist": "椎名林檎",
@@ -252,8 +252,8 @@
       "date8": 20261030,
       "rowId": "椎名林檎|迷彩|歌枠|https://www.youtube.com/watch?v=udngsXCIHpQ&t=3976s",
       "historyRef": "history/1d2886c4a4dc.json",
-      "historyCount": 3,
-      "lastSungAt": 20260131
+      "historyCount": 4,
+      "lastSungAt": 20260516
     },
     {
       "artist": "RASEN / 9Lana",
@@ -288,8 +288,8 @@
       "date8": 20261023,
       "rowId": "¿?shimon|ルシファー|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=6071s",
       "historyRef": "history/692f53f5eea9.json",
-      "historyCount": 2,
-      "lastSungAt": 20251016
+      "historyCount": 3,
+      "lastSungAt": 20260316
     },
     {
       "artist": "9Lana",
@@ -325,7 +325,7 @@
       "rowId": "akino|創聖のアクエリオン|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=2761s",
       "historyRef": "history/9c18863f27b7.json",
       "historyCount": 1,
-      "lastSungAt": 20261023
+      "lastSungAt": 20260424
     },
     {
       "artist": "Azari",
@@ -360,8 +360,8 @@
       "date8": 20261023,
       "rowId": "hana|blue jeans|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=1610s",
       "historyRef": "history/7522f5da2807.json",
-      "historyCount": 4,
-      "lastSungAt": 20260130
+      "historyCount": 5,
+      "lastSungAt": 20260326
     },
     {
       "artist": "HANA",
@@ -432,7 +432,7 @@
       "date8": 20261023,
       "rowId": "秦基博|ひまわりの約束|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=4631s",
       "historyRef": "history/6ce19043915f.json",
-      "historyCount": 9,
+      "historyCount": 10,
       "lastSungAt": 20260723
     },
     {
@@ -480,8 +480,8 @@
       "date8": 20261023,
       "rowId": "友成空|鬼ノ宴|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=6302s",
       "historyRef": "history/b8058ddff39f.json",
-      "historyCount": 2,
-      "lastSungAt": 20251013
+      "historyCount": 3,
+      "lastSungAt": 20260429
     },
     {
       "artist": "和ぬか",
