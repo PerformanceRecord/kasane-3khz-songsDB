@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-11-05T04:02:01.257Z",
+  "fetchedAt": "2026-11-06T04:00:09.902Z",
   "rows": [
     {
       "artist": "Giga",
@@ -48,8 +48,8 @@
       "date8": 20261030,
       "rowId": "9lana|balalaika|歌枠|https://www.youtube.com/watch?v=udngsXCIHpQ&t=1130s",
       "historyRef": "history/deedd3fe0f6c.json",
-      "historyCount": 6,
-      "lastSungAt": 20260517
+      "historyCount": 7,
+      "lastSungAt": 20260927
     },
     {
       "artist": "9Lana",
@@ -60,8 +60,8 @@
       "date8": 20261030,
       "rowId": "9lana|dyna mind|歌枠|https://www.youtube.com/watch?v=udngsXCIHpQ&t=4580s",
       "historyRef": "history/95576d011aab.json",
-      "historyCount": 1,
-      "lastSungAt": 20261004
+      "historyCount": 2,
+      "lastSungAt": 20261007
     },
     {
       "artist": "9Lana",
@@ -109,7 +109,7 @@
       "rowId": "ado|踊 (bon-odo remix)|歌枠|https://www.youtube.com/watch?v=udngsXCIHpQ&t=828s",
       "historyRef": "history/5196092ae7f1.json",
       "historyCount": 1,
-      "lastSungAt": 20261030
+      "lastSungAt": 20261104
     },
     {
       "artist": "Azari",
@@ -180,8 +180,8 @@
       "date8": 20261030,
       "rowId": "ツミキ|フォニイ|歌枠|https://www.youtube.com/watch?v=udngsXCIHpQ&t=329s",
       "historyRef": "history/470d3b562add.json",
-      "historyCount": 17,
-      "lastSungAt": 20260630
+      "historyCount": 18,
+      "lastSungAt": 20260807
     },
     {
       "artist": "星街すいせい",
@@ -192,8 +192,8 @@
       "date8": 20261030,
       "rowId": "星街すいせい|ビビデバ|歌枠|https://www.youtube.com/watch?v=udngsXCIHpQ&t=1874s",
       "historyRef": "history/daced6c26dcb.json",
-      "historyCount": 16,
-      "lastSungAt": 20260513
+      "historyCount": 17,
+      "lastSungAt": 20260716
     },
     {
       "artist": "相対性理論",
@@ -216,8 +216,8 @@
       "date8": 20261030,
       "rowId": "椎名林檎|17|歌枠|https://www.youtube.com/watch?v=udngsXCIHpQ&t=3396s",
       "historyRef": "history/85aa241ff10a.json",
-      "historyCount": 3,
-      "lastSungAt": 20260527
+      "historyCount": 4,
+      "lastSungAt": 20260907
     },
     {
       "artist": "椎名林檎",
@@ -240,8 +240,8 @@
       "date8": 20261030,
       "rowId": "椎名林檎|本能|歌枠|https://www.youtube.com/watch?v=udngsXCIHpQ&t=2975s",
       "historyRef": "history/cd753daad3fc.json",
-      "historyCount": 8,
-      "lastSungAt": 20260406
+      "historyCount": 9,
+      "lastSungAt": 20260527
     },
     {
       "artist": "椎名林檎",
@@ -300,8 +300,8 @@
       "date8": 20261023,
       "rowId": "9lana|ネオラダイト|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=6576s",
       "historyRef": "history/9366c8dc6a12.json",
-      "historyCount": 1,
-      "lastSungAt": 20260925
+      "historyCount": 2,
+      "lastSungAt": 20261007
     },
     {
       "artist": "9Lana",
@@ -313,7 +313,7 @@
       "rowId": "9lana|右ポケット|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=7081s",
       "historyRef": "history/02ecf38e6efe.json",
       "historyCount": 1,
-      "lastSungAt": 20261023
+      "lastSungAt": 20260713
     },
     {
       "artist": "AKINO",
@@ -337,7 +337,7 @@
       "rowId": "azari|whisper whisper whisper|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=5899s",
       "historyRef": "history/497c78b05433.json",
       "historyCount": 1,
-      "lastSungAt": 20261023
+      "lastSungAt": 20260615
     },
     {
       "artist": "Creepy Nuts",
@@ -384,8 +384,8 @@
       "date8": 20261023,
       "rowId": "maisondes|トウキョウ・シャンディ・ランデヴ|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=7420s",
       "historyRef": "history/6c91a391de0a.json",
-      "historyCount": 6,
-      "lastSungAt": 20251222
+      "historyCount": 7,
+      "lastSungAt": 20260716
     },
     {
       "artist": "アイナ・ジ・エンド",
@@ -396,8 +396,8 @@
       "date8": 20261023,
       "rowId": "アイナ・ジ・エンド|革命道中 - on the way|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=3484s",
       "historyRef": "history/94a9b6f0774d.json",
-      "historyCount": 4,
-      "lastSungAt": 20260507
+      "historyCount": 5,
+      "lastSungAt": 20260914
     },
     {
       "artist": "ドリーミング",
@@ -420,8 +420,8 @@
       "date8": 20261023,
       "rowId": "ヨルシカ|心に穴が空いた|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=5476s",
       "historyRef": "history/f9bf75b8d4a7.json",
-      "historyCount": 8,
-      "lastSungAt": 20260517
+      "historyCount": 9,
+      "lastSungAt": 20260713
     },
     {
       "artist": "秦基博",
@@ -444,8 +444,8 @@
       "date8": 20261023,
       "rowId": "水野あつ|生きる|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=5032s",
       "historyRef": "history/56a813d2296d.json",
-      "historyCount": 17,
-      "lastSungAt": 20260424
+      "historyCount": 18,
+      "lastSungAt": 20260807
     },
     {
       "artist": "相対性理論",
@@ -456,8 +456,8 @@
       "date8": 20261023,
       "rowId": "相対性理論|さわやか会社員|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=2133s",
       "historyRef": "history/e4c447895f1d.json",
-      "historyCount": 9,
-      "lastSungAt": 20260213
+      "historyCount": 10,
+      "lastSungAt": 20260622
     },
     {
       "artist": "椎名林檎",
@@ -493,7 +493,7 @@
       "rowId": "和ぬか|寄り酔い|歌枠|https://www.youtube.com/watch?v=GEQQpsdZZUM&t=969s",
       "historyRef": "history/1e0d6b9dbf12.json",
       "historyCount": 1,
-      "lastSungAt": 20261023
+      "lastSungAt": 20261022
     },
     {
       "artist": "tokiwa",
