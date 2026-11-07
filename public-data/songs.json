@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-11-06T04:00:09.902Z",
+  "fetchedAt": "2026-11-07T03:36:21.256Z",
   "rows": [
     {
       "artist": "Giga",
@@ -156,8 +156,8 @@
       "date8": 20261030,
       "rowId": "シカ部|シカ色デイズ|歌枠|https://www.youtube.com/watch?v=udngsXCIHpQ&t=5981s",
       "historyRef": "history/c3a726f46ff3.json",
-      "historyCount": 5,
-      "lastSungAt": 20250823
+      "historyCount": 6,
+      "lastSungAt": 20250913
     },
     {
       "artist": "ちゃんみな",
@@ -2976,7 +2976,7 @@
       "date8": 20260810,
       "rowId": "miwa|441|歌枠|https://www.youtube.com/watch?v=CpWLa9P7pDg&t=5753s",
       "historyRef": "history/f78720a73a76.json",
-      "historyCount": 1,
+      "historyCount": 2,
       "lastSungAt": 20250908
     },
     {

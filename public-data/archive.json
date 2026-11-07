@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-11-06T04:00:19.378Z",
+  "fetchedAt": "2026-11-07T03:36:30.732Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -2545,6 +2545,16 @@
     },
     {
       "artist": "Miwa",
+      "title": "441",
+      "kind": "歌枠",
+      "dText": "20250908【歌枠】もうすぐデビュー1か月✨⚛️🌐リクエスト中心で歌う♪ 花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=GdYINzUpJjE&t=2835s",
+      "date8": 20250908,
+      "rowId": "miwa|441|歌枠|https://www.youtube.com/watch?v=GdYINzUpJjE&t=2835s",
+      "historyKey": "miwa|441"
+    },
+    {
+      "artist": "Miwa",
       "title": "ヒカリへ",
       "kind": "歌枠",
       "dText": "20250908【歌枠】もうすぐデビュー1か月✨⚛️🌐リクエスト中心で歌う♪ 花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
@@ -3332,6 +3342,16 @@
       "date8": 20250913,
       "rowId": "rinri×kyiku|白絵にもならない|歌枠|https://www.youtube.com/watch?v=AaJMaY91L3A&t=7841s",
       "historyKey": "rinri×kyiku|白絵にもならない"
+    },
+    {
+      "artist": "シカ部",
+      "title": "シカ色デイズ",
+      "kind": "歌枠",
+      "dText": "20250913 【歌枠・昼の部】かっこいいボカロ曲多め🌟お昼にのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=AaJMaY91L3A&t=1198s",
+      "date8": 20250913,
+      "rowId": "シカ部|シカ色デイズ|歌枠|https://www.youtube.com/watch?v=AaJMaY91L3A&t=1198s",
+      "historyKey": "シカ部|シカ色デイズ"
     },
     {
       "artist": "すりぃ",
@@ -17164,6 +17184,6 @@
       "historyKey": "ado|踊 (bon-odo remix)"
     }
   ],
-  "total": 1716,
-  "matched": 1716
+  "total": 1718,
+  "matched": 1718
 }
