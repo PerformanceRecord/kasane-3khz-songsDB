@@ -1,10 +1,10 @@
 {
-  "cursorDate8": 0,
-  "cursorKey": "",
+  "cursorDate8": 20250923,
+  "cursorKey": "aimer|残響散歌|ショート|https://www.youtube.com/shorts/IHIG0eCxGfU",
   "batchSize": 255,
-  "wrapped": true,
+  "wrapped": false,
   "cycle": 18,
   "lastCycleCompletedAt": "2026-11-12T04:45:03.072Z",
-  "lastCollisionCount": 72,
-  "updatedAt": "2026-11-12T04:45:03.072Z"
+  "lastCollisionCount": 255,
+  "updatedAt": "2026-11-13T03:56:54.626Z"
 }
