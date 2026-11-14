@@ -1,20 +1,8 @@
 {
   "ok": true,
   "sheet": "gags",
-  "fetchedAt": "2026-11-13T03:56:41.836Z",
+  "fetchedAt": "2026-11-14T03:55:01.570Z",
   "rows": [
-    {
-      "artist": "すりぃ",
-      "title": "テレキャスタービーボーイ(long ver.)",
-      "kind": "ネタ歌枠",
-      "dText": "20260716 【#歌枠 】作業BGMにどうぞ・のんびり歌枠⚛️🌐初見さんROM歓迎🌸花彩音_3kHz【#新人vtuber #作業用bgm 】",
-      "dUrl": "https://www.youtube.com/watch?v=ko-7BdZ98NQ&t=8089s",
-      "date8": 20260716,
-      "rowId": "すりぃ|テレキャスタービーボーイ(long ver.)|ネタ歌枠|https://www.youtube.com/watch?v=ko-7BdZ98NQ&t=8089s",
-      "historyRef": "history/6ccdef70e18b.json",
-      "historyCount": 1,
-      "lastSungAt": 20260716
-    },
     {
       "artist": "花彩音_3kHz",
       "title": "お風呂キャンセルしました",
@@ -568,6 +556,6 @@
       "lastSungAt": 20250912
     }
   ],
-  "total": 47,
-  "matched": 47
+  "total": 46,
+  "matched": 46
 }
