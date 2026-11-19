@@ -2,22 +2,22 @@
   "ok": true,
   "source": "gas-sync",
   "syncMode": "regular",
-  "generatedAt": "2026-11-19T04:53:53.373Z",
-  "startedAt": "2026-11-19T04:53:36.133Z",
+  "generatedAt": "2026-11-19T14:12:33.223Z",
+  "startedAt": "2026-11-19T14:12:18.735Z",
   "tabs": [
     "songs",
     "gags"
   ],
   "counts": {
-    "songs": 686,
+    "songs": 702,
     "gags": 46
   },
   "history": {
     "version": 1,
-    "generatedAt": "2026-11-19T04:53:53.373Z",
-    "sourceMode": "live-archive",
+    "generatedAt": "2026-11-19T14:12:33.223Z",
+    "sourceMode": "disk-archive",
     "sourceRows": 1783,
-    "files": 736,
+    "files": 752,
     "multiEntryFiles": 328,
     "skipped": false
   }
