@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-11-21T04:39:10.560Z",
+  "fetchedAt": "2026-11-22T03:53:33.853Z",
   "rows": [
     {
       "artist": "榊ネス",
@@ -132,8 +132,8 @@
       "date8": 20261116,
       "rowId": "superfly|愛をこめて花束を|歌枠|https://www.youtube.com/watch?v=kp8dNrlV8P0&t=7037s",
       "historyRef": "history/deda669b5153.json",
-      "historyCount": 9,
-      "lastSungAt": 20260128
+      "historyCount": 10,
+      "lastSungAt": 20260228
     },
     {
       "artist": "YOASOBI",
@@ -156,8 +156,8 @@
       "date8": 20261116,
       "rowId": "すりぃ|ラヴィ|歌枠|https://www.youtube.com/watch?v=kp8dNrlV8P0&t=6000s",
       "historyRef": "history/3a92867b0ee3.json",
-      "historyCount": 7,
-      "lastSungAt": 20251219
+      "historyCount": 8,
+      "lastSungAt": 20260228
     },
     {
       "artist": "ちゃんみな",
@@ -276,8 +276,8 @@
       "date8": 20261113,
       "rowId": "mori calliope|go-getters|歌枠|https://www.youtube.com/watch?v=R7SzAO8cJZ0&t=2321s",
       "historyRef": "history/3ad5ed9aee2f.json",
-      "historyCount": 10,
-      "lastSungAt": 20260213
+      "historyCount": 11,
+      "lastSungAt": 20260316
     },
     {
       "artist": "YOASOBI",
@@ -552,8 +552,8 @@
       "date8": 20261109,
       "rowId": "夏山よつぎ|ころしちゃった!|歌枠|https://www.youtube.com/watch?v=7AXhQBuJzI0&t=2154s",
       "historyRef": "history/104cbea47e6f.json",
-      "historyCount": 2,
-      "lastSungAt": 20251230
+      "historyCount": 3,
+      "lastSungAt": 20260121
     },
     {
       "artist": "中島美嘉",
@@ -648,8 +648,8 @@
       "date8": 20261104,
       "rowId": "egoist|名前のない怪物|歌枠|https://www.youtube.com/watch?v=jolZZ82itQM&t=4581s",
       "historyRef": "history/eab27dcbadc6.json",
-      "historyCount": 2,
-      "lastSungAt": 20260121
+      "historyCount": 3,
+      "lastSungAt": 20260225
     },
     {
       "artist": "milet",

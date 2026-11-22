@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-11-21T04:39:19.353Z",
+  "fetchedAt": "2026-11-22T03:53:40.551Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -13164,6 +13164,16 @@
       "historyKey": "ロクデナシ|言の刃"
     },
     {
+      "artist": "夏山よつぎ",
+      "title": "ころしちゃった！",
+      "kind": "歌枠",
+      "dText": "20260121 【#歌枠 昼の部】初見歓迎🌟午後からのんびり歌います⚛️🌐花彩音_3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=mdeFS8kgFcM&t=1628s",
+      "date8": 20260121,
+      "rowId": "夏山よつぎ|ころしちゃった!|歌枠|https://www.youtube.com/watch?v=mdeFS8kgFcM&t=1628s",
+      "historyKey": "夏山よつぎ|ころしちゃった！"
+    },
+    {
       "artist": "日食なつこ",
       "title": "水流のロック",
       "kind": "歌枠",
@@ -14384,6 +14394,16 @@
       "historyKey": "9mm parabellum bullet|discommunication"
     },
     {
+      "artist": "EGOIST",
+      "title": "名前のない怪物",
+      "kind": "歌枠",
+      "dText": "20260225 【#歌枠 昼の部 #さんきろへるつラジオ 】ボカロ曲多め🌟午後からのんびり歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=n1E4Q8GxFDo&t=4953s",
+      "date8": 20260225,
+      "rowId": "egoist|名前のない怪物|歌枠|https://www.youtube.com/watch?v=n1E4Q8GxFDo&t=4953s",
+      "historyKey": "egoist|名前のない怪物"
+    },
+    {
       "artist": "Kai",
       "title": "さよならプリンセス",
       "kind": "歌枠",
@@ -14564,6 +14584,16 @@
       "historyKey": "supercell|ワールドイズマイン"
     },
     {
+      "artist": "Superfly",
+      "title": "愛をこめて花束を",
+      "kind": "歌枠",
+      "dText": "20260228 【#歌枠 昼の部 #耐久 】高評価100耐久🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=8759s",
+      "date8": 20260228,
+      "rowId": "superfly|愛をこめて花束を|歌枠|https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=8759s",
+      "historyKey": "superfly|愛をこめて花束を"
+    },
+    {
       "artist": "クリープハイプ",
       "title": "おやすみ泣き声、さよなら歌姫",
       "kind": "歌枠",
@@ -14572,6 +14602,16 @@
       "date8": 20260228,
       "rowId": "クリープハイプ|おやすみ泣き声、さよなら歌姫|歌枠|https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=2210s",
       "historyKey": "クリープハイプ|おやすみ泣き声、さよなら歌姫"
+    },
+    {
+      "artist": "すりぃ",
+      "title": "ラヴィ",
+      "kind": "歌枠",
+      "dText": "20260228 【#歌枠 昼の部 #耐久 】高評価100耐久🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=6153s",
+      "date8": 20260228,
+      "rowId": "すりぃ|ラヴィ|歌枠|https://www.youtube.com/watch?v=Gq9KRVsFXqY&t=6153s",
+      "historyKey": "すりぃ|ラヴィ"
     },
     {
       "artist": "ちゃんみな",
@@ -14982,6 +15022,16 @@
       "date8": 20260316,
       "rowId": "hana|drop|歌枠|https://www.youtube.com/watch?v=x5BV86bUdvo&t=2249s",
       "historyKey": "hana|drop"
+    },
+    {
+      "artist": "Mori Calliope",
+      "title": "Go-Getters",
+      "kind": "歌枠",
+      "dText": "20260316 【#歌枠 】昼の歌枠🌟楽しく歌います⚛️🌐かさねさんきろへるつ 【#新人vtuber #作業用bgm 】",
+      "dUrl": "https://www.youtube.com/watch?v=x5BV86bUdvo&t=1494s",
+      "date8": 20260316,
+      "rowId": "mori calliope|go-getters|歌枠|https://www.youtube.com/watch?v=x5BV86bUdvo&t=1494s",
+      "historyKey": "mori calliope|go-getters"
     },
     {
       "artist": "ヨルシカ",
@@ -18264,6 +18314,6 @@
       "historyKey": "ado|踊 (bon-odo remix)"
     }
   ],
-  "total": 1826,
-  "matched": 1826
+  "total": 1831,
+  "matched": 1831
 }
