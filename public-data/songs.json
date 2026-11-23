@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-11-22T03:53:33.853Z",
+  "fetchedAt": "2026-11-23T04:33:24.108Z",
   "rows": [
     {
       "artist": "榊ネス",
@@ -37,7 +37,7 @@
       "rowId": "aimer|カタオモイ|歌枠|https://www.youtube.com/watch?v=kp8dNrlV8P0&t=4531s",
       "historyRef": "history/ac6255438721.json",
       "historyCount": 1,
-      "lastSungAt": 20261116
+      "lastSungAt": 20260727
     },
     {
       "artist": "DECO*27",
@@ -61,7 +61,7 @@
       "rowId": "dreams come true|大阪lover|歌枠|https://www.youtube.com/watch?v=kp8dNrlV8P0&t=2660s",
       "historyRef": "history/b99f48374268.json",
       "historyCount": 1,
-      "lastSungAt": 20261116
+      "lastSungAt": 20260406
     },
     {
       "artist": "FLG4",
@@ -168,8 +168,8 @@
       "date8": 20261116,
       "rowId": "ちゃんみな|sad song|歌枠|https://www.youtube.com/watch?v=kp8dNrlV8P0&t=3299s",
       "historyRef": "history/010519675ae6.json",
-      "historyCount": 6,
-      "lastSungAt": 20260206
+      "historyCount": 7,
+      "lastSungAt": 20260616
     },
     {
       "artist": "宇多田ヒカル",
@@ -216,8 +216,8 @@
       "date8": 20261116,
       "rowId": "椎名林檎|ここでキスして。|歌枠|https://www.youtube.com/watch?v=kp8dNrlV8P0&t=1379s",
       "historyRef": "history/eab3da7b3dfd.json",
-      "historyCount": 5,
-      "lastSungAt": 20260204
+      "historyCount": 6,
+      "lastSungAt": 20260406
     },
     {
       "artist": "まらしぃ",
@@ -324,8 +324,8 @@
       "date8": 20261113,
       "rowId": "米津玄師×宇多田ヒカル|jane doe|歌枠|https://www.youtube.com/watch?v=R7SzAO8cJZ0&t=3864s",
       "historyRef": "history/11f7164a1686.json",
-      "historyCount": 12,
-      "lastSungAt": 20260326
+      "historyCount": 13,
+      "lastSungAt": 20260615
     },
     {
       "artist": "凛として時雨",
@@ -432,8 +432,8 @@
       "date8": 20261109,
       "rowId": "love psychedelico|everybody needs somebody|歌枠|https://www.youtube.com/watch?v=7AXhQBuJzI0&t=4517s",
       "historyRef": "history/bf83737eb537.json",
-      "historyCount": 5,
-      "lastSungAt": 20260130
+      "historyCount": 6,
+      "lastSungAt": 20260429
     },
     {
       "artist": "LOVE PSYCHEDELICO",
@@ -456,8 +456,8 @@
       "date8": 20261109,
       "rowId": "love psychedelico|your song|歌枠|https://www.youtube.com/watch?v=7AXhQBuJzI0&t=4145s",
       "historyRef": "history/ac8d631da476.json",
-      "historyCount": 7,
-      "lastSungAt": 20260130
+      "historyCount": 8,
+      "lastSungAt": 20260413
     },
     {
       "artist": "milet",
@@ -564,8 +564,8 @@
       "date8": 20261109,
       "rowId": "中島美嘉|雪の華|歌枠|https://www.youtube.com/watch?v=7AXhQBuJzI0&t=6005s",
       "historyRef": "history/9f8343877cce.json",
-      "historyCount": 9,
-      "lastSungAt": 20260110
+      "historyCount": 10,
+      "lastSungAt": 20260616
     },
     {
       "artist": "内緒のピアス",
@@ -576,8 +576,8 @@
       "date8": 20261109,
       "rowId": "内緒のピアス|プロポーズ|歌枠|https://www.youtube.com/watch?v=7AXhQBuJzI0&t=6898s",
       "historyRef": "history/e3d66e85765f.json",
-      "historyCount": 12,
-      "lastSungAt": 20260319
+      "historyCount": 13,
+      "lastSungAt": 20260413
     },
     {
       "artist": "日食なつこ",
@@ -708,8 +708,8 @@
       "date8": 20261104,
       "rowId": "ヨルシカ|ノーチラス|歌枠|https://www.youtube.com/watch?v=jolZZ82itQM&t=5617s",
       "historyRef": "history/e38859b9c2ae.json",
-      "historyCount": 6,
-      "lastSungAt": 20260401
+      "historyCount": 7,
+      "lastSungAt": 20260511
     },
     {
       "artist": "ヨルシカ",
@@ -780,8 +780,8 @@
       "date8": 20261104,
       "rowId": "東京事変|透明人間|歌枠|https://www.youtube.com/watch?v=jolZZ82itQM&t=7277s",
       "historyRef": "history/6bf06768593d.json",
-      "historyCount": 10,
-      "lastSungAt": 20260110
+      "historyCount": 11,
+      "lastSungAt": 20260522
     },
     {
       "artist": "東京事変",
@@ -793,7 +793,7 @@
       "rowId": "東京事変|入水願い|歌枠|https://www.youtube.com/watch?v=jolZZ82itQM&t=3456s",
       "historyRef": "history/8ec640f41976.json",
       "historyCount": 1,
-      "lastSungAt": 20261104
+      "lastSungAt": 20260516
     },
     {
       "artist": "syudou",
