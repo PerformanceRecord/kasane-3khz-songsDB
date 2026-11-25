@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "songs",
-  "fetchedAt": "2026-11-24T07:27:01.683Z",
+  "fetchedAt": "2026-11-25T05:56:48.001Z",
   "rows": [
     {
       "artist": "榊ネス",
@@ -144,7 +144,7 @@
       "date8": 20261116,
       "rowId": "yoasobi|夜に駆ける|歌枠|https://www.youtube.com/watch?v=kp8dNrlV8P0&t=485s",
       "historyRef": "history/f9d2780600ae.json",
-      "historyCount": 1,
+      "historyCount": 2,
       "lastSungAt": 20261113
     },
     {
@@ -337,7 +337,7 @@
       "rowId": "凛として時雨|jpop xfile|歌枠|https://www.youtube.com/watch?v=R7SzAO8cJZ0&t=3514s",
       "historyRef": "history/13fbd4843e68.json",
       "historyCount": 1,
-      "lastSungAt": 20261113
+      "lastSungAt": 20250904
     },
     {
       "artist": "一条ゆう",

@@ -1,7 +1,7 @@
 {
   "ok": true,
   "sheet": "archive",
-  "fetchedAt": "2026-11-24T07:27:10.845Z",
+  "fetchedAt": "2026-11-25T05:56:55.726Z",
   "rows": [
     {
       "artist": "ツミキ",
@@ -2454,6 +2454,16 @@
       "historyKey": "ヨルシカ|風を食む"
     },
     {
+      "artist": "凛として時雨",
+      "title": "JPOP Xfile",
+      "kind": "歌枠",
+      "dText": "20250904【歌枠】初見歓迎🌸歌が上手くなりたい 花彩音 3kHz かさねさんきろへるつ 【#新人vtuber】",
+      "dUrl": "https://www.youtube.com/watch?v=JLbcMFqHr7U&t=2883s",
+      "date8": 20250904,
+      "rowId": "凛として時雨|jpop xfile|歌枠|https://www.youtube.com/watch?v=JLbcMFqHr7U&t=2883s",
+      "historyKey": "凛として時雨|jpop xfile"
+    },
+    {
       "artist": "椎名林檎",
       "title": "丸ノ内サディスティック",
       "kind": "歌枠",
@@ -2492,6 +2502,16 @@
       "date8": 20250904,
       "rowId": "緑黄色社会|花になって|歌枠|https://www.youtube.com/watch?v=JLbcMFqHr7U&t=4120s",
       "historyKey": "緑黄色社会|花になって"
+    },
+    {
+      "artist": "YOASOBI",
+      "title": "夜に駆ける",
+      "kind": "ショート",
+      "dText": "20250907 【アカペラ】夜に駆ける/YOASOBI #歌ってみた #yoasobi #アカペラ #vtuber",
+      "dUrl": "https://www.youtube.com/shorts/AYoq_7MZFRQ",
+      "date8": 20250907,
+      "rowId": "yoasobi|夜に駆ける|ショート|https://www.youtube.com/shorts/AYoq_7MZFRQ",
+      "historyKey": "yoasobi|夜に駆ける"
     },
     {
       "artist": "aiko",
@@ -18754,6 +18774,6 @@
       "historyKey": "yoasobi|夜に駆ける"
     }
   ],
-  "total": 1875,
-  "matched": 1875
+  "total": 1877,
+  "matched": 1877
 }
