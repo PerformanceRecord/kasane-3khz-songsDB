@@ -151,6 +151,7 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
       assert.equal(await preview(), '✨💙💜✨✨💙💜✨🎵🩵🤍🎵');
       assert.equal((await draft()).selected, '🎵🩵🤍🎵');
       assert.equal((await draft()).parts.length, 3);
+      assert.equal(await evaluate('document.getElementById("dm-open").textContent'), await preview());
       await click('dm-add');
       assert.equal(await preview(), '✨💙💜✨✨💙💜✨🎵🩵🤍🎵🎵🩵🤍🎵');
       assert.equal(await evaluate('document.getElementById("dm-add").disabled'), false);
@@ -167,6 +168,7 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
       await load();
       assert.deepEqual(await draft(), before);
       assert.equal(await preview(), before.parts.join(''));
+      assert.equal(await evaluate('document.getElementById("dm-open").textContent'), before.parts.join(''));
       await click('dm-open');
       assert.equal(await evaluate('document.getElementById("dm-select").value'), before.selected);
     });
@@ -215,6 +217,7 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
       await click('dm-clear');
       assert.equal(await draft(), null);
       assert.equal(await preview(), '');
+      assert.equal(await evaluate('document.getElementById("dm-open").textContent'), '弾幕');
       assert.equal(await evaluate('document.getElementById("dm-quick-copy").disabled'), true);
       assert.equal(await evaluate('localStorage.getItem("unrelated-setting")'), 'keep');
     });
@@ -254,6 +257,7 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
       assert.equal(await preview(), '');
       assert.equal(await draft(), null);
       assert.equal(await evaluate('document.getElementById("dm-copy").disabled'), true);
+      assert.equal(await evaluate('document.getElementById("dm-open").textContent'), '弾幕');
       await close();
     });
 
