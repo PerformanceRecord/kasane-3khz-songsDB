@@ -3,7 +3,7 @@
 html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sky),#b9b1ef);background-attachment:fixed}
 button,input{font:inherit}
 button{cursor:pointer}
-.app{width:min(1100px,100%);margin:auto;padding:12px;display:grid;gap:12px}
+.app{width:min(1100px,100%);margin:auto;padding:12px 12px calc(94px + env(safe-area-inset-bottom));display:grid;gap:12px}
 .card{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 28px rgba(20,70,55,.14)}
 .toolbar{position:sticky;top:8px;z-index:10;padding:12px}
 .toolbar-row,.search-row,.transport,.now-playing{display:flex;align-items:center;gap:10px}
@@ -73,21 +73,76 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
 :focus-visible{outline:3px solid var(--purple);outline-offset:2px}
 [hidden]{display:none!important}
 
-/* Restored danmaku copy console */
-.danmaku-dock{width:100%}
-.danmaku-console{padding:10px}
+/* Danmaku launcher and editor */
+.danmaku-dock{position:fixed;left:0;right:0;bottom:0;z-index:40;width:100%;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(104,170,136,0) 0%,rgba(110,170,140,.76) 30%,rgba(110,170,140,.9) 100%);backdrop-filter:blur(4px)}
+.danmaku-console{width:100%;max-width:1076px;margin:0 auto;padding:10px}
 .dm-wrap{display:flex;align-items:center;gap:8px}
-.dm-select-wrap{flex:7 1 0;min-width:0}
-.dm-btn-wrap{display:flex;flex:3 1 0}
+.dm-select-wrap{flex:1 1 0;min-width:0}
 #dm-select{width:100%;min-width:0;border:1px solid #8fbda7;border-radius:10px;background:#fff;color:var(--ink);padding:8px 10px;font:inherit;font-size:14px;line-height:1.2}
-#dm-copy{appearance:none;width:100%;border:1px solid transparent;border-radius:12px;background:linear-gradient(135deg,#4cc9f0,#4895ef);color:#05223d;padding:9px 12px;font-weight:700;cursor:pointer}
-#dm-copy:hover{filter:brightness(1.05)}
-#dm-copy:active{transform:translateY(1px)}
+#dm-copy,#dm-quick-copy{appearance:none;width:100%;border:1px solid transparent;border-radius:12px;background:linear-gradient(135deg,#4cc9f0,#4895ef);color:#05223d;padding:9px 12px;font-weight:700;cursor:pointer}
+#dm-copy:hover,#dm-quick-copy:hover{filter:brightness(1.05)}
+#dm-copy:active,#dm-quick-copy:active{transform:translateY(1px)}
 .toast{position:fixed;left:50%;bottom:16px;z-index:60;transform:translateX(-50%);background:rgba(37,86,70,.92);color:#fff;padding:10px 14px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s}
 .toast.show{opacity:1}
 
+.dm-launch-actions{display:flex;align-items:center;gap:8px}
+#dm-open{flex:1;min-width:0;min-height:44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#dm-quick-copy{flex:0 0 auto;width:auto;min-height:44px;white-space:nowrap}
+#dm-quick-copy:disabled{opacity:.45;cursor:default;filter:none;transform:none}
+#dm-sheet{
+  position:fixed;
+  inset:auto 0 0;
+  width:min(620px,100%);
+  max-width:100%;
+  max-height:85vh;
+  max-height:85dvh;
+  margin:0 auto;
+  padding:0 16px calc(16px + env(safe-area-inset-bottom));
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  border:1px solid var(--line);
+  border-bottom:0;
+  border-radius:18px 18px 0 0;
+  background:var(--soft);
+  box-shadow:0 -12px 28px rgba(20,70,55,.14);
+}
+#dm-sheet[open]{animation:dm-slide-up .22s ease-out}
+#dm-sheet.dm-closing{animation:dm-slide-down .18s ease-in forwards;pointer-events:none}
+.dm-sheet-head{touch-action:none;padding-top:10px}
+.dm-handle{width:36px;height:4px;margin:0 auto 8px;border-radius:999px;background:var(--line)}
+.dm-sheet-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+#dm-title{margin:0;font-size:18px}
+#dm-close{display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;color:var(--ink);font-size:26px}
+#dm-sheet #dm-select{min-height:44px;font-size:16px}
+#dm-add{flex:0 0 auto;min-height:44px;padding:9px 13px}
+#dm-preview{
+  display:flex;
+  align-items:center;
+  height:64px;
+  margin-top:16px;
+  padding:12px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--card);
+  font-size:20px;
+  line-height:1.6;
+}
+#dm-preview-text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dm-edit-actions{display:flex;align-items:center;gap:8px;margin-top:12px}
+.dm-edit-actions .button{min-height:44px;padding:8px 12px;background:transparent}
+#dm-sheet #dm-copy{flex:1;min-width:0;width:auto;min-height:48px;font-size:16px;white-space:nowrap}
+#dm-sheet #dm-clear{flex:0 0 auto;min-height:48px;white-space:nowrap}
+#dm-sheet button:disabled{opacity:.45;cursor:default;filter:none;transform:none}
+#dm-sheet .toast{max-width:calc(100vw - 24px);bottom:calc(16px + env(safe-area-inset-bottom))}
+@keyframes dm-slide-up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes dm-slide-down{from{transform:translateY(0)}to{transform:translateY(100%)}}
+@media(prefers-reduced-motion:reduce){
+  #dm-sheet[open],#dm-sheet.dm-closing{animation:none}
+}
+
 @media(max-width:700px){
-  .app{padding:6px 6px calc(82px + env(safe-area-inset-bottom));gap:8px}
+  .app{padding:6px 6px calc(86px + env(safe-area-inset-bottom));gap:8px}
   .toolbar{top:4px;padding:9px}
   .toolbar-row{align-items:flex-start}
   .tabs{gap:5px}
@@ -97,7 +152,7 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
   .status-controls{width:100%;gap:6px}
   #status.server-status-bar{flex:1 1 auto;min-width:0;width:auto;line-height:1.25}
   #player-toggle{flex:0 0 auto;min-width:122px}
-  .danmaku-dock{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:8px 6px calc(8px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(104,170,136,0) 0%,rgba(110,170,140,.76) 30%,rgba(110,170,140,.9) 100%);backdrop-filter:blur(4px)}
+  .danmaku-dock{padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
   .danmaku-console{width:100%;max-width:700px;margin:0 auto;padding:8px;border-radius:14px}
   #dm-select{padding:8px 9px;font-size:13px}
   #dm-copy{padding:8px 9px;font-size:13px}
@@ -148,8 +203,6 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
 .song-side{display:grid;gap:6px;width:132px}
 .song-thumbnail{position:relative;width:100%;padding:0;overflow:hidden;border:1px solid #9fc7b5;border-radius:10px;background:#dfecea;aspect-ratio:16/9;cursor:pointer}
 .song-thumbnail img{display:block;width:100%;height:100%;object-fit:cover}
-.song-thumbnail::after{content:"▶";position:absolute;left:50%;top:50%;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:14px;transform:translate(-50%,-50%);opacity:.9}
-.song-thumbnail:hover::after{background:#008f83;transform:translate(-50%,-50%) scale(1.08)}
 @media(max-width:760px){
   .operation-bar{grid-template-columns:1fr;gap:9px}
   .transport-core{width:100%;height:64px}
@@ -161,7 +214,6 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
   .operation-bar .volume{justify-self:end;margin-top:-54px}
   .song{grid-template-columns:minmax(0,1fr) 108px}
   .song-side{width:108px}
-  .song-thumbnail::after{width:28px;height:28px;font-size:12px}
 }
 @media(max-width:380px){
   .now-playing-line{font-size:15px}
@@ -207,19 +259,19 @@ a.inline-history-row:hover{border-radius:8px;background:#eaf6f0}
     width:min(1500px,100%);
     height:auto;
     min-height:max(640px,100dvh);
-    padding:16px;
+    padding:16px 16px calc(98px + env(safe-area-inset-bottom));
     grid-template-columns:minmax(500px,1.15fr) minmax(470px,.85fr);
-    grid-template-rows:auto auto minmax(150px,1fr) auto;
+    grid-template-rows:auto auto minmax(150px,1fr);
     grid-template-areas:
       "results toolbar"
       "results player"
-      "results history"
-      "results danmaku";
+      "results history";
     align-items:start;
     gap:12px;
   }
   .toolbar{grid-area:toolbar;position:static;top:auto;width:100%}
-  .danmaku-dock{grid-area:danmaku;position:static;width:100%;padding:0;background:none;backdrop-filter:none}
+  .danmaku-dock{padding-left:16px;padding-right:16px}
+  .danmaku-console{max-width:1468px}
   .results{
     grid-area:results;
     position:sticky;
@@ -227,7 +279,7 @@ a.inline-history-row:hover{border-radius:8px;background:#eaf6f0}
     display:flex;
     flex-direction:column;
     width:100%;
-    height:calc(100dvh - 32px);
+    height:calc(100dvh - 114px - env(safe-area-inset-bottom));
     min-height:0;
     overflow:hidden;
   }
