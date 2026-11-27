@@ -344,6 +344,24 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
       assert.equal(await evaluate('document.activeElement.id'), 'dm-open');
     });
 
+    await t.test('launcher card stays inside the viewport while the song page scrolls', async () => {
+      for (const width of [320, 390, 1024, 1440]) {
+        await connection.call('Emulation.setDeviceMetricsOverride', {width,height:850,deviceScaleFactor:1,mobile:width<700});
+        await evaluate('document.querySelector(".results").style.minHeight="2000px";window.scrollTo(0,document.documentElement.scrollHeight)');
+        const dock = await evaluate(`(() => {
+          const element=document.querySelector('.danmaku-dock');
+          const rect=element.getBoundingClientRect();
+          const launcher=document.getElementById('dm-open').getBoundingClientRect();
+          const copy=document.getElementById('dm-quick-copy').getBoundingClientRect();
+          return {fixed:getComputedStyle(element).position==='fixed',
+            inViewport:rect.top>=0 && rect.bottom<=innerHeight+1 && rect.left>=0 && rect.right<=innerWidth+1,
+            sameRow:Math.abs(launcher.y-copy.y)<2};
+        })()`);
+        assert.deepEqual(dock,{fixed:true,inViewport:true,sameRow:true},String(width));
+        await evaluate('document.querySelector(".results").style.minHeight="";window.scrollTo(0,0)');
+      }
+    });
+
     await t.test('mobile and desktop previews stay on one line with ellipsis and no visible scrolling', async () => {
       for (const width of [320, 390, 1440]) {
         await connection.call('Emulation.setDeviceMetricsOverride', {width, height:850, deviceScaleFactor:1, mobile:width<700});

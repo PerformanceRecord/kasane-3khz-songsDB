@@ -3,7 +3,7 @@
 html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sky),#b9b1ef);background-attachment:fixed}
 button,input{font:inherit}
 button{cursor:pointer}
-.app{width:min(1100px,100%);margin:auto;padding:12px;display:grid;gap:12px}
+.app{width:min(1100px,100%);margin:auto;padding:12px 12px calc(94px + env(safe-area-inset-bottom));display:grid;gap:12px}
 .card{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 28px rgba(20,70,55,.14)}
 .toolbar{position:sticky;top:8px;z-index:10;padding:12px}
 .toolbar-row,.search-row,.transport,.now-playing{display:flex;align-items:center;gap:10px}
@@ -74,8 +74,8 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
 [hidden]{display:none!important}
 
 /* Danmaku launcher and editor */
-.danmaku-dock{width:100%}
-.danmaku-console{padding:10px}
+.danmaku-dock{position:fixed;left:0;right:0;bottom:0;z-index:40;width:100%;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(104,170,136,0) 0%,rgba(110,170,140,.76) 30%,rgba(110,170,140,.9) 100%);backdrop-filter:blur(4px)}
+.danmaku-console{width:100%;max-width:1076px;margin:0 auto;padding:10px}
 .dm-wrap{display:flex;align-items:center;gap:8px}
 .dm-select-wrap{flex:1 1 0;min-width:0}
 #dm-select{width:100%;min-width:0;border:1px solid #8fbda7;border-radius:10px;background:#fff;color:var(--ink);padding:8px 10px;font:inherit;font-size:14px;line-height:1.2}
@@ -142,7 +142,7 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
 }
 
 @media(max-width:700px){
-  .app{padding:6px 6px calc(82px + env(safe-area-inset-bottom));gap:8px}
+  .app{padding:6px 6px calc(86px + env(safe-area-inset-bottom));gap:8px}
   .toolbar{top:4px;padding:9px}
   .toolbar-row{align-items:flex-start}
   .tabs{gap:5px}
@@ -152,7 +152,7 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
   .status-controls{width:100%;gap:6px}
   #status.server-status-bar{flex:1 1 auto;min-width:0;width:auto;line-height:1.25}
   #player-toggle{flex:0 0 auto;min-width:122px}
-  .danmaku-dock{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:8px 6px calc(8px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(104,170,136,0) 0%,rgba(110,170,140,.76) 30%,rgba(110,170,140,.9) 100%);backdrop-filter:blur(4px)}
+  .danmaku-dock{padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
   .danmaku-console{width:100%;max-width:700px;margin:0 auto;padding:8px;border-radius:14px}
   #dm-select{padding:8px 9px;font-size:13px}
   #dm-copy{padding:8px 9px;font-size:13px}
@@ -259,19 +259,19 @@ a.inline-history-row:hover{border-radius:8px;background:#eaf6f0}
     width:min(1500px,100%);
     height:auto;
     min-height:max(640px,100dvh);
-    padding:16px;
+    padding:16px 16px calc(98px + env(safe-area-inset-bottom));
     grid-template-columns:minmax(500px,1.15fr) minmax(470px,.85fr);
-    grid-template-rows:auto auto minmax(150px,1fr) auto;
+    grid-template-rows:auto auto minmax(150px,1fr);
     grid-template-areas:
       "results toolbar"
       "results player"
-      "results history"
-      "results danmaku";
+      "results history";
     align-items:start;
     gap:12px;
   }
   .toolbar{grid-area:toolbar;position:static;top:auto;width:100%}
-  .danmaku-dock{grid-area:danmaku;position:static;width:100%;padding:0;background:none;backdrop-filter:none}
+  .danmaku-dock{padding-left:16px;padding-right:16px}
+  .danmaku-console{max-width:1468px}
   .results{
     grid-area:results;
     position:sticky;
@@ -279,7 +279,7 @@ a.inline-history-row:hover{border-radius:8px;background:#eaf6f0}
     display:flex;
     flex-direction:column;
     width:100%;
-    height:calc(100dvh - 32px);
+    height:calc(100dvh - 114px - env(safe-area-inset-bottom));
     min-height:0;
     overflow:hidden;
   }
