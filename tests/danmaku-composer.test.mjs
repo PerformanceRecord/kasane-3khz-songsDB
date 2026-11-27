@@ -136,6 +136,7 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
       const before = await evaluate('document.querySelector(".toolbar").getBoundingClientRect().toJSON()');
       await click('dm-open');
       assert.equal(await evaluate('document.getElementById("dm-sheet").open'), true);
+      assert.equal(await evaluate('document.getElementById("dm-title").textContent'), '弾幕カスタマイズ');
       assert.deepEqual(await evaluate('["dm-clear","dm-copy","dm-quick-copy"].map(id => document.getElementById(id).disabled)'), [true, true, true]);
       const after = await evaluate('document.querySelector(".toolbar").getBoundingClientRect().toJSON()');
       assert.equal(after.width, before.width);
