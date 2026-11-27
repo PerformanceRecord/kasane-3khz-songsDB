@@ -345,21 +345,31 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
       assert.equal(await evaluate('document.activeElement.id'), 'dm-open');
     });
 
-    await t.test('launcher card stays inside the viewport while the song page scrolls', async () => {
-      for (const width of [320, 390, 1024, 1440]) {
+    await t.test('launcher stays visible and wide layouts place it below the right history card', async () => {
+      for (const width of [320, 390, 1024, 1100, 1440, 1920]) {
         await connection.call('Emulation.setDeviceMetricsOverride', {width,height:850,deviceScaleFactor:1,mobile:width<700});
-        await evaluate('document.querySelector(".results").style.minHeight="2000px";window.scrollTo(0,document.documentElement.scrollHeight)');
+        await evaluate(`document.getElementById('list').innerHTML = '<article class="song">Song</article>'.repeat(100)`);
+        if (width >= 1100) {
+          await evaluate('document.getElementById("list").scrollTop=document.getElementById("list").scrollHeight');
+        } else {
+          await evaluate('window.scrollTo(0,document.documentElement.scrollHeight)');
+        }
         const dock = await evaluate(`(() => {
           const element=document.querySelector('.danmaku-dock');
           const rect=element.getBoundingClientRect();
+          const history=document.getElementById('desktop-history').getBoundingClientRect();
+          const results=document.querySelector('.results').getBoundingClientRect();
           const launcher=document.getElementById('dm-open').getBoundingClientRect();
           const copy=document.getElementById('dm-quick-copy').getBoundingClientRect();
-          return {fixed:getComputedStyle(element).position==='fixed',
+          return {position:getComputedStyle(element).position,
             inViewport:rect.top>=0 && rect.bottom<=innerHeight+1 && rect.left>=0 && rect.right<=innerWidth+1,
-            sameRow:Math.abs(launcher.y-copy.y)<2};
+            sameRow:Math.abs(launcher.y-copy.y)<2,
+            rightColumn:innerWidth<1100 || (Math.abs(rect.left-history.left)<1 &&
+              Math.abs(rect.width-history.width)<1 && rect.top>=history.bottom &&
+              rect.left>=results.right && results.bottom>=rect.bottom)};
         })()`);
-        assert.deepEqual(dock,{fixed:true,inViewport:true,sameRow:true},String(width));
-        await evaluate('document.querySelector(".results").style.minHeight="";window.scrollTo(0,0)');
+        assert.deepEqual(dock,{position:width>=1100?'sticky':'fixed',inViewport:true,sameRow:true,rightColumn:true},String(width));
+        await evaluate('document.getElementById("list").replaceChildren();window.scrollTo(0,0)');
       }
     });
 
