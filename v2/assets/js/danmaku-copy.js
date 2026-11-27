@@ -37,9 +37,9 @@
 
   function render(){
     previewText.textContent = parts.join('');
-    openButton.textContent = previewText.textContent || '弾幕';
-    openButton.setAttribute('aria-label', parts.length ? '作成した弾幕を編集' : '弾幕');
-    openButton.title = previewText.textContent || '弾幕';
+    openButton.textContent = previewText.textContent || '弾幕カスタマイズ';
+    openButton.setAttribute('aria-label', parts.length ? '作成した弾幕を編集' : '弾幕カスタマイズ');
+    openButton.title = previewText.textContent || '弾幕カスタマイズ';
     clearButton.disabled = copying || parts.length === 0;
     copyButton.disabled = copying || parts.length === 0;
     quickCopyButton.disabled = copying || parts.length === 0;

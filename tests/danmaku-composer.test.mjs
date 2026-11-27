@@ -133,6 +133,8 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
     await load();
 
     await t.test('opens from launcher with disabled empty actions and no layout shift', async () => {
+      assert.equal(await evaluate('document.getElementById("dm-open").textContent'), '弾幕カスタマイズ');
+      assert.equal(await evaluate('document.getElementById("dm-open").getAttribute("aria-label")'), '弾幕カスタマイズ');
       const before = await evaluate('document.querySelector(".toolbar").getBoundingClientRect().toJSON()');
       await click('dm-open');
       assert.equal(await evaluate('document.getElementById("dm-sheet").open'), true);
@@ -218,7 +220,7 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
       await click('dm-clear');
       assert.equal(await draft(), null);
       assert.equal(await preview(), '');
-      assert.equal(await evaluate('document.getElementById("dm-open").textContent'), '弾幕');
+      assert.equal(await evaluate('document.getElementById("dm-open").textContent'), '弾幕カスタマイズ');
       assert.equal(await evaluate('document.getElementById("dm-quick-copy").disabled'), true);
       assert.equal(await evaluate('localStorage.getItem("unrelated-setting")'), 'keep');
     });
@@ -258,7 +260,7 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
       assert.equal(await preview(), '');
       assert.equal(await draft(), null);
       assert.equal(await evaluate('document.getElementById("dm-copy").disabled'), true);
-      assert.equal(await evaluate('document.getElementById("dm-open").textContent'), '弾幕');
+      assert.equal(await evaluate('document.getElementById("dm-open").textContent'), '弾幕カスタマイズ');
       await close();
     });
 
