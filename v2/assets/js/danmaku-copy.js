@@ -9,12 +9,11 @@
   var addButton = document.getElementById('dm-add');
   var clearButton = document.getElementById('dm-clear');
   var preview = document.getElementById('dm-preview');
-  var previewText = document.getElementById('dm-preview-text');
   var copyButton = document.getElementById('dm-copy');
   var quickCopyButton = document.getElementById('dm-quick-copy');
   var toast = document.getElementById('toast');
   if (!select || !openButton || !sheet || !closeButton || !dragHandle ||
-      !addButton || !clearButton || !preview || !previewText || !copyButton || !quickCopyButton || !toast) return;
+      !addButton || !clearButton || !preview || !copyButton || !quickCopyButton || !toast) return;
 
   var STORAGE_KEY = 'saikyoDB.danmakuDraft.v1';
   var LIFETIME = 30 * 60 * 1000;
@@ -36,15 +35,27 @@
   }
 
   function render(){
-    previewText.textContent = parts.join('');
-    openButton.textContent = previewText.textContent || '弾幕カスタマイズ';
+    var text = parts.join('');
+    // Preserve the caret and IME composition during direct input.
+    if (preview.value !== text) preview.value = text;
+    preview.readOnly = copying;
+    openButton.textContent = text || '弾幕カスタマイズ';
     openButton.setAttribute('aria-label', parts.length ? '作成した弾幕を編集' : '弾幕カスタマイズ');
-    openButton.title = previewText.textContent || '弾幕カスタマイズ';
+    openButton.title = text || '弾幕カスタマイズ';
     clearButton.disabled = copying || parts.length === 0;
     copyButton.disabled = copying || parts.length === 0;
     quickCopyButton.disabled = copying || parts.length === 0;
     addButton.disabled = copying;
     select.disabled = copying;
+  }
+
+  function clearDraft(){
+    parts = [];
+    expiresAt = 0;
+    revision++;
+    window.clearTimeout(expiryTimer);
+    removeSavedDraft();
+    render();
   }
 
   function scheduleExpiry(){
@@ -58,13 +69,8 @@
       scheduleExpiry();
       return false;
     }
-    parts = [];
-    expiresAt = 0;
     select.value = defaultSelection;
-    revision++;
-    window.clearTimeout(expiryTimer);
-    removeSavedDraft();
-    render();
+    clearDraft();
     return true;
   }
 
@@ -87,13 +93,13 @@
       if (!raw) return;
       var saved = JSON.parse(raw);
       if (!saved || !Array.isArray(saved.parts) ||
-          !saved.parts.every(function(part){ return optionValues.includes(part); }) ||
+          !saved.parts.every(function(part){ return typeof part === 'string'; }) ||
           !optionValues.includes(saved.selected) ||
           !Number.isFinite(saved.expiresAt) || saved.expiresAt <= Date.now()) {
         removeSavedDraft();
         return;
       }
-      parts = saved.parts.slice();
+      parts = saved.parts.filter(function(part){ return part !== ''; });
       select.value = saved.selected;
       expiresAt = saved.expiresAt;
       scheduleExpiry();
@@ -232,11 +238,18 @@
   });
   clearButton.addEventListener('click', function(){
     if (copying || checkExpiry() || !parts.length) return;
-    parts = [];
-    expiresAt = 0;
-    revision++;
-    window.clearTimeout(expiryTimer);
-    removeSavedDraft();
+    clearDraft();
+  });
+  preview.addEventListener('beforeinput', checkExpiry);
+  preview.addEventListener('input', function(){
+    if (copying) return;
+    checkExpiry();
+    if (!preview.value) {
+      clearDraft();
+      return;
+    }
+    parts = [preview.value];
+    saveDraft();
     render();
   });
   select.addEventListener('change', function(){

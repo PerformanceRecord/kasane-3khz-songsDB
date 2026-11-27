@@ -116,8 +116,8 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
 #dm-sheet #dm-select{min-height:44px;font-size:16px}
 #dm-add{flex:0 0 auto;min-height:44px;padding:9px 13px}
 #dm-preview{
-  display:flex;
-  align-items:center;
+  display:block;
+  width:100%;
   height:64px;
   margin-top:16px;
   padding:12px;
@@ -125,10 +125,13 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
   border:1px solid var(--line);
   border-radius:12px;
   background:var(--card);
+  color:var(--ink);
+  font:inherit;
   font-size:20px;
   line-height:1.6;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
-#dm-preview-text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dm-edit-actions{display:flex;align-items:center;gap:8px;margin-top:12px}
 .dm-edit-actions .button{min-height:44px;padding:8px 12px;background:transparent}
 #dm-sheet #dm-copy{flex:1;min-width:0;width:auto;min-height:48px;font-size:16px;white-space:nowrap}

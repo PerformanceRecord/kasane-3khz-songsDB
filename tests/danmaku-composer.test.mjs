@@ -115,7 +115,7 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
     }
     const click = id => evaluate('document.getElementById(' + JSON.stringify(id) + ').click()');
     const draft = () => evaluate('JSON.parse(localStorage.getItem(' + JSON.stringify(storageKey) + '))');
-    const preview = () => evaluate('document.getElementById("dm-preview").textContent');
+    const preview = () => evaluate('document.getElementById("dm-preview").value');
     async function close() {
       await click('dm-close');
       await sleep(220);
@@ -241,6 +241,68 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
       await click('dm-clear');
     });
 
+    await t.test('direct edits preserve the caret, remove one emoji and extend draft expiry', async () => {
+      await evaluate('document.getElementById("dm-preview").focus()');
+      await connection.call('Input.insertText', {text:'A💙B'});
+      const before = await draft();
+      assert.equal(await preview(), 'A💙B');
+      try {
+        await evaluate('window.editNow=Date.now;Date.now=()=>window.editNow()+60000;document.getElementById("dm-preview").setSelectionRange(3,3)');
+        await connection.call('Input.dispatchKeyEvent', {type:'keyDown',key:'Backspace',code:'Backspace',windowsVirtualKeyCode:8});
+        await connection.call('Input.dispatchKeyEvent', {type:'keyUp',key:'Backspace',code:'Backspace',windowsVirtualKeyCode:8});
+        assert.equal(await preview(), 'AB');
+        await connection.call('Input.insertText', {text:'✨'});
+        await connection.call('Input.insertText', {text:'！'});
+        assert.equal(await preview(), 'A✨！B');
+        assert.deepEqual((await draft()).parts, ['A✨！B']);
+        assert.ok((await draft()).expiresAt >= before.expiresAt + 60000);
+        assert.equal(await evaluate('document.getElementById("dm-open").textContent'), 'A✨！B');
+      } finally {
+        await evaluate('Date.now=window.editNow');
+      }
+    });
+
+    await t.test('free text accepts appended presets and survives copying and reloading', async () => {
+      const text = await preview();
+      const selected = await evaluate('document.getElementById("dm-select").value');
+      await click('dm-add');
+      const expected = text + selected;
+      assert.equal(await preview(), expected);
+      await mockClipboard();
+      await click('dm-copy');
+      await sleep(20);
+      assert.equal(await evaluate('window.copiedText'), expected);
+      assert.equal(await evaluate('document.getElementById("dm-sheet").open'), false);
+      const before = await draft();
+      await load();
+      assert.equal(await preview(), expected);
+      assert.deepEqual(await draft(), before);
+      await mockClipboard();
+      await click('dm-quick-copy');
+      await sleep(20);
+      assert.equal(await evaluate('window.copiedText'), expected);
+      await click('dm-open');
+      await evaluate('document.getElementById("dm-preview").focus();document.getElementById("dm-preview").select()');
+      await connection.call('Input.dispatchKeyEvent', {type:'keyDown',key:'Backspace',code:'Backspace',windowsVirtualKeyCode:8});
+      await connection.call('Input.dispatchKeyEvent', {type:'keyUp',key:'Backspace',code:'Backspace',windowsVirtualKeyCode:8});
+      assert.equal(await preview(), '');
+      assert.equal(await draft(), null);
+      assert.equal(await evaluate('document.getElementById("dm-copy").disabled && document.getElementById("dm-quick-copy").disabled && document.getElementById("dm-clear").disabled'), true);
+      assert.equal(await evaluate('document.getElementById("dm-open").textContent'), '弾幕カスタマイズ');
+      assert.equal(await evaluate('localStorage.getItem("unrelated-setting")'), 'keep');
+    });
+
+    await t.test('Japanese IME composition commits without resetting the editing field', async () => {
+      await evaluate('document.getElementById("dm-preview").focus()');
+      await connection.call('Input.imeSetComposition', {text:'はな',selectionStart:2,selectionEnd:2});
+      assert.equal(await preview(), 'はな');
+      await connection.call('Input.insertText', {text:'花'});
+      await connection.call('Input.insertText', {text:'彩音'});
+      assert.equal(await preview(), '花彩音');
+      assert.equal((await draft()).parts.join(''), '花彩音');
+      await click('dm-clear');
+    });
+
     await t.test('expired and corrupt saved data are removed during load', async () => {
       await evaluate(`localStorage.setItem('${storageKey}', JSON.stringify({parts:['✨💙💜✨'],selected:'✨💙💜✨',expiresAt:Date.now()-1}))`);
       await load();
@@ -311,6 +373,7 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
       await evaluate('Object.defineProperty(navigator, "clipboard", {configurable:true,value:{writeText:() => new Promise(resolve => { window.finishCopy = resolve; window.copyCalls = (window.copyCalls || 0) + 1; })}})');
       await click('dm-copy');
       const text = await preview();
+      assert.equal(await evaluate('document.getElementById("dm-preview").readOnly'), true);
       await click('dm-add');
       await click('dm-clear');
       await click('dm-copy');
@@ -391,15 +454,15 @@ test('danmaku composer browser behavior', { skip: !chromePath, timeout: 60000 },
           const copy = document.getElementById('dm-copy').getBoundingClientRect();
           const clear = document.getElementById('dm-clear').getBoundingClientRect();
           const preview = document.getElementById('dm-preview');
-          const text = document.getElementById('dm-preview-text');
+          const text = preview;
           const style = getComputedStyle(preview);
           const sheet = document.getElementById('dm-sheet');
           return {sameRow:Math.abs(select.y-add.y)<2, actionRow:Math.abs(copy.y-clear.y)<2 && copy.width>clear.width,
             pageFits:document.documentElement.scrollWidth<=innerWidth,
-            sheetFits:sheet.scrollWidth<=sheet.clientWidth, previewFits:preview.scrollWidth<=preview.clientWidth,
+            sheetFits:sheet.scrollWidth<=sheet.clientWidth, previewFits:preview.getBoundingClientRect().width<=sheet.clientWidth,
             singleLine:getComputedStyle(text).whiteSpace === 'nowrap',
             ellipsis:getComputedStyle(text).textOverflow === 'ellipsis',
-            noScrollbars:style.overflow === 'hidden' && getComputedStyle(text).overflow === 'hidden',
+            noScrollbars:!['auto','scroll'].includes(style.overflowX) && !['auto','scroll'].includes(style.overflowY),
             fontSize:getComputedStyle(text).fontSize};
         })()`);
           assert.deepEqual(layout, {sameRow:true,actionRow:true,pageFits:true,sheetFits:true,previewFits:true,singleLine:true,ellipsis:true,noScrollbars:true,fontSize:'20px'}, String(width) + '/' + option);

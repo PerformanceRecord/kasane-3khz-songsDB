@@ -24,7 +24,7 @@
   <link rel="apple-touch-icon-precomposed" href="https://performancerecord.github.io/kasane-3khz-songsDB/assets/icons/app/apple-touch-icon.png" sizes="180x180">
   <link rel="manifest" href="./site.webmanifest">
   <title>彩興DB</title>
-  <link rel="stylesheet" href="./v2/assets/css/app-v2-inline-history.css?v=20261127-danmaku-right-column">
+  <link rel="stylesheet" href="./v2/assets/css/app-v2-inline-history.css?v=20261127-danmaku-direct-edit">
 </head>
 <body>
   <main class="app">
@@ -130,7 +130,7 @@
       </div>
       <button id="dm-add" class="button" type="button">追加</button>
     </div>
-    <div id="dm-preview" role="region" aria-label="連結された弾幕" aria-live="polite" tabindex="0"><span id="dm-preview-text"></span></div>
+    <input id="dm-preview" type="text" aria-label="弾幕を入力・編集" placeholder="弾幕を入力・編集" autocomplete="off" spellcheck="false">
     <div class="dm-edit-actions">
       <button id="dm-copy" type="button" disabled>弾幕をコピー</button>
       <button id="dm-clear" class="button" type="button" disabled>クリア</button>
@@ -142,6 +142,6 @@
 
   <script src="./v2/assets/js/player-queue-v2.js?v=20260802-production-pause-on-hide" defer></script>
   <script src="./v2/assets/js/app-v2-inline-history.js?v=20260802-production-hidden-safe-status" defer></script>
-  <script src="./v2/assets/js/danmaku-copy.js?v=20261127-danmaku-customize-label" defer></script>
+  <script src="./v2/assets/js/danmaku-copy.js?v=20261127-danmaku-direct-edit" defer></script>
 </body>
 </html>
