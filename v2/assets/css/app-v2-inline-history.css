@@ -73,18 +73,73 @@ dialog::backdrop{background:rgba(10,35,28,.45)}
 :focus-visible{outline:3px solid var(--purple);outline-offset:2px}
 [hidden]{display:none!important}
 
-/* Restored danmaku copy console */
+/* Danmaku launcher and editor */
 .danmaku-dock{width:100%}
 .danmaku-console{padding:10px}
 .dm-wrap{display:flex;align-items:center;gap:8px}
-.dm-select-wrap{flex:7 1 0;min-width:0}
-.dm-btn-wrap{display:flex;flex:3 1 0}
+.dm-select-wrap{flex:1 1 0;min-width:0}
 #dm-select{width:100%;min-width:0;border:1px solid #8fbda7;border-radius:10px;background:#fff;color:var(--ink);padding:8px 10px;font:inherit;font-size:14px;line-height:1.2}
-#dm-copy{appearance:none;width:100%;border:1px solid transparent;border-radius:12px;background:linear-gradient(135deg,#4cc9f0,#4895ef);color:#05223d;padding:9px 12px;font-weight:700;cursor:pointer}
-#dm-copy:hover{filter:brightness(1.05)}
-#dm-copy:active{transform:translateY(1px)}
+#dm-copy,#dm-quick-copy{appearance:none;width:100%;border:1px solid transparent;border-radius:12px;background:linear-gradient(135deg,#4cc9f0,#4895ef);color:#05223d;padding:9px 12px;font-weight:700;cursor:pointer}
+#dm-copy:hover,#dm-quick-copy:hover{filter:brightness(1.05)}
+#dm-copy:active,#dm-quick-copy:active{transform:translateY(1px)}
 .toast{position:fixed;left:50%;bottom:16px;z-index:60;transform:translateX(-50%);background:rgba(37,86,70,.92);color:#fff;padding:10px 14px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s}
 .toast.show{opacity:1}
+
+.dm-launch-actions{display:flex;align-items:center;gap:8px}
+#dm-open{flex:1;min-width:0;min-height:44px}
+#dm-quick-copy{flex:0 0 auto;width:auto;min-height:44px;white-space:nowrap}
+#dm-quick-copy:disabled{opacity:.45;cursor:default;filter:none;transform:none}
+#dm-sheet{
+  position:fixed;
+  inset:auto 0 0;
+  width:min(620px,100%);
+  max-width:100%;
+  max-height:85vh;
+  max-height:85dvh;
+  margin:0 auto;
+  padding:0 16px calc(16px + env(safe-area-inset-bottom));
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  border:1px solid var(--line);
+  border-bottom:0;
+  border-radius:18px 18px 0 0;
+  background:var(--soft);
+  box-shadow:0 -12px 28px rgba(20,70,55,.14);
+}
+#dm-sheet[open]{animation:dm-slide-up .22s ease-out}
+#dm-sheet.dm-closing{animation:dm-slide-down .18s ease-in forwards;pointer-events:none}
+.dm-sheet-head{touch-action:none;padding-top:10px}
+.dm-handle{width:36px;height:4px;margin:0 auto 8px;border-radius:999px;background:var(--line)}
+.dm-sheet-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+#dm-title{margin:0;font-size:18px}
+#dm-close{display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;color:var(--ink);font-size:26px}
+#dm-sheet #dm-select{min-height:44px;font-size:16px}
+#dm-add{flex:0 0 auto;min-height:44px;padding:9px 13px}
+#dm-preview{
+  display:flex;
+  align-items:center;
+  height:64px;
+  margin-top:16px;
+  padding:12px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--card);
+  font-size:20px;
+  line-height:1.6;
+}
+#dm-preview-text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dm-edit-actions{display:flex;align-items:center;gap:8px;margin-top:12px}
+.dm-edit-actions .button{min-height:44px;padding:8px 12px;background:transparent}
+#dm-sheet #dm-copy{flex:1;min-width:0;width:auto;min-height:48px;font-size:16px;white-space:nowrap}
+#dm-sheet #dm-clear{flex:0 0 auto;min-height:48px;white-space:nowrap}
+#dm-sheet button:disabled{opacity:.45;cursor:default;filter:none;transform:none}
+#dm-sheet .toast{max-width:calc(100vw - 24px);bottom:calc(16px + env(safe-area-inset-bottom))}
+@keyframes dm-slide-up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes dm-slide-down{from{transform:translateY(0)}to{transform:translateY(100%)}}
+@media(prefers-reduced-motion:reduce){
+  #dm-sheet[open],#dm-sheet.dm-closing{animation:none}
+}
 
 @media(max-width:700px){
   .app{padding:6px 6px calc(82px + env(safe-area-inset-bottom));gap:8px}

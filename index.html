@@ -24,7 +24,7 @@
   <link rel="apple-touch-icon-precomposed" href="https://performancerecord.github.io/kasane-3khz-songsDB/assets/icons/app/apple-touch-icon.png" sizes="180x180">
   <link rel="manifest" href="./site.webmanifest">
   <title>彩興DB</title>
-  <link rel="stylesheet" href="./v2/assets/css/app-v2-inline-history.css?v=20260802-danmaku-console">
+  <link rel="stylesheet" href="./v2/assets/css/app-v2-inline-history.css?v=20261127-danmaku-composer">
 </head>
 <body>
   <main class="app">
@@ -98,9 +98,23 @@
     </section>
 
     <section class="danmaku-dock" aria-label="弾幕コピー">
-      <div class="danmaku-console card">
-        <div class="dm-wrap">
-          <div class="dm-select-wrap">
+      <div class="danmaku-console card dm-launch-actions">
+        <button id="dm-open" class="button secondary" type="button" aria-haspopup="dialog" aria-controls="dm-sheet" aria-expanded="false">弾幕</button>
+        <button id="dm-quick-copy" type="button" aria-label="作成した弾幕をコピー" disabled>コピー</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="dm-sheet" aria-labelledby="dm-title">
+    <div id="dm-drag" class="dm-sheet-head">
+      <div class="dm-handle" aria-hidden="true"></div>
+      <div class="dm-sheet-title">
+        <h2 id="dm-title">弾幕</h2>
+        <button id="dm-close" type="button" aria-label="弾幕を閉じる">×</button>
+      </div>
+    </div>
+    <div class="dm-wrap">
+      <div class="dm-select-wrap">
             <select id="dm-select" title="弾幕の種類を選択">
             <option value="✨💙💜✨">✨💙💜✨</option>
             <option value="🎵🩵🤍🎵">🎵🩵🤍🎵</option>
@@ -113,20 +127,21 @@
             -->
             <option value="＼ﾅｧﾝ／">＼ﾅｧﾝ／</option>
             </select>
-          </div>
-          <div class="dm-btn-wrap">
-            <button id="dm-copy" type="button" title="選択した弾幕をコピー">コピー</button>
-          </div>
-        </div>
       </div>
-    </section>
-  </main>
+      <button id="dm-add" class="button" type="button">追加</button>
+    </div>
+    <div id="dm-preview" role="region" aria-label="連結された弾幕" aria-live="polite" tabindex="0"><span id="dm-preview-text"></span></div>
+    <div class="dm-edit-actions">
+      <button id="dm-copy" type="button" disabled>弾幕をコピー</button>
+      <button id="dm-clear" class="button" type="button" disabled>クリア</button>
+    </div>
+  </dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite">コピーしました</div>
 
 
   <script src="./v2/assets/js/player-queue-v2.js?v=20260802-production-pause-on-hide" defer></script>
   <script src="./v2/assets/js/app-v2-inline-history.js?v=20260802-production-hidden-safe-status" defer></script>
-  <script src="./v2/assets/js/danmaku-copy.js?v=20260802-production" defer></script>
+  <script src="./v2/assets/js/danmaku-copy.js?v=20261127-danmaku-composer" defer></script>
 </body>
 </html>
